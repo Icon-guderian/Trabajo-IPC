@@ -17,10 +17,10 @@
       <VBox alignment="CENTER" prefHeight="400.0" prefWidth="393.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
          <children>
               <Label id="titulo" alignment="TOP_CENTER" style="-fx-font-size: 40; -fx-text-fill: linear-gradient(from 0% 0% to 100% 200%, repeat, aqua 0%, red 50%); -fx-font-weight: BOLD;" text="Mi Aplicación" />
-              <TextField fx:id="textFieldNombre" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="300.0" promptText="Nombre" />
-              <TextField fx:id="textFieldEdad" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="300.0" promptText="Edad" />
-              <Button alignment="TOP_CENTER" onAction="#aceptar" styleClass="boton" text="Aceptar" />
+              <TextField fx:id="textFieldNombre" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="300.0" promptText="Usuario" />
+              <TextField fx:id="textFieldEdad" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="300.0" promptText="Contraseña" />
               <Label fx:id="labelMensaje" styleClass="textoResultado" />
+              <Button alignment="TOP_CENTER" onAction="#aceptar" styleClass="boton" text="Aceptar" />
          </children>
       </VBox>
    </children>
