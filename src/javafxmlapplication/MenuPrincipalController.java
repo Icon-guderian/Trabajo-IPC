@@ -38,11 +38,11 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     private Label label;
     @FXML
-    private Button pistasDisponibilidad;
-    @FXML
     private Button registro;
     @FXML
     private Button autenticarse;
+    @FXML
+    private Button pistaDisponibilidad;
 
     /**
      * Initializes the controller class.
