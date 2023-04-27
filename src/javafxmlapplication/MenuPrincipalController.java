@@ -59,10 +59,10 @@ public class MenuPrincipalController implements Initializable {
         alert.setHeaderText("Vas a salir del programa");
         alert.setContentText("¿Seguro que quieres salir?");
         
-        ButtonType buttonTypeFinish = new ButtonType("Salir", ButtonBar.ButtonData.FINISH);
+        ButtonType buttonTypeCancel = new ButtonType("Salir", ButtonBar.ButtonData.CANCEL_CLOSE);
         
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() && result.get() == buttonTypeFinish){
+        if (result.isPresent() && result.get() == buttonTypeCancel){
             System.out.println("OK");
             
         } else {
