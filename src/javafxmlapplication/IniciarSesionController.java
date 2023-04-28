@@ -21,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Club;
 
 /**
  * FXML Controller class
@@ -29,6 +30,8 @@ import javafx.stage.Stage;
  */
 public class IniciarSesionController implements Initializable {
 
+     private Club club; 
+    
     @FXML
     private TextField CajaUsuario;
     @FXML
@@ -48,12 +51,16 @@ public class IniciarSesionController implements Initializable {
         // TODO
     }    
 
+    public void initClub(Club c) {
+        club = c; 
+    }
+   
     @FXML
     private void IrAlMenu(ActionEvent event) throws IOException 
     {
         FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/MenuPrincipal.fxml"));
         Parent root = miCargador.load();
-        
+       
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
@@ -90,7 +97,7 @@ public class IniciarSesionController implements Initializable {
         
         if (usuario.isEmpty() && contraseña.isEmpty()) 
         {
-            CajaUsuario.setPromptText("Introduzca su usuario por favor");
+            CajaUsuario.setPromptText("Introduzca su usuario");
             CajaUsuario.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: red;");
             cajaContraseña.setPromptText("Introduzca su contraseña por favor");
             cajaContraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: red;");
@@ -98,7 +105,7 @@ public class IniciarSesionController implements Initializable {
         } 
             else if(contraseña.isEmpty() && !usuario.isEmpty()) 
         {
-            cajaContraseña.setPromptText("Introduzca su contraseña por favor");
+            cajaContraseña.setPromptText("Introduzca su contraseña");
             cajaContraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: red;");
             CajaUsuario.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E;");
         } 

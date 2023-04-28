@@ -22,7 +22,7 @@
          <children>
             <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="86.0" prefWidth="472.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Label style="-fx-font-size: 40; -fx-text-fill: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%); -fx-font-weight: BOld;" text="Registrar" HBox.hgrow="ALWAYS" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" style="-fx-font-size: 40; -fx-text-fill: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%); -fx-font-weight: BOld;" text="Registrar" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
             <GridPane prefHeight="462.0" prefWidth="472.0">
@@ -55,18 +55,21 @@
                   <RowConstraints maxHeight="43.39999999999998" minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
               </rowConstraints>
                <children>
-                  <TextField fx:id="apellidos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="210.0" promptText="Apellidos" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS" />
-                  <TextField fx:id="telefóno" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="140.0" promptText="Teléfono" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="ALWAYS" />
-                  <TextField fx:id="nickname" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" promptText="Nickname" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" GridPane.vgrow="ALWAYS" />
-                  <TextField fx:id="nombre" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="110.0" promptText="Nombre" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
+                  <TextField fx:id="apellidos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="210.0" promptText="Apellidos" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E;" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS" />
+                  <TextField fx:id="telefóno" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="140.0" promptText="Teléfono" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E;" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="ALWAYS" />
+                  <TextField fx:id="nickname" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" promptText="Nickname" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E;" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" GridPane.vgrow="ALWAYS" />
+                  <TextField fx:id="nombre" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="110.0" promptText="Nombre" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E;" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
                   <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="0.0" promptText="Repita la contraseña" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                  <TextField fx:id="NúmeroTarjeta" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="241.0" promptText="Número de tarjeta " GridPane.columnIndex="1" GridPane.rowIndex="12" />
-                  <TextField fx:id="CVV" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="40.0" promptText="CVV" GridPane.columnIndex="2" GridPane.rowIndex="12" />
-                  <PasswordField fx:id="contraseña" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="220.0" promptText="Contraseña" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                  <PasswordField fx:id="contraseñaOtra" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="220.0" promptText="Repita la contraseña" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                  <TextField fx:id="NúmeroTarjeta" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="241.0" promptText="Número de tarjeta " style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E;" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                  <TextField fx:id="CVV" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="40.0" promptText="CVV" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E;" GridPane.columnIndex="2" GridPane.rowIndex="12" />
+                  <PasswordField fx:id="contraseña" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="220.0" promptText="Contraseña" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E;" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <PasswordField fx:id="contraseñaOtra" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="220.0" promptText="Repita la contraseña" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E;" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                   <ImageView fx:id="ImagenPerfil" fitHeight="101.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="15" GridPane.vgrow="ALWAYS" />
-                  <Button fx:id="seleccionFoto" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#seleccionarFoto" prefHeight="26.0" prefWidth="57.0" text="Foto" GridPane.columnIndex="2" GridPane.rowIndex="15" />
-                  <Button fx:id="registrarBoton" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#registrar" prefHeight="44.0" prefWidth="308.0" text="Registrar" GridPane.columnIndex="1" GridPane.rowIndex="19" />
+                  <Button fx:id="seleccionBoton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#seleccionarFoto" prefHeight="26.0" prefWidth="57.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%);" text="Foto" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="15" />
+                  <Button fx:id="registrarBoton" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#registrar" prefHeight="44.0" prefWidth="308.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%);" text="Registrar" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="19">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font></Button>
                </children>
             </GridPane>
          </children>
@@ -77,7 +80,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="70.0" prefWidth="154.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%); -fx-border-color: black;" text="Iniciar Sesión" textFill="WHITE" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="iniciarSesionBoton" mnemonicParsing="false" onAction="#IrIniciarSesion" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%); -fx-border-color: black;" text="Iniciar Sesión" textFill="WHITE" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="54.0" prefWidth="256.0" HBox.hgrow="ALWAYS">
@@ -91,7 +94,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="70.0" prefWidth="154.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%); -fx-border-color: black;" text="Menú" textFill="WHITE" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="menuBoton" mnemonicParsing="false" onAction="#IrMenu" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%); -fx-border-color: black;" text="Menú" textFill="WHITE" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
          </children>
