@@ -20,6 +20,7 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -46,6 +47,8 @@ public class MenuPrincipalController implements Initializable {
     private Button autenticarse;
     @FXML
     private ChoiceBox<?> seleccionPista;
+    @FXML
+    private ListView<?> personasListView;
 
     /**
      * Initializes the controller class.
@@ -79,7 +82,17 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     private void accederRegistro(ActionEvent event) throws IOException 
     {
-        
+        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/Registrarse.fxml"));
+        Parent root = miCargador.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Registrar");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        //la ventana se muestra modal
+        stage.show();
+        Stage myStage = (Stage) registro.getScene().getWindow();
+        myStage.close();
     }
 
     @FXML
@@ -97,22 +110,4 @@ public class MenuPrincipalController implements Initializable {
         Stage myStage = (Stage) autenticarse.getScene().getWindow();
         myStage.close();
     }
-
-
-    private void accederRegistrarse(ActionEvent event) throws IOException 
-    {
-        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/Registrarse.fxml"));
-        Parent root = miCargador.load();
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("Registrar");
-        stage.initModality(Modality.APPLICATION_MODAL);
-        //la ventana se muestra modal
-        stage.show();
-        Stage myStage = (Stage) registro.getScene().getWindow();
-        myStage.close();
-    }
-
-    
 }
