@@ -79,7 +79,6 @@ public class MenuPrincipalController implements Initializable {
     {
         FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/Registrarse.fxml"));
         Parent root = miCargador.load();
-        
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
@@ -95,8 +94,7 @@ public class MenuPrincipalController implements Initializable {
     private void accederAutenticarse(ActionEvent event) throws IOException 
     {
         FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/IniciarSesion.fxml"));
-        Parent root = miCargador.load();
-        
+        Parent root = miCargador.load();       
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
@@ -106,7 +104,6 @@ public class MenuPrincipalController implements Initializable {
         stage.show();
         Stage myStage = (Stage) autenticarse.getScene().getWindow();
         myStage.close();
-        
     }
 
     @FXML

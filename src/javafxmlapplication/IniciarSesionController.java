@@ -22,6 +22,8 @@ import javafx.scene.control.ToggleButton;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Club;
+import static model.Club.getInstance;
+import model.ClubDAOException;
 
 /**
  * FXML Controller class
@@ -30,7 +32,6 @@ import model.Club;
  */
 public class IniciarSesionController implements Initializable {
 
-     private Club club; 
     
     @FXML
     private TextField CajaUsuario;
@@ -51,16 +52,12 @@ public class IniciarSesionController implements Initializable {
         // TODO
     }    
 
-    public void initClub(Club c) {
-        club = c; 
-    }
    
     @FXML
     private void IrAlMenu(ActionEvent event) throws IOException 
     {
         FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/MenuPrincipal.fxml"));
         Parent root = miCargador.load();
-       
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
@@ -90,10 +87,12 @@ public class IniciarSesionController implements Initializable {
     }
 
     @FXML
-    private void Aceptar(ActionEvent event) 
+    private void Aceptar(ActionEvent event) throws ClubDAOException, IOException 
     {
         String usuario = CajaUsuario.getText();
         String contraseña = cajaContraseña.getText();
+        
+        Club club = getInstance(); 
         
         if (usuario.isEmpty() && contraseña.isEmpty()) 
         {
