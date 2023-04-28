@@ -42,9 +42,8 @@ public class MenuPrincipalController implements Initializable {
     private Label label;
     @FXML
     private Button registro;
-    private Button autenticarse;
     @FXML
-    private Button autenticarse1;
+    private Button autenticarse;
     @FXML
     private ChoiceBox<?> seleccionPista;
 
