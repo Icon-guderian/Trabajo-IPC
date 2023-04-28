@@ -149,7 +149,7 @@ public class RegistrarseController implements Initializable {
            apellidos.setPromptText("Introduzca sus apellidos");
            apellidos.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: red;"); 
         }
-        else if(Telefono.isEmpty() || !contieneSoloNumeros(Telefono)) 
+        else if(Telefono.isEmpty()) 
         {
            telefóno.setPromptText("Introduzca su teléfono");
            telefóno.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: red;"); 

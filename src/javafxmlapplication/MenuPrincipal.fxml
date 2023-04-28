@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #84B118;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.MenuPrincipalController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #84B118;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.MenuPrincipalController">
    <bottom>
       <Label fx:id="label" alignment="BOTTOM_CENTER" prefHeight="17.0" prefWidth="621.0" text="  Bienvenido a Greenball" textFill="WHITE" BorderPane.alignment="CENTER">
          <font>
@@ -49,9 +49,9 @@
                   <VBox alignment="CENTER" prefHeight="154.0" prefWidth="100.0">
                      <children>
                         <Label alignment="CENTER" prefHeight="20.0" prefWidth="80.0" text="Registrarte" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
-                        <Button fx:id="autenticarse" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#accederAutenticarse" prefHeight="60.0" prefWidth="60.0">
+                        <Button fx:id="registro" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#accederRegistrarse" prefHeight="60.0" prefWidth="60.0">
                            <graphic>
-                              <ImageView fx:id="registro" fitHeight="50.0" fitWidth="50.0" onDragDetected="#accederRegistro" pickOnBounds="true">
+                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true">
                                  <image>
                                     <Image url="@../resources/signUp.jpg" />
                                  </image>

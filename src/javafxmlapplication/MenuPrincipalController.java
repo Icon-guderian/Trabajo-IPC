@@ -18,6 +18,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
@@ -40,11 +41,12 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     private Label label;
     @FXML
-    private ImageView registro;
-    @FXML
+    private Button registro;
     private Button autenticarse;
     @FXML
     private Button autenticarse1;
+    @FXML
+    private ChoiceBox<?> seleccionPista;
 
     /**
      * Initializes the controller class.
@@ -77,17 +79,7 @@ public class MenuPrincipalController implements Initializable {
   
     private void accederRegistro(ActionEvent event) throws IOException 
     {
-        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/Registrarse.fxml"));
-        Parent root = miCargador.load();
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("Registrar");
-        stage.initModality(Modality.APPLICATION_MODAL);
-        //la ventana se muestra modal
-        stage.show();
-        Stage myStage = (Stage) registro.getScene().getWindow();
-        myStage.close();
+        
     }
 
     @FXML
@@ -106,8 +98,21 @@ public class MenuPrincipalController implements Initializable {
         myStage.close();
     }
 
+
     @FXML
-    private void accederRegistro(MouseEvent event) {
+    private void accederRegistrarse(ActionEvent event) throws IOException 
+    {
+        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/Registrarse.fxml"));
+        Parent root = miCargador.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Registrar");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        //la ventana se muestra modal
+        stage.show();
+        Stage myStage = (Stage) registro.getScene().getWindow();
+        myStage.close();
     }
     
 }
