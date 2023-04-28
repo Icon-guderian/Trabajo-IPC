@@ -76,7 +76,8 @@ public class MenuPrincipalController implements Initializable {
     }
 
     private void accederLogIn(ActionEvent event) throws IOException {
-        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/Autenticarse.fxml"));
+        /*
+        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/IniciarSesion.fxml"));
         Parent root = miCargador.load();
         
         Scene scene = new Scene(root,500,300);
@@ -86,14 +87,42 @@ public class MenuPrincipalController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         //la ventana se muestra modal
         stage.showAndWait();
+        */
     }
 
     @FXML
-    private void accederRegistro(ActionEvent event) {
+    private void accederRegistro(ActionEvent event) throws IOException 
+    {
+        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/Registrarse.fxml"));
+        Parent root = miCargador.load();
+        
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Registrar");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        //la ventana se muestra modal
+        stage.show();
+        Stage myStage = (Stage) registro.getScene().getWindow();
+        myStage.close();
     }
 
     @FXML
-    private void accederAutenticarse(ActionEvent event) {
+    private void accederAutenticarse(ActionEvent event) throws IOException 
+    {
+        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/IniciarSesion.fxml"));
+        Parent root = miCargador.load();
+        
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Autenticarse");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        //la ventana se muestra modal
+        stage.show();
+        Stage myStage = (Stage) autenticarse.getScene().getWindow();
+        myStage.close();
+        
     }
     
 }

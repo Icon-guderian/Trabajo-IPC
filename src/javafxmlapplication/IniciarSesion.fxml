@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="431.0" prefWidth="657.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="431.0" prefWidth="657.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.IniciarSesionController">
    <left>
-      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="254.0" style="-fx-background-color: #84B118;" BorderPane.alignment="CENTER" />
+      <VBox alignment="CENTER" prefHeight="370.0" prefWidth="234.0" style="-fx-background-color: #84B118;" BorderPane.alignment="CENTER" />
    </left>
    <bottom>
       <HBox prefHeight="61.0" style="-fx-background-color: #84B118;" BorderPane.alignment="CENTER" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
@@ -26,7 +26,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="62.0" prefWidth="25.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Button mnemonicParsing="false" onAction="#IrAlMenu" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%); -fx-border-color: black; -fx-border-radius: 4px;" text="Ir al menú" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Button fx:id="menuBoton" mnemonicParsing="false" onAction="#IrAlMenu" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%); -fx-border-color: black;" text="Ir al menú" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -34,7 +34,7 @@
                </children></HBox>
             <HBox alignment="CENTER" prefHeight="62.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#Registrar" prefHeight="35.0" prefWidth="92.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%); -fx-border-color: black; -fx-border-radius: 4px;" text="Regístrate" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Button fx:id="registrarBoton" alignment="CENTER" mnemonicParsing="false" onAction="#Registrar" prefHeight="35.0" prefWidth="92.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%); -fx-border-color: black;" text="Regístrate" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font></Button>
@@ -44,26 +44,26 @@
       </HBox>
    </bottom>
    <right>
-      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="402.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="370.0" prefWidth="422.0" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="CENTER" prefHeight="106.0" prefWidth="402.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Label alignment="TOP_CENTER" prefHeight="49.0" prefWidth="250.0" style="-fx-font-size: 40; -fx-text-fill: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%); -fx-font-weight: BOLD;" text="Iniciar Sesión" HBox.hgrow="ALWAYS" />
+                  <Label alignment="TOP_CENTER" prefHeight="39.0" prefWidth="250.0" style="-fx-font-size: 40; -fx-text-fill: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%); -fx-font-weight: BOLD;" text="Iniciar Sesión" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
             <HBox alignment="BOTTOM_CENTER" prefHeight="0.0" prefWidth="402.0" VBox.vgrow="ALWAYS">
                <children>
-                  <TextField fx:id="CajaUsuario" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="284.0" promptText="Introduzca usuario" HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="CajaUsuario" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="284.0" promptText="Introduzca usuario" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E;" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="42.0" prefWidth="402.0" VBox.vgrow="ALWAYS">
                <children>
-                  <TextField fx:id="CajaContraseña" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="284.0" promptText="Introduzca contraseña" HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="CajaContraseña" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="284.0" promptText="Introduzca contraseña" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E;" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
             <HBox alignment="TOP_CENTER" prefHeight="123.0" prefWidth="402.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#Aceptar" prefHeight="34.0" prefWidth="283.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%);" text="Aceptar" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Button fx:id="aceptarBoton" alignment="CENTER" mnemonicParsing="false" onAction="#Aceptar" prefHeight="34.0" prefWidth="283.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%);" text="Aceptar" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font></Button>
