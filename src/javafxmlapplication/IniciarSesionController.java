@@ -16,7 +16,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -30,13 +32,13 @@ public class IniciarSesionController implements Initializable {
     @FXML
     private TextField CajaUsuario;
     @FXML
-    private TextField CajaContraseña;
-    @FXML
     private Button menuBoton;
     @FXML
     private Button registrarBoton;
     @FXML
     private Button aceptarBoton;
+    @FXML
+    private PasswordField cajaContraseña;
 
     /**
      * Initializes the controller class.
@@ -84,27 +86,27 @@ public class IniciarSesionController implements Initializable {
     private void Aceptar(ActionEvent event) 
     {
         String usuario = CajaUsuario.getText();
-        String contraseña = CajaContraseña.getText();
+        String contraseña = cajaContraseña.getText();
         
         if (usuario.isEmpty() && contraseña.isEmpty()) 
         {
             CajaUsuario.setPromptText("Introduzca su usuario por favor");
             CajaUsuario.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: red;");
-            CajaContraseña.setPromptText("Introduzca su contraseña por favor");
-            CajaContraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: red;");
+            cajaContraseña.setPromptText("Introduzca su contraseña por favor");
+            cajaContraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: red;");
         
         } 
             else if(contraseña.isEmpty() && !usuario.isEmpty()) 
         {
-            CajaContraseña.setPromptText("Introduzca su contraseña por favor");
-            CajaContraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: red;");
+            cajaContraseña.setPromptText("Introduzca su contraseña por favor");
+            cajaContraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: red;");
             CajaUsuario.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E;");
         } 
             else if(!contraseña.isEmpty() && usuario.isEmpty() )
         {
             CajaUsuario.setPromptText("Introduzca su usuario por favor");
             CajaUsuario.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: red;");
-            CajaContraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E;");
+            cajaContraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E;");
         }
             else if(usuario.isEmpty())
         {
@@ -120,5 +122,4 @@ public class IniciarSesionController implements Initializable {
             alert.showAndWait();
         }
     }
-    
 }
