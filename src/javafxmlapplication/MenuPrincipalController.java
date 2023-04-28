@@ -42,7 +42,7 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     private Button autenticarse;
     @FXML
-    private Button pistaDisponibilidad;
+    private Button disponibilidad;
 
     /**
      * Initializes the controller class.
@@ -75,21 +75,7 @@ public class MenuPrincipalController implements Initializable {
     private void accederDisponibilidad(ActionEvent event) {
     }
 
-    private void accederLogIn(ActionEvent event) throws IOException {
-        /*
-        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/IniciarSesion.fxml"));
-        Parent root = miCargador.load();
-        
-        Scene scene = new Scene(root,500,300);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("Autenticarse");
-        stage.initModality(Modality.APPLICATION_MODAL);
-        //la ventana se muestra modal
-        stage.showAndWait();
-        */
-    }
-
+  
     @FXML
     private void accederRegistro(ActionEvent event) throws IOException 
     {
