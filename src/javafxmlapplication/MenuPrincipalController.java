@@ -20,6 +20,8 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -38,11 +40,11 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     private Label label;
     @FXML
-    private Button registro;
+    private ImageView registro;
     @FXML
     private Button autenticarse;
     @FXML
-    private Button disponibilidad;
+    private Button autenticarse1;
 
     /**
      * Initializes the controller class.
@@ -71,12 +73,8 @@ public class MenuPrincipalController implements Initializable {
     }
 
 
-    @FXML
-    private void accederDisponibilidad(ActionEvent event) {
-    }
 
   
-    @FXML
     private void accederRegistro(ActionEvent event) throws IOException 
     {
         FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/Registrarse.fxml"));
@@ -109,6 +107,10 @@ public class MenuPrincipalController implements Initializable {
         Stage myStage = (Stage) autenticarse.getScene().getWindow();
         myStage.close();
         
+    }
+
+    @FXML
+    private void accederRegistro(MouseEvent event) {
     }
     
 }
