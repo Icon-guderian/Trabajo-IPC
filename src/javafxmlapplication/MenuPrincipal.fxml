@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #84B118;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.MenuPrincipalController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #84B118;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.MenuPrincipalController">
    <bottom>
       <Label fx:id="label" alignment="BOTTOM_CENTER" prefHeight="17.0" prefWidth="621.0" text="  Bienvenido a Greenball" textFill="WHITE" BorderPane.alignment="CENTER">
          <font>
@@ -39,17 +39,28 @@
    <center>
       <VBox alignment="TOP_RIGHT" prefHeight="345.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="TOP_RIGHT" prefHeight="35.0" prefWidth="600.0">
+            <HBox alignment="TOP_RIGHT" prefHeight="49.0" prefWidth="600.0" style="-fx-border-color: #779F16; -fx-border-width: 8;">
                <children>
+                  <ImageView fitHeight="78.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets bottom="5.0" right="100.0" top="5.0" />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@../resources/pelota2.png" />
+                     </image>
+                  </ImageView>
                   <VBox prefHeight="77.0" prefWidth="131.0">
                      <children>
-                        <Label prefHeight="98.0" prefWidth="131.0" text="¿Todavia no tienes cuenta? Create una con un simple click" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+                        <Label prefHeight="98.0" prefWidth="131.0" text="¿Todavia no tienes cuenta? Create una con un simple click" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></Label>
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="154.0" prefWidth="100.0">
                      <children>
                         <Label alignment="CENTER" prefHeight="20.0" prefWidth="80.0" text="Registrarte" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
-                        <Button fx:id="registro" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#accederRegistrarse" prefHeight="60.0" prefWidth="60.0">
+                        <Button fx:id="registro" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#accederRegistro" prefHeight="60.0" prefWidth="60.0">
                            <graphic>
                               <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true">
                                  <image>
@@ -57,11 +68,17 @@
                                  </image>
                               </ImageView>
                            </graphic>
+                           <VBox.margin>
+                              <Insets right="3.0" />
+                           </VBox.margin>
                         </Button>
                      </children>
                      <padding>
                         <Insets left="10.0" right="10.0" />
                      </padding>
+                     <HBox.margin>
+                        <Insets right="25.0" />
+                     </HBox.margin>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="154.0" prefWidth="100.0">
                      <children>
@@ -79,6 +96,9 @@
                      <padding>
                         <Insets left="10.0" right="10.0" />
                      </padding>
+                     <HBox.margin>
+                        <Insets right="25.0" />
+                     </HBox.margin>
                   </VBox>
                </children>
             </HBox>
@@ -89,14 +109,14 @@
                         <Insets left="10.0" right="10.0" />
                      </padding>
                      <children>
-                        <Label prefHeight="39.0" prefWidth="90.0" text="Pistas" textFill="WHITE">
+                        <Label alignment="CENTER" contentDisplay="TOP" prefHeight="78.0" prefWidth="580.0" text="Ver disponibilidad de pistas" textFill="WHITE">
                            <font>
                               <Font size="28.0" />
                            </font>
                         </Label>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="580.0">
                            <children>
-                              <VBox alignment="CENTER" prefHeight="100.0" prefWidth="140.0">
+                              <VBox alignment="CENTER" prefHeight="207.0" prefWidth="140.0">
                                  <children>
                                     <DatePicker>
                                        <VBox.margin>
@@ -105,23 +125,23 @@
                                     </DatePicker>
                                  </children>
                               </VBox>
-                              <VBox alignment="CENTER" prefHeight="100.0" prefWidth="140.0">
+                              <VBox alignment="CENTER" prefHeight="269.0" prefWidth="140.0">
                                  <children>
                                     <ChoiceBox fx:id="seleccionPista" prefWidth="110.0">
                                        <VBox.margin>
-                                          <Insets left="10.0" right="10.0" />
+                                          <Insets />
                                        </VBox.margin>
                                     </ChoiceBox>
                                  </children>
-                                 <padding>
-                                    <Insets bottom="10.0" right="10.0" />
-                                 </padding>
                               </VBox>
                            </children>
                         </HBox>
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <ListView prefHeight="200.0" prefWidth="200.0" />
+                              <ListView fx:id="personasListView" prefHeight="142.0" prefWidth="421.0" style="-fx-background-color: lavender;">
+                                 <VBox.margin>
+                                    <Insets left="50.0" right="50.0" />
+                                 </VBox.margin></ListView>
                            </children>
                         </VBox>
                      </children>

@@ -76,6 +76,7 @@ public class MenuPrincipalController implements Initializable {
 
 
   
+    @FXML
     private void accederRegistro(ActionEvent event) throws IOException 
     {
         
@@ -98,7 +99,6 @@ public class MenuPrincipalController implements Initializable {
     }
 
 
-    @FXML
     private void accederRegistrarse(ActionEvent event) throws IOException 
     {
         FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/Registrarse.fxml"));
@@ -113,5 +113,6 @@ public class MenuPrincipalController implements Initializable {
         Stage myStage = (Stage) registro.getScene().getWindow();
         myStage.close();
     }
+
     
 }
