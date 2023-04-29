@@ -17,13 +17,6 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="566.0" prefWidth="600.0" style="-fx-background-color: #84B118;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.MenuPrincipalController">
-   <bottom>
-      <Label fx:id="label" alignment="BOTTOM_CENTER" prefHeight="17.0" prefWidth="621.0" text="  Bienvenido a Greenball" textFill="WHITE" BorderPane.alignment="CENTER">
-         <font>
-            <Font name="System Italic" size="32.0" />
-         </font>
-      </Label>
-   </bottom>
    <top>
       <MenuBar style="-fx-background-color: #779F16;" BorderPane.alignment="CENTER">
          <menus>
@@ -135,6 +128,9 @@
                                  </children>
                               </VBox>
                            </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
                         </HBox>
                         <VBox prefHeight="309.0" prefWidth="580.0">
                            <children>
@@ -148,4 +144,33 @@
          </children>
       </VBox>
    </center>
+   <bottom>
+      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #779F16;" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="100.0" prefWidth="300.0">
+               <children>
+                  <Label fx:id="label" prefHeight="106.0" prefWidth="300.0" text="¡Bienvenido a Greenball!" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font name="System Italic" size="32.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox prefHeight="100.0" prefWidth="300.0">
+               <children>
+                  <Label prefHeight="52.0" prefWidth="301.0" text="¡Siguenos en nuestras redes sociales!             @GreenBallFB @GreenBallTW" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="51.0" prefWidth="305.0" text="Número de contacto +34 716 21 91 27" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </bottom>
 </BorderPane>
