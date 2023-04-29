@@ -19,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
@@ -40,11 +41,11 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     private MenuItem menuSalir;
     @FXML
-    private Label label;
-    @FXML
     private Button registro;
     @FXML
     private Button autenticarse;
+    @FXML
+    private DatePicker calendarioBoton;
     @FXML
     private ChoiceBox<?> seleccionPista;
     @FXML
@@ -110,4 +111,9 @@ public class MenuPrincipalController implements Initializable {
         Stage myStage = (Stage) autenticarse.getScene().getWindow();
         myStage.close();
     }
+
+    @FXML
+    private void calendario(ActionEvent event) {
+    }
+
 }

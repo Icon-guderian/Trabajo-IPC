@@ -6,11 +6,8 @@ package javafxmlapplication;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,15 +21,12 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.WritableImage;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Club;
 import static model.Club.getInstance;
 import model.ClubDAOException;
-
-
 import model.Member;
 
 /**
@@ -88,25 +82,44 @@ public class RegistrarseController implements Initializable {
         return Integer.parseInt(str);
     }
     
-    public static boolean validarString(String str) {
-    if (str.length() > 6) {
-        boolean contieneLetras = false;
-        boolean contieneNumeros = false;
-        for (int i = 0; i < str.length(); i++) {
-            char c = str.charAt(i);
+    public static boolean validateString(String str) {
+        if (str.length() < 5) {
+            return true;
+        }
+        boolean containsLetter = false;
+        boolean containsNumber = false;
+        for (char c : str.toCharArray()) {
             if (Character.isLetter(c)) {
-                contieneLetras = true;
+                containsLetter = true;
+            } else if (Character.isDigit(c)) {
+                containsNumber = true;
             }
-            if (Character.isDigit(c)) {
-                contieneNumeros = true;
-            }
-            if (contieneLetras && contieneNumeros) {
+            if (containsLetter && containsNumber) {
                 return true;
+            }   
+        }
+        return false;
+    }   
+    
+    public void validarCampos(TextField... campos) {
+        for (TextField campo : campos) {
+            if (campo.getText().trim().isEmpty()) {
+                campo.setPromptText("Introduzca un valor");
+                campo.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+            } else {
+                campo.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
             }
         }
     }
-    return false;
-}
+    
+    public boolean validarTextField(TextField... campos) {
+        for (TextField campo : campos) {
+            if (campo.getText().trim().isEmpty()) {
+                return true; 
+            } 
+        }
+        return false;
+    }
     
     @FXML
     private void seleccionarFoto(ActionEvent event) 
@@ -139,46 +152,9 @@ public class RegistrarseController implements Initializable {
 
         Club club = getInstance(); 
         
-        if(Nombre.isEmpty())
+        if(validarTextField(nombre, apellidos, telefóno, nickname, contraseña, contraseñaOtra, NúmeroTarjeta, CVV)) 
         {
-            nombre.setPromptText("Introduzca su usuario");
-            nombre.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: red;");
-        } 
-        else if (Apellidos.isEmpty())
-        {
-           apellidos.setPromptText("Introduzca sus apellidos");
-           apellidos.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: red;"); 
-        }
-        else if(Telefono.isEmpty()) 
-        {
-           telefóno.setPromptText("Introduzca su teléfono");
-           telefóno.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: red;"); 
-        }
-        else if(NickName.isEmpty()) 
-        {
-           nickname.setPromptText("Introduzca su usuario");
-           nickname.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: red;"); 
-        }
-        else if(Contraseña.isEmpty())
-        {
-            contraseña.setPromptText("Introduzca la contraseña");
-            contraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: red;"); 
-        }
-        else if(ContraseñaOtra.isEmpty())
-        {
-            contraseñaOtra.setPromptText("Repita la contraseña");
-            contraseñaOtra.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: red;"); 
-        }
-        else if(NumeroTarjeta.isEmpty()) 
-        {
-            NúmeroTarjeta.setPromptText("Introduzca su tarjeta");
-            NúmeroTarjeta.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: red;"); 
-       
-        }
-        else if(cvv.isEmpty()) 
-        {
-            CVV.setPromptText("Introduzca su tarjeta");
-            CVV.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: red;"); 
+            validarCampos(nombre, apellidos, telefóno, nickname, contraseña, contraseñaOtra, NúmeroTarjeta, CVV); 
         }
         else if(!contieneSoloNumeros(Telefono))
         {
@@ -196,9 +172,9 @@ public class RegistrarseController implements Initializable {
             alert.setContentText("Ya existe otro usuario con ese nick.");
             alert.showAndWait();
         }
-        else if(!validarString(Contraseña)) 
+        else if(validateString(Contraseña)) 
         {
-             Alert alert = new Alert(Alert.AlertType.ERROR);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Contraseña");
             alert.setContentText("La contraseña debe de tener más de 6 caracteres, letras y números.");
@@ -231,9 +207,21 @@ public class RegistrarseController implements Initializable {
         else 
         {
             int cvvValido = cambiarStrAInt(cvv); 
-            club.registerMember(Nombre, Apellidos,NickName, Telefono, Contraseña, NumeroTarjeta, cvvValido, imageDePerfil); 
+            Member newMember = club.registerMember(Nombre, Apellidos,NickName, Telefono, Contraseña, NumeroTarjeta, cvvValido, imageDePerfil); 
+            
+            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/MenuFXML.fxml"));
+            Parent root = miCargador.load();
+            MenuFXMLController controlador = miCargador.getController(); 
+            controlador.initUsuario(newMember);
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Menú");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+            Stage myStage = (Stage) registrarBoton.getScene().getWindow();
+            myStage.close();
         }
-          
     }   
 
     @FXML
@@ -244,7 +232,7 @@ public class RegistrarseController implements Initializable {
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
-        stage.setTitle("Autenticarse");
+        stage.setTitle("Iniciar Sesión");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
         Stage myStage = (Stage) iniciarSesionBoton.getScene().getWindow();
