@@ -83,7 +83,7 @@ public class RegistrarseController implements Initializable {
     }
     
     public static boolean validateString(String str) {
-        if (str.length() < 5) {
+        if (str.length() <= 5) {
             return true;
         }
         boolean containsLetter = false;
