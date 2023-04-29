@@ -17,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -63,6 +64,8 @@ public class RegistrarseController implements Initializable {
     private Button iniciarSesionBoton;
     @FXML
     private Button seleccionBoton;
+    @FXML
+    private Label aaaa;
     
 
     /**
@@ -82,24 +85,16 @@ public class RegistrarseController implements Initializable {
         return Integer.parseInt(str);
     }
     
-    public static boolean validateString(String str) {
-        if (str.length() <= 5) {
-            return true;
+    public boolean contieneNumChar(String st)
+    {
+        int a = 0, b = 0; 
+        for(int i = 0;  i < st.length() - 1; i++) {
+            char c = st.charAt(i); 
+            if(Character.isDigit(c)) { a++; }
+            else if(Character.isLetter(c)) { b++; }
         }
-        boolean containsLetter = false;
-        boolean containsNumber = false;
-        for (char c : str.toCharArray()) {
-            if (Character.isLetter(c)) {
-                containsLetter = true;
-            } else if (Character.isDigit(c)) {
-                containsNumber = true;
-            }
-            if (containsLetter && containsNumber) {
-                return true;
-            }   
-        }
-        return false;
-    }   
+        return a >= 1 && b >= 1;
+    }
     
     public void validarCampos(TextField... campos) {
         for (TextField campo : campos) {
@@ -149,7 +144,9 @@ public class RegistrarseController implements Initializable {
         String ContraseñaOtra = contraseñaOtra.getText(); 
         String NumeroTarjeta = NúmeroTarjeta.getText(); 
         String cvv = CVV.getText(); 
-
+        
+        //aaaa.setText(Integer.toString(Contraseña.length()));
+        
         Club club = getInstance(); 
         
         if(validarTextField(nombre, apellidos, telefóno, nickname, contraseña, contraseñaOtra, NúmeroTarjeta, CVV)) 
@@ -172,7 +169,7 @@ public class RegistrarseController implements Initializable {
             alert.setContentText("Ya existe otro usuario con ese nick.");
             alert.showAndWait();
         }
-        else if(validateString(Contraseña)) 
+        else if(Contraseña.length() < 6) 
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -180,7 +177,15 @@ public class RegistrarseController implements Initializable {
             alert.setContentText("La contraseña debe de tener más de 6 caracteres, letras y números.");
             alert.showAndWait();
         }
-        else if(Contraseña != ContraseñaOtra) 
+        else if(!contieneNumChar(Contraseña) ) 
+        {
+             Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Contraseña");
+            alert.setContentText("La contraseña debe de tener más de 6 caracteres");
+            alert.showAndWait();
+        }
+        else if(!Contraseña.equals(ContraseñaOtra)) 
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -188,7 +193,7 @@ public class RegistrarseController implements Initializable {
             alert.setContentText("Las contraseñas no coinciden.");
             alert.showAndWait();
         }
-        else if(NumeroTarjeta.length() != 16 && !contieneSoloNumeros(NumeroTarjeta)) 
+        else if(NumeroTarjeta.length() != 16 || !contieneSoloNumeros(NumeroTarjeta)) 
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -196,7 +201,7 @@ public class RegistrarseController implements Initializable {
             alert.setContentText("Número de tarjeta no válido.");
             alert.showAndWait();  
         }
-        else if (cvv.length() != 3 && !contieneSoloNumeros(cvv)) 
+        else if (cvv.length() != 3 || !contieneSoloNumeros(cvv)) 
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");

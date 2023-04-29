@@ -75,6 +75,7 @@
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font></Button>
+                  <Label fx:id="aaaa" GridPane.columnIndex="2" GridPane.rowIndex="6" />
                </children>
             </GridPane>
          </children>
