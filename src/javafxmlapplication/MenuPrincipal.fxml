@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.0" prefWidth="685.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.MenuPrincipalController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.0" prefWidth="685.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.MenuPrincipalController">
    <top>
       <MenuBar style="-fx-background-color: #84B118;" BorderPane.alignment="CENTER">
          <menus>
@@ -63,7 +63,7 @@
                   <VBox alignment="CENTER_RIGHT" prefHeight="99.0" prefWidth="355.0" HBox.hgrow="ALWAYS">
                      <children>
                         <Label alignment="CENTER" prefHeight="20.0" prefWidth="80.0" style="-fx-font-weight: bold;" text="Iniciar Sesion" textAlignment="CENTER" textFill="WHITE" wrapText="true" VBox.vgrow="ALWAYS" />
-                        <Button fx:id="autenticarse" mnemonicParsing="false" onAction="#accederAutenticarse" prefHeight="60.0" prefWidth="79.0" style="-fx-background-color: #779F16;" VBox.vgrow="ALWAYS">
+                        <Button fx:id="autenticarse" mnemonicParsing="false" onAction="#accederAutenticarse" prefHeight="60.0" prefWidth="78.0" style="-fx-background-color: #779F16;" VBox.vgrow="ALWAYS">
                            <graphic>
                               <ImageView fitHeight="49.0" fitWidth="62.0" pickOnBounds="true">
                                  <image>
@@ -91,8 +91,11 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="68.0" prefWidth="687.0" style="-fx-border-color: #15622E;" VBox.vgrow="ALWAYS">
                            <children>
-                              <Label prefHeight="70.0" prefWidth="218.0" style="-fx-text-fill: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%); -fx-font-weight: bold; -fx-font-size: 48;" text="GreenBall" HBox.hgrow="ALWAYS" />
+                              <Label alignment="CENTER" prefHeight="70.0" prefWidth="715.0" style="-fx-text-fill: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%); -fx-font-weight: bold; -fx-font-size: 48;" text="GreenBall" HBox.hgrow="ALWAYS" />
                            </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
                         </HBox>
                         <Label alignment="BOTTOM_CENTER" contentDisplay="TOP" prefHeight="63.0" prefWidth="526.0" style="-fx-font-size: 26; -fx-text-fill: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%); -fx-font-weight: bold;" text="Ver la disponibilidad de las pistas" textFill="WHITE" VBox.vgrow="ALWAYS">
                            <font>
@@ -112,7 +115,7 @@
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="55.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <ChoiceBox fx:id="seleccionPista" prefWidth="110.0" VBox.vgrow="ALWAYS">
+                                    <ChoiceBox fx:id="seleccionPista" prefWidth="131.0" VBox.vgrow="ALWAYS">
                                        <VBox.margin>
                                           <Insets />
                                        </VBox.margin>
@@ -138,7 +141,7 @@
          <children>
             <ImageView fitHeight="78.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                <HBox.margin>
-                  <Insets bottom="5.0" right="100.0" top="5.0" />
+                  <Insets bottom="5.0" left="20.0" right="90.0" top="5.0" />
                </HBox.margin>
                <image>
                   <Image url="@../resources/pelota2.png" />

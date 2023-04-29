@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
@@ -36,6 +37,10 @@ public class MenuFXMLController implements Initializable {
     private ChoiceBox<?> seleccionPista;
     @FXML
     private ListView<?> personasListView;
+    @FXML
+    private Button verReservas;
+    @FXML
+    private Button reservar;
 
     /**
      * Initializes the controller class.
@@ -55,6 +60,14 @@ public class MenuFXMLController implements Initializable {
 
     @FXML
     private void calendario(ActionEvent event) {
+    }
+
+    @FXML
+    private void verReservas(ActionEvent event) {
+    }
+
+    @FXML
+    private void reservarPistas(ActionEvent event) {
     }
     
 }
