@@ -17,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -37,7 +38,13 @@ import model.Member;
  */
 public class RegistrarseController implements Initializable {
 
-    Image imageDePerfil; 
+    
+    private Image imageDePerfil; 
+    
+    @FXML
+    private TextField textfield1;
+    @FXML
+    private TextField textfield2; 
     @FXML
     private TextField apellidos;
     @FXML
@@ -65,7 +72,7 @@ public class RegistrarseController implements Initializable {
     @FXML
     private Button seleccionBoton;
     @FXML
-    private Label aaaa;
+    private CheckBox mostrarContra;
     
 
     /**
@@ -74,7 +81,16 @@ public class RegistrarseController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        
+        textfield1 = new TextField(); 
+        textfield2 = new TextField();
+        textfield1.setVisible(false);
+        textfield1.setManaged(false);
+        textfield1.setLayoutX(contraseña.getLayoutX());
+        textfield1.setLayoutY(contraseña.getLayoutY());
+        textfield2.setVisible(false);
+        textfield2.setManaged(false);
+        textfield2.setLayoutX(contraseñaOtra.getLayoutX());
+        textfield2.setLayoutY(contraseñaOtra.getLayoutY());
     }    
     
     public static boolean contieneSoloNumeros(String str) {
@@ -88,7 +104,7 @@ public class RegistrarseController implements Initializable {
     public boolean contieneNumChar(String st)
     {
         int a = 0, b = 0; 
-        for(int i = 0;  i < st.length() - 1; i++) {
+        for(int i = 0;  i < st.length(); i++) {
             char c = st.charAt(i); 
             if(Character.isDigit(c)) { a++; }
             else if(Character.isLetter(c)) { b++; }
@@ -174,15 +190,15 @@ public class RegistrarseController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Contraseña");
-            alert.setContentText("La contraseña debe de tener más de 6 caracteres, letras y números.");
+            alert.setContentText("La contraseña debe de tener más de 6 caracteres");
             alert.showAndWait();
         }
-        else if(!contieneNumChar(Contraseña) ) 
+        else if(!contieneNumChar(Contraseña)) 
         {
              Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Contraseña");
-            alert.setContentText("La contraseña debe de tener más de 6 caracteres");
+            alert.setContentText("La contraseña debe contener letras y números.");
             alert.showAndWait();
         }
         else if(!Contraseña.equals(ContraseñaOtra)) 
@@ -258,5 +274,42 @@ public class RegistrarseController implements Initializable {
         Stage myStage = (Stage) menuBoton.getScene().getWindow();
         myStage.close();
     }
+
+    
+
+    @FXML
+    private void mostrarCOntraseña(ActionEvent event) {
+        mostrarContra.selectedProperty().addListener((observable, oldValue, newValue) -> {
+        if (oldValue) {
+        // Mostrar contraseña
+            contraseñaOtra.setManaged(false);
+            contraseñaOtra.setVisible(false);
+            textfield2.setText(contraseñaOtra.getText());
+            textfield2.setManaged(true);
+            textfield2.setVisible(true);
+            
+            contraseña.setManaged(false);
+            contraseña.setVisible(false);
+            textfield1.setText(contraseña.getText());
+            textfield1.setManaged(true);
+            textfield1.setVisible(true);
+        } else {
+        // Ocultar contraseña
+            textfield2.setManaged(false);
+            textfield2.setVisible(false);
+            contraseñaOtra.setText(textfield2.getText());
+            contraseñaOtra.setManaged(true);
+            contraseñaOtra.setVisible(true);
+            
+            textfield1.setManaged(false);
+            textfield1.setVisible(false);
+            contraseña.setText(textfield1.getText());
+            contraseña.setManaged(true);
+            contraseña.setVisible(true);
+        }
+        });
+    }
+
+    
     
 }
