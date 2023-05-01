@@ -119,9 +119,8 @@ public class IniciarSesionController implements Initializable {
            CajaUsuario.setPromptText("Introduzca su usuario por favor");
            CajaUsuario.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: red;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
         }
-            else  //aquí me pongo a mañana a buscar si existe el usuario
+            else 
         {
-                
             Member member = club.getMemberByCredentials(usuario, contraseña);
             
             if(member == null) 
@@ -132,6 +131,7 @@ public class IniciarSesionController implements Initializable {
                 alert.setContentText("El usuario no está registrado");
                 alert.showAndWait();
             } 
+            
             else 
             {
                 FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/MenuFXML.fxml"));

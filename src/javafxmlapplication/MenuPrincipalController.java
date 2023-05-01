@@ -6,8 +6,11 @@ package javafxmlapplication;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,16 +21,20 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Club;
+import static model.Club.getInstance;
+import model.Court;
+import model.ClubDAOException;
+import model.Member;
 
 /**
  * FXML Controller class
@@ -47,17 +54,22 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     private DatePicker calendarioBoton;
     @FXML
-    private ChoiceBox<?> seleccionPista;
-    @FXML
     private ListView<?> personasListView;
+    @FXML
+    private ComboBox<Member> seleccionPistaBoton;
 
     /**
      * Initializes the controller class.
      */
+    
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb) 
+    {
         // TODO
-    }    
+        
+    }
+
+    
 
     @FXML
     private void salir(ActionEvent e) {
@@ -113,7 +125,23 @@ public class MenuPrincipalController implements Initializable {
     }
 
     @FXML
-    private void calendario(ActionEvent event) {
+    private void calendario(ActionEvent event) 
+    {
+    
     }
 
+    @FXML
+    private void seleccionPista(ActionEvent event) throws ClubDAOException, IOException 
+    {
+        Club club = getInstance(); 
+        
+        ArrayList<Member> elarray = (ArrayList) club.getMembers(); 
+        ObservableList<Member> items = FXCollections.observableArrayList();
+        for(int i = 0; i < elarray.size()-1 ; i++) 
+        {
+            items.add(elarray.get(i)); 
+        }
+        seleccionPistaBoton = new ComboBox<>(items); 
+    }
+   
 }
