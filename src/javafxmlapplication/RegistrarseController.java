@@ -223,7 +223,8 @@ public class RegistrarseController implements Initializable {
         String ContraseñaOtra = contraseñaOtra.getText(); 
         String NumeroTarjeta = NúmeroTarjeta.getText(); 
         String cvv = CVV.getText(); 
-        
+        String ContraseñaVisible = textfield1.getText(); 
+        String ContraseñaOtraVisible = textfield2.getText();
         
         Club club = getInstance(); 
         
@@ -247,7 +248,7 @@ public class RegistrarseController implements Initializable {
             alert.setContentText("Ya existe otro usuario con ese nick.");
             alert.showAndWait();
         }
-        else if(Contraseña.length() < 6) 
+        else if((Contraseña.length() < 6 || ContraseñaVisible.length() < 6) || (ContraseñaOtra.length() < 6 || ContraseñaOtraVisible.length() < 6)) 
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -255,7 +256,7 @@ public class RegistrarseController implements Initializable {
             alert.setContentText("La contraseña debe de tener más de 6 caracteres");
             alert.showAndWait();
         }
-        else if(!contieneNumChar(Contraseña)) 
+        else if(!contieneNumChar(Contraseña) && !contieneNumChar(ContraseñaVisible)) 
         {
              Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -263,7 +264,7 @@ public class RegistrarseController implements Initializable {
             alert.setContentText("La contraseña debe contener letras y números.");
             alert.showAndWait();
         }
-        else if(!Contraseña.equals(ContraseñaOtra)) 
+        else if(!Contraseña.equals(ContraseñaOtra) && !ContraseñaVisible.equals(ContraseñaOtraVisible))
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
