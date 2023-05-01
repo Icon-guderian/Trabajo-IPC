@@ -82,36 +82,44 @@ public class RegistrarseController implements Initializable {
     {
         textfield2.setVisible(false);
         textfield1.setVisible(false);
+        textfield2.setDisable(true);
+        textfield1.setDisable(true);
     
+        
         mostrarContra.selectedProperty().addListener((observable, oldValue, newValue) -> {
         if (newValue) {
         // Mostrar contraseña
             textfield2.setText(contraseñaOtra.getText());
+            contraseñaOtra.setDisable(true); //<-
             contraseñaOtra.setManaged(false);
             contraseñaOtra.setVisible(false); 
-            textfield2.setDisable(false); 
+            textfield2.setDisable(false);  //<-
             textfield2.setManaged(true);
             textfield2.setVisible(true);
             
             textfield1.setText(contraseña.getText());
+            contraseña.setDisable(true); //<-
             contraseña.setManaged(false);
             contraseña.setVisible(false);
-            textfield1.setDisable(false);
+            textfield1.setDisable(false); //<-
             textfield1.setManaged(true);
             textfield1.setVisible(true);
-            
-            
+
         } else {
         // Ocultar contraseña
             contraseñaOtra.setText(textfield2.getText());
+            textfield2.setDisable(true); //<-
             textfield2.setManaged(false);
             textfield2.setVisible(false);
+            contraseñaOtra.setDisable(false); //<-
             contraseñaOtra.setManaged(true);
             contraseñaOtra.setVisible(true);
             
             contraseña.setText(textfield1.getText());
+            textfield1.setDisable(true); //<-
             textfield1.setManaged(false);
             textfield1.setVisible(false);
+            contraseña.setDisable(false); //<-
             contraseña.setManaged(true);
             contraseña.setVisible(true);
         }
@@ -140,19 +148,42 @@ public class RegistrarseController implements Initializable {
     public void validarCampos(TextField... campos) {
         for (TextField campo : campos) {
             if (campo.getText().trim().isEmpty()) {
-                campo.setPromptText("Introduzca un valor");
+                //campo.setPromptText("Introduzca un valor");
                 campo.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: red; -fx-prompt-text-fill: red; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
             } else {
                 campo.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
             }
         }
-        if((!textfield1.getText().isEmpty() && !textfield2.getText().isEmpty()) || (!contraseña.getText().isEmpty() && !contraseñaOtra.getText().isEmpty())) 
+        
+        if(!contraseña.getText().isEmpty() || !textfield1.getText().isEmpty()) 
         {
             textfield1.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
-            textfield2.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+            //textfield2.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
             contraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
-            contraseñaOtra.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+            //contraseñaOtra.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
         }
+        if(!contraseñaOtra.getText().isEmpty() || !textfield2.getText().isEmpty()) 
+        {
+            //textfield1.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+            textfield2.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+            //contraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+            contraseñaOtra.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+        }/*
+        if(contraseña.getText().isEmpty() || textfield1.getText().isEmpty()) 
+        {
+            textfield1.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: red; -fx-prompt-text-fill: red; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+            //textfield2.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+            contraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: red; -fx-prompt-text-fill: red; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+            //contraseñaOtra.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+        }
+        if(contraseñaOtra.getText().isEmpty() || textfield2.getText().isEmpty()) 
+        {
+            //textfield1.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+            textfield2.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: red; -fx-prompt-text-fill: red; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+            //contraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+            contraseñaOtra.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: red; -fx-prompt-text-fill: red; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+        }*/
+        
     }
     
     public boolean validarTextField(TextField... campos) {
@@ -193,13 +224,12 @@ public class RegistrarseController implements Initializable {
         String NumeroTarjeta = NúmeroTarjeta.getText(); 
         String cvv = CVV.getText(); 
         
-        //aaaa.setText(Integer.toString(Contraseña.length()));
         
         Club club = getInstance(); 
         
-        if(validarTextField(nombre, apellidos, telefóno, nickname, contraseña, contraseñaOtra, NúmeroTarjeta, CVV, textfield1, textfield2)) 
+        if(validarTextField(nombre, apellidos, telefóno, nickname, contraseña, contraseñaOtra, textfield1, textfield2, NúmeroTarjeta, CVV)) 
         {
-            validarCampos(nombre, apellidos, telefóno, nickname, contraseña, contraseñaOtra, NúmeroTarjeta, CVV, textfield1, textfield2); 
+            validarCampos(nombre, apellidos, telefóno, nickname, contraseña, contraseñaOtra, textfield1, textfield2, NúmeroTarjeta, CVV); 
         }
         else if(!contieneSoloNumeros(Telefono))
         {
@@ -311,38 +341,6 @@ public class RegistrarseController implements Initializable {
 
     @FXML
     private void mostrarCOntraseña(ActionEvent event) {
-        /*
-        mostrarContra.selectedProperty().addListener((observable, oldValue, newValue) -> {
-        if (oldValue) {
-        // Mostrar contraseña
-            contraseñaOtra.setManaged(false);
-            contraseñaOtra.setVisible(false);
-            textfield2.setText(contraseñaOtra.getText());
-            textfield2.setManaged(true);
-            textfield2.setVisible(true);
-            
-            contraseña.setManaged(false);
-            contraseña.setVisible(false);
-            textfield1.setText(contraseña.getText());
-            textfield1.setManaged(true);
-            textfield1.setVisible(true);
-        } else {
-        // Ocultar contraseña
-            textfield2.setManaged(false);
-            textfield2.setVisible(false);
-            contraseñaOtra.setText(textfield2.getText());
-            contraseñaOtra.setManaged(true);
-            contraseñaOtra.setVisible(true);
-            
-            textfield1.setManaged(false);
-            textfield1.setVisible(false);
-            contraseña.setText(textfield1.getText());
-            contraseña.setManaged(true);
-            contraseña.setVisible(true);
-        }
-        }); */
-    }
-
-    
-    
+       
+    }    
 }
