@@ -43,6 +43,8 @@ import model.Member;
  */
 public class MenuPrincipalController implements Initializable {
 
+    Club club; 
+    
     @FXML
     private BorderPane borderPane;
     @FXML
@@ -133,7 +135,7 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     private void seleccionPista(ActionEvent event) throws ClubDAOException, IOException 
     {
-        Club club = getInstance(); 
+        club = getInstance(); 
         
         ArrayList<Member> elarray = (ArrayList) club.getMembers(); 
         ObservableList<Member> items = FXCollections.observableArrayList();
@@ -143,5 +145,5 @@ public class MenuPrincipalController implements Initializable {
         }
         seleccionPistaBoton = new ComboBox<>(items); 
     }
-   
+
 }
