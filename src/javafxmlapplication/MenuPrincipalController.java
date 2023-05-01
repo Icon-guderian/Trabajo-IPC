@@ -31,6 +31,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Booking;
 import model.Club;
 import static model.Club.getInstance;
 import model.Court;
@@ -145,13 +146,15 @@ public class MenuPrincipalController implements Initializable {
     }
 
     @FXML
-    private void seleccionPista(ActionEvent event) throws ClubDAOException, IOException 
+    private void seleccionPista(ActionEvent event)
     {
        
     }
 
     @FXML
-    private void mostrarDisponibilidad(ActionEvent event) {
+    private void mostrarDisponibilidad(ActionEvent event) 
+    {
+        List<Booking> horarioDePista = new ArrayList<>(); 
     }
 
 }
