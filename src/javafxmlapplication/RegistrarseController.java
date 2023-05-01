@@ -41,9 +41,7 @@ public class RegistrarseController implements Initializable {
     
     private Image imageDePerfil; 
     
-    @FXML
     private TextField textfield1;
-    @FXML
     private TextField textfield2; 
     @FXML
     private TextField apellidos;
