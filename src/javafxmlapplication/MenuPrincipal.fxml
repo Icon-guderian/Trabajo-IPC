@@ -32,7 +32,7 @@
    <center>
       <VBox alignment="TOP_RIGHT" prefHeight="345.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="686.0" style="-fx-border-color: #84B118; -fx-border-width: 8; -fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 75%);" VBox.vgrow="ALWAYS">
+            <HBox alignment="TOP_RIGHT" prefHeight="124.0" prefWidth="685.0" style="-fx-border-color: #84B118; -fx-border-width: 8; -fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat, #16779F 0%, #84B118 55%, #15622E 80%);" VBox.vgrow="ALWAYS">
                <children>
                   <VBox alignment="CENTER" prefHeight="86.0" prefWidth="89.0" HBox.hgrow="ALWAYS">
                      <children>
@@ -42,7 +42,7 @@
                            </font></Label>
                         <Button fx:id="registro" mnemonicParsing="false" onAction="#accederRegistro" prefHeight="60.0" prefWidth="78.0" style="-fx-background-color: #15622E;" VBox.vgrow="ALWAYS">
                            <graphic>
-                              <ImageView fitHeight="50.0" fitWidth="70.0" pickOnBounds="true">
+                              <ImageView fitHeight="68.0" fitWidth="80.0" pickOnBounds="true">
                                  <image>
                                     <Image url="@../resources/signUp.jpg" />
                                  </image>
@@ -54,7 +54,7 @@
                         </Button>
                      </children>
                      <padding>
-                        <Insets bottom="5.0" />
+                        <Insets bottom="5.0" left="25.0" />
                      </padding>
                   </VBox>
                   <VBox alignment="CENTER_LEFT" prefHeight="99.0" prefWidth="163.0" HBox.hgrow="ALWAYS">
@@ -65,10 +65,10 @@
                   </VBox>
                   <VBox alignment="CENTER_RIGHT" prefHeight="99.0" prefWidth="355.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label alignment="CENTER" prefHeight="20.0" prefWidth="80.0" style="-fx-font-weight: bold;" text="Iniciar Sesion" textAlignment="CENTER" textFill="WHITE" wrapText="true" VBox.vgrow="ALWAYS" />
+                        <Label alignment="CENTER" prefHeight="20.0" prefWidth="97.0" style="-fx-font-weight: bold;" text="Iniciar Sesion" textAlignment="CENTER" textFill="WHITE" wrapText="true" VBox.vgrow="ALWAYS" />
                         <Button fx:id="autenticarse" mnemonicParsing="false" onAction="#accederAutenticarse" prefHeight="60.0" prefWidth="78.0" style="-fx-background-color: #84B118;" VBox.vgrow="ALWAYS">
                            <graphic>
-                              <ImageView fitHeight="50.0" fitWidth="70.0" pickOnBounds="true">
+                              <ImageView fitHeight="68.0" fitWidth="80.0" pickOnBounds="true">
                                  <image>
                                     <Image url="@../resources/logIn.jpg" />
                                  </image>
@@ -140,7 +140,7 @@
       </VBox>
    </center>
    <bottom>
-      <HBox prefHeight="97.0" prefWidth="686.0" style="-fx-border-color: #84B118; -fx-border-radius: 60; -fx-background-color: #84B118;" BorderPane.alignment="CENTER">
+      <HBox prefHeight="97.0" prefWidth="686.0" style="-fx-border-color: #84B118; -fx-border-width: 8; -fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat, #16779F 0%, #84B118 55%, #15622E 80%);" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="78.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                <HBox.margin>
