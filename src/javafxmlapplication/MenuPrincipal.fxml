@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.0" prefWidth="685.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.MenuPrincipalController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.0" prefWidth="685.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.MenuPrincipalController">
    <top>
       <MenuBar style="-fx-background-color: #84B118;" BorderPane.alignment="CENTER">
          <menus>
@@ -40,11 +40,11 @@
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></Label>
-                        <Button fx:id="registro" mnemonicParsing="false" onAction="#accederRegistro" prefHeight="60.0" prefWidth="78.0" style="-fx-background-color: #15622E;" VBox.vgrow="ALWAYS">
+                        <Button fx:id="registro" mnemonicParsing="false" onAction="#accederRegistro" prefHeight="60.0" prefWidth="78.0" style="-fx-background-color: #FFFFFF;" VBox.vgrow="ALWAYS">
                            <graphic>
                               <ImageView fitHeight="68.0" fitWidth="80.0" pickOnBounds="true">
                                  <image>
-                                    <Image url="@../resources/signUp.jpg" />
+                                    <Image url="@../resources/registro.jpg" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -60,17 +60,20 @@
                   <VBox alignment="CENTER_LEFT" prefHeight="99.0" prefWidth="163.0" HBox.hgrow="ALWAYS">
                      <children>
                         <Label alignment="TOP_LEFT" prefHeight="15.0" prefWidth="142.0" style="-fx-font-weight: bold;" text="¿No tienes una cuenta?" textFill="WHITE" textOverrun="CLIP" wrapText="true" VBox.vgrow="ALWAYS" />
-                        <Label style="-fx-font-weight: bold;" text="Regístrate" textFill="WHITE" VBox.vgrow="ALWAYS" />
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="132.0" style="-fx-font-weight: bold;" text="Regístrate aqui" textFill="WHITE" VBox.vgrow="ALWAYS" />
                      </children>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
                   </VBox>
                   <VBox alignment="CENTER_RIGHT" prefHeight="99.0" prefWidth="355.0" HBox.hgrow="ALWAYS">
                      <children>
                         <Label alignment="CENTER" prefHeight="20.0" prefWidth="97.0" style="-fx-font-weight: bold;" text="Iniciar Sesion" textAlignment="CENTER" textFill="WHITE" wrapText="true" VBox.vgrow="ALWAYS" />
-                        <Button fx:id="autenticarse" mnemonicParsing="false" onAction="#accederAutenticarse" prefHeight="60.0" prefWidth="78.0" style="-fx-background-color: #84B118;" VBox.vgrow="ALWAYS">
+                        <Button fx:id="autenticarse" mnemonicParsing="false" onAction="#accederAutenticarse" prefHeight="60.0" prefWidth="78.0" style="-fx-background-color: #FFFFFF;" VBox.vgrow="ALWAYS">
                            <graphic>
                               <ImageView fitHeight="68.0" fitWidth="80.0" pickOnBounds="true">
                                  <image>
-                                    <Image url="@../resources/logIn.jpg" />
+                                    <Image url="@../resources/default-avatar-profile-icon-social-media-user-free-vector.jpg" />
                                  </image>
                               </ImageView>
                            </graphic>

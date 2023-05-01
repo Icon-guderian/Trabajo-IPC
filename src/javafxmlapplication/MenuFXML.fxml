@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.0" prefWidth="685.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.MenuFXMLController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.0" prefWidth="685.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.MenuFXMLController">
    <top>
       <MenuBar style="-fx-background-color: #84B118;" BorderPane.alignment="CENTER">
          <menus>
@@ -41,12 +41,12 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <Button fx:id="verReservas" alignment="CENTER" mnemonicParsing="false" onAction="#verReservas" prefHeight="60.0" prefWidth="78.0" style="-fx-background-color: #15622E;">
+                        <Button fx:id="verReservas" alignment="CENTER" mnemonicParsing="false" onAction="#verReservas" prefHeight="60.0" prefWidth="78.0" style="-fx-background-color: #FFFFFF;">
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin>
                            <graphic>
-                              <ImageView fitHeight="68.0" fitWidth="80.0" pickOnBounds="true">
+                              <ImageView fitHeight="60.0" fitWidth="78.0" pickOnBounds="true">
                                  <image>
                                     <Image url="@../../../../../../../../../../Downloads/lupa.png" />
                                  </image></ImageView>
@@ -72,7 +72,7 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <Button fx:id="reservar" alignment="CENTER" mnemonicParsing="false" onAction="#reservarPistas" prefHeight="60.0" prefWidth="78.0" style="-fx-background-color: #779F16;">
+                        <Button fx:id="reservar" alignment="CENTER" mnemonicParsing="false" onAction="#reservarPistas" prefHeight="60.0" prefWidth="78.0" style="-fx-background-color: #FFFFFF;">
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin>
