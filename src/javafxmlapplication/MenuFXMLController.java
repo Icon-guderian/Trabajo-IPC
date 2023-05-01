@@ -7,6 +7,7 @@ package javafxmlapplication;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -27,6 +28,7 @@ import javafx.scene.layout.BorderPane;
 import model.Club;
 import static model.Club.getInstance;
 import model.ClubDAOException;
+import model.Court;
 import model.Member;
 
 /**
@@ -53,14 +55,29 @@ public class MenuFXMLController implements Initializable {
     @FXML
     private Button reservar;
     @FXML
-    private ComboBox<?> seleccionPistaBoton;
+    private ComboBox<String> seleccionPistaBoton;
+    @FXML
+    private Button mostrarDisponBoton;
 
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb) 
+    {
         // TODO
+        try {
+            club = getInstance(); 
+        } catch (ClubDAOException | IOException e)  {}
+        
+        List<Court> elarray = new ArrayList<>(); 
+        elarray = club.getCourts(); 
+        ObservableList<String> items = FXCollections.observableArrayList();
+        for(int i = 0; i < elarray.size(); i++) 
+        {
+            items.add(elarray.get(i).getName()); 
+        }
+        seleccionPistaBoton.setItems(items);  
     }    
     
     public void initUsuario(Member member) {
@@ -99,15 +116,11 @@ public class MenuFXMLController implements Initializable {
 
     @FXML
     private void seleccionPista(ActionEvent event) throws ClubDAOException, IOException {
-        club = getInstance(); 
         
-        ArrayList<Member> elarray = (ArrayList) club.getMembers(); 
-        ObservableList<Member> items = FXCollections.observableArrayList();
-        for(int i = 0; i < elarray.size()-1 ; i++) 
-        {
-            items.add(elarray.get(i)); 
-        }
-        seleccionPistaBoton = new ComboBox<>(items); 
+    }
+
+    @FXML
+    private void mostrarDisponibilidad(ActionEvent event) {
     }
     
 }

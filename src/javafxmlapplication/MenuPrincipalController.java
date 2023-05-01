@@ -7,6 +7,7 @@ package javafxmlapplication;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -58,7 +59,9 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     private ListView<?> personasListView;
     @FXML
-    private ComboBox<Member> seleccionPistaBoton;
+    private ComboBox<String> seleccionPistaBoton;
+    @FXML
+    private Button mostrarDisponBoton;
 
     /**
      * Initializes the controller class.
@@ -68,10 +71,19 @@ public class MenuPrincipalController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) 
     {
         // TODO
+        try {
+            club = getInstance(); 
+        } catch (ClubDAOException | IOException e)  {}
         
+        List<Court> elarray = new ArrayList<>(); 
+        elarray = club.getCourts(); 
+        ObservableList<String> items = FXCollections.observableArrayList();
+        for(int i = 0; i < elarray.size(); i++) 
+        {
+            items.add(elarray.get(i).getName()); 
+        }
+        seleccionPistaBoton.setItems(items);   
     }
-
-    
 
     @FXML
     private void salir(ActionEvent e) {
@@ -135,15 +147,11 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     private void seleccionPista(ActionEvent event) throws ClubDAOException, IOException 
     {
-        club = getInstance(); 
-        
-        ArrayList<Member> elarray = (ArrayList) club.getMembers(); 
-        ObservableList<Member> items = FXCollections.observableArrayList();
-        for(int i = 0; i < elarray.size()-1 ; i++) 
-        {
-            items.add(elarray.get(i)); 
-        }
-        seleccionPistaBoton = new ComboBox<>(items); 
+       
+    }
+
+    @FXML
+    private void mostrarDisponibilidad(ActionEvent event) {
     }
 
 }
