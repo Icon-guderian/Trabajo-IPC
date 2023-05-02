@@ -75,21 +75,21 @@
                         </Label>
                         <MenuButton mnemonicParsing="false" prefHeight="68.0" prefWidth="94.0" style="-fx-background-color: #FFFFFF;">
                           <items>
-                            <MenuItem mnemonicParsing="false" text="Mis reservas">
+                            <MenuItem mnemonicParsing="false">
                                  <graphic>
-                                    <Button fx:id="miReserva" mnemonicParsing="false" onAction="#menuMiReserva" />
+                                    <Button fx:id="miReserva" mnemonicParsing="false" onAction="#menuMiReserva" text="Mis reservas" />
                                  </graphic></MenuItem>
-                            <MenuItem mnemonicParsing="false" text="Hacer reserva">
+                            <MenuItem mnemonicParsing="false">
                                  <graphic>
-                                    <Button fx:id="hacerReserva" mnemonicParsing="false" onAction="#menuReservar" />
+                                    <Button fx:id="hacerReserva" mnemonicParsing="false" onAction="#menuReservar" text="Hacer reserva" />
                                  </graphic></MenuItem>
-                              <MenuItem mnemonicParsing="false" text="Modificar perfil">
+                              <MenuItem mnemonicParsing="false">
                                  <graphic>
-                                    <Button fx:id="modificar" mnemonicParsing="false" onAction="#modificarPerfil" />
+                                    <Button fx:id="modificar" mnemonicParsing="false" onAction="#modificarPerfil" text="Modificar perfil" />
                                  </graphic></MenuItem>
-                              <MenuItem fx:id="cerrar" mnemonicParsing="false" onAction="#cerrarSesion" text="Cerrar Sesión">
+                              <MenuItem fx:id="cerrar" mnemonicParsing="false" onAction="#cerrarSesion">
                                  <graphic>
-                                    <Button mnemonicParsing="false" />
+                                    <Button mnemonicParsing="false" text="Cerrar Sesión" />
                                  </graphic></MenuItem>
                           </items>
                            <graphic>

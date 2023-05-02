@@ -27,6 +27,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -89,6 +90,18 @@ public class MenuFXMLController implements Initializable {
             items.add(elarray.get(i).getName()); 
         }
         seleccionPistaBoton.setItems(items);  
+        
+        // Obtener la imagen que el usuario ha elegido (por ejemplo, de una base de datos)
+        Image imagenUsuario = obtenerImagenUsuario();
+
+        if (imagenUsuario != null) {
+            // Si el usuario ha elegido una imagen, establecerla como la imagen del ImageView
+            fotoPerfil.setImage(imagenUsuario);
+        } else {
+            // Si el usuario no ha elegido una imagen, establecer una imagen predeterminada
+            Image imagenPredeterminada = new Image("ruta/a/imagen/predeterminada.png");
+            fotoPerfil.setImage(imagenPredeterminada);
+        }
     }    
     
     public void initUsuario(Member member) {
@@ -155,7 +168,7 @@ public class MenuFXMLController implements Initializable {
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
-        stage.setTitle("Registrar");
+        stage.setTitle("Reservar Pistas");
         stage.initModality(Modality.APPLICATION_MODAL);
         //la ventana se muestra modal
         stage.show();
@@ -170,7 +183,7 @@ public class MenuFXMLController implements Initializable {
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
-        stage.setTitle("Registrar");
+        stage.setTitle("Modificar Perfil");
         stage.initModality(Modality.APPLICATION_MODAL);
         //la ventana se muestra modal
         stage.show();
