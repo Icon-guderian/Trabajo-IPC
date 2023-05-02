@@ -14,7 +14,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
@@ -25,6 +28,8 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.Club;
 import static model.Club.getInstance;
 import model.ClubDAOException;
@@ -53,11 +58,17 @@ public class MenuFXMLController implements Initializable {
     @FXML
     private Button verReservas;
     @FXML
-    private Button reservar;
-    @FXML
     private ComboBox<String> seleccionPistaBoton;
     @FXML
     private Button mostrarDisponBoton;
+    @FXML
+    private MenuItem miReserva;
+    @FXML
+    private MenuItem hacerReserva;
+    @FXML
+    private MenuItem cerrar;
+    @FXML
+    private MenuItem modificar;
 
     /**
      * Initializes the controller class.
@@ -110,9 +121,6 @@ public class MenuFXMLController implements Initializable {
     private void verReservas(ActionEvent event) {
     }
 
-    @FXML
-    private void reservarPistas(ActionEvent event) {
-    }
 
     @FXML
     private void seleccionPista(ActionEvent event) throws ClubDAOException, IOException {
@@ -122,5 +130,69 @@ public class MenuFXMLController implements Initializable {
     @FXML
     private void mostrarDisponibilidad(ActionEvent event) {
     }
+
+    @FXML
+    private void menuMiReserva(ActionEvent event) throws IOException {
+        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/MisReservas.fxml"));
+        Parent root = miCargador.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Mis reservas");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        //la ventana se muestra modal
+        stage.show();
+        Stage myStage = (Stage) miReserva.getScene().getWindow();
+        myStage.close();
+    }
+
+    @FXML
+    private void menuReservar(ActionEvent event) throws IOException {
+        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/HacerReservas.fxml"));
+        Parent root = miCargador.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Registrar");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        //la ventana se muestra modal
+        stage.show();
+        Stage myStage = (Stage) hacerReserva.getScene().getWindow();
+        myStage.close();
+    }
+    
+    @FXML
+    private void modificarPerfil(ActionEvent event) throws IOException {
+        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/ModificarPerfil.fxml"));
+        Parent root = miCargador.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Registrar");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        //la ventana se muestra modal
+        stage.show();
+        Stage myStage = (Stage) modificar.getScene().getWindow();
+        myStage.close();
+    }
+    
+    @FXML
+    private void cerrarSesion(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Diálogo de confirmación");
+        alert.setHeaderText("Vas a cerrar tu sesion");
+        alert.setContentText("¿Seguro que quieres salir?");
+        
+        ButtonType buttonTypeCancel = new ButtonType("Salir", ButtonBar.ButtonData.CANCEL_CLOSE);
+        
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == buttonTypeCancel){
+            System.out.println("OK");
+            
+        } else {
+            System.out.println("CANCEL");
+        }
+    }
+
     
 }
