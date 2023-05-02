@@ -62,13 +62,13 @@ public class MenuFXMLController implements Initializable {
     @FXML
     private Button mostrarDisponBoton;
     @FXML
-    private MenuItem miReserva;
+    private Button miReserva;
     @FXML
-    private MenuItem hacerReserva;
+    private Button hacerReserva;
     @FXML
     private MenuItem cerrar;
     @FXML
-    private MenuItem modificar;
+    private Button modificar;
 
     /**
      * Initializes the controller class.
@@ -146,6 +146,8 @@ public class MenuFXMLController implements Initializable {
         myStage.close();
     }
 
+    ;
+    
     @FXML
     private void menuReservar(ActionEvent event) throws IOException {
         FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/HacerReservas.fxml"));
