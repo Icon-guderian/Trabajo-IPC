@@ -40,6 +40,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
+import static javafx.scene.paint.Color.color;
 import javafx.scene.paint.Paint; 
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -109,24 +110,6 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
         }
         return devolver; 
     }
-    /*
-     public void colorearCeldaRojo(ListView<String> listView, int indice) 
-    {
-        int indiceCelda = 0; // índice de la celda que deseas cambiar
-        ListCell<String> celda = listView.getCellFactory().call(listView);
-        celda = celda.updateItem(listView.getItems().get(indiceCelda), false);
-        celda.setStyle("-fx-background-color: #FF8080;");
-    }
-    
-    public void colorearCeldaVerde(ListView<String> listView, int indice) 
-    {
-        int indiceCelda = 0; // índice de la celda que deseas cambiar
-        ListCell<String> celda = listView.getCellFactory().call(listView);
-        celda = celda.updateItem(listView.getItems().get(indiceCelda), false);
-        celda.setStyle("-fx-background-color: #80FF80;");
-    }
-    */
-   
     
     @FXML
     private void salir(ActionEvent e) {
