@@ -4,8 +4,12 @@
  */
 package javafxmlapplication;
 
+
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -16,19 +20,27 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint; 
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Booking;
@@ -43,7 +55,7 @@ import model.Member;
  *
  * @author david
  */
-public class MenuPrincipalController implements Initializable {
+public class MenuPrincipalController extends ListCell<String> implements Initializable {
 
     Club club; 
     
@@ -58,7 +70,7 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     private DatePicker calendarioBoton;
     @FXML
-    private ListView<?> personasListView;
+    private ListView<String> personasListView;
     @FXML
     private ComboBox<String> seleccionPistaBoton;
     @FXML
@@ -86,6 +98,36 @@ public class MenuPrincipalController implements Initializable {
         seleccionPistaBoton.setItems(items);   
     }
 
+    public boolean devolverHoraReserva(List<Booking> ar, LocalTime local) 
+    {
+        boolean devolver = false; 
+        for(int i = 0; i < ar.size(); i++)
+        {
+            Booking reserva = ar.get(i);
+            if(reserva.getFromTime() == local) { return true; }
+            else { devolver = false; }
+        }
+        return devolver; 
+    }
+    /*
+     public void colorearCeldaRojo(ListView<String> listView, int indice) 
+    {
+        int indiceCelda = 0; // índice de la celda que deseas cambiar
+        ListCell<String> celda = listView.getCellFactory().call(listView);
+        celda = celda.updateItem(listView.getItems().get(indiceCelda), false);
+        celda.setStyle("-fx-background-color: #FF8080;");
+    }
+    
+    public void colorearCeldaVerde(ListView<String> listView, int indice) 
+    {
+        int indiceCelda = 0; // índice de la celda que deseas cambiar
+        ListCell<String> celda = listView.getCellFactory().call(listView);
+        celda = celda.updateItem(listView.getItems().get(indiceCelda), false);
+        celda.setStyle("-fx-background-color: #80FF80;");
+    }
+    */
+   
+    
     @FXML
     private void salir(ActionEvent e) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -152,9 +194,109 @@ public class MenuPrincipalController implements Initializable {
     }
 
     @FXML
-    private void mostrarDisponibilidad(ActionEvent event) 
+    private void mostrarDisponibilidad(ActionEvent event) throws ClubDAOException, IOException 
     {
+        club = getInstance(); 
+        
         List<Booking> horarioDePista = new ArrayList<>(); 
-    }
+        
+        LocalDate fecha = calendarioBoton.getValue(); 
+        LocalDate fechaActual = LocalDate.now();
+        String pista = seleccionPistaBoton.getValue(); 
+        
+        if(fecha == null) 
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Error en la fecha");
+            alert.setContentText("Por favor introduzca una fecha");
+            alert.showAndWait();
+        
+        }
+        else if(pista == null) 
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Pista");
+            alert.setContentText("Debe seleccionar 1 pista");
+            alert.showAndWait();
+        } 
+        else if(fecha.isBefore(fechaActual)) 
+        {
+            horarioDePista = club.getCourtBookings(pista, fecha); 
+            
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación");
+            alert.setHeaderText("Este día ya ha pasado");
+            alert.setContentText("¿Está seguro que quiere mostrar la disponibilidad de ese día?");
+            ButtonType botonSi = new ButtonType("Mostrar");
+            ButtonType botonNo = new ButtonType("Cancelar", ButtonData.CANCEL_CLOSE);
 
+            alert.getButtonTypes().setAll(botonSi, botonNo);
+            Optional<ButtonType> resultado = alert.showAndWait();
+
+            if (resultado.isPresent() && resultado.get() == botonSi) 
+            {
+                LocalTime horaInicio = LocalTime.of(9, 0);
+                int duracion = club.getBookingDuration();
+                int RerservasPistas = club.getBookingSlots(); 
+                personasListView.getItems().clear();
+   
+                for (int i = 0; i < RerservasPistas; i++) 
+                {    
+                     if(devolverHoraReserva(horarioDePista, horaInicio)) 
+                {
+                        LocalTime horaFin = horaInicio.plusMinutes(duracion);        
+                        String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
+                        String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
+                        personasListView.getItems().add(horaInicioTexto + " - " + horaFinTexto + ".  Reservado");
+                        personasListView.setStyle("-fx-background-color: #FF8080;");
+                        horaInicio = horaFin;
+                    } 
+                    else {
+                        LocalTime horaFin = horaInicio.plusMinutes(duracion);        
+                        String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
+                        String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
+                        personasListView.setStyle("-fx-background-color: #80FF80;");
+                        personasListView.getItems().add(horaInicioTexto + " - " + horaFinTexto + ".  No reservado");
+                       
+                        horaInicio = horaFin;
+                }
+                }           
+            } else {}
+        } 
+        else 
+        {
+            LocalTime horaInicio = LocalTime.of(9, 0);
+            int duracion = club.getBookingDuration();
+            int RerservasPistas = club.getBookingSlots(); 
+            personasListView.getItems().clear();
+            horarioDePista = club.getCourtBookings(pista, fecha); 
+            
+            for (int i = 0; i < RerservasPistas; i++) {
+                    
+                //Booking reserva = horarioDePista.get(i);
+               
+                if(devolverHoraReserva(horarioDePista, horaInicio)) 
+                {
+                        LocalTime horaFin = horaInicio.plusMinutes(duracion);        
+                        String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
+                        String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
+                        personasListView.getItems().add(horaInicioTexto + " - " + horaFinTexto + ".  Reservado");
+                        //colorearCeldaRojo(personasListView, i);
+                        horaInicio = horaFin;
+                    } 
+                    else {
+                        LocalTime horaFin = horaInicio.plusMinutes(duracion);        
+                        String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
+                        String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
+                        personasListView.getItems().add(horaInicioTexto + " - " + horaFinTexto + ".  No reservado");
+                        //colorearCeldaVerde(personasListView, i);
+                        horaInicio = horaFin;
+                }    
+                 
+            }  
+        }
+    }  
 }
+
