@@ -40,6 +40,7 @@ import static model.Club.getInstance;
 import model.ClubDAOException;
 import model.Court;
 import model.Member;
+import model.Booking;
 
 /**
  * FXML Controller class
@@ -52,6 +53,9 @@ public class MenuFXMLController implements Initializable {
     Club club;
     
     Member m; 
+    
+    Booking b;
+    
     @FXML
     private BorderPane borderPane;
     @FXML
@@ -99,11 +103,11 @@ public class MenuFXMLController implements Initializable {
         }
         seleccionPistaBoton.setItems(items);  
         
-        labelNombre.setText("Bienvenido" );
-        labelPistaReservada.setText("Tu proxima pista reservada es: " );
+        labelNombre.setText("Bienvenido" + m.getNickName());
+        labelPistaReservada.setText("Tu proxima pista reservada es la: " + club.getUserBookings(m.getNickName()) + "a las" + b.getBookingDate() );
             
         // Obtener la imagen que el usuario ha elegido
-        Image imagenUsuario = m.image;
+        Image imagenUsuario = m.getImage();
 
         if (imagenUsuario != null) {
             // Si el usuario ha elegido una imagen, establecerla como la imagen del ImageView
@@ -120,7 +124,12 @@ public class MenuFXMLController implements Initializable {
     public void initUsuario(Member member) {
         m = member; 
     }
+    
+    public void initBooking (Booking booking){
+        b = booking;
+    }
 
+    
     @FXML
     private void salir(ActionEvent e) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
