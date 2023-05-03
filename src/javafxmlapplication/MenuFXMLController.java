@@ -7,6 +7,7 @@ package javafxmlapplication;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -98,7 +99,8 @@ public class MenuFXMLController implements Initializable {
         }
         seleccionPistaBoton.setItems(items);  
         
-        
+        labelNombre.setText("Bienvenido" );
+        labelPistaReservada.setText("Tu proxima pista reservada es: " );
             
         // Obtener la imagen que el usuario ha elegido
         Image imagenUsuario = m.image;
@@ -110,7 +112,9 @@ public class MenuFXMLController implements Initializable {
             // Si el usuario no ha elegido una imagen, establecer una imagen predeterminada
             Image imagenPredeterminada = new Image("\"C:\\Users\\david\\OneDrive\\Escritorio\\Practicas\\2do\\2B\\IPC\\ProyectoIPC\\Trabajo-IPC\\src\\resources\\default-avatar-profile-icon-social-media-user-free-vector.jpg\"");
             fotoPerfil.setImage(imagenPredeterminada);
-        }   
+        }  
+        
+        
     }    
     
     public void initUsuario(Member member) {
