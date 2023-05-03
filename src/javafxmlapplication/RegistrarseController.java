@@ -178,7 +178,7 @@ public class RegistrarseController implements Initializable {
     }
     
     @FXML
-    private void seleccionarFoto(ActionEvent event) 
+    protected void seleccionarFoto(ActionEvent event) 
     {
         FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Seleccionar foto");

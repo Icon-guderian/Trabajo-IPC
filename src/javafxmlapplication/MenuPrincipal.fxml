@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="783.0" prefWidth="685.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.MenuPrincipalController">
+<BorderPane fx:id="borderPane" maxHeight="1120.0" maxWidth="1000.0" minHeight="112.0" minWidth="100.0" prefHeight="783.0" prefWidth="685.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.MenuPrincipalController">
    <top>
       <MenuBar style="-fx-background-color: #84B118;" BorderPane.alignment="CENTER">
          <menus>
@@ -118,6 +118,9 @@
                                        </VBox.margin>
                                     </DatePicker>
                                  </children>
+                                 <padding>
+                                    <Insets bottom="20.0" />
+                                 </padding>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="55.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
                                  <children>

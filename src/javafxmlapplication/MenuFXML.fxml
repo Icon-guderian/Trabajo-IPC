@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="766.0" prefWidth="685.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.MenuFXMLController">
+<BorderPane fx:id="borderPane" maxHeight="1120.0" maxWidth="1000.0" minHeight="112.0" minWidth="100.0" prefHeight="766.0" prefWidth="685.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.MenuFXMLController">
    <top>
       <MenuBar style="-fx-background-color: #84B118;" BorderPane.alignment="CENTER">
          <menus>
@@ -37,22 +37,16 @@
                <children>
                   <VBox alignment="CENTER_LEFT" prefHeight="99.0" prefWidth="294.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label prefHeight="19.0" prefWidth="105.0" text="Ver mis reservas" textFill="WHITE">
+                        <Label fx:id="labelNombre" prefHeight="19.0" prefWidth="105.0" text="Bienvenido" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <Button fx:id="verReservas" alignment="CENTER" mnemonicParsing="false" onAction="#verReservas" prefHeight="60.0" prefWidth="78.0" style="-fx-background-color: #FFFFFF;">
-                           <VBox.margin>
-                              <Insets bottom="10.0" />
-                           </VBox.margin>
-                           <graphic>
-                              <ImageView fitHeight="60.0" fitWidth="78.0" pickOnBounds="true">
-                                 <image>
-                                    <Image url="@../resources/lupa.png" />
-                                 </image></ImageView>
-                           </graphic>
-                        </Button>
+                        <Label fx:id="labelPistaReservada" text="Label" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
                      </children>
                      <opaqueInsets>
                         <Insets />
@@ -93,10 +87,7 @@
                                  </graphic></MenuItem>
                           </items>
                            <graphic>
-                              <ImageView fitHeight="60.0" fitWidth="62.0" pickOnBounds="true">
-                                 <image>
-                                    <Image url="@../resources/reservar.jpg" />
-                                 </image></ImageView>
+                              <ImageView fx:id="fotoPerfil" fitHeight="60.0" fitWidth="62.0" pickOnBounds="true" />
                            </graphic>
                            <VBox.margin>
                               <Insets bottom="10.0" />
@@ -142,6 +133,12 @@
                                  </children>
                               </VBox>
                            </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="20.0" />
+                           </padding>
                         </HBox>
                         <VBox alignment="CENTER" prefHeight="312.0" prefWidth="716.0" VBox.vgrow="ALWAYS">
                            <children>
@@ -160,6 +157,9 @@
                      </children>
                   </VBox>
                </children>
+               <padding>
+                  <Insets bottom="20.0" />
+               </padding>
             </HBox>
          </children>
       </VBox>

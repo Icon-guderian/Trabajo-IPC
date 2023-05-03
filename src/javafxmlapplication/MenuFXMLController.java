@@ -4,6 +4,7 @@
  */
 package javafxmlapplication;
 
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -25,9 +26,11 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -57,8 +60,6 @@ public class MenuFXMLController implements Initializable {
     @FXML
     private ListView<?> personasListView;
     @FXML
-    private Button verReservas;
-    @FXML
     private ComboBox<String> seleccionPistaBoton;
     @FXML
     private Button mostrarDisponBoton;
@@ -70,7 +71,13 @@ public class MenuFXMLController implements Initializable {
     private MenuItem cerrar;
     @FXML
     private Button modificar;
-
+    @FXML
+    private ImageView fotoPerfil;
+    @FXML
+    private Label labelNombre;
+    @FXML
+    private Label labelPistaReservada;
+    
     /**
      * Initializes the controller class.
      */
@@ -91,17 +98,19 @@ public class MenuFXMLController implements Initializable {
         }
         seleccionPistaBoton.setItems(items);  
         
-        // Obtener la imagen que el usuario ha elegido (por ejemplo, de una base de datos)
-        Image imagenUsuario = obtenerImagenUsuario();
+        
+            
+        // Obtener la imagen que el usuario ha elegido
+        Image imagenUsuario = m.image;
 
         if (imagenUsuario != null) {
             // Si el usuario ha elegido una imagen, establecerla como la imagen del ImageView
             fotoPerfil.setImage(imagenUsuario);
         } else {
             // Si el usuario no ha elegido una imagen, establecer una imagen predeterminada
-            Image imagenPredeterminada = new Image("ruta/a/imagen/predeterminada.png");
+            Image imagenPredeterminada = new Image("\"C:\\Users\\david\\OneDrive\\Escritorio\\Practicas\\2do\\2B\\IPC\\ProyectoIPC\\Trabajo-IPC\\src\\resources\\default-avatar-profile-icon-social-media-user-free-vector.jpg\"");
             fotoPerfil.setImage(imagenPredeterminada);
-        }
+        }   
     }    
     
     public void initUsuario(Member member) {
@@ -130,9 +139,6 @@ public class MenuFXMLController implements Initializable {
     private void calendario(ActionEvent event) {
     }
 
-    @FXML
-    private void verReservas(ActionEvent event) {
-    }
 
 
     @FXML
@@ -207,7 +213,5 @@ public class MenuFXMLController implements Initializable {
         } else {
             System.out.println("CANCEL");
         }
-    }
-
-    
+    }    
 }
