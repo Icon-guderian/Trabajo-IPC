@@ -171,7 +171,7 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
     {
     
     }
-
+    
     @FXML
     private void seleccionPista(ActionEvent event)
     {
@@ -226,7 +226,8 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
                 int duracion = club.getBookingDuration();
                 int RerservasPistas = club.getBookingSlots(); 
                 personasListView.getItems().clear();
-   
+                personasListView.setId("one");
+                
                 for (int i = 0; i < RerservasPistas; i++) 
                 { 
                     //ListCell<String> celda = personasListView.getCells().
@@ -237,22 +238,15 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
                         String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
                         String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
                         personasListView.getItems().add(horaInicioTexto + " - " + horaFinTexto + ".  Reservado");  
-                        //personasListView.setId("celda1");
-                        //celda.setStyle("fx-background-color: #ffc8c8;");
-                        //personasListView.setStyle("rojo.css"); 
                         horaInicio = horaFin;
                     } 
                     else {
                         LocalTime horaFin = horaInicio.plusMinutes(duracion);        
                         String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
                         String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
-                        //ListCell<String> celda = personasListView.getCellFactory().call(personasListView);
-                        //celda.setStyle("fx-background-color: #ffc8c8");
-                        //personasListView.setStyle("verde.css");
                         personasListView.getItems().add(horaInicioTexto + " - " + horaFinTexto + ".  No reservado");
-                       
                         horaInicio = horaFin;
-                }
+                    }
                 }           
             } else {}
         } 
@@ -266,27 +260,46 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
             
             for (int i = 0; i < RerservasPistas; i++) {
                     
-                //Booking reserva = horarioDePista.get(i);
-               
                 if(devolverHoraReserva(horarioDePista, horaInicio)) 
-                {
+                {       
                         LocalTime horaFin = horaInicio.plusMinutes(duracion);        
                         String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
                         String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
                         personasListView.getItems().add(horaInicioTexto + " - " + horaFinTexto + ".  Reservado");
                         horaInicio = horaFin;
                     } 
-                    else {
+                    else 
+                    {
+                        
+                        personasListView.setId("dos");
                         LocalTime horaFin = horaInicio.plusMinutes(duracion);        
                         String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
                         String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
                         personasListView.getItems().add(horaInicioTexto + " - " + horaFinTexto + ".  No reservado");
-                        //colorearCeldaVerde(personasListView, i);
                         horaInicio = horaFin;
-                }    
-                 
+                }       
             }  
         }
+        /*
+        personasListView.setCellFactory(param -> new ListCell<String>() {
+                            @Override
+                            protected void updateItem(String item, boolean empty) 
+                            {
+                                super.updateItem(item, empty);
+                                for(int i = 0; i < personasListView.getItems().size() - 1; i++ ) 
+                                {
+                                    if(personasListView.getItems().get(i).contains("Reservado")) 
+                                    {
+                                        setStyle("-fx-background-color: #ffc8c8");
+                                    } 
+                                    else 
+                                    {
+                                        setStyle("-fx-background-color: #80ff80");
+                                    }
+                                }
+                            }
+                        });
+                        */
     }  
 }
 
