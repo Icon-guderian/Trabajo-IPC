@@ -37,12 +37,15 @@
                <children>
                   <VBox alignment="CENTER_LEFT" prefHeight="99.0" prefWidth="294.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label fx:id="labelNombre" prefHeight="19.0" prefWidth="105.0" text="Bienvenido" textFill="WHITE">
+                        <Label fx:id="labelNombre" prefHeight="20.0" prefWidth="200.0" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
                         </Label>
-                        <Label fx:id="labelPistaReservada" text="Label" textFill="WHITE">
+                        <Label fx:id="labelPistaReservada" prefHeight="20.0" prefWidth="200.0" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
