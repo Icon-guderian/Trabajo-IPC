@@ -1,0 +1,11 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 4 may. 2023, 0:13:04
+    Author     : UX431      ffc8c8
+*/
+.list-cell:filled:contains("Reservado")  {
+    -fx-background-color: #ffc8c8;
+}

@@ -97,6 +97,8 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
             items.add(elarray.get(i).getName()); 
         }
         seleccionPistaBoton.setItems(items);   
+        
+        
     }
 
     public boolean devolverHoraReserva(List<Booking> ar, LocalTime local) 
@@ -226,21 +228,27 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
                 personasListView.getItems().clear();
    
                 for (int i = 0; i < RerservasPistas; i++) 
-                {    
+                { 
+                    //ListCell<String> celda = personasListView.getCells().
+                   
                      if(devolverHoraReserva(horarioDePista, horaInicio)) 
                 {
                         LocalTime horaFin = horaInicio.plusMinutes(duracion);        
                         String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
                         String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
-                        personasListView.getItems().add(horaInicioTexto + " - " + horaFinTexto + ".  Reservado");
-                        personasListView.setStyle("-fx-background-color: #FF8080;");
+                        personasListView.getItems().add(horaInicioTexto + " - " + horaFinTexto + ".  Reservado");  
+                        //personasListView.setId("celda1");
+                        //celda.setStyle("fx-background-color: #ffc8c8;");
+                        //personasListView.setStyle("rojo.css"); 
                         horaInicio = horaFin;
                     } 
                     else {
                         LocalTime horaFin = horaInicio.plusMinutes(duracion);        
                         String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
                         String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
-                        personasListView.setStyle("-fx-background-color: #80FF80;");
+                        //ListCell<String> celda = personasListView.getCellFactory().call(personasListView);
+                        //celda.setStyle("fx-background-color: #ffc8c8");
+                        //personasListView.setStyle("verde.css");
                         personasListView.getItems().add(horaInicioTexto + " - " + horaFinTexto + ".  No reservado");
                        
                         horaInicio = horaFin;
@@ -266,7 +274,6 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
                         String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
                         String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
                         personasListView.getItems().add(horaInicioTexto + " - " + horaFinTexto + ".  Reservado");
-                        //colorearCeldaRojo(personasListView, i);
                         horaInicio = horaFin;
                     } 
                     else {
