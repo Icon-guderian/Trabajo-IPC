@@ -1,6 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" />
+<BorderPane fx:id="borderPane" maxHeight="1120.0" maxWidth="1000.0" minHeight="112.0" minWidth="100.0" prefHeight="766.0" prefWidth="685.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.MenuFXMLController">
+   <top>
+      <MenuBar style="-fx-background-color: #84B118;" BorderPane.alignment="CENTER">
+         <menus>
+            <Menu text="Archivo">
+               <items>
+                  <MenuItem fx:id="menuSalir" mnemonicParsing="false" onAction="#salir" text="Salir" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Opciones" />
+         </menus>
+      </MenuBar>
+   </top>
+   <bottom>
+      <HBox prefHeight="97.0" prefWidth="686.0" style="-fx-border-color: #84B118; -fx-border-width: 8; -fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat, #16779F 0%, #84B118 55%, #15622E 80%);" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="78.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="20.0" right="100.0" top="5.0" />
+               </HBox.margin>
+               <image>
+                  <Image url="@../resources/pelota2.png" />
+               </image>
+            </ImageView>
+            <VBox alignment="CENTER_RIGHT" prefHeight="88.0" prefWidth="476.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label prefHeight="58.0" prefWidth="327.0" text="Síguenos en nuestras redes sociales donde informamos de todos los eventos y de noticias sobre nuestras instalaciones" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true" VBox.vgrow="ALWAYS" />
+                  <Label prefHeight="18.0" prefWidth="330.0" text="\@GreenBallFC @GreenBallTW  Número: 646341719" textFill="WHITE" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </bottom>
+   <center>
+      <VBox alignment="TOP_RIGHT" prefHeight="345.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="686.0" style="-fx-border-color: #84B118; -fx-border-width: 8; -fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat, #16779F 0%, #84B118 55%, #15622E 80%);" VBox.vgrow="ALWAYS" />
+            <HBox alignment="CENTER" prefHeight="450.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+               <padding>
+                  <Insets bottom="20.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
