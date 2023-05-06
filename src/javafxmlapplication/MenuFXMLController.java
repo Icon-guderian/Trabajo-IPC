@@ -50,11 +50,12 @@ import model.Booking;
 
 
 public class MenuFXMLController implements Initializable {
-    Club club;
     
-    Member m; 
+    private Club club; 
     
-    Booking b;
+    private Booking b;
+    
+    private Member m; 
     
     @FXML
     private BorderPane borderPane;
@@ -86,12 +87,22 @@ public class MenuFXMLController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    
+    public void initUsuario(Member member) {
+        m = member; 
+    }
+    
+    
+    public void initBooking (Booking booking){
+        b = booking;
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
         // TODO
         try {
-            club = getInstance(); 
+            club = getInstance();  
         } catch (ClubDAOException | IOException e)  {}
         
         List<Court> elarray = new ArrayList<>(); 
@@ -103,7 +114,8 @@ public class MenuFXMLController implements Initializable {
         }
         seleccionPistaBoton.setItems(items);  
         
-        labelNombre.setText("Bienvenido" + m.getNickName());
+        /*
+        labelNombre.setText("Bienvenido: " + m.getNickName());
         labelPistaReservada.setText("Tu proxima pista reservada es la: " + club.getUserBookings(m.getNickName()) + "a las" + b.getBookingDate() );
             
         // Obtener la imagen que el usuario ha elegido
@@ -117,17 +129,8 @@ public class MenuFXMLController implements Initializable {
             Image imagenPredeterminada = new Image("\"C:\\Users\\david\\OneDrive\\Escritorio\\Practicas\\2do\\2B\\IPC\\ProyectoIPC\\Trabajo-IPC\\src\\resources\\default-avatar-profile-icon-social-media-user-free-vector.jpg\"");
             fotoPerfil.setImage(imagenPredeterminada);
         }  
-        
-        
-    }    
-    
-    public void initUsuario(Member member) {
-        m = member; 
-    }
-    
-    public void initBooking (Booking booking){
-        b = booking;
-    }
+        */
+    }   
 
     
     @FXML
@@ -212,6 +215,7 @@ public class MenuFXMLController implements Initializable {
     
     @FXML
     private void cerrarSesion(ActionEvent event) {
+        
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Diálogo de confirmación");
         alert.setHeaderText("Vas a cerrar tu sesion");

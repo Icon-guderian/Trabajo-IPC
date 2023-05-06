@@ -32,6 +32,7 @@ import model.Member;
  */
 public class IniciarSesionController implements Initializable {
 
+    private Member m; 
     
     @FXML
     private TextField CajaUsuario;
@@ -121,9 +122,9 @@ public class IniciarSesionController implements Initializable {
         }
             else 
         {
-            Member member = club.getMemberByCredentials(usuario, contraseña);
+            m = club.getMemberByCredentials(usuario, contraseña);
             
-            if(member == null) 
+            if(m == null) 
             {
                 Alert alert = new Alert(AlertType.ERROR);
                 alert.setTitle("Error");
@@ -131,13 +132,12 @@ public class IniciarSesionController implements Initializable {
                 alert.setContentText("El usuario no está registrado");
                 alert.showAndWait();
             } 
-            
             else 
             {
                 FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/MenuFXML.fxml"));
-                Parent root = miCargador.load();
+                Parent root = (Parent) miCargador.load();
                 MenuFXMLController controlador = miCargador.getController(); 
-                controlador.initUsuario(member);
+                controlador.initUsuario(m);
                 Scene scene = new Scene(root);
                 Stage stage = new Stage();
                 stage.setScene(scene);
