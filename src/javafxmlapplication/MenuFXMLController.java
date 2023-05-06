@@ -89,7 +89,7 @@ public class MenuFXMLController implements Initializable {
      */
     
     public void initUsuario(Member member) {
-        m = member; 
+       m = member;  
     }
     
     
@@ -103,6 +103,7 @@ public class MenuFXMLController implements Initializable {
         // TODO
         try {
             club = getInstance();  
+            
         } catch (ClubDAOException | IOException e)  {}
         
         List<Court> elarray = new ArrayList<>(); 
@@ -112,24 +113,10 @@ public class MenuFXMLController implements Initializable {
         {
             items.add(elarray.get(i).getName()); 
         }
+        
         seleccionPistaBoton.setItems(items);  
         
-        /*
-        labelNombre.setText("Bienvenido: " + m.getNickName());
-        labelPistaReservada.setText("Tu proxima pista reservada es la: " + club.getUserBookings(m.getNickName()) + "a las" + b.getBookingDate() );
-            
-        // Obtener la imagen que el usuario ha elegido
-        Image imagenUsuario = m.getImage();
-
-        if (imagenUsuario != null) {
-            // Si el usuario ha elegido una imagen, establecerla como la imagen del ImageView
-            fotoPerfil.setImage(imagenUsuario);
-        } else {
-            // Si el usuario no ha elegido una imagen, establecer una imagen predeterminada
-            Image imagenPredeterminada = new Image("\"C:\\Users\\david\\OneDrive\\Escritorio\\Practicas\\2do\\2B\\IPC\\ProyectoIPC\\Trabajo-IPC\\src\\resources\\default-avatar-profile-icon-social-media-user-free-vector.jpg\"");
-            fotoPerfil.setImage(imagenPredeterminada);
-        }  
-        */
+        
     }   
 
     
@@ -163,7 +150,25 @@ public class MenuFXMLController implements Initializable {
     }
 
     @FXML
-    private void mostrarDisponibilidad(ActionEvent event) {
+    private void mostrarDisponibilidad(ActionEvent event) 
+    {
+        
+        labelNombre.setText("Bienvenido: " + m.getNickName());
+        
+        //labelPistaReservada.setText("Tu proxima pista reservada es la: " + club.getUserBookings(m.getNickName()) + "a las" + b.getBookingDate() );
+            
+        // Obtener la imagen que el usuario ha elegido
+        Image imagenUsuario = m.getImage();
+
+        if (imagenUsuario != null) {
+            // Si el usuario ha elegido una imagen, establecerla como la imagen del ImageView
+            fotoPerfil.setImage(imagenUsuario);
+        } else {
+            // Si el usuario no ha elegido una imagen, establecer una imagen predeterminada
+            Image imagenPredeterminada = new Image("../src/resources/default-avatar-profile-icon-social-media-user-free-vector.jpg");
+            fotoPerfil.setImage(imagenPredeterminada);
+        }  
+        
     }
 
     @FXML
