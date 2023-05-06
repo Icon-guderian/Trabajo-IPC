@@ -26,7 +26,7 @@
                   <Label alignment="CENTER" contentDisplay="CENTER" style="-fx-font-size: 42; -fx-text-fill: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%); -fx-font-weight: BOld;" text="Registrarse" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
-            <GridPane prefHeight="528.0" prefWidth="472.0">
+            <GridPane alignment="CENTER" prefHeight="528.0" prefWidth="472.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="ALWAYS" maxWidth="247.0" minWidth="6.399999999999999" prefWidth="93.000048828125" />
                 <ColumnConstraints hgrow="ALWAYS" maxWidth="466.3999794006347" minWidth="10.0" prefWidth="252.4000122070312" />
@@ -34,42 +34,42 @@
                   <ColumnConstraints hgrow="ALWAYS" maxWidth="466.3999794006347" minWidth="10.0" prefWidth="74.60000305175782" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="27.799993896484374" minHeight="10.0" prefHeight="25.4" vgrow="ALWAYS" />
-                  <RowConstraints maxHeight="16.799993896484374" minHeight="4.000006103515624" prefHeight="14.39998893737793" vgrow="ALWAYS" />
-                  <RowConstraints minHeight="10.0" vgrow="ALWAYS" />
-                  <RowConstraints maxHeight="45.20003356933593" minHeight="10.0" prefHeight="45.20003356933593" vgrow="ALWAYS" />
-                  <RowConstraints maxHeight="18.400000000000006" minHeight="8.00000610351563" prefHeight="11.20001831054688" vgrow="ALWAYS" />
-                  <RowConstraints maxHeight="25.79999389648438" minHeight="10.0" prefHeight="22.59998168945313" vgrow="ALWAYS" />
-                  <RowConstraints minHeight="10.0" vgrow="ALWAYS" />
-                  <RowConstraints minHeight="10.0" vgrow="ALWAYS" />
-                  <RowConstraints maxHeight="44.400000000000006" minHeight="10.0" prefHeight="17.79999389648438" vgrow="ALWAYS" />
-                  <RowConstraints maxHeight="30.600006103515625" minHeight="0.0" prefHeight="26.600006103515625" vgrow="ALWAYS" />
-                <RowConstraints minHeight="10.0" vgrow="ALWAYS" />
-                  <RowConstraints minHeight="10.0" vgrow="ALWAYS" />
-                <RowConstraints minHeight="10.0" vgrow="ALWAYS" />
-                  <RowConstraints maxHeight="22.399999999999977" minHeight="10.0" prefHeight="22.399999999999977" vgrow="ALWAYS" />
-                  <RowConstraints maxHeight="25.600000000000023" minHeight="4.999987792968739" prefHeight="21.600000000000023" vgrow="ALWAYS" />
-                  <RowConstraints maxHeight="45.00001220703126" minHeight="10.0" prefHeight="27.199987792968727" vgrow="ALWAYS" />
-                  <RowConstraints maxHeight="45.00001220703126" minHeight="10.0" prefHeight="27.199987792968727" vgrow="ALWAYS" />
-                  <RowConstraints maxHeight="45.00001220703126" minHeight="10.0" prefHeight="27.199987792968727" vgrow="ALWAYS" />
-                  <RowConstraints maxHeight="45.00001220703126" minHeight="10.0" prefHeight="27.199987792968727" vgrow="ALWAYS" />
-                  <RowConstraints maxHeight="45.00001220703126" minHeight="10.0" prefHeight="27.199987792968727" vgrow="ALWAYS" />
-                  <RowConstraints maxHeight="43.39999999999998" minHeight="10.0" prefHeight="22.800012207031273" vgrow="ALWAYS" />
-                  <RowConstraints maxHeight="43.39999999999998" minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-                  <RowConstraints maxHeight="43.39999999999998" minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-                  <RowConstraints maxHeight="43.39999999999998" minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-                  <RowConstraints maxHeight="43.39999999999998" minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                <RowConstraints maxHeight="27.799993896484374" minHeight="10.0" prefHeight="25.4" valignment="CENTER" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="16.799993896484374" minHeight="4.000006103515624" prefHeight="14.39998893737793" valignment="CENTER" vgrow="ALWAYS" />
+                  <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="45.20003356933593" minHeight="10.0" prefHeight="45.20003356933593" valignment="CENTER" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="18.400000000000006" minHeight="8.00000610351563" prefHeight="11.20001831054688" valignment="CENTER" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="25.79999389648438" minHeight="10.0" prefHeight="22.59998168945313" valignment="CENTER" vgrow="ALWAYS" />
+                  <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="ALWAYS" />
+                  <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="44.400000000000006" minHeight="10.0" prefHeight="17.79999389648438" valignment="CENTER" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="30.600006103515625" minHeight="0.0" prefHeight="26.600006103515625" valignment="CENTER" vgrow="ALWAYS" />
+                <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="ALWAYS" />
+                  <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="ALWAYS" />
+                <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="22.399999999999977" minHeight="10.0" prefHeight="22.399999999999977" valignment="CENTER" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="25.600000000000023" minHeight="4.999987792968739" prefHeight="21.600000000000023" valignment="CENTER" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="45.00001220703126" minHeight="10.0" prefHeight="27.199987792968727" valignment="CENTER" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="45.00001220703126" minHeight="10.0" prefHeight="27.199987792968727" valignment="CENTER" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="45.00001220703126" minHeight="10.0" prefHeight="27.199987792968727" valignment="CENTER" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="45.00001220703126" minHeight="10.0" prefHeight="27.199987792968727" valignment="CENTER" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="45.00001220703126" minHeight="10.0" prefHeight="27.199987792968727" valignment="CENTER" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="43.39999999999998" minHeight="10.0" prefHeight="22.800012207031273" valignment="CENTER" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="43.39999999999998" minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="43.39999999999998" minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="43.39999999999998" minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="43.39999999999998" minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
               </rowConstraints>
                <children>
-                  <TextField fx:id="apellidos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="182.0" promptText="Apellidos" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS" />
-                  <TextField fx:id="telefóno" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="122.0" promptText="Teléfono" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS" />
-                  <TextField fx:id="nickname" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="122.0" promptText="Nickname" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.vgrow="ALWAYS" />
-                  <TextField fx:id="nombre" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="102.0" promptText="Nombre" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
-                  <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="0.0" promptText="Repita la contraseña" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                  <TextField fx:id="NúmeroTarjeta" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="242.0" promptText="Número de tarjeta " style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+                  <TextField fx:id="apellidos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="182.0" promptText="Apellidos*" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS" />
+                  <TextField fx:id="telefóno" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="122.0" promptText="Teléfono*" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS" />
+                  <TextField fx:id="nickname" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="122.0" promptText="Nickname*" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.vgrow="ALWAYS" />
+                  <TextField fx:id="nombre" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="102.0" promptText="Nombre*" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
+                  <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="0.0" promptText="Repita la contraseña*" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <TextField fx:id="NúmeroTarjeta" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="242.0" promptText="Número de tarjeta*" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" GridPane.columnIndex="1" GridPane.rowIndex="14" />
                   <TextField fx:id="CVV" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="40.0" promptText="CVV" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" GridPane.columnIndex="2" GridPane.rowIndex="14" />
-                  <PasswordField fx:id="contraseña" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="220.0" promptText="Contraseña" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <PasswordField fx:id="contraseñaOtra" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="220.0" promptText="Repita la contraseña" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                  <PasswordField fx:id="contraseña" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="220.0" promptText="Contraseña*" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <PasswordField fx:id="contraseñaOtra" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="220.0" promptText="Repita la contraseña*" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                   <ImageView fx:id="ImagenPerfil" fitHeight="101.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="18" GridPane.vgrow="ALWAYS" />
                   <Button fx:id="seleccionBoton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#seleccionarFoto" prefHeight="26.0" prefWidth="57.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%);" text="Foto" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="18">
                       <font>
@@ -80,8 +80,8 @@
                         <Font name="System Bold" size="20.0" />
                      </font></Button>
                   <CheckBox fx:id="mostrarContra" mnemonicParsing="false" onAction="#mostrarCOntraseña" text="Mostrar contraseñas" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-                  <TextField fx:id="textfield1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="220.0" promptText="Contraseña" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <TextField fx:id="textfield2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="220.0" promptText="Repita la contraseña" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="9" GridPane.vgrow="ALWAYS" />
+                  <TextField fx:id="textfield1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="220.0" promptText="Contraseña*" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <TextField fx:id="textfield2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="220.0" promptText="Repita la contraseña*" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="9" GridPane.vgrow="ALWAYS" />
                </children>
             </GridPane>
          </children>

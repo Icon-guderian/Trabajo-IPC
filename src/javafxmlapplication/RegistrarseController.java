@@ -210,9 +210,9 @@ public class RegistrarseController implements Initializable {
         
         Club club = getInstance(); 
         
-        if(validarTextField(nombre, apellidos, telefóno, nickname, contraseña, contraseñaOtra, textfield1, textfield2, NúmeroTarjeta, CVV)) 
+        if(validarTextField(nombre, apellidos, telefóno, nickname, contraseña, contraseñaOtra, textfield1, textfield2, NúmeroTarjeta)) 
         {
-            validarCampos(nombre, apellidos, telefóno, nickname, contraseña, contraseñaOtra, textfield1, textfield2, NúmeroTarjeta, CVV); 
+            validarCampos(nombre, apellidos, telefóno, nickname, contraseña, contraseñaOtra, textfield1, textfield2, NúmeroTarjeta); 
         }
         else if(!contieneSoloNumeros(Telefono))
         {

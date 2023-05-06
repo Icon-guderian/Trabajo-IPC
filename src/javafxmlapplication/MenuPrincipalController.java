@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -20,28 +21,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.MenuItem;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.paint.Color;
-import static javafx.scene.paint.Color.color;
-import javafx.scene.paint.Paint; 
+import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Booking;
@@ -49,7 +41,6 @@ import model.Club;
 import static model.Club.getInstance;
 import model.Court;
 import model.ClubDAOException;
-import model.Member;
 
 /**
  * FXML Controller class
@@ -63,19 +54,17 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
     @FXML
     private BorderPane borderPane;
     @FXML
-    private MenuItem menuSalir;
-    @FXML
     private Button registro;
     @FXML
     private Button autenticarse;
     @FXML
     private DatePicker calendarioBoton;
     @FXML
-    private ListView<String> personasListView;
-    @FXML
     private ComboBox<String> seleccionPistaBoton;
     @FXML
     private Button mostrarDisponBoton;
+    @FXML
+    private GridPane GridPane;
 
     /**
      * Initializes the controller class.
@@ -113,25 +102,6 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
         return devolver; 
     }
     
-    @FXML
-    private void salir(ActionEvent e) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Diálogo de confirmación");
-        alert.setHeaderText("Vas a salir del programa");
-        alert.setContentText("¿Seguro que quieres salir?");
-        
-        ButtonType buttonTypeCancel = new ButtonType("Salir", ButtonBar.ButtonData.CANCEL_CLOSE);
-        
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() && result.get() == buttonTypeCancel){
-            System.out.println("OK");
-            
-        } else {
-            System.out.println("CANCEL");
-        }
-    }
-
-
 
   
     @FXML
@@ -188,7 +158,8 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
         LocalDate fecha = calendarioBoton.getValue(); 
         LocalDate fechaActual = LocalDate.now();
         String pista = seleccionPistaBoton.getValue(); 
-        
+
+                    
         if(fecha == null) 
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -219,32 +190,48 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
 
             alert.getButtonTypes().setAll(botonSi, botonNo);
             Optional<ButtonType> resultado = alert.showAndWait();
-
+            
+            
             if (resultado.isPresent() && resultado.get() == botonSi) 
             {
                 LocalTime horaInicio = LocalTime.of(9, 0);
                 int duracion = club.getBookingDuration();
                 int RerservasPistas = club.getBookingSlots(); 
-                personasListView.getItems().clear();
-                personasListView.setId("one");
+                
+                
+                ObservableList<Node> listaDeCosas = GridPane.getChildren();
+                Iterator<Node> iterator = listaDeCosas.iterator();
+
+                while (iterator.hasNext()) {
+                    Node child = iterator.next();
+                    if (child instanceof Label) {
+                        iterator.remove(); 
+                    }
+                }       
                 
                 for (int i = 0; i < RerservasPistas; i++) 
                 { 
-                    //ListCell<String> celda = personasListView.getCells().
-                   
+                    
                      if(devolverHoraReserva(horarioDePista, horaInicio)) 
-                {
+                    {
+                        Label label = new Label(); 
                         LocalTime horaFin = horaInicio.plusMinutes(duracion);        
                         String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
                         String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
-                        personasListView.getItems().add(horaInicioTexto + " - " + horaFinTexto + ".  Reservado");  
+                        label.setText(horaInicioTexto + " - " + horaFinTexto + ".  Reservado");  
+                        label.setStyle("-fx-background-color: #ffc8c8");
+                        GridPane.add(label, 1, i); 
                         horaInicio = horaFin;
                     } 
                     else {
+                                                  
+                        Label label = new Label();
                         LocalTime horaFin = horaInicio.plusMinutes(duracion);        
                         String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
                         String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
-                        personasListView.getItems().add(horaInicioTexto + " - " + horaFinTexto + ".  No reservado");
+                        label.setText(horaInicioTexto + " - " + horaFinTexto + ".  No reservado");
+                        label.setStyle("-fx-background-color: #80ff80");
+                        GridPane.add(label, 1, i);
                         horaInicio = horaFin;
                     }
                 }           
@@ -255,51 +242,47 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
             LocalTime horaInicio = LocalTime.of(9, 0);
             int duracion = club.getBookingDuration();
             int RerservasPistas = club.getBookingSlots(); 
-            personasListView.getItems().clear();
             horarioDePista = club.getCourtBookings(pista, fecha); 
+            
+            ObservableList<Node> listaDeCosas = GridPane.getChildren();
+            Iterator<Node> iterator = listaDeCosas.iterator();
+
+            while (iterator.hasNext()) {
+                Node child = iterator.next();
+                if (child instanceof Label) {
+                    iterator.remove(); 
+                }
+            }       
             
             for (int i = 0; i < RerservasPistas; i++) {
                     
                 if(devolverHoraReserva(horarioDePista, horaInicio)) 
                 {       
+                        Label label = new Label();
+                        double anchura = GridPane.getColumnConstraints().get(1).getPrefWidth();
+                        label.minWidth(anchura);
                         LocalTime horaFin = horaInicio.plusMinutes(duracion);        
                         String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
                         String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
-                        personasListView.getItems().add(horaInicioTexto + " - " + horaFinTexto + ".  Reservado");
+                        label.setText(horaInicioTexto + " - " + horaFinTexto + ".  Reservado                                                                                         ");  
+                        label.setStyle("-fx-background-color: #ffc8c8; -fx-background-insets: 0");
+                        GridPane.add(label, 1, i); 
                         horaInicio = horaFin;
                     } 
                     else 
                     {
-                        
-                        personasListView.setId("dos");
+                        Label label = new Label();
                         LocalTime horaFin = horaInicio.plusMinutes(duracion);        
                         String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
                         String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
-                        personasListView.getItems().add(horaInicioTexto + " - " + horaFinTexto + ".  No reservado");
+                        label.setText(horaInicioTexto + " - " + horaFinTexto + ".  No reservado                                                                                    ");
+                        label.setStyle("-fx-background-color: #80ff80; -fx-background-insets: 0");
+                        GridPane.add(label, 1, i);
                         horaInicio = horaFin;
+                        //-fx-background-color: #ffff80; amarillo
                 }       
             }  
         }
-        /*
-        personasListView.setCellFactory(param -> new ListCell<String>() {
-                            @Override
-                            protected void updateItem(String item, boolean empty) 
-                            {
-                                super.updateItem(item, empty);
-                                for(int i = 0; i < personasListView.getItems().size() - 1; i++ ) 
-                                {
-                                    if(personasListView.getItems().get(i).contains("Reservado")) 
-                                    {
-                                        setStyle("-fx-background-color: #ffc8c8");
-                                    } 
-                                    else 
-                                    {
-                                        setStyle("-fx-background-color: #80ff80");
-                                    }
-                                }
-                            }
-                        });
-                        */
     }  
 }
 
