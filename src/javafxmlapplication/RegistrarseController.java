@@ -81,6 +81,8 @@ public class RegistrarseController implements Initializable {
         textfield1.setVisible(false);
         textfield2.setDisable(true);
         textfield1.setDisable(true);
+        textfield2.setManaged(false);
+        textfield1.setManaged(false);
         
         mostrarContra.selectedProperty().addListener((observable, oldValue, newValue) -> {
         if (newValue) {
@@ -126,6 +128,10 @@ public class RegistrarseController implements Initializable {
     
     public static boolean contieneSoloNumeros(String str) {
         return str.matches("[0-9]+");
+    }
+    
+    public static boolean contieneSoloLetras(String str) {
+        return str.matches("[a-z ]+");
     }
     
     public static int cambiarStrAInt(String str) {
@@ -212,6 +218,22 @@ public class RegistrarseController implements Initializable {
         {
             validarCampos(nombre, apellidos, telefóno, nickname, contraseña, contraseñaOtra, textfield1, textfield2, NúmeroTarjeta); 
         }
+        else if(!contieneSoloLetras(Nombre)) 
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Nombre");
+            alert.setContentText("Un nombre no puede tener números.");
+            alert.showAndWait();
+        }
+        else if(!contieneSoloLetras(Apellidos))
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Apellidos");
+            alert.setContentText("Los apellidos o apellido no puede/pueden tener números.");
+            alert.showAndWait();
+        }
         else if(!contieneSoloNumeros(Telefono))
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -260,7 +282,7 @@ public class RegistrarseController implements Initializable {
             alert.setContentText("Número de tarjeta no válido.");
             alert.showAndWait();  
         }
-        else if (cvv.length() != 3 || !contieneSoloNumeros(cvv)) 
+        else if (!cvv.isEmpty() && !contieneSoloNumeros(cvv)) 
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -277,6 +299,8 @@ public class RegistrarseController implements Initializable {
             Parent root = miCargador.load();
             MenuFXMLController controlador = miCargador.getController(); 
             controlador.initUsuario(newMember);
+            controlador.initImageNick(newMember);
+            controlador.meterComboBox(club.getCourts());
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
@@ -316,6 +340,10 @@ public class RegistrarseController implements Initializable {
         stage.show();
         Stage myStage = (Stage) menuBoton.getScene().getWindow();
         myStage.close();
+    }
+
+    @FXML
+    private void mostrarContraseñas(ActionEvent event) {
     }
 
     
