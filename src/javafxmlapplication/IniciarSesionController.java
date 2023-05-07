@@ -41,8 +41,6 @@ public class IniciarSesionController implements Initializable {
     @FXML
     private Button registrarBoton;
     @FXML
-    private Button aceptarBoton;
-    @FXML
     private PasswordField cajaContraseña;
 
     /**
@@ -64,7 +62,6 @@ public class IniciarSesionController implements Initializable {
         stage.setScene(scene);
         stage.setTitle("GreenBall");
         stage.initModality(Modality.APPLICATION_MODAL);
-        //la ventana se muestra modal
         stage.show();
         Stage myStage = (Stage) menuBoton.getScene().getWindow();
         myStage.close();
@@ -75,13 +72,11 @@ public class IniciarSesionController implements Initializable {
     {
         FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/Registrarse.fxml"));
         Parent root = miCargador.load();
-        
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("Registrar");
         stage.initModality(Modality.APPLICATION_MODAL);
-        //la ventana se muestra modal
         stage.show();
         Stage myStage = (Stage) registrarBoton.getScene().getWindow();
         myStage.close();

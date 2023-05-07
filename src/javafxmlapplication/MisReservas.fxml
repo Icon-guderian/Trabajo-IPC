@@ -13,16 +13,6 @@
 
 <BorderPane fx:id="borderPane" maxHeight="1120.0" maxWidth="1000.0" minHeight="112.0" minWidth="100.0" prefHeight="766.0" prefWidth="685.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.MenuFXMLController">
    <top>
-      <MenuBar style="-fx-background-color: #84B118;" BorderPane.alignment="CENTER">
-         <menus>
-            <Menu text="Archivo">
-               <items>
-                  <MenuItem fx:id="menuSalir" mnemonicParsing="false" onAction="#salir" text="Salir" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Opciones" />
-         </menus>
-      </MenuBar>
    </top>
    <center>
       <VBox alignment="TOP_RIGHT" prefHeight="345.0" prefWidth="200.0" BorderPane.alignment="CENTER">

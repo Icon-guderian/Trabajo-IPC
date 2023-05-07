@@ -36,9 +36,9 @@ import model.Member;
  * @author UX431
  */
 public class RegistrarseController implements Initializable {
-
     
     private Image imageDePerfil; 
+    
     @FXML
     private TextField apellidos;
     @FXML
@@ -63,8 +63,6 @@ public class RegistrarseController implements Initializable {
     private Button menuBoton;
     @FXML
     private Button iniciarSesionBoton;
-    @FXML
-    private Button seleccionBoton;
     @FXML
     private CheckBox mostrarContra;
     @FXML
@@ -322,9 +320,4 @@ public class RegistrarseController implements Initializable {
 
     
 
-    @FXML
-    private void mostrarCOntraseña(ActionEvent event) 
-    {
-        
-    }    
 }

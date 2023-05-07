@@ -49,10 +49,8 @@ import model.ClubDAOException;
  */
 public class MenuPrincipalController extends ListCell<String> implements Initializable {
 
-    Club club; 
+    private Club club; 
     
-    @FXML
-    private BorderPane borderPane;
     @FXML
     private Button registro;
     @FXML
@@ -61,8 +59,6 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
     private DatePicker calendarioBoton;
     @FXML
     private ComboBox<String> seleccionPistaBoton;
-    @FXML
-    private Button mostrarDisponBoton;
     @FXML
     private GridPane GridPane;
 
@@ -85,9 +81,7 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
         {
             items.add(elarray.get(i).getName()); 
         }
-        seleccionPistaBoton.setItems(items);   
-        
-        
+        seleccionPistaBoton.setItems(items);      
     }
 
     public boolean devolverHoraReserva(List<Booking> ar, LocalTime local) 
@@ -136,17 +130,6 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
         myStage.close();
     }
 
-    @FXML
-    private void calendario(ActionEvent event) 
-    {
-    
-    }
-    
-    @FXML
-    private void seleccionPista(ActionEvent event)
-    {
-       
-    }
 
     @FXML
     private void mostrarDisponibilidad(ActionEvent event) throws ClubDAOException, IOException 
@@ -279,7 +262,6 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
                         label.setStyle("-fx-background-color: #80ff80; -fx-background-insets: 0");
                         GridPane.add(label, 1, i);
                         horaInicio = horaFin;
-                        //-fx-background-color: #ffff80; amarillo
                 }       
             }  
         }

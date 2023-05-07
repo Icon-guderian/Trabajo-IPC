@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="1120.0" maxWidth="1000.0" minHeight="112.0" minWidth="100.0" prefHeight="804.0" prefWidth="685.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.MenuPrincipalController">
+<BorderPane maxHeight="1120.0" maxWidth="1000.0" minHeight="112.0" minWidth="100.0" prefHeight="804.0" prefWidth="685.0" stylesheets="@DatePickerYComboBox.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.MenuPrincipalController">
    <center>
       <VBox alignment="TOP_RIGHT" prefHeight="345.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -99,7 +99,7 @@
                            <children>
                               <VBox alignment="CENTER" prefHeight="55.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <DatePicker fx:id="calendarioBoton" onAction="#calendario" prefHeight="26.0" prefWidth="158.0" promptText="Seleccione fecha" VBox.vgrow="ALWAYS">
+                                    <DatePicker fx:id="calendarioBoton" prefHeight="26.0" prefWidth="158.0" promptText="Seleccione fecha" VBox.vgrow="ALWAYS">
                                        <VBox.margin>
                                           <Insets left="10.0" right="10.0" />
                                        </VBox.margin>
@@ -108,7 +108,7 @@
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="55.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <ComboBox fx:id="seleccionPistaBoton" onAction="#seleccionPista" prefWidth="150.0" />
+                                    <ComboBox fx:id="seleccionPistaBoton" prefWidth="150.0" stylesheets="@DatePickerYComboBox.css" />
                                  </children>
                               </VBox>
                            </children>
@@ -142,7 +142,7 @@
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
                                       </rowConstraints>
                                        <children>
-                                          <Button fx:id="mostrarDisponBoton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#mostrarDisponibilidad" prefHeight="37.0" prefWidth="426.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%);" text="Disponibilidad de la pista" textFill="WHITE" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="14" GridPane.vgrow="ALWAYS">
+                                          <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#mostrarDisponibilidad" prefHeight="37.0" prefWidth="426.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%);" text="Disponibilidad de la pista" textFill="WHITE" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="14" GridPane.vgrow="ALWAYS">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
