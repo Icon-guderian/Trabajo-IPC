@@ -45,7 +45,7 @@
                               <Insets bottom="10.0" />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="labelPistaReservada" prefHeight="20.0" prefWidth="200.0" textFill="WHITE">
+                        <Label fx:id="labelPistaReservada" prefHeight="52.0" prefWidth="247.0" textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>

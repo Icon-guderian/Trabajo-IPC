@@ -41,6 +41,9 @@ import model.ClubDAOException;
 import model.Court;
 import model.Member;
 import model.Booking;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * FXML Controller class
@@ -92,9 +95,40 @@ public class MenuFXMLController implements Initializable {
        m = member;  
     }
     
-    
-    public void initBooking (Booking booking){
-        b = booking;
+    public void initImageNick(Member member) 
+    {
+        m = member; 
+        labelNombre.setText("Bienvenido: "+ m.getNickName());
+
+        LocalDate fechaActual = LocalDate.now();
+        List<Booking> elarray = club.getForDayBookings(fechaActual); 
+        
+        for(int i = 0; i < elarray.size(); i++) 
+        {
+            Booking b = elarray.get(i); 
+            if(b.belongsToMember(m.getNickName()))
+            {
+                String a = ""; 
+                LocalTime hora = b.getFromTime(); 
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+                String horaS = hora.format(formatter); 
+                if(b.getPaid() == false) { a = "está pagado."; } else { a = "no está pagado, recuerde pasar por la oficina a pagar la reserva."; }
+                String mostrar = b.getCourt().getName() +", la hora es "+ horaS + " y "+ a; 
+                labelPistaReservada.setText("Tu próxima pista reservada es la "+ mostrar);
+                break; 
+            }
+        }
+
+        Image imagenUsuario = m.getImage();
+        if (imagenUsuario != null) 
+        {
+            fotoPerfil.setImage(imagenUsuario);
+        } 
+        else 
+        {
+            Image imagenPredeterminada = new Image("../src/resources/default-avatar-profile-icon-social-media-user-free-vector.jpg");
+            fotoPerfil.setImage(imagenPredeterminada);
+        }
     }
     
     @Override
@@ -113,7 +147,7 @@ public class MenuFXMLController implements Initializable {
         {
             items.add(elarray.get(i).getName()); 
         }
-        
+
         seleccionPistaBoton.setItems(items);  
         
         
@@ -153,22 +187,6 @@ public class MenuFXMLController implements Initializable {
     private void mostrarDisponibilidad(ActionEvent event) 
     {
         
-        labelNombre.setText("Bienvenido: " + m.getNickName());
-        
-        //labelPistaReservada.setText("Tu proxima pista reservada es la: " + club.getUserBookings(m.getNickName()) + "a las" + b.getBookingDate() );
-            
-        // Obtener la imagen que el usuario ha elegido
-        Image imagenUsuario = m.getImage();
-
-        if (imagenUsuario != null) {
-            // Si el usuario ha elegido una imagen, establecerla como la imagen del ImageView
-            fotoPerfil.setImage(imagenUsuario);
-        } else {
-            // Si el usuario no ha elegido una imagen, establecer una imagen predeterminada
-            Image imagenPredeterminada = new Image("../src/resources/default-avatar-profile-icon-social-media-user-free-vector.jpg");
-            fotoPerfil.setImage(imagenPredeterminada);
-        }  
-        
     }
 
     @FXML
@@ -186,7 +204,7 @@ public class MenuFXMLController implements Initializable {
         myStage.close();
     }
 
-    ;
+    
     
     @FXML
     private void menuReservar(ActionEvent event) throws IOException {

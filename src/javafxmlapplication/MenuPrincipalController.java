@@ -218,7 +218,7 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
                         LocalTime horaFin = horaInicio.plusMinutes(duracion);        
                         String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
                         String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
-                        label.setText(horaInicioTexto + " - " + horaFinTexto + ".  Reservado");  
+                        label.setText(horaInicioTexto + " - " + horaFinTexto + ".  Reservado                                                                                         ");  
                         label.setStyle("-fx-background-color: #ffc8c8");
                         GridPane.add(label, 1, i); 
                         horaInicio = horaFin;
@@ -229,7 +229,7 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
                         LocalTime horaFin = horaInicio.plusMinutes(duracion);        
                         String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
                         String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
-                        label.setText(horaInicioTexto + " - " + horaFinTexto + ".  No reservado");
+                        label.setText(horaInicioTexto + " - " + horaFinTexto + ".  No reservado                                                                                    ");
                         label.setStyle("-fx-background-color: #80ff80");
                         GridPane.add(label, 1, i);
                         horaInicio = horaFin;

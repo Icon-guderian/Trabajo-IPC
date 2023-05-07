@@ -138,6 +138,7 @@ public class IniciarSesionController implements Initializable {
                 Parent root = (Parent) miCargador.load();
                 MenuFXMLController controlador = miCargador.getController(); 
                 controlador.initUsuario(m);
+                controlador.initImageNick(m);
                 Scene scene = new Scene(root);
                 Stage stage = new Stage();
                 stage.setScene(scene);

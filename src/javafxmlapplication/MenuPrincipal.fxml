@@ -120,7 +120,7 @@
                                     <GridPane fx:id="GridPane" alignment="CENTER" prefHeight="413.0" prefWidth="666.0" HBox.hgrow="ALWAYS">
                                       <columnConstraints>
                                         <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="216.4000244140625" minWidth="10.0" prefWidth="125.99999237060547" />
-                                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="426.39996337890625" minWidth="10.0" prefWidth="426.39996337890625" />
+                                        <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="426.39996337890625" minWidth="10.0" prefWidth="426.39996337890625" />
                                           <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="153.59997558593744" minWidth="10.0" prefWidth="99.00003662109373" />
                                       </columnConstraints>
                                       <rowConstraints>
