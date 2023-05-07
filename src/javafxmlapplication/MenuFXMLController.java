@@ -95,27 +95,44 @@ public class MenuFXMLController implements Initializable {
        m = member;  
     }
     
+    public static int cambiarStrAInt(String str) {
+        return Integer.parseInt(str);
+    }
+    
     public void initImageNick(Member member) 
     {
         m = member; 
         labelNombre.setText("Bienvenido: "+ m.getNickName());
 
+        //saca la hora actual y mete la hora en un int 
         LocalDate fechaActual = LocalDate.now();
+        
         List<Booking> elarray = club.getForDayBookings(fechaActual); 
         
         for(int i = 0; i < elarray.size(); i++) 
         {
             Booking b = elarray.get(i); 
-            if(b.belongsToMember(m.getNickName()))
+            
+            LocalTime hora1 = LocalTime.now(); 
+            int comparacion = hora1.getHour(); 
+            
+            LocalTime hora = b.getFromTime(); 
+            int comparacion1 = hora.getHour(); 
+            
+            DateTimeFormatter formatterDentroIf = DateTimeFormatter.ofPattern("HH:mm");
+            String horaIF = hora.format(formatterDentroIf); 
+            
+            if(b.belongsToMember(m.getNickName()) && comparacion <= comparacion1)
             {
                 String a = ""; 
-                LocalTime hora = b.getFromTime(); 
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-                String horaS = hora.format(formatter); 
-                if(b.getPaid() == false) { a = "está pagado."; } else { a = "no está pagado, recuerde pasar por la oficina a pagar la reserva."; }
-                String mostrar = b.getCourt().getName() +", la hora es "+ horaS + " y "+ a; 
+                if(b.getPaid() == false) { a = "está pagada."; } else { a = "no está pagado, recuerde pasar por la oficina a pagar la reserva."; }
+                String mostrar = b.getCourt().getName() +", la hora es "+ horaIF + " y "+ a; 
                 labelPistaReservada.setText("Tu próxima pista reservada es la "+ mostrar);
                 break; 
+            }
+            else 
+            {
+                labelPistaReservada.setText("Hoy no tienes ninguna pista reservada.");
             }
         }
 
