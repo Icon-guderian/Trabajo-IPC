@@ -45,7 +45,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
-import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar.ButtonData;
@@ -74,12 +73,6 @@ public class MenuFXMLController implements Initializable {
     @FXML
     private ComboBox<String> seleccionPistaBoton;
     @FXML
-    private Button miReserva;
-    @FXML
-    private Button hacerReserva;
-    @FXML
-    private Button modificar;
-    @FXML
     private ImageView fotoPerfil;
     @FXML
     private Label labelNombre;
@@ -88,7 +81,13 @@ public class MenuFXMLController implements Initializable {
     @FXML
     private GridPane GridPane;
     @FXML
-    private Button cerrar;
+    private MenuItem miReserva;
+    @FXML
+    private MenuItem hacerReserva;
+    @FXML
+    private MenuItem modificar;
+    @FXML
+    private MenuItem cerrar;
     @FXML
     private Button mostrarDisponBoton;
     
@@ -198,8 +197,9 @@ public class MenuFXMLController implements Initializable {
             
         } catch (ClubDAOException | IOException e)  {}
                       
+        
     }   
-
+    
     
     private void salir(ActionEvent e) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -389,45 +389,60 @@ public class MenuFXMLController implements Initializable {
     }
 
     @FXML
-    private void menuMiReserva(ActionEvent event) throws IOException {
-        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/MisReservas.fxml"));
-        Parent root = miCargador.load();
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("Mis reservas");
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
-        Stage myStage = (Stage) miReserva.getScene().getWindow();
-        myStage.close();
+    private void menuMiReserva(ActionEvent event) throws IOException 
+    {
+        MenuItem menuItem = (MenuItem) event.getSource();
+        Scene scene = menuItem.getParentPopup().getOwnerWindow().getScene();
+        Stage myStage = (Stage) scene.getWindow();
+        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("MisReservas.fxml"));
+        try {
+            Parent root = miCargador.load();
+            MisReservasController controlador = miCargador.getController(); 
+            controlador.initUsuario(m); 
+            Scene scene1 = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene1);
+            stage.show();
+            myStage.close();
+        } catch (IOException ex) {}     
     }    
     
     @FXML
-    private void menuReservar(ActionEvent event) throws IOException {
-        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/HacerReservas.fxml"));
-        Parent root = miCargador.load();
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("Reservar Pistas");
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
-        Stage myStage = (Stage) hacerReserva.getScene().getWindow();
-        myStage.close();
+    private void menuReservar(ActionEvent event) throws IOException 
+    {
+        MenuItem menuItem = (MenuItem) event.getSource();
+        Scene scene = menuItem.getParentPopup().getOwnerWindow().getScene();
+        Stage myStage = (Stage) scene.getWindow();
+        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("HacerReservas.fxml"));
+        try {
+            Parent root = miCargador.load();
+            HacerReservasController controlador = miCargador.getController(); 
+            controlador.initUsuario(m); 
+            Scene scene1 = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene1);
+            stage.show();
+            myStage.close();
+        } catch (IOException ex) {}     
     }
     
     @FXML
-    private void modificarPerfil(ActionEvent event) throws IOException {
-        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/ModificarPerfil.fxml"));
-        Parent root = miCargador.load();
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("Modificar Perfil");
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
-        Stage myStage = (Stage) modificar.getScene().getWindow();
-        myStage.close();
+    private void modificarPerfil(ActionEvent event) throws IOException 
+    {
+        MenuItem menuItem = (MenuItem) event.getSource();
+        Scene scene = menuItem.getParentPopup().getOwnerWindow().getScene();
+        Stage myStage = (Stage) scene.getWindow();
+        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("ModificarPerfil.fxml"));
+        try {
+            Parent root = miCargador.load();
+            ModificarPerfilController controlador = miCargador.getController(); 
+            controlador.initUsuario(m); 
+            Scene scene1 = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene1);
+            stage.show();
+            myStage.close();
+        } catch (IOException ex) {} 
     }
     
     @FXML
@@ -444,16 +459,18 @@ public class MenuFXMLController implements Initializable {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == cerrarSesionButton) 
         {
-            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/MenuPrincipal.fxml"));
-            Parent root = miCargador.load();
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.setTitle("GreenBall");
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.show(); 
-            Stage myStage = (Stage) cerrar.getScene().getWindow();
-            myStage.close();
+            MenuItem menuItem = (MenuItem) event.getSource();
+            Scene scene = menuItem.getParentPopup().getOwnerWindow().getScene();
+            Stage myStage = (Stage) scene.getWindow();
+            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("MenuPrincipal.fxml"));
+            try {
+                Parent root = miCargador.load();
+                Scene scene1 = new Scene(root);
+                Stage stage = new Stage();
+                stage.setScene(scene1);
+                stage.show();
+                myStage.close();
+            } catch (IOException ex) {} 
         } 
         else 
         { 
