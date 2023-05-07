@@ -132,7 +132,7 @@ public class MenuFXMLController implements Initializable {
             }
             else 
             {
-                labelPistaReservada.setText("Hoy no tienes ninguna pista reservada.");
+                labelPistaReservada.setText("A lo largo del día no tienes ninguna reserva todavía.");
             }
         }
 
