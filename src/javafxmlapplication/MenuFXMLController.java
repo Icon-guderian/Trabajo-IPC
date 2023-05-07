@@ -178,6 +178,17 @@ public class MenuFXMLController implements Initializable {
         }
     }
     
+    public void meterComboBox(List<Court> elarray) 
+    {
+        elarray = club.getCourts(); 
+        ObservableList<String> items = FXCollections.observableArrayList();
+        for(int i = 0; i < elarray.size(); i++) 
+        {
+            items.add(elarray.get(i).getName()); 
+        }
+        seleccionPistaBoton.setItems(items);  
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
@@ -186,17 +197,7 @@ public class MenuFXMLController implements Initializable {
             club = getInstance();  
             
         } catch (ClubDAOException | IOException e)  {}
-        
-        List<Court> elarray = new ArrayList<>(); 
-        elarray = club.getCourts(); 
-        ObservableList<String> items = FXCollections.observableArrayList();
-        for(int i = 0; i < elarray.size(); i++) 
-        {
-            items.add(elarray.get(i).getName()); 
-        }
-        seleccionPistaBoton.setItems(items);  
-        
-        
+                      
     }   
 
     

@@ -6,6 +6,7 @@ package javafxmlapplication;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -117,9 +118,20 @@ public class IniciarSesionController implements Initializable {
         }
             else 
         {
-            m = club.getMemberByCredentials(usuario, contraseña);
             
-            if(m == null) 
+            List<Member> elarray = club.getMembers(); 
+            boolean existe = false; 
+            for(int i = 0; i < elarray.size(); i++) 
+            {
+                Member a = elarray.get(i); 
+                if(a.chekCredentials(usuario, contraseña) == true)
+                {
+                    existe = true; 
+                    break; 
+                }
+            }
+                
+            if(existe == false) 
             {
                 Alert alert = new Alert(AlertType.ERROR);
                 alert.setTitle("Error");
@@ -129,11 +141,13 @@ public class IniciarSesionController implements Initializable {
             } 
             else 
             {
+                m = club.getMemberByCredentials(usuario, contraseña); 
                 FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/MenuFXML.fxml"));
                 Parent root = (Parent) miCargador.load();
                 MenuFXMLController controlador = miCargador.getController(); 
                 controlador.initUsuario(m);
                 controlador.initImageNick(m);
+                controlador.meterComboBox(club.getCourts());
                 Scene scene = new Scene(root);
                 Stage stage = new Stage();
                 stage.setScene(scene);
