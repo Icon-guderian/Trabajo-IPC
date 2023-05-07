@@ -102,7 +102,7 @@ public class MenuFXMLController implements Initializable {
     public void initImageNick(Member member) 
     {
         m = member; 
-        labelNombre.setText("Bienvenido: "+ m.getNickName());
+        labelNombre.setText("¡Bienvenido "+ m.getNickName()+"! :D");
 
         //saca la hora actual y mete la hora en un int 
         LocalDate fechaActual = LocalDate.now();
@@ -122,12 +122,20 @@ public class MenuFXMLController implements Initializable {
             DateTimeFormatter formatterDentroIf = DateTimeFormatter.ofPattern("HH:mm");
             String horaIF = hora.format(formatterDentroIf); 
             
-            if(b.belongsToMember(m.getNickName()) && comparacion <= comparacion1)
+            if(b.belongsToMember(m.getNickName()) && comparacion < comparacion1)
             {
                 String a = ""; 
                 if(b.getPaid() == false) { a = "está pagada."; } else { a = "no está pagado, recuerde pasar por la oficina a pagar la reserva."; }
-                String mostrar = b.getCourt().getName() +", la hora es "+ horaIF + " y "+ a; 
+                String mostrar = b.getCourt().getName() +", la hora es "+ horaIF + " y "+ a+ " ¡Disfrutad!"; 
                 labelPistaReservada.setText("Tu próxima pista reservada es la "+ mostrar);
+                break; 
+            }
+            else if(b.belongsToMember(m.getNickName()) && comparacion == comparacion1)
+            {
+                String a = ""; 
+                if(b.getPaid() == false) { a = "está pagada."; } else { a = "no está pagado, recuerde pasar por la oficina a pagar la reserva."; }
+                String mostrar = b.getCourt().getName() +" y "+ a + " ¡Disfrutad!"; 
+                labelPistaReservada.setText("Tienes una reserva activa ahora mismo, tú pista es la "+ mostrar);
                 break; 
             }
             else 

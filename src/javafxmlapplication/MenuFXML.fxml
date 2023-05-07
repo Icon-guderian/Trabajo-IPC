@@ -23,17 +23,17 @@
                <children>
                   <VBox alignment="CENTER_LEFT" prefHeight="99.0" prefWidth="294.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label fx:id="labelNombre" prefHeight="20.0" prefWidth="200.0" textFill="WHITE">
+                        <Label fx:id="labelNombre" prefHeight="22.0" prefWidth="246.0" textFill="WHITE">
                            <font>
-                              <Font name="System Bold" size="12.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="labelPistaReservada" prefHeight="52.0" prefWidth="247.0" textFill="WHITE" wrapText="true">
+                        <Label fx:id="labelPistaReservada" prefHeight="73.0" prefWidth="247.0" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true">
                            <font>
-                              <Font name="System Bold" size="12.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
                      </children>
@@ -166,8 +166,8 @@
             </ImageView>
             <VBox alignment="CENTER_RIGHT" prefHeight="88.0" prefWidth="476.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Label prefHeight="58.0" prefWidth="327.0" text="Síguenos en nuestras redes sociales donde informamos de todos los eventos y de noticias sobre nuestras instalaciones" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true" VBox.vgrow="ALWAYS" />
-                  <Label prefHeight="18.0" prefWidth="330.0" text="\@GreenBallFC @GreenBallTW  Número: 646341719" textFill="WHITE" VBox.vgrow="ALWAYS" />
+                  <Label prefHeight="58.0" prefWidth="318.0" text="Síguenos en nuestras redes sociales donde informamos de todos los eventos y de noticias sobre nuestras instalaciones" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true" VBox.vgrow="ALWAYS" />
+                  <Label prefHeight="18.0" prefWidth="319.0" text="\@GreenBallFC @GreenBallTW  Número: 646341719" textFill="WHITE" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
          </children>
