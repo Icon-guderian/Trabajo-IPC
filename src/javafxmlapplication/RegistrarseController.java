@@ -81,44 +81,35 @@ public class RegistrarseController implements Initializable {
         textfield1.setVisible(false);
         textfield2.setDisable(true);
         textfield1.setDisable(true);
-        textfield2.setManaged(false);
-        textfield1.setManaged(false);
         
         mostrarContra.selectedProperty().addListener((observable, oldValue, newValue) -> {
         if (newValue) {
         // Mostrar contraseña
+          
             textfield2.setText(contraseñaOtra.getText());
             contraseñaOtra.setDisable(true); //<-
-            contraseñaOtra.setManaged(false);
             contraseñaOtra.setVisible(false); 
             textfield2.setDisable(false);  //<-
-            textfield2.setManaged(true);
             textfield2.setVisible(true);
             
             textfield1.setText(contraseña.getText());
             contraseña.setDisable(true); //<-
-            contraseña.setManaged(false);
             contraseña.setVisible(false);
             textfield1.setDisable(false); //<-
-            textfield1.setManaged(true);
             textfield1.setVisible(true);
-
+                
         } else {
         // Ocultar contraseña
             contraseñaOtra.setText(textfield2.getText());
             textfield2.setDisable(true); //<-
-            textfield2.setManaged(false);
             textfield2.setVisible(false);
             contraseñaOtra.setDisable(false); //<-
-            contraseñaOtra.setManaged(true);
             contraseñaOtra.setVisible(true);
             
             contraseña.setText(textfield1.getText());
             textfield1.setDisable(true); //<-
-            textfield1.setManaged(false);
             textfield1.setVisible(false);
             contraseña.setDisable(false); //<-
-            contraseña.setManaged(true);
             contraseña.setVisible(true);
         }
         });
@@ -172,14 +163,6 @@ public class RegistrarseController implements Initializable {
         
     }
     
-    public boolean validarTextField(TextField... campos) {
-        for (TextField campo : campos) {
-            if (campo.getText().trim().isEmpty()) {
-                return true; 
-            } 
-        }
-        return false;
-    }
     
     @FXML
     protected void seleccionarFoto(ActionEvent event) 
@@ -214,11 +197,9 @@ public class RegistrarseController implements Initializable {
         
         Club club = getInstance(); 
         
-        if(validarTextField(nombre, apellidos, telefóno, nickname, contraseña, contraseñaOtra, textfield1, textfield2, NúmeroTarjeta)) 
-        {
-            validarCampos(nombre, apellidos, telefóno, nickname, contraseña, contraseñaOtra, textfield1, textfield2, NúmeroTarjeta); 
-        }
-        else if(!contieneSoloLetras(Nombre)) 
+        validarCampos(nombre, apellidos, telefóno, nickname, contraseña, contraseñaOtra, textfield1, textfield2, NúmeroTarjeta); 
+        
+        if(!contieneSoloLetras(Nombre)) 
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -250,7 +231,7 @@ public class RegistrarseController implements Initializable {
             alert.setContentText("Ya existe otro usuario con ese nick.");
             alert.showAndWait();
         }
-        else if(Contraseña.length() < 6 || ContraseñaVisible.length() < 6) 
+        else if(Contraseña.length() < 6) 
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -266,7 +247,7 @@ public class RegistrarseController implements Initializable {
             alert.setContentText("La contraseña debe contener letras y números.");
             alert.showAndWait();
         }
-        else if(!Contraseña.equals(ContraseñaOtra) /*|| !ContraseñaVisible.equals(ContraseñaOtraVisible)*/)
+        else if(!Contraseña.equals(ContraseñaOtra))
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -274,7 +255,7 @@ public class RegistrarseController implements Initializable {
             alert.setContentText("Las contraseñas no coinciden.");
             alert.showAndWait();
         }
-        else if(NumeroTarjeta.length() != 16 /*|| !contieneSoloNumeros(NumeroTarjeta)*/) 
+        else if(NumeroTarjeta.length() != 16) 
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -292,23 +273,43 @@ public class RegistrarseController implements Initializable {
         }  
         else 
         {
-            int cvvValido = cambiarStrAInt(cvv); 
-            Member newMember = club.registerMember(Nombre, Apellidos, Telefono, NickName, Contraseña, NumeroTarjeta, cvvValido, imageDePerfil); 
-            
-            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/MenuFXML.fxml"));
-            Parent root = miCargador.load();
-            MenuFXMLController controlador = miCargador.getController(); 
-            controlador.initUsuario(newMember);
-            controlador.initImageNick(newMember);
-            controlador.meterComboBox(club.getCourts());
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.setTitle("Menú");
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.show();
-            Stage myStage = (Stage) registrarBoton.getScene().getWindow();
-            myStage.close();
+            if(!cvv.isEmpty()) 
+            { 
+                int cvvValido = cambiarStrAInt(cvv); 
+                Member newMember = club.registerMember(Nombre, Apellidos, Telefono, NickName, Contraseña, NumeroTarjeta, cvvValido, imageDePerfil); 
+                FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/MenuFXML.fxml"));
+                Parent root = miCargador.load();
+                MenuFXMLController controlador = miCargador.getController(); 
+                controlador.initUsuario(newMember);
+                controlador.initImageNick(newMember);
+                controlador.meterComboBox(club.getCourts());
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.setTitle("Menú");
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.show();
+                Stage myStage = (Stage) registrarBoton.getScene().getWindow();
+                myStage.close();
+            }
+            else 
+            {   
+                Member newMember = club.registerMember(Nombre, Apellidos, Telefono, NickName, Contraseña, NumeroTarjeta, -1 ,imageDePerfil); 
+                FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/MenuFXML.fxml"));
+                Parent root = miCargador.load();
+                MenuFXMLController controlador = miCargador.getController(); 
+                controlador.initUsuario(newMember);
+                controlador.initImageNick(newMember);
+                controlador.meterComboBox(club.getCourts());
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.setTitle("Menú");
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.show();
+                Stage myStage = (Stage) registrarBoton.getScene().getWindow();
+                myStage.close();
+            }
         }
     }   
 
@@ -345,7 +346,4 @@ public class RegistrarseController implements Initializable {
     @FXML
     private void mostrarContraseñas(ActionEvent event) {
     }
-
-    
-
 }
