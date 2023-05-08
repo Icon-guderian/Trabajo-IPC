@@ -145,7 +145,7 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <Button fx:id="mostrarDisponBoton" mnemonicParsing="false" onAction="#mostrarDisponibilidad" prefHeight="37.0" prefWidth="428.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%);" text="Disponibilidad de la pista" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="14">
+                                          <Button fx:id="mostrarDisponBoton" mnemonicParsing="false" onAction="#mostrarDisponibilidad" prefHeight="37.0" prefWidth="428.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%); -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);" text="Disponibilidad de la pista" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="14">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
