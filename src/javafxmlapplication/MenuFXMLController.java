@@ -199,24 +199,6 @@ public class MenuFXMLController implements Initializable {
                       
         
     }   
-    
-    
-    private void salir(ActionEvent e) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Diálogo de confirmación");
-        alert.setHeaderText("Vas a salir del programa");
-        alert.setContentText("¿Seguro que quieres salir?");
-        
-        ButtonType buttonTypeCancel = new ButtonType("Salir", ButtonBar.ButtonData.CANCEL_CLOSE);
-        
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() && result.get() == buttonTypeCancel){
-            System.out.println("OK");
-            
-        } else {
-            System.out.println("CANCEL");
-        }
-    }
 
 
     @FXML
@@ -267,7 +249,7 @@ public class MenuFXMLController implements Initializable {
             {
                 LocalTime horaInicio = LocalTime.of(9, 0);
                 int duracion = club.getBookingDuration();
-                int RerservasPistas = club.getBookingSlots(); 
+                int ReservasPistas = club.getBookingSlots(); 
                 
                 //borra el gridpane si hay cosas
                 ObservableList<Node> listaDeCosas = GridPane.getChildren();
@@ -279,7 +261,7 @@ public class MenuFXMLController implements Initializable {
                     }
                 }       
                 
-                for (int i = 0, j = 0; i < RerservasPistas ; i++) 
+                for (int i = 0, j = 0; i < ReservasPistas ; i++) 
                 {
                     Booking reserva; 
                     if(j < horarioDePista.size()) {
@@ -327,7 +309,7 @@ public class MenuFXMLController implements Initializable {
         {
             LocalTime horaInicio = LocalTime.of(9, 0);
             int duracion = club.getBookingDuration();
-            int RerservasPistas = club.getBookingSlots(); 
+            int ReservasPistas = club.getBookingSlots(); 
             horarioDePista = club.getCourtBookings(pista, fecha); 
             
             ObservableList<Node> listaDeCosas = GridPane.getChildren();
@@ -340,7 +322,7 @@ public class MenuFXMLController implements Initializable {
                 }
             }       
             
-            for (int i = 0, j = 0; i < RerservasPistas ; i++) 
+            for (int i = 0, j = 0; i < ReservasPistas ; i++) 
             {
                 Booking reserva; 
                 if(j < horarioDePista.size()) {

@@ -4,13 +4,11 @@
  */
 package javafxmlapplication;
 
+
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -20,34 +18,48 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.Booking;
 import model.Club;
 import static model.Club.getInstance;
 import model.ClubDAOException;
 import model.Court;
 import model.Member;
+import model.Booking;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Iterator;
+import javafx.scene.Node;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.DialogPane;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Window;
+import static model.Club.getInstance;
 
 /**
  * FXML Controller class
  *
  * @author david
  */
+
+
 public class MisReservasController implements Initializable {
 
     private Club club; 
@@ -110,18 +122,6 @@ public class MisReservasController implements Initializable {
         return ar.belongsToMember(nick); 
     }
     
-    
-    public void meterComboBox(List<Court> elarray) 
-    {
-        elarray = club.getCourts(); 
-        ObservableList<String> items = FXCollections.observableArrayList();
-        for(int i = 0; i < elarray.size(); i++) 
-        {
-            items.add(elarray.get(i).getName()); 
-        }
-        seleccionPistaBoton.setItems(items);  
-    }
-    
     public void initImageNick(Member member) 
     {
         m = member; 
@@ -176,6 +176,8 @@ public class MisReservasController implements Initializable {
             fotoPerfil.setImage(imagenPredeterminada);
         }
     }
+    
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -303,7 +305,7 @@ public class MisReservasController implements Initializable {
             {
                 LocalTime horaInicio = LocalTime.of(9, 0);
                 int duracion = club.getBookingDuration();
-                int RerservasPistas = club.getBookingSlots(); 
+                int ReservasPistas = club.getBookingSlots(); 
                 
                 //borra el gridpane si hay cosas
                 ObservableList<Node> listaDeCosas = GridPane.getChildren();
@@ -315,7 +317,7 @@ public class MisReservasController implements Initializable {
                     }
                 }       
                 
-                for (int i = 0, j = 0; i < RerservasPistas ; i++) 
+                for (int i = 0, j = 0; i < ReservasPistas ; i++) 
                 {
                     Booking reserva; 
                     if(j < horarioDePista.size()) {
@@ -363,7 +365,7 @@ public class MisReservasController implements Initializable {
         {
             LocalTime horaInicio = LocalTime.of(9, 0);
             int duracion = club.getBookingDuration();
-            int RerservasPistas = club.getBookingSlots(); 
+            int ReservasPistas = club.getBookingSlots(); 
             horarioDePista = club.getCourtBookings(pista, fecha); 
             
             ObservableList<Node> listaDeCosas = GridPane.getChildren();
@@ -376,7 +378,7 @@ public class MisReservasController implements Initializable {
                 }
             }       
             
-            for (int i = 0, j = 0; i < RerservasPistas ; i++) 
+            for (int i = 0, j = 0; i < ReservasPistas ; i++) 
             {
                 Booking reserva; 
                 if(j < horarioDePista.size()) {
@@ -429,7 +431,7 @@ public class MisReservasController implements Initializable {
         MenuItem menuItem = (MenuItem) event.getSource();
         Scene scene = menuItem.getParentPopup().getOwnerWindow().getScene();
         Stage myStage = (Stage) scene.getWindow();
-        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("MenuPrincipal.fxml"));
+        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("MenuFXML.fxml"));
         try {
             Parent root = miCargador.load();
             MisReservasController controlador = miCargador.getController(); 

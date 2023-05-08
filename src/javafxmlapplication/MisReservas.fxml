@@ -97,7 +97,7 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </HBox>
-                        <Label alignment="CENTER" contentDisplay="TOP" prefHeight="46.0" prefWidth="514.0" style="-fx-font-size: 26; -fx-text-fill: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%); -fx-font-weight: bold;" text="Ver mis reservas" textFill="WHITE" VBox.vgrow="ALWAYS">
+                        <Label alignment="CENTER" contentDisplay="TOP" prefHeight="46.0" prefWidth="514.0" style="-fx-font-size: 26; -fx-text-fill: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%); -fx-font-weight: bold;" text="Mis reservas" textFill="WHITE" VBox.vgrow="ALWAYS">
                            <font>
                               <Font size="28.0" />
                            </font>
@@ -148,7 +148,7 @@
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                        </rowConstraints>
                                        <children>
-                                          <Button fx:id="mostrarDisponBoton" mnemonicParsing="false" onAction="#mostrarDisponibilidad" prefHeight="37.0" prefWidth="428.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%);" text="Visualizar" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="14">
+                                          <Button fx:id="mostrarDisponBoton" mnemonicParsing="false" onAction="#mostrarDisponibilidad" prefHeight="37.0" prefWidth="428.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%); -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);" text="Visualizar" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="14">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
