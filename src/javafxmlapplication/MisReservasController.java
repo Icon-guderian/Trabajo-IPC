@@ -8,12 +8,8 @@ package javafxmlapplication;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,11 +20,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -36,22 +30,18 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Club;
-import static model.Club.getInstance;
 import model.ClubDAOException;
-import model.Court;
 import model.Member;
 import model.Booking;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Iterator;
-import javafx.scene.Node;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonBar.ButtonData;
-import javafx.scene.control.DialogPane;
+import java.time.temporal.ChronoUnit;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Window;
 import static model.Club.getInstance;
+import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * FXML Controller class
@@ -81,9 +71,7 @@ public class MisReservasController implements Initializable {
     private MenuItem cerrar;
     @FXML
     private ImageView fotoPerfil;
-    @FXML
     private DatePicker calendarioBoton;
-    @FXML
     private ComboBox<?> seleccionPistaBoton;
     @FXML
     private GridPane GridPane;
@@ -177,7 +165,46 @@ public class MisReservasController implements Initializable {
         }
     }
     
-    
+    public class ObjetoConFechaYHora {
+    private LocalDateTime fechaHora;
+    private int dia;
+
+    public LocalDateTime getFechaHora() {
+        return fechaHora;
+    }
+
+    public void setFechaHora(LocalDateTime fechaHora) {
+        this.fechaHora = fechaHora;
+    }
+
+    public int getDia() {
+        return dia;
+    }
+
+    public void setDia(int dia) {
+        this.dia = dia;
+    }
+}
+
+public class OrdenadorDeObjetos {
+    public static void ordenarPorFechaYHora(List<ObjetoConFechaYHora> listaDeObjetos) {
+        LocalDateTime ahora = LocalDateTime.now();
+        Collections.sort(listaDeObjetos, new Comparator<ObjetoConFechaYHora>() {
+            @Override
+            public int compare(ObjetoConFechaYHora objeto1, ObjetoConFechaYHora objeto2) {
+                LocalDateTime fechaHoraObjeto1 = objeto1.getFechaHora();
+                LocalDateTime fechaHoraObjeto2 = objeto2.getFechaHora();
+
+                // Calcula la diferencia entre las fechas y horas de los objetos con la fecha y hora actual
+                long diferenciaEnMinutosObjeto1 = Math.abs(ahora.until(fechaHoraObjeto1, ChronoUnit.MINUTES));
+                long diferenciaEnMinutosObjeto2 = Math.abs(ahora.until(fechaHoraObjeto2, ChronoUnit.MINUTES));
+
+                // Compara las diferencias y devuelve el resultado
+                return Long.compare(diferenciaEnMinutosObjeto1, diferenciaEnMinutosObjeto2);
+            }
+        });
+    }
+}
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -262,168 +289,33 @@ public class MisReservasController implements Initializable {
     private void mostrarDisponibilidad(ActionEvent event) throws ClubDAOException, IOException {
         club = getInstance(); 
         
-        List<Booking> horarioDePista = new ArrayList<>(); 
-        
-        LocalDate fecha = calendarioBoton.getValue(); 
         LocalDate fechaActual = LocalDate.now();
-        String pista = seleccionPistaBoton.getValue(); 
+        LocalTime horaInicio = LocalTime.of(9, 0);
+        int duracion = club.getBookingDuration();
 
-                    
-        if(fecha == null) 
-        {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Error en la fecha");
-            alert.setContentText("Por favor introduzca una fecha");
-            alert.showAndWait();
+        List<Booking> elArray = club.getUserBookings(m.getNickName()); 
+        
+        for(int i = 0; i < 10 ; i++){
+            Booking b = elArray.get(i);
+            if(elArray.get(0)== null || elArray.equals(null)){
+                Label label = new Label();
+                label.setText("No tienes reservas");
+                GridPane.add(label,1,i);
+            }else if(b != null || !b.equals(null)){
+                
+                Label label = new Label(); 
+                        LocalTime horaFin = horaInicio.plusMinutes(duracion);        
+                        String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
+                        String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
+                        label.setText(horaInicioTexto + " - " + horaFinTexto + ".  Reservado por "+ m.getNickName() +"                                                                               ");  
+                        label.setStyle("-fx-background-color: #ffff80");
+                        GridPane.add(label, 1, i); 
+                        horaInicio = horaFin;
+                
+            }else if (i == 9){break;}
         
         }
-        else if(pista == null) 
-        {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Pista");
-            alert.setContentText("Debe seleccionar 1 pista");
-            alert.showAndWait();
-        } 
-        else if(fecha.isBefore(fechaActual)) 
-        {
-            horarioDePista = club.getCourtBookings(pista, fecha); 
-            
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmación");
-            alert.setHeaderText("Este día ya ha pasado");
-            alert.setContentText("¿Está seguro que quiere mostrar la disponibilidad de ese día?");
-            ButtonType botonSi = new ButtonType("Mostrar");
-            ButtonType botonNo = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
-
-            alert.getButtonTypes().setAll(botonSi, botonNo);
-            Optional<ButtonType> resultado = alert.showAndWait();
-            
-            
-            if (resultado.isPresent() && resultado.get() == botonSi) 
-            {
-                LocalTime horaInicio = LocalTime.of(9, 0);
-                int duracion = club.getBookingDuration();
-                int ReservasPistas = club.getBookingSlots(); 
-                
-                //borra el gridpane si hay cosas
-                ObservableList<Node> listaDeCosas = GridPane.getChildren();
-                Iterator<Node> iterator = listaDeCosas.iterator();
-                while (iterator.hasNext()) {
-                    Node child = iterator.next();
-                    if (child instanceof Label) {
-                        iterator.remove(); 
-                    }
-                }       
-                
-                for (int i = 0, j = 0; i < ReservasPistas ; i++) 
-                {
-                    Booking reserva; 
-                    if(j < horarioDePista.size()) {
-                        reserva = horarioDePista.get(j);
-                    } 
-                    else { reserva = null; }
-                
-                    if(devolverHoraReserva(horarioDePista, horaInicio) & memberTieneReserva(reserva, m)) 
-                    {
-                        Label label = new Label(); 
-                        LocalTime horaFin = horaInicio.plusMinutes(duracion);        
-                        String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
-                        String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
-                        label.setText(horaInicioTexto + " - " + horaFinTexto + ".  Reservado por "+ m.getNickName() +"                                                                               ");  
-                        label.setStyle("-fx-background-color: #ffff80");
-                        GridPane.add(label, 1, i); 
-                        horaInicio = horaFin;
-                    } 
-                     else if(devolverHoraReserva(horarioDePista, horaInicio)) 
-                    {
-                        Label label = new Label(); 
-                        LocalTime horaFin = horaInicio.plusMinutes(duracion);        
-                        String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
-                        String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
-                        label.setText(horaInicioTexto + " - " + horaFinTexto + ".  Reservado                                                                                         ");  
-                        label.setStyle("-fx-background-color: #ffc8c8");
-                        GridPane.add(label, 1, i); 
-                        horaInicio = horaFin;  
-                    }
-                    else 
-                    {                          
-                        Label label = new Label();
-                        LocalTime horaFin = horaInicio.plusMinutes(duracion);        
-                        String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
-                        String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
-                        label.setText(horaInicioTexto + " - " + horaFinTexto + ".  No reservado                                                                                    ");
-                        label.setStyle("-fx-background-color: #80ff80");
-                        GridPane.add(label, 1, i);
-                        horaInicio = horaFin;
-                    }
-                }           
-            } 
-        } 
-        else 
-        {
-            LocalTime horaInicio = LocalTime.of(9, 0);
-            int duracion = club.getBookingDuration();
-            int ReservasPistas = club.getBookingSlots(); 
-            horarioDePista = club.getCourtBookings(pista, fecha); 
-            
-            ObservableList<Node> listaDeCosas = GridPane.getChildren();
-            Iterator<Node> iterator = listaDeCosas.iterator();
-
-            while (iterator.hasNext()) {
-                Node child = iterator.next();
-                if (child instanceof Label) {
-                    iterator.remove(); 
-                }
-            }       
-            
-            for (int i = 0, j = 0; i < ReservasPistas ; i++) 
-            {
-                Booking reserva; 
-                if(j < horarioDePista.size()) {
-                    reserva = horarioDePista.get(j);
-                } 
-                else { reserva = null; }
-                
-                if(devolverHoraReserva(horarioDePista, horaInicio) & memberTieneReserva(reserva, m)) 
-                    {
-                        Label label = new Label(); 
-                        LocalTime horaFin = horaInicio.plusMinutes(duracion);        
-                        String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
-                        String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
-                        label.setText(horaInicioTexto + " - " + horaFinTexto + ".  Reservado por "+ m.getNickName() +"                                                                               ");  
-                        label.setStyle("-fx-background-color: #ffff80");
-                        GridPane.add(label, 1, i); 
-                        horaInicio = horaFin;
-                        j++; 
-                    } 
-                     else if(devolverHoraReserva(horarioDePista, horaInicio)) 
-                    {
-                        Label label = new Label(); 
-                        LocalTime horaFin = horaInicio.plusMinutes(duracion);        
-                        String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
-                        String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
-                        label.setText(horaInicioTexto + " - " + horaFinTexto + ".  Reservado                                                                                         ");  
-                        label.setStyle("-fx-background-color: #ffc8c8");
-                        GridPane.add(label, 1, i); 
-                        horaInicio = horaFin;  
-                        j++; 
-                    }
-                    else 
-                    {
-                        Label label = new Label();
-                        LocalTime horaFin = horaInicio.plusMinutes(duracion);        
-                        String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
-                        String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
-                        label.setText(horaInicioTexto + " - " + horaFinTexto + ".  No reservado                                                                                    ");
-                        label.setStyle("-fx-background-color: #80ff80; -fx-background-insets: 0");
-                        GridPane.add(label, 1, i);
-                        horaInicio = horaFin;
-                        
-                }       
-            }  
-        }
+    
     }
 
     @FXML
@@ -431,14 +323,19 @@ public class MisReservasController implements Initializable {
         MenuItem menuItem = (MenuItem) event.getSource();
         Scene scene = menuItem.getParentPopup().getOwnerWindow().getScene();
         Stage myStage = (Stage) scene.getWindow();
-        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("MenuFXML.fxml"));
+        FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/MenuFXML.fxml"));
         try {
             Parent root = miCargador.load();
             MenuFXMLController controlador = miCargador.getController(); 
             controlador.initUsuario(m); 
+            controlador.initUsuario(m);
+            controlador.initImageNick(m);
+            controlador.meterComboBox(club.getCourts());
             Scene scene1 = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene1);
+            stage.setTitle("Menú");
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
             myStage.close();
         } catch (IOException ex) {}
