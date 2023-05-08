@@ -434,7 +434,7 @@ public class MisReservasController implements Initializable {
         FXMLLoader miCargador = new FXMLLoader(getClass().getResource("MenuFXML.fxml"));
         try {
             Parent root = miCargador.load();
-            MisReservasController controlador = miCargador.getController(); 
+            MenuFXMLController controlador = miCargador.getController(); 
             controlador.initUsuario(m); 
             Scene scene1 = new Scene(root);
             Stage stage = new Stage();

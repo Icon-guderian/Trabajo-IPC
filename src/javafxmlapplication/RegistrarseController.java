@@ -192,8 +192,6 @@ public class RegistrarseController implements Initializable {
         String ContraseñaOtra = contraseñaOtra.getText(); 
         String NumeroTarjeta = NúmeroTarjeta.getText(); 
         String cvv = CVV.getText(); 
-        String ContraseñaVisible = textfield1.getText(); 
-        String ContraseñaOtraVisible = textfield2.getText();
         
         Club club = getInstance(); 
         
