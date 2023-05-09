@@ -164,7 +164,25 @@ public class MisReservasController implements Initializable {
             fotoPerfil.setImage(imagenPredeterminada);
         }
     }
+    
+    public static void ordenarPorFechaYHora(List<Booking> b) {
+        LocalDateTime ahora = LocalDateTime.now();
+        Collections.sort(b, new Comparator<Booking>() {
+                
+                @Override
+                public int compare(Booking objeto1, Booking objeto2) {
+                    LocalDateTime fechaHoraObjeto1 = objeto1.getBookingDate();
+                    LocalDateTime fechaHoraObjeto2 = objeto2.getBookingDate();
 
+                    // Calcula la diferencia entre las fechas y horas de los objetos con la fecha y hora actual
+                    long diferenciaEnMinutosObjeto1 = Math.abs(ahora.until(fechaHoraObjeto1, ChronoUnit.MINUTES));
+                    long diferenciaEnMinutosObjeto2 = Math.abs(ahora.until(fechaHoraObjeto2, ChronoUnit.MINUTES));
+
+                    // Compara las diferencias y devuelve el resultado
+                    return Long.compare(diferenciaEnMinutosObjeto1, diferenciaEnMinutosObjeto2);
+                }
+            });
+        }
 
     
     @Override
@@ -268,6 +286,7 @@ public class MisReservasController implements Initializable {
             }else if((b != null || !b.equals(null)) && devolverHoraReserva(elArray, horaInicio) & memberTieneReserva(reserva, m) ){
                 
                 Label label = new Label(); 
+                ordenarPorFechaYHora(elArray);
                 LocalTime horaFin = horaInicio.plusMinutes(duracion);        
                 String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
                 String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
