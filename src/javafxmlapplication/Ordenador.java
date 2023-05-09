@@ -9,17 +9,21 @@ import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import model.Booking;
 
 /**
  *
  * @author david
  */
 public class Ordenador {
-    public static void ordenarPorFechaYHora(List<Bookings> b) {
-            LocalDateTime ahora = LocalDateTime.now();
-            Collections.sort(listaDeObjetos, new Comparator<MisReservasController.ObjetoConFechaYHora>() {
+    
+    
+    public static void ordenarPorFechaYHora(List<Booking> b) {
+        LocalDateTime ahora = LocalDateTime.now();
+        Collections.sort(b, new Comparator<Booking>() {
+                
                 @Override
-                public int compare(MisReservasController.ObjetoConFechaYHora objeto1, MisReservasController.ObjetoConFechaYHora objeto2) {
+                public int compare(Booking objeto1, Booking objeto2) {
                     LocalDateTime fechaHoraObjeto1 = objeto1.getFechaHora();
                     LocalDateTime fechaHoraObjeto2 = objeto2.getFechaHora();
 

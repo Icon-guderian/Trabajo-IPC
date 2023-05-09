@@ -164,47 +164,8 @@ public class MisReservasController implements Initializable {
             fotoPerfil.setImage(imagenPredeterminada);
         }
     }
-    
-    public class ObjetoConFechaYHora {
-    private LocalDateTime fechaHora;
-    private int dia;
 
-    public LocalDateTime getFechaHora() {
-        return fechaHora;
-    }
 
-    public void setFechaHora(LocalDateTime fechaHora) {
-        this.fechaHora = fechaHora;
-    }
-
-    public int getDia() {
-        return dia;
-    }
-
-    public void setDia(int dia) {
-        this.dia = dia;
-    }
-}
-
-public class OrdenadorDeObjetos {
-    public static void ordenarPorFechaYHora(List<ObjetoConFechaYHora> listaDeObjetos) {
-        LocalDateTime ahora = LocalDateTime.now();
-        Collections.sort(listaDeObjetos, new Comparator<ObjetoConFechaYHora>() {
-            @Override
-            public int compare(ObjetoConFechaYHora objeto1, ObjetoConFechaYHora objeto2) {
-                LocalDateTime fechaHoraObjeto1 = objeto1.getFechaHora();
-                LocalDateTime fechaHoraObjeto2 = objeto2.getFechaHora();
-
-                // Calcula la diferencia entre las fechas y horas de los objetos con la fecha y hora actual
-                long diferenciaEnMinutosObjeto1 = Math.abs(ahora.until(fechaHoraObjeto1, ChronoUnit.MINUTES));
-                long diferenciaEnMinutosObjeto2 = Math.abs(ahora.until(fechaHoraObjeto2, ChronoUnit.MINUTES));
-
-                // Compara las diferencias y devuelve el resultado
-                return Long.compare(diferenciaEnMinutosObjeto1, diferenciaEnMinutosObjeto2);
-            }
-        });
-    }
-}
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -295,22 +256,25 @@ public class OrdenadorDeObjetos {
 
         List<Booking> elArray = club.getUserBookings(m.getNickName()); 
         
-        for(int i = 0; i < 10 ; i++){
+        
+        for(int i = 0, j = 0; i < 10 ; i++){
+            Booking reserva;
+            reserva = elArray.get(j);
             Booking b = elArray.get(i);
             if(elArray.get(0)== null || elArray.equals(null)){
                 Label label = new Label();
                 label.setText("No tienes reservas");
                 GridPane.add(label,1,i);
-            }else if(b != null || !b.equals(null)){
+            }else if((b != null || !b.equals(null)) && devolverHoraReserva(elArray, horaInicio) & memberTieneReserva(reserva, m) ){
                 
                 Label label = new Label(); 
-                        LocalTime horaFin = horaInicio.plusMinutes(duracion);        
-                        String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
-                        String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
-                        label.setText(horaInicioTexto + " - " + horaFinTexto + ".  Reservado por "+ m.getNickName() +"                                                                               ");  
-                        label.setStyle("-fx-background-color: #ffff80");
-                        GridPane.add(label, 1, i); 
-                        horaInicio = horaFin;
+                LocalTime horaFin = horaInicio.plusMinutes(duracion);        
+                String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
+                String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
+                label.setText(horaInicioTexto + " - " + horaFinTexto + ".  Reservado por "+ m.getNickName() +"                                                                               ");  
+                label.setStyle("-fx-background-color: #ffff80");
+                GridPane.add(label, 1, i); 
+                horaInicio = horaFin;
                 
             }else if (i == 9){break;}
         
