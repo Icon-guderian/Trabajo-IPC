@@ -42,6 +42,7 @@ import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import javafx.scene.control.MenuButton;
 
 /**
  * FXML Controller class
@@ -79,6 +80,8 @@ public class MisReservasController implements Initializable {
     private Button mostrarDisponBoton;
     @FXML
     private MenuItem miMenu;
+    @FXML
+    private MenuButton opcionesBoton;
     /**
      * Initializes the controller class.
      */

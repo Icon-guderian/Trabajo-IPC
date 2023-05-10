@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="1120.0" maxWidth="1000.0" minHeight="112.0" minWidth="100.0" prefHeight="766.0" prefWidth="685.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.ModificarPerfilController">
+<BorderPane fx:id="borderPane" maxHeight="1120.0" maxWidth="1000.0" minHeight="112.0" minWidth="100.0" prefHeight="766.0" prefWidth="685.0" stylesheets="@estilosBotones.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.ModificarPerfilController">
    <top>
       
    </top>
@@ -76,7 +76,7 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <MenuButton fx:id="opcionesBoton" mnemonicParsing="false" prefHeight="68.0" prefWidth="94.0" stylesheets="@estilosBotones.css">
+                        <MenuButton fx:id="opcionesBoton" mnemonicParsing="false" prefHeight="68.0" prefWidth="94.0">
                            <items>
                               <MenuItem fx:id="miMenu" mnemonicParsing="false" onAction="#miMenu" text="Menu principal" />
                               <MenuItem fx:id="hacerReserva" mnemonicParsing="false" onAction="#menuReservar" text="Hacer reservas" />
