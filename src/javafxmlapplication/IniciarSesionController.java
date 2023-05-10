@@ -26,6 +26,7 @@ import static model.Club.getInstance;
 import model.ClubDAOException;
 import model.Member;
 import javafx.css.Style;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
@@ -46,6 +47,10 @@ public class IniciarSesionController implements Initializable {
     private PasswordField cajaContraseña;
     @FXML
     private Button aceptarBoton;
+    @FXML
+    private Label errorUsuarioVacío;
+    @FXML
+    private Label errorContraseñaVaic;
 
     /**
      * Initializes the controller class.
@@ -107,22 +112,30 @@ public class IniciarSesionController implements Initializable {
         
         if (usuario.isEmpty() && contraseña.isEmpty()) 
         {
-            CajaUsuario.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: red;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
-            cajaContraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: red; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); ");
+            CajaUsuario.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+            cajaContraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); ");
+            errorUsuarioVacío.setVisible(true);
+            errorContraseñaVaic.setVisible(true);
+            
         } 
             else if(contraseña.isEmpty() && !usuario.isEmpty()) 
         {
-            cajaContraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: red;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+            cajaContraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
             CajaUsuario.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;");
+            errorContraseñaVaic.setVisible(true);
+            errorUsuarioVacío.setVisible(false);
         } 
             else if(!contraseña.isEmpty() && usuario.isEmpty() )
         {
-            CajaUsuario.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: red;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+            CajaUsuario.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
             cajaContraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+            errorUsuarioVacío.setVisible(true);
+            errorContraseñaVaic.setVisible(false);        
         }
             else if(usuario.isEmpty())
         {
-           CajaUsuario.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: red;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+           CajaUsuario.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+           errorUsuarioVacío.setVisible(true);
         }
             else 
         {

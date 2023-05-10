@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="1120.0" maxWidth="1000.0" minHeight="112.0" minWidth="100.0" prefHeight="804.0" prefWidth="685.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.MenuFXMLController">
+<BorderPane maxHeight="1120.0" maxWidth="1000.0" minHeight="112.0" minWidth="100.0" prefHeight="804.0" prefWidth="685.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.MenuFXMLController">
    <center>
       <VBox alignment="TOP_RIGHT" prefHeight="345.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -107,7 +107,7 @@
                            <children>
                               <VBox alignment="CENTER" prefHeight="55.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <DatePicker fx:id="calendarioBoton" promptText="Seleccione fecha" />
+                                    <DatePicker fx:id="calendarioBoton" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="55.0" prefWidth="0.0" HBox.hgrow="ALWAYS">

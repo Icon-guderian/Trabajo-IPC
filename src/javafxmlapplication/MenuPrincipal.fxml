@@ -105,7 +105,7 @@
                                           <Font name="System Bold" size="14.0" />
                                        </font>
                                     </Label>
-                                    <DatePicker fx:id="calendarioBoton" prefHeight="26.0" prefWidth="158.0" promptText="Seleccione fecha" VBox.vgrow="ALWAYS">
+                                    <DatePicker fx:id="calendarioBoton" prefHeight="26.0" prefWidth="158.0" VBox.vgrow="ALWAYS">
                                        <VBox.margin>
                                           <Insets left="10.0" right="10.0" />
                                        </VBox.margin>
