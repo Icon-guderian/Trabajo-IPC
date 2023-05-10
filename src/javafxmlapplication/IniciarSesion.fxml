@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="425.0" prefWidth="657.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.IniciarSesionController">
+<BorderPane prefHeight="425.0" prefWidth="657.0" stylesheets="@estilosBotones.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.IniciarSesionController">
    <left>
       <VBox alignment="CENTER" prefHeight="364.0" prefWidth="249.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat, #16779F 0%,  #84B118 40%);" BorderPane.alignment="CENTER" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
          <children>
@@ -36,7 +36,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="62.0" prefWidth="145.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Button fx:id="menuBoton" mnemonicParsing="false" onAction="#IrAlMenu" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%); -fx-border-color: black;" text="Ir al menú" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Button fx:id="menuBoton" mnemonicParsing="false" onAction="#IrAlMenu" prefHeight="35.0" prefWidth="100.0" text="Ir al menú" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -44,7 +44,7 @@
                </children></HBox>
             <HBox alignment="CENTER" prefHeight="62.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Button fx:id="registrarBoton" alignment="CENTER" mnemonicParsing="false" onAction="#Registrar" prefHeight="35.0" prefWidth="92.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%); -fx-border-color: black;" text="Regístrate" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Button fx:id="registrarBoton" alignment="CENTER" mnemonicParsing="false" onAction="#Registrar" prefHeight="35.0" prefWidth="92.0" text="Regístrate" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font></Button>
@@ -73,9 +73,9 @@
             </HBox>
             <HBox alignment="TOP_CENTER" prefHeight="78.0" prefWidth="422.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#Aceptar" prefHeight="34.0" prefWidth="305.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%); -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0); -fx-font-weight: bold; -fx-font-size: 17;" text="Aceptar" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Button fx:id="aceptarBoton" alignment="CENTER" mnemonicParsing="false" onAction="#Aceptar" prefHeight="34.0" prefWidth="305.0" text="Aceptar" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
-                        <Font name="System Bold" size="20.0" />
+                        <Font name="System Bold" size="17.0" />
                      </font></Button>
                </children>
             </HBox>

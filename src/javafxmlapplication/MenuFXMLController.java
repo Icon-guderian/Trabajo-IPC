@@ -52,6 +52,8 @@ import javafx.scene.control.DialogPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Window;
 import static model.Club.getInstance;
+import javafx.css.Style;
+import javafx.scene.control.MenuButton;
 
 /**
  * FXML Controller class
@@ -90,6 +92,8 @@ public class MenuFXMLController implements Initializable {
     private MenuItem cerrar;
     @FXML
     private Button mostrarDisponBoton;
+    @FXML
+    private MenuButton opcionesBoton;
     
     /**
      * Initializes the controller class.
@@ -197,7 +201,8 @@ public class MenuFXMLController implements Initializable {
             
         } catch (ClubDAOException | IOException e)  {}
                       
-        
+        opcionesBoton.setId("boton_blanco_a_sombra");
+        mostrarDisponBoton.setId("boton_verde_a_sombra");
     }   
 
 

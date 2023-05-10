@@ -29,6 +29,7 @@ import model.Club;
 import static model.Club.getInstance;
 import model.ClubDAOException;
 import model.Member;
+import javafx.css.Style;
 
 /**
  * FXML Controller class
@@ -69,6 +70,8 @@ public class RegistrarseController implements Initializable {
     private TextField textfield1;
     @FXML
     private TextField textfield2;
+    @FXML
+    private Button fotoBoton;
     
 
     /**
@@ -113,6 +116,11 @@ public class RegistrarseController implements Initializable {
             contraseña.setVisible(true);
         }
         });
+        
+        fotoBoton.setId("boton_verde_a_sombra");
+        registrarBoton.setId("boton_verde_a_sombra");
+        iniciarSesionBoton.setId("boton_verde_a_sombra");
+        menuBoton.setId("boton_verde_a_sombra");
     }    
     
     

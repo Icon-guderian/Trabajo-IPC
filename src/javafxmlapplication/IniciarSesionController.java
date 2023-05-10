@@ -25,6 +25,7 @@ import model.Club;
 import static model.Club.getInstance;
 import model.ClubDAOException;
 import model.Member;
+import javafx.css.Style;
 
 /**
  * FXML Controller class
@@ -43,6 +44,8 @@ public class IniciarSesionController implements Initializable {
     private Button registrarBoton;
     @FXML
     private PasswordField cajaContraseña;
+    @FXML
+    private Button aceptarBoton;
 
     /**
      * Initializes the controller class.
@@ -50,6 +53,9 @@ public class IniciarSesionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        aceptarBoton.setId("boton_verde_a_sombra");
+        menuBoton.setId("boton_verde_a_sombra");
+        registrarBoton.setId("boton_verde_a_sombra");
     }    
 
    

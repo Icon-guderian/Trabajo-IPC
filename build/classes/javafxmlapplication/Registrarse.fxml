@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="723.0" prefWidth="472.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.RegistrarseController">
+<BorderPane prefHeight="723.0" prefWidth="472.0" stylesheets="@estilosBotones.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.RegistrarseController">
    <top>
       <HBox prefHeight="60.0" prefWidth="494.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat, #16779F 0%,  #84B118 90%);" BorderPane.alignment="CENTER" />
    </top>
@@ -71,11 +71,11 @@
                   <PasswordField fx:id="contraseña" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="220.0" promptText="Contraseña*" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <PasswordField fx:id="contraseñaOtra" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="220.0" promptText="Repita la contraseña*" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                   <ImageView fx:id="ImagenPerfil" fitHeight="101.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="18" GridPane.vgrow="ALWAYS" />
-                  <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#seleccionarFoto" prefHeight="26.0" prefWidth="57.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%); -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);" text="Foto" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="18">
+                  <Button fx:id="fotoBoton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#seleccionarFoto" prefHeight="26.0" prefWidth="57.0" text="Foto" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="18">
                       <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Button>
-                  <Button fx:id="registrarBoton" alignment="CENTER" contentDisplay="CENTER" minWidth="-Infinity" mnemonicParsing="false" onAction="#registrar" prefHeight="44.0" prefWidth="308.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%); -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);" text="Registrar" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="23">
+                  <Button fx:id="registrarBoton" alignment="CENTER" contentDisplay="CENTER" minWidth="-Infinity" mnemonicParsing="false" onAction="#registrar" prefHeight="44.0" prefWidth="308.0" text="Registrar" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="23">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font></Button>
@@ -92,7 +92,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="70.0" prefWidth="154.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Button fx:id="iniciarSesionBoton" mnemonicParsing="false" onAction="#IrIniciarSesion" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%); -fx-border-color: black;" text="Iniciar Sesión" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Button fx:id="iniciarSesionBoton" mnemonicParsing="false" onAction="#IrIniciarSesion" prefHeight="35.0" prefWidth="100.0" text="Iniciar Sesión" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Button>
@@ -109,7 +109,10 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="70.0" prefWidth="154.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Button fx:id="menuBoton" mnemonicParsing="false" onAction="#IrMenu" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%); -fx-border-color: black; -fx-font-weight: bold;" text="Menú" textFill="WHITE" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="menuBoton" mnemonicParsing="false" onAction="#IrMenu" prefHeight="35.0" prefWidth="100.0" text="Menú" textFill="WHITE" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
                </children>
             </HBox>
          </children>
