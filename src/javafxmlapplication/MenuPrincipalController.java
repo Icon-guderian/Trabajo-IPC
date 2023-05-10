@@ -90,7 +90,8 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
         registro.setId("boton_blanco_a_sombra");
         autenticarse.setId("boton_blanco_a_sombra");
         disponibilidadBoton.setId("boton_verde_a_sombra");
-
+        seleccionPistaBoton.setId("seleccionPistaBoton"); 
+        calendarioBoton.setId("calendarioBoton");
     }
 
     public boolean devolverHoraReserva(List<Booking> ar, LocalTime local) 

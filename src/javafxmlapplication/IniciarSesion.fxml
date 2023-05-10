@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="425.0" prefWidth="657.0" stylesheets="@estilosBotones.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.IniciarSesionController">
+<BorderPane prefHeight="425.0" prefWidth="657.0" stylesheets="@estilosBotones.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.IniciarSesionController">
    <left>
       <VBox alignment="CENTER" prefHeight="364.0" prefWidth="249.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat, #16779F 0%,  #84B118 40%);" BorderPane.alignment="CENTER" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
          <children>
@@ -61,17 +61,19 @@
                   <Label alignment="TOP_CENTER" prefHeight="39.0" prefWidth="250.0" style="-fx-font-size: 40; -fx-text-fill: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%); -fx-font-weight: BOLD;" text="Iniciar Sesión" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
-            <HBox alignment="TOP_CENTER" prefWidth="274.0" VBox.vgrow="ALWAYS">
+            <HBox alignment="CENTER" prefWidth="274.0" VBox.vgrow="ALWAYS">
                <children>
                   <TextField fx:id="CajaUsuario" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="298.0" promptText="Introduzca usuario" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);; -fx-prompt-text-fill: black;" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
-            <HBox alignment="TOP_CENTER" prefHeight="35.0" prefWidth="422.0" VBox.vgrow="ALWAYS">
+            <Label prefHeight="18.0" prefWidth="298.0" style="-fx-text-fill: red;" text="Introduzca un usuario" visible="false" />
+            <HBox alignment="CENTER" prefHeight="35.0" prefWidth="422.0" VBox.vgrow="ALWAYS">
                <children>
                   <PasswordField fx:id="cajaContraseña" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="301.0" promptText="Introduzca la contraseña" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);;" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
-            <HBox alignment="TOP_CENTER" prefHeight="78.0" prefWidth="422.0" VBox.vgrow="ALWAYS">
+            <Label prefHeight="18.0" prefWidth="297.0" style="-fx-text-fill: red;" text="Introduzca una contraseña" visible="false" />
+            <HBox alignment="CENTER" prefHeight="78.0" prefWidth="422.0" VBox.vgrow="ALWAYS">
                <children>
                   <Button fx:id="aceptarBoton" alignment="CENTER" mnemonicParsing="false" onAction="#Aceptar" prefHeight="34.0" prefWidth="305.0" text="Aceptar" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>

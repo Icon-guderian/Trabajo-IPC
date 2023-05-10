@@ -188,7 +188,7 @@
       </HBox>
    </bottom>
    <stylesheets>
-      <URL value="@DatePickerYComboBox.css" />
       <URL value="@estilosBotones.css" />
+      <URL value="@calendario.css" />
    </stylesheets>
 </BorderPane>
