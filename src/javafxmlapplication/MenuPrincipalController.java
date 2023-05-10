@@ -61,6 +61,8 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
     private ComboBox<String> seleccionPistaBoton;
     @FXML
     private GridPane GridPane;
+    @FXML
+    private Button disponibilidadBoton;
 
     /**
      * Initializes the controller class.
@@ -81,7 +83,11 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
         {
             items.add(elarray.get(i).getName()); 
         }
-        seleccionPistaBoton.setItems(items);      
+        seleccionPistaBoton.setItems(items);   
+        
+        registro.setId("boton_blanco_a_sombra");
+        autenticarse.setId("boton_blanco_a_sombra");
+
     }
 
     public boolean devolverHoraReserva(List<Booking> ar, LocalTime local) 
