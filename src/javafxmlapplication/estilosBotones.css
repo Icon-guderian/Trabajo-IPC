@@ -1,16 +1,22 @@
-#boton_blanco_a_sombra{
-    -fx-background-color: #FFFFFF; 
-    -fx-border-color: #000000;
-}
-#boton_verde_a_sombra{
-    -fx-border-color: #000000;
-}
-        
-#boton_blanco_a_sombra:pressed{
-    -fx-background-color: #CCCCCC;
-}
-#boton_verde_a_sombra:pressed{
-    -fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%)
-;
+.root{
+    -fx-background-color: #ffffff;
+    
 }
 
+#boton_blanco_a_sombra{
+    -fx-background-color: #ffffff;
+    -fx-border-color: #1a1a1a;
+}
+#boton_verde_a_sombra{
+    -fx-background-color:  linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+    -fx-border-color: #1a1a1a;
+}
+        
+#boton_blanco_a_sombra:hover{
+    -fx-background-color: #e6e6e6;
+}
+#boton_verde_a_sombra:hover{
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat,  #779f16 0%, #135829 50%);
+;
+}

@@ -41,6 +41,8 @@ import model.Club;
 import static model.Club.getInstance;
 import model.Court;
 import model.ClubDAOException;
+import javafx.css.Style;
+
 
 /**
  * FXML Controller class
@@ -87,6 +89,7 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
         
         registro.setId("boton_blanco_a_sombra");
         autenticarse.setId("boton_blanco_a_sombra");
+        disponibilidadBoton.setId("boton_verde_a_sombra");
 
     }
 

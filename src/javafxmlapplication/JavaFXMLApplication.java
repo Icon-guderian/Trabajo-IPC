@@ -24,6 +24,7 @@ public class JavaFXMLApplication extends Application {
         // 2- creación de la escena con el nodo raiz del grafo de escena
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("DatePickerYComboBox.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("estilosBotones.css").toExternalForm());
         //scene.getStylesheets().add("javafxmlapplication/rojo.css"); 
         //======================================================================
         // 3- asiganación de la escena al Stage que recibe el metodo 
