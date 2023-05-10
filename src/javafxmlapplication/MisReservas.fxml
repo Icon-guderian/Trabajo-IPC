@@ -59,7 +59,7 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <MenuButton mnemonicParsing="false" prefHeight="68.0" prefWidth="94.0" style="-fx-background-color: #FFFFFF;">
+                        <MenuButton fx:id="opcionesBoton" mnemonicParsing="false" prefHeight="68.0" prefWidth="94.0" stylesheets="@estilosBotones.css">
                            <items>
                               <MenuItem fx:id="miMenu" mnemonicParsing="false" onAction="#miMenu" text="Menu principal" />
                               <MenuItem fx:id="hacerReserva" mnemonicParsing="false" onAction="#menuReservar" text="Hacer reservas" />

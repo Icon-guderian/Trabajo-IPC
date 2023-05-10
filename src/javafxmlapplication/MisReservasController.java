@@ -192,6 +192,8 @@ public class MisReservasController implements Initializable {
             club = getInstance();  
             
         } catch (ClubDAOException | IOException e)  {}
+        
+        opcionesBoton.setId("boton_blanco_a_sombra");
 
     }    
 
