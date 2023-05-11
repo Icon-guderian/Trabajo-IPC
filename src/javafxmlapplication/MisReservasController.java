@@ -225,23 +225,24 @@ public class MisReservasController implements Initializable {
         
         for(int i = 0; i < 10 ; i++){
             Booking b = ArrayAUtilizar.get(i);
-            if(ArrayAUtilizar.get(0)== null){
+            if(ArrayAUtilizar.equals(null)){
                 Label label = new Label();
                 label.setText("No tienes reservas");
                 GridPane.add(label,1,i);
-            }else if((b != null || !b.equals(null)) && devolverHoraReserva(ArrayAUtilizar, horaInicio) & memberTieneReserva(reserva, m) ){
+            }else if((!b.equals(null)) ){
                 
-                Label label = new Label(); 
-                ordenarPorFechaYHora(ArrayAUtilizar);
+                Label label = new Label();
+                LocalTime horaInicio = LocalTime.of(9, 0);
+                int duracion = club.getBookingDuration();
                 LocalTime horaFin = horaInicio.plusMinutes(duracion);        
                 String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
                 String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
+                String pistaResrvada;
                 label.setText(horaInicioTexto + " - " + horaFinTexto + ".  Reservado por "+ m.getNickName() +"                                                                               ");  
                 label.setStyle("-fx-background-color: #ffff80");
                 GridPane.add(label, 1, i); 
-                horaInicio = horaFin;
                 
-            }else if (i == 9){break;}
+            }else if (i > 10){break;}
         
         }
     
