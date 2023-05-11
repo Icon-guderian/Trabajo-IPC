@@ -76,8 +76,6 @@ public class MisReservasController implements Initializable {
     private MenuItem cerrar;
     @FXML
     private ImageView fotoPerfil;
-    private DatePicker calendarioBoton;
-    private ComboBox<?> seleccionPistaBoton;
     @FXML
     private GridPane GridPane;
     @FXML
@@ -219,7 +217,7 @@ public class MisReservasController implements Initializable {
         { 
             alert.close(); 
         }
-    }
+    } 
 
     @FXML
     private void mostrarDisponibilidad(ActionEvent event) throws ClubDAOException, IOException {

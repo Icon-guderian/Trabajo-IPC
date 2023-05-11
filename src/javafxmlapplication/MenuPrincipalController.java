@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -51,8 +52,8 @@ import javafx.css.Style;
  */
 public class MenuPrincipalController extends ListCell<String> implements Initializable {
 
-    private Club club; 
-    
+    private Club club;
+
     @FXML
     private Button registro;
     @FXML
@@ -92,6 +93,7 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
         disponibilidadBoton.setId("boton_verde_a_sombra");
         seleccionPistaBoton.setId("seleccionPistaBoton"); 
         calendarioBoton.setId("calendarioBoton");
+        
     }
 
     public boolean devolverHoraReserva(List<Booking> ar, LocalTime local) 
