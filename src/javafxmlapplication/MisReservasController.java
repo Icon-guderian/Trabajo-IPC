@@ -225,15 +225,9 @@ public class MisReservasController implements Initializable {
     private void mostrarDisponibilidad(ActionEvent event) throws ClubDAOException, IOException {
         club = getInstance(); 
         
-        LocalDate fechaActual = LocalDate.now();
-        LocalTime horaInicio = LocalTime.of(9, 0);
-        int duracion = club.getBookingDuration();        
-        
-        for(int i = 0, j = 0; i < 10 ; i++){
-            Booking reserva;
-            reserva = ArrayAUtilizar.get(j);
+        for(int i = 0; i < 10 ; i++){
             Booking b = ArrayAUtilizar.get(i);
-            if(ArrayAUtilizar.get(0)== null || ArrayAUtilizar.equals(null)){
+            if(ArrayAUtilizar.get(0)== null){
                 Label label = new Label();
                 label.setText("No tienes reservas");
                 GridPane.add(label,1,i);
