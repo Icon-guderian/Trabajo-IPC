@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -33,7 +32,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -42,8 +40,6 @@ import model.Club;
 import static model.Club.getInstance;
 import model.Court;
 import model.ClubDAOException;
-import javafx.css.Style;
-
 
 /**
  * FXML Controller class
@@ -132,6 +128,7 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
         FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/IniciarSesion.fxml"));
         Parent root = miCargador.load();       
         Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("textfield.css").toExternalForm()); 
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("Autenticarse");

@@ -15,16 +15,14 @@ import javafx.stage.Stage;
 public class JavaFXMLApplication extends Application {
     
     @Override
-    public void start(Stage stage) throws Exception {
-        //======================================================================
-        // 1- creación del grafo de escena a partir del fichero FXML
+    public void start(Stage stage) throws Exception 
+    {
         FXMLLoader loader= new  FXMLLoader(getClass().getResource("MenuPrincipal.fxml"));
         Parent root = loader.load();
-        //======================================================================
-        // 2- creación de la escena con el nodo raiz del grafo de escena
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("estilosBotones.css").toExternalForm());
-        scene.getStylesheets().add("javafxmlapplication/calendario.css"); 
+        scene.getStylesheets().add(getClass().getResource("calendario.css").toExternalForm()); 
+        scene.getStylesheets().add(getClass().getResource("textfield.css").toExternalForm());
         stage.setScene(scene);
         stage.setTitle("GreenBall");
         stage.show();

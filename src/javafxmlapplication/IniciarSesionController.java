@@ -60,15 +60,9 @@ public class IniciarSesionController implements Initializable {
         // TODO
         aceptarBoton.setId("boton_verde_a_sombra");
         menuBoton.setId("boton_verde_a_sombra");
+        cajaContraseña.setId("cajaContraseña");
         registrarBoton.setId("boton_verde_a_sombra");
-        /*
-        while(CajaUsuario.isPressed()) 
-        {
-            if(CajaUsuario.isPressed()) {
-                CajaUsuario.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;");
-            }
-        } */
-    
+        CajaUsuario.setId("cajaUsuario");
     }    
 
    
@@ -78,6 +72,7 @@ public class IniciarSesionController implements Initializable {
         FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/MenuPrincipal.fxml"));
         Parent root = miCargador.load();
         Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("calendario.css").toExternalForm()); 
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("GreenBall");

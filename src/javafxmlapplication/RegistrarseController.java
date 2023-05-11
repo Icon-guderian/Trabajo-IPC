@@ -137,8 +137,7 @@ public class RegistrarseController implements Initializable {
         return Integer.parseInt(str);
     }
     
-    public boolean contieneNumChar(String st)
-    {
+    public boolean contieneNumChar(String st) {
         int a = 0, b = 0; 
         for(int i = 0;  i < st.length(); i++) {
             char c = st.charAt(i); 
@@ -150,8 +149,8 @@ public class RegistrarseController implements Initializable {
     
     public void validarCampos(TextField... campos) {
         for (TextField campo : campos) {
-            if (campo.getText().trim().isEmpty()) {
-                //campo.setPromptText("Introduzca un valor");
+            if (campo.getText().trim().isEmpty()) 
+            {
                 campo.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: red; -fx-prompt-text-fill: red; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
             } else {
                 campo.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
@@ -325,6 +324,7 @@ public class RegistrarseController implements Initializable {
         FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/IniciarSesion.fxml"));
         Parent root = miCargador.load();    
         Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("textfield.css").toExternalForm());
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("Iniciar Sesión");
@@ -340,6 +340,7 @@ public class RegistrarseController implements Initializable {
         FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/MenuPrincipal.fxml"));
         Parent root = miCargador.load();
         Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("calendario.css").toExternalForm()); 
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("GreenBall");
