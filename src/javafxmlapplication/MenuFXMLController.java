@@ -44,6 +44,8 @@ import model.Booking;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import javafx.scene.Node;
 import javafx.scene.control.Alert.AlertType;
@@ -189,7 +191,7 @@ public class MenuFXMLController implements Initializable {
         {
             items.add(elarray.get(i).getName()); 
         }
-        seleccionPistaBoton.setItems(items);  
+        seleccionPistaBoton.setItems(items);         
     }
     
     @Override
@@ -377,7 +379,7 @@ public class MenuFXMLController implements Initializable {
 
     @FXML
     private void menuMiReserva(ActionEvent event) throws IOException 
-    {
+    {      
         MenuItem menuItem = (MenuItem) event.getSource();
         Scene scene = menuItem.getParentPopup().getOwnerWindow().getScene();
         Stage myStage = (Stage) scene.getWindow();
@@ -396,7 +398,7 @@ public class MenuFXMLController implements Initializable {
     
     @FXML
     private void menuReservar(ActionEvent event) throws IOException 
-    {
+    {     
         MenuItem menuItem = (MenuItem) event.getSource();
         Scene scene = menuItem.getParentPopup().getOwnerWindow().getScene();
         Stage myStage = (Stage) scene.getWindow();
