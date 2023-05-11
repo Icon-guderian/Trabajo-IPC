@@ -39,6 +39,7 @@ import java.time.temporal.ChronoUnit;
 import javafx.scene.layout.GridPane;
 import static model.Club.getInstance;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -58,6 +59,9 @@ public class MisReservasController implements Initializable {
     private Booking b;
     
     private Member m; 
+    
+    private List<Booking> ArrayAModificar, ArrayAUtilizar;
+
     @FXML
     private BorderPane borderPane;
     @FXML
@@ -87,7 +91,9 @@ public class MisReservasController implements Initializable {
      */
     
     public void initUsuario(Member member) {
-       m = member;  
+       m = member; 
+       ArrayAModificar = club.getUserBookings("user1"); 
+       ArrayAUtilizar = ordenarPorFechaYHora(ArrayAModificar); 
     }
     
     public static int cambiarStrAInt(String str) {
@@ -113,49 +119,8 @@ public class MisReservasController implements Initializable {
         return ar.belongsToMember(nick); 
     }
     
-    public void initImageNick(Member member) 
+    public void initImageNick() 
     {
-        m = member; 
-        labelNombre.setText("¡Bienvenido "+ m.getNickName()+"! :D");
-
-        LocalDate fechaActual = LocalDate.now();
-        List<Booking> elarray = club.getForDayBookings(fechaActual); 
-        
-        for(int i = 0; i < elarray.size(); i++) 
-        {
-            Booking b = elarray.get(i); 
-            
-            LocalTime hora1 = LocalTime.now(); 
-            int comparacion = hora1.getHour(); 
-            
-            LocalTime hora = b.getFromTime(); 
-            int comparacion1 = hora.getHour(); 
-            
-            DateTimeFormatter formatterDentroIf = DateTimeFormatter.ofPattern("HH:mm");
-            String horaIF = hora.format(formatterDentroIf); 
-            
-            if(b.belongsToMember(m.getNickName()) && comparacion < comparacion1)
-            {
-                String a = ""; 
-                if(b.getPaid() == false) { a = "está pagada."; } else { a = "no está pagado, recuerde pasar por la oficina a pagar la reserva."; }
-                String mostrar = b.getCourt().getName() +", la hora es "+ horaIF + " y "+ a+ " ¡Disfrutad!"; 
-                labelPistaReservada.setText("Tu próxima pista reservada es la "+ mostrar);
-                break; 
-            }
-            else if(b.belongsToMember(m.getNickName()) && comparacion == comparacion1)
-            {
-                String a = ""; 
-                if(b.getPaid() == false) { a = "está pagada."; } else { a = "no está pagado, recuerde pasar por la oficina a pagar la reserva."; }
-                String mostrar = b.getCourt().getName() +" y "+ a + " ¡Disfrutad!"; 
-                labelPistaReservada.setText("Tienes una reserva activa ahora mismo, tú pista es la "+ mostrar);
-                break; 
-            }
-            else 
-            {
-                labelPistaReservada.setText("A lo largo del día no tienes ninguna reserva todavía.");
-            }
-        }
-
         Image imagenUsuario = m.getImage();
         if (imagenUsuario != null) 
         {
@@ -168,23 +133,10 @@ public class MisReservasController implements Initializable {
         }
     }
     
-    public static void ordenarPorFechaYHora(List<Booking> b) {
-        LocalDateTime ahora = LocalDateTime.now();
-        Collections.sort(b, new Comparator<Booking>() {
-                
-                @Override
-                public int compare(Booking objeto1, Booking objeto2) {
-                    LocalDateTime fechaHoraObjeto1 = objeto1.getBookingDate();
-                    LocalDateTime fechaHoraObjeto2 = objeto2.getBookingDate();
-
-                    // Calcula la diferencia entre las fechas y horas de los objetos con la fecha y hora actual
-                    long diferenciaEnMinutosObjeto1 = Math.abs(ahora.until(fechaHoraObjeto1, ChronoUnit.MINUTES));
-                    long diferenciaEnMinutosObjeto2 = Math.abs(ahora.until(fechaHoraObjeto2, ChronoUnit.MINUTES));
-
-                    // Compara las diferencias y devuelve el resultado
-                    return Long.compare(diferenciaEnMinutosObjeto1, diferenciaEnMinutosObjeto2);
-                }
-            });
+    public static List<Booking> ordenarPorFechaYHora(List<Booking> bookings) {
+        List<Booking> copy = new ArrayList<>(bookings);
+        Collections.sort(copy, (Booking booking1, Booking booking2) -> booking1.getBookingDate().compareTo(booking2.getBookingDate()));
+        return copy;
         }
 
     
@@ -275,23 +227,20 @@ public class MisReservasController implements Initializable {
         
         LocalDate fechaActual = LocalDate.now();
         LocalTime horaInicio = LocalTime.of(9, 0);
-        int duracion = club.getBookingDuration();
-
-        List<Booking> elArray = club.getUserBookings(m.getNickName()); 
-        
+        int duracion = club.getBookingDuration();        
         
         for(int i = 0, j = 0; i < 10 ; i++){
             Booking reserva;
-            reserva = elArray.get(j);
-            Booking b = elArray.get(i);
-            if(elArray.get(0)== null || elArray.equals(null)){
+            reserva = ArrayAUtilizar.get(j);
+            Booking b = ArrayAUtilizar.get(i);
+            if(ArrayAUtilizar.get(0)== null || ArrayAUtilizar.equals(null)){
                 Label label = new Label();
                 label.setText("No tienes reservas");
                 GridPane.add(label,1,i);
-            }else if((b != null || !b.equals(null)) && devolverHoraReserva(elArray, horaInicio) & memberTieneReserva(reserva, m) ){
+            }else if((b != null || !b.equals(null)) && devolverHoraReserva(ArrayAUtilizar, horaInicio) & memberTieneReserva(reserva, m) ){
                 
                 Label label = new Label(); 
-                ordenarPorFechaYHora(elArray);
+                ordenarPorFechaYHora(ArrayAUtilizar);
                 LocalTime horaFin = horaInicio.plusMinutes(duracion);        
                 String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
                 String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
