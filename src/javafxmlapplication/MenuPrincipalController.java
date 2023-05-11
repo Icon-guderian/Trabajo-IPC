@@ -82,7 +82,7 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
         {
             items.add(elarray.get(i).getName()); 
         }
-        seleccionPistaBoton.setItems(items);   
+        seleccionPistaBoton.setItems(items);  
         
         registro.setId("boton_blanco_a_sombra");
         autenticarse.setId("boton_blanco_a_sombra");
@@ -103,8 +103,6 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
         }
         return devolver; 
     }
-    
-
   
     @FXML
     private void accederRegistro(ActionEvent event) throws IOException 
@@ -124,7 +122,8 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
 
     @FXML
     private void accederAutenticarse(ActionEvent event) throws IOException 
-    {
+    {   
+        ObservableList<Node> a = GridPane.getChildren();  
         FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/IniciarSesion.fxml"));
         Parent root = miCargador.load();       
         Scene scene = new Scene(root);
@@ -213,6 +212,7 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
                         label.setText(horaInicioTexto + " - " + horaFinTexto + ".  Reservado                                                                                         ");  
                         label.setStyle("-fx-background-color: #ffc8c8");
                         GridPane.add(label, 1, i); 
+                        GridPane.getChildren().get(i + 1).setId("celda"); 
                         horaInicio = horaFin;
                     } 
                     else {
@@ -224,6 +224,7 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
                         label.setText(horaInicioTexto + " - " + horaFinTexto + ".  No reservado                                                                                    ");
                         label.setStyle("-fx-background-color: #80ff80");
                         GridPane.add(label, 1, i);
+                        GridPane.getChildren().get(i + 1).setId("celda");
                         horaInicio = horaFin;
                     }
                 }           
@@ -259,6 +260,7 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
                         label.setText(horaInicioTexto + " - " + horaFinTexto + ".  Reservado                                                                                         ");  
                         label.setStyle("-fx-background-color: #ffc8c8; -fx-background-insets: 0");
                         GridPane.add(label, 1, i); 
+                        GridPane.getChildren().get(i + 1).setId("celda");
                         horaInicio = horaFin;
                     } 
                     else 
@@ -270,6 +272,7 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
                         label.setText(horaInicioTexto + " - " + horaFinTexto + ".  No reservado                                                                                    ");
                         label.setStyle("-fx-background-color: #80ff80; -fx-background-insets: 0");
                         GridPane.add(label, 1, i);
+                        GridPane.getChildren().get(i + 1).setId("celda");
                         horaInicio = horaFin;
                 }       
             }  

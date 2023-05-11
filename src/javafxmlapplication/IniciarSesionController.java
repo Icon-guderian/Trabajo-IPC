@@ -27,6 +27,7 @@ import model.ClubDAOException;
 import model.Member;
 import javafx.css.Style;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -154,6 +155,12 @@ public class IniciarSesionController implements Initializable {
                 alert.setHeaderText("");
                 alert.setContentText("El usuario no está registrado");
                 alert.showAndWait();
+                CajaUsuario.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+                cajaContraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); ");
+                errorUsuarioVacío.setVisible(true);
+                errorContraseñaVaic.setVisible(true);
+                errorUsuarioVacío.setText("Este usuario puede no estar registrado");
+                errorContraseñaVaic.setText("Esta contraseña puede estar incorrecta");
             } 
             else 
             {
@@ -174,5 +181,20 @@ public class IniciarSesionController implements Initializable {
                 myStage.close();
             }   
         } 
+    }
+
+    @FXML
+    private void contraseñaCambiar(MouseEvent event) 
+    {
+        cajaContraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;");
+        errorContraseñaVaic.setVisible(false);
+    }
+
+    @FXML
+    private void usuarioCambiar(MouseEvent event) 
+    {
+        CajaUsuario.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;");
+        errorUsuarioVacío.setVisible(false);
+
     }
 }

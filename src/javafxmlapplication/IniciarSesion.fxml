@@ -63,13 +63,13 @@
             </HBox>
             <HBox alignment="CENTER" prefWidth="274.0" VBox.vgrow="ALWAYS">
                <children>
-                  <TextField fx:id="CajaUsuario" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="298.0" promptText="Introduzca usuario" HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="CajaUsuario" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#usuarioCambiar" prefHeight="26.0" prefWidth="298.0" promptText="Introduzca usuario" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
             <Label fx:id="errorUsuarioVacío" prefHeight="18.0" prefWidth="298.0" style="-fx-text-fill: red;" text="Introduzca un usuario" visible="false" />
             <HBox alignment="CENTER" prefHeight="35.0" prefWidth="422.0" VBox.vgrow="ALWAYS">
                <children>
-                  <PasswordField fx:id="cajaContraseña" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="301.0" promptText="Introduzca la contraseña" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" HBox.hgrow="ALWAYS" />
+                  <PasswordField fx:id="cajaContraseña" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#contraseñaCambiar" prefHeight="26.0" prefWidth="301.0" promptText="Introduzca la contraseña" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
             <Label fx:id="errorContraseñaVaic" prefHeight="18.0" prefWidth="297.0" style="-fx-text-fill: red;" text="Introduzca una contraseña" visible="false" />

@@ -100,18 +100,28 @@
                               <Font size="28.0" />
                            </font>
                         </Label>
-                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="53.0" prefWidth="666.0" VBox.vgrow="ALWAYS">
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="73.0" prefWidth="666.0" VBox.vgrow="ALWAYS">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
                            <children>
                               <VBox alignment="CENTER" prefHeight="55.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
                                  <children>
+                                    <Label style="-fx-text-fill: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%);" text="Seleccione el día">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
                                     <DatePicker fx:id="calendarioBoton" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="55.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
                                  <children>
+                                    <Label style="-fx-text-fill: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%); -fx-font-weight: bold;" text="Seleccione la pista">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
                                     <ComboBox fx:id="seleccionPistaBoton" prefWidth="150.0" />
                                  </children>
                               </VBox>
@@ -146,7 +156,7 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <Button fx:id="mostrarDisponBoton" mnemonicParsing="false" onAction="#mostrarDisponibilidad" prefHeight="37.0" prefWidth="428.0" text="Disponibilidad de la pista" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="14">
+                                          <Button fx:id="mostrarDisponBoton" mnemonicParsing="false" onAction="#mostrarDisponibilidad" prefHeight="37.0" prefWidth="428.0" text="Mostrar la disponibilidad de la pista" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="14">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>

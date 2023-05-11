@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="723.0" prefWidth="472.0" stylesheets="@estilosBotones.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.RegistrarseController">
+<BorderPane prefHeight="723.0" prefWidth="472.0" stylesheets="@estilosBotones.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.RegistrarseController">
    <top>
       <HBox prefHeight="60.0" prefWidth="494.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat, #16779F 0%,  #84B118 90%);" BorderPane.alignment="CENTER" />
    </top>
@@ -29,8 +29,8 @@
             <GridPane alignment="CENTER" prefHeight="528.0" prefWidth="472.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="ALWAYS" minWidth="6.399999999999999" prefWidth="93.000048828125" />
-                <ColumnConstraints hgrow="ALWAYS" maxWidth="466.3999794006347" minWidth="10.0" prefWidth="252.4000122070312" />
-                  <ColumnConstraints hgrow="ALWAYS" maxWidth="466.3999794006347" minWidth="10.0" prefWidth="60.39998779296877" />
+                <ColumnConstraints hgrow="ALWAYS" maxWidth="466.3999794006347" minWidth="10.0" prefWidth="251.39997558593754" />
+                  <ColumnConstraints hgrow="ALWAYS" maxWidth="466.3999794006347" minWidth="10.0" prefWidth="56.20002441406251" />
                   <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="74.60000305175782" />
               </columnConstraints>
               <rowConstraints>
@@ -70,18 +70,22 @@
                   <TextField fx:id="CVV" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="40.0" promptText="CVV" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" GridPane.columnIndex="2" GridPane.rowIndex="14" />
                   <PasswordField fx:id="contraseña" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="220.0" promptText="Contraseña*" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <PasswordField fx:id="contraseñaOtra" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="220.0" promptText="Repita la contraseña*" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                  <ImageView fx:id="ImagenPerfil" fitHeight="101.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="18" GridPane.vgrow="ALWAYS" />
-                  <Button fx:id="fotoBoton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#seleccionarFoto" prefHeight="26.0" prefWidth="57.0" text="Foto" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="18">
+                  <Button fx:id="fotoBoton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#seleccionarFoto" prefHeight="49.0" prefWidth="87.0" text="Elige tu foto de perfil" textAlignment="CENTER" textFill="WHITE" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="18">
                       <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Button>
-                  <Button fx:id="registrarBoton" alignment="CENTER" contentDisplay="CENTER" minWidth="-Infinity" mnemonicParsing="false" onAction="#registrar" prefHeight="44.0" prefWidth="308.0" text="Registrar" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="23">
+                  <Button fx:id="registrarBoton" alignment="CENTER" contentDisplay="CENTER" minWidth="-Infinity" mnemonicParsing="false" onAction="#registrar" prefHeight="43.0" prefWidth="306.0" text="Registrar" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="23">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font></Button>
                   <CheckBox fx:id="mostrarContra" mnemonicParsing="false" onAction="#mostrarContraseñas" text="Mostrar contraseñas" GridPane.columnIndex="1" GridPane.rowIndex="12" />
                   <TextField fx:id="textfield1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="220.0" promptText="Contraseña*" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <TextField fx:id="textfield2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="220.0" promptText="Repita la contraseña*" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="9" GridPane.vgrow="ALWAYS" />
+                  <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="101.0" prefWidth="100.0" style="-fx-border-color: #15622E;" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="18" GridPane.vgrow="ALWAYS">
+                     <children>
+                        <ImageView fx:id="ImagenPerfil" fitHeight="101.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </VBox>
                </children>
             </GridPane>
          </children>

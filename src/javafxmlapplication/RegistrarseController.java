@@ -208,7 +208,7 @@ public class RegistrarseController implements Initializable {
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
-            alert.setHeaderText("Nombre");
+            alert.setHeaderText("Error en el nombre");
             alert.setContentText("Un nombre no puede tener números.");
             alert.showAndWait();
         }
@@ -216,7 +216,7 @@ public class RegistrarseController implements Initializable {
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
-            alert.setHeaderText("Apellidos");
+            alert.setHeaderText("Error en los apellidos");
             alert.setContentText("Los apellidos o apellido no puede/pueden tener números.");
             alert.showAndWait();
         }
@@ -224,7 +224,7 @@ public class RegistrarseController implements Initializable {
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
-            alert.setHeaderText("Teléfono");
+            alert.setHeaderText("Error en el teléfono");
             alert.setContentText("Porfavor introduzca un número válido.");
             alert.showAndWait();
         }
@@ -232,7 +232,7 @@ public class RegistrarseController implements Initializable {
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
-            alert.setHeaderText("Nombre de usuario");
+            alert.setHeaderText("Error en el nombre de usuario");
             alert.setContentText("Ya existe otro usuario con ese nick.");
             alert.showAndWait();
         }
@@ -240,7 +240,7 @@ public class RegistrarseController implements Initializable {
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
-            alert.setHeaderText("Contraseña");
+            alert.setHeaderText("Error en la contraseña");
             alert.setContentText("La contraseña debe de tener más de 6 caracteres");
             alert.showAndWait();
         }
@@ -248,7 +248,7 @@ public class RegistrarseController implements Initializable {
         {
              Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
-            alert.setHeaderText("Contraseña");
+            alert.setHeaderText("Error en la contraseña");
             alert.setContentText("La contraseña debe contener letras y números.");
             alert.showAndWait();
         }
@@ -256,7 +256,7 @@ public class RegistrarseController implements Initializable {
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
-            alert.setHeaderText("Contraseñas");
+            alert.setHeaderText("Error en las contraseñas");
             alert.setContentText("Las contraseñas no coinciden.");
             alert.showAndWait();
         }
@@ -264,7 +264,7 @@ public class RegistrarseController implements Initializable {
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
-            alert.setHeaderText("Número de tarjeta");
+            alert.setHeaderText("Error en el número de tarjeta");
             alert.setContentText("Número de tarjeta no válido.");
             alert.showAndWait();  
         }
@@ -272,7 +272,7 @@ public class RegistrarseController implements Initializable {
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
-            alert.setHeaderText("CVV");
+            alert.setHeaderText("Error en el CVV");
             alert.setContentText("CVV no válido.");
             alert.showAndWait(); 
         }  

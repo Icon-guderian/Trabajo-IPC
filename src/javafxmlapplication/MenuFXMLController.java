@@ -128,6 +128,16 @@ public class MenuFXMLController implements Initializable {
         return ar.belongsToMember(nick); 
     }
     
+    public boolean tienesReserva(List<Booking> array, Member m) 
+    {
+        for(int i = 0; i < array.size(); i++) 
+        {
+            Booking b = array.get(i); 
+            if(b.equals(null) & !b.belongsToMember(m.getNickName())) {return false;}
+        }
+        return true; 
+    }
+    
     public void initImageNick(Member member) 
     {
         m = member; 
@@ -163,6 +173,11 @@ public class MenuFXMLController implements Initializable {
                 if(b.getPaid() == false) { a = "está pagada."; } else { a = "no está pagado, recuerde pasar por la oficina a pagar la reserva."; }
                 String mostrar = b.getCourt().getName() +" y "+ a + " ¡Disfrutad!"; 
                 labelPistaReservada.setText("Tienes una reserva activa ahora mismo, tú pista es la "+ mostrar);
+                break; 
+            }
+            else if (elarray.get(0) == null)
+            {
+                labelPistaReservada.setText("A lo largo del día no tienes ninguna reserva todavía.");
                 break; 
             }
             else 
@@ -285,6 +300,7 @@ public class MenuFXMLController implements Initializable {
                         label.setText(horaInicioTexto + " - " + horaFinTexto + ".  Reservado por "+ m.getNickName() +"                                                                               ");  
                         label.setStyle("-fx-background-color: #ffff80");
                         GridPane.add(label, 1, i); 
+                        GridPane.getChildren().get(i + 1).setId("celda"); 
                         horaInicio = horaFin;
                     } 
                      else if(devolverHoraReserva(horarioDePista, horaInicio)) 
@@ -296,6 +312,7 @@ public class MenuFXMLController implements Initializable {
                         label.setText(horaInicioTexto + " - " + horaFinTexto + ".  Reservado                                                                                         ");  
                         label.setStyle("-fx-background-color: #ffc8c8");
                         GridPane.add(label, 1, i); 
+                        GridPane.getChildren().get(i + 1).setId("celda"); 
                         horaInicio = horaFin;  
                     }
                     else 
@@ -307,6 +324,7 @@ public class MenuFXMLController implements Initializable {
                         label.setText(horaInicioTexto + " - " + horaFinTexto + ".  No reservado                                                                                    ");
                         label.setStyle("-fx-background-color: #80ff80");
                         GridPane.add(label, 1, i);
+                        GridPane.getChildren().get(i + 1).setId("celda"); 
                         horaInicio = horaFin;
                     }
                 }           
@@ -346,6 +364,7 @@ public class MenuFXMLController implements Initializable {
                         label.setText(horaInicioTexto + " - " + horaFinTexto + ".  Reservado por "+ m.getNickName() +"                                                                               ");  
                         label.setStyle("-fx-background-color: #ffff80");
                         GridPane.add(label, 1, i); 
+                        GridPane.getChildren().get(i + 1).setId("celda"); 
                         horaInicio = horaFin;
                         j++; 
                     } 
@@ -358,6 +377,7 @@ public class MenuFXMLController implements Initializable {
                         label.setText(horaInicioTexto + " - " + horaFinTexto + ".  Reservado                                                                                         ");  
                         label.setStyle("-fx-background-color: #ffc8c8");
                         GridPane.add(label, 1, i); 
+                        GridPane.getChildren().get(i + 1).setId("celda"); 
                         horaInicio = horaFin;  
                         j++; 
                     }
@@ -370,6 +390,7 @@ public class MenuFXMLController implements Initializable {
                         label.setText(horaInicioTexto + " - " + horaFinTexto + ".  No reservado                                                                                    ");
                         label.setStyle("-fx-background-color: #80ff80; -fx-background-insets: 0");
                         GridPane.add(label, 1, i);
+                        GridPane.getChildren().get(i + 1).setId("celda"); 
                         horaInicio = horaFin;
                         
                 }       
