@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.gluonhq.charm.glisten.control.Icon?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -63,19 +64,21 @@
             </HBox>
             <HBox alignment="CENTER" prefWidth="274.0" VBox.vgrow="ALWAYS">
                <children>
+                  <Icon content="PERSON" />
                   <TextField fx:id="CajaUsuario" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#usuarioCambiar" prefHeight="26.0" prefWidth="298.0" promptText="Introduzca usuario" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
             <Label fx:id="errorUsuarioVacío" prefHeight="18.0" prefWidth="298.0" style="-fx-text-fill: red;" text="Introduzca un usuario" visible="false" />
             <HBox alignment="CENTER" prefHeight="35.0" prefWidth="422.0" VBox.vgrow="ALWAYS">
                <children>
+                  <Icon content="LOCK" />
                   <PasswordField fx:id="cajaContraseña" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#contraseñaCambiar" prefHeight="26.0" prefWidth="301.0" promptText="Introduzca la contraseña" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
             <Label fx:id="errorContraseñaVaic" prefHeight="18.0" prefWidth="297.0" style="-fx-text-fill: red;" text="Introduzca una contraseña" visible="false" />
             <HBox alignment="CENTER" prefHeight="78.0" prefWidth="422.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Button fx:id="aceptarBoton" alignment="CENTER" mnemonicParsing="false" onAction="#Aceptar" prefHeight="34.0" prefWidth="305.0" text="Aceptar" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Button fx:id="aceptarBoton" alignment="CENTER" mnemonicParsing="false" onAction="#Aceptar" prefHeight="34.0" prefWidth="322.0" text="Aceptar" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font></Button>
