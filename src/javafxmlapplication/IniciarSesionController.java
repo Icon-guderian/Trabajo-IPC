@@ -108,30 +108,39 @@ public class IniciarSesionController implements Initializable {
         
         if (usuario.isEmpty() && contraseña.isEmpty()) 
         {
-            CajaUsuario.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
-            cajaContraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); ");
+            CajaUsuario.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #F68A1F; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+            cajaContraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #F68A1F; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); ");
             errorUsuarioVacío.setVisible(true);
             errorContraseñaVaic.setVisible(true);
-            
+            errorUsuarioVacío.setStyle("-fx-text-fill: #F68A1F"); 
+            errorContraseñaVaic.setStyle("-fx-text-fill: #F68A1F"); 
+            errorUsuarioVacío.setText("Introduzca un usuario");
+            errorContraseñaVaic.setText("Introduzca una contraseña");
         } 
             else if(contraseña.isEmpty() && !usuario.isEmpty()) 
         {
-            cajaContraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+            cajaContraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #F68A1F; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
             CajaUsuario.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;");
             errorContraseñaVaic.setVisible(true);
+            errorContraseñaVaic.setStyle("-fx-text-fill: #F68A1F"); 
+            errorContraseñaVaic.setText("Introduzca una contraseña");
             errorUsuarioVacío.setVisible(false);
         } 
             else if(!contraseña.isEmpty() && usuario.isEmpty() )
         {
-            CajaUsuario.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+            CajaUsuario.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #F68A1F; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
             cajaContraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
             errorUsuarioVacío.setVisible(true);
+            errorUsuarioVacío.setStyle("-fx-text-fill: #F68A1F");
+            errorUsuarioVacío.setText("Introduzca un usuario");
             errorContraseñaVaic.setVisible(false);        
         }
             else if(usuario.isEmpty())
         {
-           CajaUsuario.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+           CajaUsuario.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #F68A1F; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
            errorUsuarioVacío.setVisible(true);
+           errorUsuarioVacío.setStyle("-fx-text-fill: #F68A1F");
+           errorUsuarioVacío.setText("Introduzca un usuario");
         }
             else 
         {
@@ -159,6 +168,8 @@ public class IniciarSesionController implements Initializable {
                 cajaContraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); ");
                 errorUsuarioVacío.setVisible(true);
                 errorContraseñaVaic.setVisible(true);
+                errorUsuarioVacío.setStyle("-fx-text-fill: red"); 
+                errorContraseñaVaic.setStyle("-fx-text-fill: red");
                 errorUsuarioVacío.setText("Este usuario puede no estar registrado");
                 errorContraseñaVaic.setText("Esta contraseña puede estar incorrecta");
             } 
