@@ -153,19 +153,18 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
                     
         if(fecha == null) 
         {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
+            Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Error");
-            alert.setHeaderText("Error en la fecha");
-            alert.setContentText("Por favor introduzca una fecha");
+            alert.setHeaderText("Error en selección de la fecha");
+            alert.setContentText("Por favor introduzca una fecha.");
             alert.showAndWait();
-        
         }
         else if(pista == null) 
         {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
+            Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Error");
-            alert.setHeaderText("Pista");
-            alert.setContentText("Debe seleccionar 1 pista");
+            alert.setHeaderText("Error en la selección de pista");
+            alert.setContentText("Debe seleccionar 1 pista.");
             alert.showAndWait();
         } 
         else if(fecha.isBefore(fechaActual)) 

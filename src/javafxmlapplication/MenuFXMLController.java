@@ -24,37 +24,26 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Club;
-import static model.Club.getInstance;
 import model.ClubDAOException;
 import model.Court;
 import model.Member;
 import model.Booking;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 import javafx.scene.Node;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar.ButtonData;
-import javafx.scene.control.DialogPane;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Window;
 import static model.Club.getInstance;
-import javafx.css.Style;
 import javafx.scene.control.MenuButton;
 
 /**
@@ -67,8 +56,6 @@ import javafx.scene.control.MenuButton;
 public class MenuFXMLController implements Initializable {
     
     private Club club; 
-    
-    private Booking b;
     
     private Member m; 
     
@@ -237,19 +224,19 @@ public class MenuFXMLController implements Initializable {
                     
         if(fecha == null) 
         {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
+            Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Error");
-            alert.setHeaderText("Error en la fecha");
-            alert.setContentText("Por favor introduzca una fecha");
+            alert.setHeaderText("Error en selección de la fecha");
+            alert.setContentText("Por favor introduzca una fecha.");
             alert.showAndWait();
         
         }
         else if(pista == null) 
         {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
+            Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Error");
-            alert.setHeaderText("Pista");
-            alert.setContentText("Debe seleccionar 1 pista");
+            alert.setHeaderText("Error en la selección de pista");
+            alert.setContentText("Debe seleccionar 1 pista.");
             alert.showAndWait();
         } 
         else if(fecha.isBefore(fechaActual)) 
@@ -476,6 +463,7 @@ public class MenuFXMLController implements Initializable {
             try {
                 Parent root = miCargador.load();
                 Scene scene1 = new Scene(root);
+                scene1.getStylesheets().add(getClass().getResource("calendario.css").toExternalForm()); 
                 Stage stage = new Stage();
                 stage.setScene(scene1);
                 stage.show();

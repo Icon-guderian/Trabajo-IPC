@@ -224,7 +224,9 @@ public class MisReservasController implements Initializable {
         club = getInstance(); 
         
         for(int i = 0; i < 10 ; i++){
+           
             Booking b = ArrayAUtilizar.get(i);
+            
             if(ArrayAUtilizar.equals(null)){
                 Label label = new Label();
                 label.setText("No tienes reservas");
