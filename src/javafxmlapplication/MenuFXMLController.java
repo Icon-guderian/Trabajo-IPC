@@ -133,6 +133,20 @@ public class MenuFXMLController implements Initializable {
         LocalDate fechaActual = LocalDate.now();
         List<Booking> elarray = club.getForDayBookings(fechaActual); 
         
+        LocalTime horaComparar = LocalTime.now(); 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH");
+        String horaCompararString = horaComparar.format(formatter); 
+        int horaCompararInt = cambiarStrAInt(horaCompararString); 
+        
+        if (elarray.isEmpty())
+        {
+            labelPistaReservada.setText("A lo largo del día no tienes ninguna reserva todavía.");
+        }
+        else if (horaCompararInt > 22 || horaCompararInt < 9)
+        { 
+            labelPistaReservada.setText("Nuestras pistas de tenis permanecen cerradas :( . Horario de apertura de 9:00 a 22:00.");
+        }
+        
         for(int i = 0; i < elarray.size(); i++) 
         {
             Booking b = elarray.get(i); 
@@ -162,10 +176,9 @@ public class MenuFXMLController implements Initializable {
                 labelPistaReservada.setText("Tienes una reserva activa ahora mismo, tú pista es la "+ mostrar);
                 break; 
             }
-            else if (elarray.get(0) == null)
-            {
-                labelPistaReservada.setText("A lo largo del día no tienes ninguna reserva todavía.");
-                break; 
+            else if (horaCompararInt > 22 || horaCompararInt < 9)
+            { 
+                labelPistaReservada.setText("Nuestras pistas de tenis permanecen cerradas :( . Horario de apertura de 9:00 a 22:00.");
             }
             else 
             {
