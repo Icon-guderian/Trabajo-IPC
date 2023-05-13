@@ -33,7 +33,12 @@ import model.Booking;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import static model.Club.getInstance;
 
 /**
@@ -69,6 +74,42 @@ public class ModificarPerfilController implements Initializable {
     private Member m; 
     @FXML
     private MenuButton opcionesBoton;
+    @FXML
+    private Text apellidos;
+    @FXML
+    private Text telefóno;
+    @FXML
+    private Text nickname;
+    @FXML
+    private Label nombre;
+    @FXML
+    private TextField NúmeroTarjeta;
+    @FXML
+    private TextField CVV;
+    @FXML
+    private PasswordField contraseña;
+    @FXML
+    private Button fotoBoton;
+    @FXML
+    private Button actualizarBoton;
+    @FXML
+    private CheckBox mostrarContra;
+    @FXML
+    private TextField textfield1;
+    @FXML
+    private ImageView ImagenPerfil;
+    @FXML
+    private Button nombreBoton;
+    @FXML
+    private Button apellidosBoton;
+    @FXML
+    private Button nickBoton;
+    @FXML
+    private Button contraseñaBoton;
+    @FXML
+    private Button tarjetaBoton;
+    @FXML
+    private Button cvvBoton;
     
     public void initUsuario(Member member) {
        m = member;  
@@ -228,6 +269,59 @@ public class ModificarPerfilController implements Initializable {
         { 
             alert.close(); 
         }
+    }
+
+
+    @FXML
+    private void tarjetaClick(MouseEvent event) {
+    }
+
+    @FXML
+    private void cvvClick(MouseEvent event) {
+    }
+
+    @FXML
+    private void contraseñaClick(MouseEvent event) {
+    }
+
+    @FXML
+    private void cambiarFoto(ActionEvent event) {
+    }
+
+    @FXML
+    private void actualizar(ActionEvent event) {
+    }
+
+    @FXML
+    private void mostrarContraseñas(ActionEvent event) {
+    }
+
+    @FXML
+    private void editarNombre(ActionEvent event) {
+    }
+
+    @FXML
+    private void editarApellidos(ActionEvent event) {
+    }
+
+    @FXML
+    private void editarTel(ActionEvent event) {
+    }
+
+    @FXML
+    private void editarNick(ActionEvent event) {
+    }
+
+    @FXML
+    private void editarContra(ActionEvent event) {
+    }
+
+    @FXML
+    private void editarTarjeta(ActionEvent event) {
+    }
+
+    @FXML
+    private void editarCVV(ActionEvent event) {
     }
     
 }
