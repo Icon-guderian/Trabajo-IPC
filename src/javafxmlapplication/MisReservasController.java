@@ -65,10 +65,6 @@ public class MisReservasController implements Initializable {
     @FXML
     private BorderPane borderPane;
     @FXML
-    private Label labelNombre;
-    @FXML
-    private Label labelPistaReservada;
-    @FXML
     private MenuItem hacerReserva;
     @FXML
     private MenuItem modificar;
@@ -115,6 +111,17 @@ public class MisReservasController implements Initializable {
         String nick = m.getNickName(); 
         if(ar == null) { return false; }
         return ar.belongsToMember(nick); 
+    }
+    
+    public String getUserBookingsAsString(String login) {
+        List<Booking> userBookings = club.getUserBookings(m.getNickName());
+        StringBuilder sb = new StringBuilder();
+        for (Booking booking : userBookings) {
+            sb.append("Pista reservada: ");
+            sb.append(b.getCourt());
+            sb.append("\n");
+        }
+        return sb.toString();
     }
     
     public void initImageNick() 
@@ -231,20 +238,21 @@ public class MisReservasController implements Initializable {
                 Label label = new Label();
                 label.setText("No tienes reservas");
                 GridPane.add(label,1,i);
-            }else if((!b.equals(null)) ){
-                
+            }else if((!b.equals(null)) ){ 
                 Label label = new Label();
                 LocalTime horaInicio = LocalTime.of(9, 0);
                 int duracion = club.getBookingDuration();
                 LocalTime horaFin = horaInicio.plusMinutes(duracion);        
                 String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
                 String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
-                String pistaResrvada;
-                label.setText(horaInicioTexto + " - " + horaFinTexto + ".  Reservado por "+ m.getNickName() +"                                                                               ");  
+                String pistaReservada = getUserBookingsAsString(m.getNickName());
+                label.setText(horaInicioTexto + " - " + horaFinTexto + ".  Reservado por "+ m.getNickName() + " --- " + "Pista reservada" + pistaReservada +"                                                                               ");  
                 label.setStyle("-fx-background-color: #ffff80");
                 GridPane.add(label, 1, i); 
+                GridPane.getChildren().get(i + 1).setId("celda"); 
+                horaInicio = horaFin;
                 
-            }else if (i > 10){break;}
+            }
         
         }
     

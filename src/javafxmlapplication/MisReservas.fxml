@@ -24,21 +24,6 @@
             <HBox alignment="TOP_RIGHT" prefHeight="37.0" prefWidth="686.0" style="-fx-border-color: #84B118; -fx-border-width: 8; -fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat, #16779F 0%, #84B118 55%, #15622E 80%);">
                <children>
                   <VBox alignment="CENTER_LEFT" prefHeight="99.0" prefWidth="294.0" HBox.hgrow="ALWAYS">
-                     <children>
-                        <Label fx:id="labelNombre" prefHeight="33.0" prefWidth="246.0" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets bottom="10.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Label fx:id="labelPistaReservada" prefHeight="73.0" prefWidth="247.0" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Label>
-                     </children>
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>

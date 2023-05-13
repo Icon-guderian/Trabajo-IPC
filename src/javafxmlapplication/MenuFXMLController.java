@@ -128,7 +128,7 @@ public class MenuFXMLController implements Initializable {
     public void initImageNick(Member member) 
     {
         m = member; 
-        labelNombre.setText("¡Bienvenido "+ m.getNickName()+"! :D");
+        labelNombre.setText("¡Bienvenido "+ m.getNickName()+"!");
 
         LocalDate fechaActual = LocalDate.now();
         List<Booking> elarray = club.getForDayBookings(fechaActual); 
@@ -144,7 +144,7 @@ public class MenuFXMLController implements Initializable {
         }
         else if (horaCompararInt > 22 || horaCompararInt < 9)
         { 
-            labelPistaReservada.setText("Nuestras pistas de tenis permanecen cerradas :( . Horario de apertura de 9:00 a 22:00.");
+            labelPistaReservada.setText("Nuestras pistas de tenis permanecen cerradas. Horario de apertura de 9:00 a 22:00.");
         }
         
         for(int i = 0; i < elarray.size(); i++) 
@@ -178,7 +178,7 @@ public class MenuFXMLController implements Initializable {
             }
             else if (horaCompararInt > 22 || horaCompararInt < 9)
             { 
-                labelPistaReservada.setText("Nuestras pistas de tenis permanecen cerradas :( . Horario de apertura de 9:00 a 22:00.");
+                labelPistaReservada.setText("Nuestras pistas de tenis permanecen cerradas. Horario de apertura de 9:00 a 22:00.");
             }
             else 
             {
