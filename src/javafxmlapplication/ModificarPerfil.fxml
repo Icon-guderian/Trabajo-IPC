@@ -17,9 +17,8 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="borderPane" maxHeight="1120.0" maxWidth="1000.0" minHeight="112.0" minWidth="100.0" prefHeight="766.0" prefWidth="685.0" stylesheets="@estilosBotones.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.ModificarPerfilController">
+<BorderPane fx:id="borderPane" maxHeight="1120.0" maxWidth="1000.0" minHeight="112.0" minWidth="100.0" prefHeight="867.0" prefWidth="685.0" stylesheets="@estilosBotones.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.ModificarPerfilController">
    <top>
       
    </top>
@@ -102,7 +101,7 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="577.0" prefWidth="686.0">
+            <HBox alignment="CENTER" prefHeight="648.0" prefWidth="685.0">
                <children>
                   <VBox alignment="TOP_CENTER" prefHeight="480.0" prefWidth="686.0" HBox.hgrow="ALWAYS">
                      <padding>
@@ -125,10 +124,10 @@
                               <Font size="28.0" />
                            </font>
                         </Label>
-                        <VBox alignment="CENTER" prefHeight="312.0" prefWidth="716.0" VBox.vgrow="ALWAYS">
+                        <VBox alignment="CENTER" prefHeight="555.0" prefWidth="666.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-                              <GridPane alignment="CENTER" prefHeight="528.0" prefWidth="472.0">
+                              <HBox alignment="CENTER" prefHeight="0.0" prefWidth="666.0" VBox.vgrow="ALWAYS" />
+                              <GridPane alignment="CENTER" prefHeight="514.0" prefWidth="666.0">
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="ALWAYS" maxWidth="136.0" minWidth="6.399999999999999" prefWidth="44.0" />
                                     <ColumnConstraints hgrow="ALWAYS" maxWidth="466.3999794006347" minWidth="10.0" prefWidth="108.0" />
@@ -147,16 +146,16 @@
                                     <RowConstraints maxHeight="47.0" minHeight="2.0" prefHeight="8.0" valignment="CENTER" vgrow="ALWAYS" />
                                     <RowConstraints maxHeight="58.0" minHeight="10.0" prefHeight="28.0" valignment="CENTER" vgrow="ALWAYS" />
                                     <RowConstraints maxHeight="44.400000000000006" minHeight="0.0" prefHeight="5.0" valignment="CENTER" vgrow="ALWAYS" />
-                                    <RowConstraints maxHeight="51.0" minHeight="0.0" prefHeight="8.0" valignment="CENTER" vgrow="ALWAYS" />
-                                    <RowConstraints maxHeight="47.0" minHeight="0.0" prefHeight="3.0" valignment="CENTER" vgrow="ALWAYS" />
-                                    <RowConstraints maxHeight="51.0" minHeight="1.0" prefHeight="1.0" valignment="CENTER" vgrow="ALWAYS" />
-                                    <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="16.0" valignment="CENTER" vgrow="ALWAYS" />
-                                    <RowConstraints maxHeight="57.0" minHeight="10.0" prefHeight="11.0" valignment="CENTER" vgrow="ALWAYS" />
-                                    <RowConstraints maxHeight="63.0" minHeight="4.999987792968739" prefHeight="34.0" valignment="CENTER" vgrow="ALWAYS" />
-                                    <RowConstraints maxHeight="65.0" minHeight="10.0" prefHeight="14.0" valignment="CENTER" vgrow="ALWAYS" />
-                                    <RowConstraints maxHeight="59.0" minHeight="10.0" prefHeight="12.0" valignment="CENTER" vgrow="ALWAYS" />
-                                    <RowConstraints maxHeight="54.0" minHeight="10.0" prefHeight="11.0" valignment="CENTER" vgrow="ALWAYS" />
-                                    <RowConstraints maxHeight="46.0" minHeight="8.0" prefHeight="8.0" valignment="CENTER" vgrow="ALWAYS" />
+                                    <RowConstraints maxHeight="51.0" minHeight="0.0" prefHeight="0.0" valignment="CENTER" vgrow="ALWAYS" />
+                                    <RowConstraints maxHeight="47.0" minHeight="0.0" prefHeight="0.0" valignment="CENTER" vgrow="ALWAYS" />
+                                    <RowConstraints maxHeight="51.0" minHeight="0.0" prefHeight="0.0" valignment="CENTER" vgrow="ALWAYS" />
+                                    <RowConstraints maxHeight="50.0" minHeight="4.0" prefHeight="4.0" valignment="CENTER" vgrow="ALWAYS" />
+                                    <RowConstraints maxHeight="57.0" minHeight="0.0" prefHeight="3.0" valignment="CENTER" vgrow="ALWAYS" />
+                                    <RowConstraints maxHeight="105.0" minHeight="4.999987792968739" prefHeight="33.0" valignment="CENTER" vgrow="ALWAYS" />
+                                    <RowConstraints maxHeight="100.0" minHeight="0.0" prefHeight="0.0" valignment="CENTER" vgrow="ALWAYS" />
+                                    <RowConstraints maxHeight="104.0" minHeight="10.0" prefHeight="37.0" valignment="CENTER" vgrow="ALWAYS" />
+                                    <RowConstraints maxHeight="97.0" minHeight="4.0" prefHeight="14.0" valignment="CENTER" vgrow="ALWAYS" />
+                                    <RowConstraints maxHeight="92.0" minHeight="8.0" prefHeight="82.0" valignment="CENTER" vgrow="ALWAYS" />
                                     <RowConstraints maxHeight="45.00001220703126" minHeight="8.0" prefHeight="8.0" valignment="CENTER" vgrow="ALWAYS" />
                                     <RowConstraints maxHeight="43.39999999999998" minHeight="10.0" prefHeight="11.0" valignment="CENTER" vgrow="ALWAYS" />
                                     <RowConstraints maxHeight="43.39999999999998" minHeight="2.0" prefHeight="2.0" valignment="CENTER" vgrow="ALWAYS" />
@@ -169,7 +168,7 @@
                                     <TextField fx:id="NúmeroTarjeta" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#tarjetaClick" prefHeight="26.0" prefWidth="242.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" GridPane.columnIndex="2" GridPane.rowIndex="14" />
                                     <TextField fx:id="CVV" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#cvvClick" prefWidth="40.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" GridPane.columnIndex="2" GridPane.rowIndex="16" />
                                     <PasswordField fx:id="contraseña" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#contraseñaClick" prefWidth="220.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-                                    <Button fx:id="fotoBoton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cambiarFoto" prefHeight="49.0" prefWidth="87.0" text="Edita la foto de perfil" textAlignment="CENTER" textFill="WHITE" wrapText="true" GridPane.columnIndex="4" GridPane.rowIndex="12">
+                                    <Button fx:id="fotoBoton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#cambiarFoto" prefHeight="49.0" prefWidth="87.0" text="Edita la foto de perfil" textAlignment="CENTER" textFill="WHITE" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="18">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font>
@@ -181,7 +180,7 @@
                                     </Button>
                                     <CheckBox fx:id="mostrarContra" mnemonicParsing="false" onAction="#mostrarContraseñas" text="Ver contraseña" GridPane.columnIndex="2" GridPane.rowIndex="12" />
                                     <TextField fx:id="textfield1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#contraseñaClick" prefWidth="220.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" text="Contraseña*" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-                                    <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="101.0" prefWidth="100.0" style="-fx-border-color: #15622E;" GridPane.columnIndex="4" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
+                                    <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="101.0" prefWidth="100.0" style="-fx-border-color: #15622E;" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="18" GridPane.vgrow="ALWAYS">
                                        <children>
                                           <ImageView fx:id="ImagenPerfil" fitHeight="101.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
                                        </children>
@@ -189,7 +188,6 @@
                                     <Button fx:id="nombreBoton" mnemonicParsing="false" onAction="#editarNombre" stylesheets="@estilosBotones.css" text="Editar" GridPane.columnIndex="3" />
                                     <Button fx:id="apellidosBoton" mnemonicParsing="false" onAction="#editarApellidos" text="Editar" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                                     <Button mnemonicParsing="false" onAction="#editarTel" text="Editar" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                                    <Button fx:id="nickBoton" mnemonicParsing="false" onAction="#editarNick" text="Editar" GridPane.columnIndex="3" GridPane.rowIndex="5" />
                                     <Button fx:id="contraseñaBoton" mnemonicParsing="false" onAction="#editarContra" text="Editar" GridPane.columnIndex="3" GridPane.rowIndex="7" />
                                     <Button fx:id="tarjetaBoton" mnemonicParsing="false" onAction="#editarTarjeta" text="Editar" GridPane.columnIndex="3" GridPane.rowIndex="14" />
                                     <Button fx:id="cvvBoton" mnemonicParsing="false" onAction="#editarCVV" text="Editar" GridPane.columnIndex="3" GridPane.rowIndex="16" />
@@ -200,10 +198,16 @@
                                     <Label text="Contraseña:" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                                     <Label text="Número de tarjeta:" GridPane.columnIndex="1" GridPane.rowIndex="14" />
                                     <Label fx:id="nombre" text="CVV" GridPane.columnIndex="1" GridPane.rowIndex="16" />
-                                    <Text fx:id="nombre" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="root" wrappingWidth="246.0" GridPane.columnIndex="2" />
-                                    <Text fx:id="apellidos" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="246.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                    <Text fx:id="telefóno" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                                    <Text fx:id="nickname" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="243.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                    <TextField fx:id="nickname" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#tarjetaClick" prefHeight="26.0" prefWidth="242.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                    <TextField fx:id="telefóno" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#tarjetaClick" prefHeight="26.0" prefWidth="242.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                    <TextField fx:id="apellidos" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#tarjetaClick" prefHeight="26.0" prefWidth="242.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#tarjetaClick" prefHeight="26.0" prefWidth="242.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" GridPane.columnIndex="2" />
+                                    <Label prefHeight="17.0" prefWidth="243.0" GridPane.columnIndex="2" />
+                                    <Label prefHeight="17.0" prefWidth="243.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <Label prefHeight="17.0" prefWidth="243.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                    <Label prefHeight="17.0" prefWidth="243.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                    <Label prefHeight="17.0" prefWidth="243.0" GridPane.columnIndex="2" GridPane.rowIndex="14" />
+                                    <Label prefHeight="17.0" prefWidth="42.0" GridPane.columnIndex="2" GridPane.rowIndex="16" />
                                  </children>
                               </GridPane>
                            </children>

@@ -75,11 +75,11 @@ public class ModificarPerfilController implements Initializable {
     @FXML
     private MenuButton opcionesBoton;
     @FXML
-    private Text apellidos;
+    private TextField apellidos;
     @FXML
-    private Text telefóno;
+    private TextField telefóno;
     @FXML
-    private Text nickname;
+    private TextField nickname;
     @FXML
     private Label nombre;
     @FXML
@@ -102,8 +102,6 @@ public class ModificarPerfilController implements Initializable {
     private Button nombreBoton;
     @FXML
     private Button apellidosBoton;
-    @FXML
-    private Button nickBoton;
     @FXML
     private Button contraseñaBoton;
     @FXML
@@ -308,9 +306,6 @@ public class ModificarPerfilController implements Initializable {
     private void editarTel(ActionEvent event) {
     }
 
-    @FXML
-    private void editarNick(ActionEvent event) {
-    }
 
     @FXML
     private void editarContra(ActionEvent event) {
