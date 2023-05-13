@@ -409,6 +409,7 @@ public class MenuFXMLController implements Initializable {
             Parent root = miCargador.load();
             MisReservasController controlador = miCargador.getController(); 
             controlador.initUsuario(m); 
+            controlador.initImageNick(m);
             Scene scene1 = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene1);
@@ -447,6 +448,7 @@ public class MenuFXMLController implements Initializable {
             Parent root = miCargador.load();
             ModificarPerfilController controlador = miCargador.getController(); 
             controlador.initUsuario(m); 
+            
             Scene scene1 = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene1);

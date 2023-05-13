@@ -44,6 +44,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import javafx.scene.control.MenuButton;
+import static javafxmlapplication.MenuFXMLController.cambiarStrAInt;
 
 /**
  * FXML Controller class
@@ -77,16 +78,20 @@ public class MisReservasController implements Initializable {
     @FXML
     private Button mostrarDisponBoton;
     @FXML
-    private MenuItem miMenu;
-    @FXML
     private MenuButton opcionesBoton;
+    @FXML
+    private Label labelNombre;
+    @FXML
+    private Label labelPistaReservada;
+    @FXML
+    private MenuItem miReserva;
     /**
      * Initializes the controller class.
      */
     
     public void initUsuario(Member member) {
        m = member; 
-       ArrayAModificar = club.getUserBookings("user1"); 
+       ArrayAModificar = club.getUserBookings("david12344"); 
        ArrayAUtilizar = ordenarPorFechaYHora(ArrayAModificar); 
     }
     
@@ -117,15 +122,73 @@ public class MisReservasController implements Initializable {
         List<Booking> userBookings = club.getUserBookings(m.getNickName());
         StringBuilder sb = new StringBuilder();
         for (Booking booking : userBookings) {
-            sb.append("Pista reservada: ");
             sb.append(b.getCourt());
             sb.append("\n");
         }
         return sb.toString();
     }
     
-    public void initImageNick() 
+    public void initImageNick(Member member) 
     {
+        m = member; 
+        labelNombre.setText("¡Bienvenido "+ m.getNickName()+"!");
+
+        LocalDate fechaActual = LocalDate.now();
+        List<Booking> elarray = club.getForDayBookings(fechaActual); 
+        
+        LocalTime horaComparar = LocalTime.now(); 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH");
+        String horaCompararString = horaComparar.format(formatter); 
+        int horaCompararInt = cambiarStrAInt(horaCompararString); 
+        
+        if (elarray.isEmpty())
+        {
+            labelPistaReservada.setText("A lo largo del día no tienes ninguna reserva todavía.");
+        }
+        else if (horaCompararInt > 22 || horaCompararInt < 9)
+        { 
+            labelPistaReservada.setText("Nuestras pistas de tenis permanecen cerradas. Horario de apertura de 9:00 a 22:00.");
+        }
+        
+        for(int i = 0; i < elarray.size(); i++) 
+        {
+            Booking b = elarray.get(i); 
+            
+            LocalTime hora1 = LocalTime.now(); 
+            int comparacion = hora1.getHour(); 
+            
+            LocalTime hora = b.getFromTime(); 
+            int comparacion1 = hora.getHour(); 
+            
+            DateTimeFormatter formatterDentroIf = DateTimeFormatter.ofPattern("HH:mm");
+            String horaIF = hora.format(formatterDentroIf); 
+            
+            if(b.belongsToMember(m.getNickName()) && comparacion < comparacion1)
+            {
+                String a = ""; 
+                if(b.getPaid() == false) { a = "está pagada."; } else { a = "no está pagado, recuerde pasar por la oficina a pagar la reserva."; }
+                String mostrar = b.getCourt().getName() +", la hora es "+ horaIF + " y "+ a+ " ¡Disfrutad!"; 
+                labelPistaReservada.setText("Tu próxima pista reservada es la "+ mostrar);
+                break; 
+            }
+            else if(b.belongsToMember(m.getNickName()) && comparacion == comparacion1)
+            {
+                String a = ""; 
+                if(b.getPaid() == false) { a = "está pagada."; } else { a = "no está pagado, recuerde pasar por la oficina a pagar la reserva."; }
+                String mostrar = b.getCourt().getName() +" y "+ a + " ¡Disfrutad!"; 
+                labelPistaReservada.setText("Tienes una reserva activa ahora mismo, tú pista es la "+ mostrar);
+                break; 
+            }
+            else if (horaCompararInt > 22 || horaCompararInt < 9)
+            { 
+                labelPistaReservada.setText("Nuestras pistas de tenis permanecen cerradas. Horario de apertura de 9:00 a 22:00.");
+            }
+            else 
+            {
+                labelPistaReservada.setText("A lo largo del día no tienes ninguna reserva todavía.");
+            }
+        }
+
         Image imagenUsuario = m.getImage();
         if (imagenUsuario != null) 
         {
@@ -168,6 +231,7 @@ public class MisReservasController implements Initializable {
             Parent root = miCargador.load();
             HacerReservasController controlador = miCargador.getController(); 
             controlador.initUsuario(m); 
+            controlador.initImageNick(m);
             Scene scene1 = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene1);
@@ -186,6 +250,7 @@ public class MisReservasController implements Initializable {
             Parent root = miCargador.load();
             ModificarPerfilController controlador = miCargador.getController(); 
             controlador.initUsuario(m); 
+            controlador.initImageNick(m);
             Scene scene1 = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene1);
@@ -246,7 +311,7 @@ public class MisReservasController implements Initializable {
                 String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
                 String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
                 String pistaReservada = getUserBookingsAsString(m.getNickName());
-                label.setText(horaInicioTexto + " - " + horaFinTexto + ".  Reservado por "+ m.getNickName() + " --- " + "Pista reservada" + pistaReservada +"                                                                               ");  
+                label.setText(horaInicioTexto + " - " + horaFinTexto + ".  Reservado por: "+ m.getNickName() + "Pista reservada: " + pistaReservada +"                                                                               ");  
                 label.setStyle("-fx-background-color: #ffff80");
                 GridPane.add(label, 1, i); 
                 GridPane.getChildren().get(i + 1).setId("celda"); 
@@ -258,7 +323,6 @@ public class MisReservasController implements Initializable {
     
     }
 
-    @FXML
     private void miMenu(ActionEvent event) {
         MenuItem menuItem = (MenuItem) event.getSource();
         Scene scene = menuItem.getParentPopup().getOwnerWindow().getScene();
@@ -279,6 +343,10 @@ public class MisReservasController implements Initializable {
             stage.show();
             myStage.close();
         } catch (IOException ex) {}
+    }
+
+    @FXML
+    private void menuMiReserva(ActionEvent event) {
     }
     
 }
