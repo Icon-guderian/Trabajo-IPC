@@ -38,7 +38,6 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
 import static model.Club.getInstance;
 
 /**
@@ -48,6 +47,15 @@ import static model.Club.getInstance;
  */
 public class ModificarPerfilController implements Initializable {
 
+     /**
+     * Initializes the controller class.
+     */
+    private Club club; 
+    
+    private Booking b;
+    
+    private Member m; 
+    
     @FXML
     private BorderPane borderPane;
     @FXML
@@ -64,22 +72,12 @@ public class ModificarPerfilController implements Initializable {
     private MenuItem cerrar;
     @FXML
     private ImageView fotoPerfil;
-    /**
-     * Initializes the controller class.
-     */
-    private Club club; 
-    
-    private Booking b;
-    
-    private Member m; 
     @FXML
     private MenuButton opcionesBoton;
     @FXML
     private TextField apellidos;
     @FXML
     private TextField telefóno;
-    @FXML
-    private TextField nickname;
     @FXML
     private Label nombre;
     @FXML
@@ -108,18 +106,62 @@ public class ModificarPerfilController implements Initializable {
     private Button tarjetaBoton;
     @FXML
     private Button cvvBoton;
+    @FXML
+    private Button telBoton;
+    @FXML
+    private TextField telefono;
+    @FXML
+    private Label nombreLabel;
+    @FXML
+    private Label apellidosLabel;
+    @FXML
+    private Label telefonoLabel;
+    @FXML
+    private Label nicknameLabel;
+    @FXML
+    private Label numerotarjetaLabel;
+    @FXML
+    private PasswordField contraseñaAntigua;
+    @FXML
+    private TextField textfield11;
+    @FXML
+    private Label cvvLabel;
     
     public void initUsuario(Member member) {
        m = member;  
     }
     
+    
+    public static int cambiarStrAInt(String str) {
+        return Integer.parseInt(str);
+    }
+    
+    public static String ocultar(String texto, int a, int b) {
+        char[] caracteres = texto.toCharArray();
+        for (int i = a; i <= b; i++) {
+            caracteres[i] = '•';
+        }  
+        return new String(caracteres);
+    }
+    
     public void initImageNick(Member member) 
     {
         m = member; 
-        labelNombre.setText("¡Bienvenido "+ m.getNickName()+"! :D");
+        labelNombre.setText("¡Bienvenido "+ m.getNickName()+"!");
 
         LocalDate fechaActual = LocalDate.now();
         List<Booking> elarray = club.getForDayBookings(fechaActual); 
+        
+        int horaCompararInt = LocalTime.now().getHour();
+        
+        if (elarray.isEmpty())
+        {
+            labelPistaReservada.setText("A lo largo del día no tienes ninguna reserva todavía.");
+        }
+        else if (horaCompararInt > 22 || horaCompararInt < 9)
+        { 
+            labelPistaReservada.setText("Nuestras pistas de tenis permanecen cerradas. Horario de apertura de 9:00 a 22:00.");
+        }
         
         for(int i = 0; i < elarray.size(); i++) 
         {
@@ -150,6 +192,10 @@ public class ModificarPerfilController implements Initializable {
                 labelPistaReservada.setText("Tienes una reserva activa ahora mismo, tú pista es la "+ mostrar);
                 break; 
             }
+            else if (horaCompararInt > 22 || horaCompararInt < 9)
+            { 
+                labelPistaReservada.setText("Nuestras pistas de tenis permanecen cerradas. Horario de apertura de 9:00 a 22:00.");
+            }
             else 
             {
                 labelPistaReservada.setText("A lo largo del día no tienes ninguna reserva todavía.");
@@ -166,7 +212,20 @@ public class ModificarPerfilController implements Initializable {
             Image imagenPredeterminada = new Image("../src/resources/default-avatar-profile-icon-social-media-user-free-vector.jpg");
             fotoPerfil.setImage(imagenPredeterminada);
         }
+        nombreLabel.setText(m.getName());     
+        apellidosLabel.setText(m.getSurname());
+        telefonoLabel.setText(m.getTelephone());
+        nicknameLabel.setText(m.getNickName());
+        numerotarjetaLabel.setText(ocultar(m.getCreditCard(), 4, 11));
+        int cvv = m.getSvc(); 
+        if(cvv != -1) cvvLabel.setText(ocultar(String.valueOf(m.getSvc()), 0, 2)); 
+        else 
+        {
+            cvvLabel.setText("CVV no introducido ");
+            cvvLabel.setStyle("-fx-text-fill: #F68A1F;");
+        }  
     }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -176,6 +235,15 @@ public class ModificarPerfilController implements Initializable {
         } catch (ClubDAOException | IOException e)  {}
         
         opcionesBoton.setId("boton_blanco_a_sombra");
+        fotoBoton.setId("boton_verde_a_sombra");
+        actualizarBoton.setId("boton_verde_a_sombra");
+        nombreBoton.setId("boton_verde_a_sombra");
+        apellidosBoton.setId("boton_verde_a_sombra");
+        contraseñaBoton.setId("boton_verde_a_sombra");
+        tarjetaBoton.setId("boton_verde_a_sombra");
+        cvvBoton.setId("boton_verde_a_sombra");
+        telBoton.setId("boton_verde_a_sombra");
+
     }    
 
     @FXML
@@ -188,7 +256,6 @@ public class ModificarPerfilController implements Initializable {
             Parent root = miCargador.load();
             MenuFXMLController controlador = miCargador.getController(); 
             controlador.initUsuario(m); 
-            controlador.initUsuario(m);
             controlador.initImageNick(m);
             controlador.meterComboBox(club.getCourts());
             Scene scene1 = new Scene(root);
@@ -211,6 +278,7 @@ public class ModificarPerfilController implements Initializable {
             Parent root = miCargador.load();
             HacerReservasController controlador = miCargador.getController(); 
             controlador.initUsuario(m); 
+            controlador.initImageNick(m); 
             Scene scene1 = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene1);
@@ -229,6 +297,7 @@ public class ModificarPerfilController implements Initializable {
             Parent root = miCargador.load();
             MisReservasController controlador = miCargador.getController(); 
             controlador.initUsuario(m); 
+            //controlador.initImageNick(m); 
             Scene scene1 = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene1);

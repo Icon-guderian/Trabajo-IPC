@@ -133,10 +133,7 @@ public class MenuFXMLController implements Initializable {
         LocalDate fechaActual = LocalDate.now();
         List<Booking> elarray = club.getForDayBookings(fechaActual); 
         
-        LocalTime horaComparar = LocalTime.now(); 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH");
-        String horaCompararString = horaComparar.format(formatter); 
-        int horaCompararInt = cambiarStrAInt(horaCompararString); 
+        int horaCompararInt = LocalTime.now().getHour(); 
         
         if (elarray.isEmpty())
         {
@@ -179,6 +176,7 @@ public class MenuFXMLController implements Initializable {
             else if (horaCompararInt > 22 || horaCompararInt < 9)
             { 
                 labelPistaReservada.setText("Nuestras pistas de tenis permanecen cerradas. Horario de apertura de 9:00 a 22:00.");
+                break;
             }
             else 
             {
@@ -447,6 +445,7 @@ public class MenuFXMLController implements Initializable {
             Parent root = miCargador.load();
             ModificarPerfilController controlador = miCargador.getController(); 
             controlador.initUsuario(m); 
+            controlador.initImageNick(m); 
             Scene scene1 = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene1);
