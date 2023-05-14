@@ -293,27 +293,31 @@ public class MisReservasController implements Initializable {
             Booking b = ArrayAUtilizar.get(i);
             
             if(b.equals(null)){
+                
                 Label label = new Label();
                 label.setText("No tienes reservas proximas");
                 GridPane.add(label,1,i);
+                
             }else if((!b.equals(null)) ){ 
+                
                 Label label = new Label();
                 LocalTime horaInicio = b.getFromTime();
                 int duracion = club.getBookingDuration();
-                LocalTime horaFin = horaInicio.plusMinutes(duracion);     
-
+                LocalTime horaFin = horaInicio.plusMinutes(duracion);
+                
+                String a = ""; 
+                if(b.getPaid() == false) { a = "está pagada."; } else { a = "no está pagado, recuerde pasar por la oficina a pagar la reserva."; }
+                
                 String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
                 String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
 
-                label.setText(b.getMadeForDay() + "   " + horaInicioTexto + " - " + horaFinTexto + ".  Reservado por: "+ m.getNickName() + "    " + b.getCourt().getName() +"                                                                               ");  
+                label.setText(b.getMadeForDay() + "   " + horaInicioTexto + " - " + horaFinTexto + ".  Reservado por: "+ m.getNickName() + "    " + b.getCourt().getName()+ "   " + a +"                                                                               ");  
                 label.setStyle("-fx-background-color: #ffff80");
 
                 GridPane.add(label, 1, i); 
-                }
-            
-        
+                
+            }
         }
-    
     }
 
     @FXML
