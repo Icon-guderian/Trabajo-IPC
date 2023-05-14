@@ -40,6 +40,7 @@ import javafx.scene.layout.GridPane;
 import static model.Club.getInstance;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -91,7 +92,7 @@ public class MisReservasController implements Initializable {
     
     public void initUsuario(Member member) {
        m = member; 
-       ArrayAModificar = club.getUserBookings("david12344"); 
+       ArrayAModificar = club.getUserBookings(m.getNickName()); 
        ArrayAUtilizar = ordenarPorFechaYHora(ArrayAModificar); 
     }
     
@@ -118,15 +119,6 @@ public class MisReservasController implements Initializable {
         return ar.belongsToMember(nick); 
     }
     
-    public String getUserBookingsAsString(String login) {
-        List<Booking> userBookings = club.getUserBookings(m.getNickName());
-        StringBuilder sb = new StringBuilder();
-        for (Booking booking : userBookings) {
-            sb.append(b.getCourt());
-            sb.append("\n");
-        }
-        return sb.toString();
-    }
     
     public void initImageNick(Member member) 
     {
@@ -294,30 +286,31 @@ public class MisReservasController implements Initializable {
     @FXML
     private void mostrarDisponibilidad(ActionEvent event) throws ClubDAOException, IOException {
         club = getInstance(); 
+        ArrayAUtilizar = ordenarPorFechaYHora(ArrayAModificar);
         
         for(int i = 0; i < 10 ; i++){
            
             Booking b = ArrayAUtilizar.get(i);
             
-            if(ArrayAUtilizar.equals(null)){
+            if(b.equals(null)){
                 Label label = new Label();
-                label.setText("No tienes reservas");
+                label.setText("No tienes reservas proximas");
                 GridPane.add(label,1,i);
             }else if((!b.equals(null)) ){ 
                 Label label = new Label();
-                LocalTime horaInicio = LocalTime.of(9, 0);
+                LocalTime horaInicio = b.getFromTime();
                 int duracion = club.getBookingDuration();
-                LocalTime horaFin = horaInicio.plusMinutes(duracion);        
+                LocalTime horaFin = horaInicio.plusMinutes(duracion);     
+
                 String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
                 String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
-                String pistaReservada = getUserBookingsAsString(m.getNickName());
-                label.setText(b.getBookingDate() + "-" + horaInicioTexto + " - " + horaFinTexto + ".  Reservado por: "+ m.getNickName() + "Pista reservada: " + pistaReservada +"                                                                               ");  
+
+                label.setText(b.getMadeForDay() + "   " + horaInicioTexto + " - " + horaFinTexto + ".  Reservado por: "+ m.getNickName() + "    " + b.getCourt().getName() +"                                                                               ");  
                 label.setStyle("-fx-background-color: #ffff80");
+
                 GridPane.add(label, 1, i); 
-                GridPane.getChildren().get(i + 1).setId("celda"); 
-                horaInicio = horaFin;
-                
-            }
+                }
+            
         
         }
     
