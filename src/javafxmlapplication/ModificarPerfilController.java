@@ -297,7 +297,7 @@ public class ModificarPerfilController implements Initializable {
             Parent root = miCargador.load();
             MisReservasController controlador = miCargador.getController(); 
             controlador.initUsuario(m); 
-            //controlador.initImageNick(m); 
+            controlador.initImageNick(m); 
             Scene scene1 = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene1);

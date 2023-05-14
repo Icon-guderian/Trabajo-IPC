@@ -84,7 +84,7 @@ public class MisReservasController implements Initializable {
     @FXML
     private Label labelPistaReservada;
     @FXML
-    private MenuItem miReserva;
+    private MenuItem miMenu;
     /**
      * Initializes the controller class.
      */
@@ -311,7 +311,7 @@ public class MisReservasController implements Initializable {
                 String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
                 String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
                 String pistaReservada = getUserBookingsAsString(m.getNickName());
-                label.setText(horaInicioTexto + " - " + horaFinTexto + ".  Reservado por: "+ m.getNickName() + "Pista reservada: " + pistaReservada +"                                                                               ");  
+                label.setText(b.getBookingDate() + "-" + horaInicioTexto + " - " + horaFinTexto + ".  Reservado por: "+ m.getNickName() + "Pista reservada: " + pistaReservada +"                                                                               ");  
                 label.setStyle("-fx-background-color: #ffff80");
                 GridPane.add(label, 1, i); 
                 GridPane.getChildren().get(i + 1).setId("celda"); 
@@ -323,6 +323,7 @@ public class MisReservasController implements Initializable {
     
     }
 
+    @FXML
     private void miMenu(ActionEvent event) {
         MenuItem menuItem = (MenuItem) event.getSource();
         Scene scene = menuItem.getParentPopup().getOwnerWindow().getScene();
@@ -332,7 +333,6 @@ public class MisReservasController implements Initializable {
             Parent root = miCargador.load();
             MenuFXMLController controlador = miCargador.getController(); 
             controlador.initUsuario(m); 
-            controlador.initUsuario(m);
             controlador.initImageNick(m);
             controlador.meterComboBox(club.getCourts());
             Scene scene1 = new Scene(root);
@@ -345,8 +345,5 @@ public class MisReservasController implements Initializable {
         } catch (IOException ex) {}
     }
 
-    @FXML
-    private void menuMiReserva(ActionEvent event) {
-    }
     
 }

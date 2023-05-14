@@ -427,6 +427,7 @@ public class MenuFXMLController implements Initializable {
             Parent root = miCargador.load();
             HacerReservasController controlador = miCargador.getController(); 
             controlador.initUsuario(m); 
+            controlador.initImageNick(m); 
             Scene scene1 = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene1);

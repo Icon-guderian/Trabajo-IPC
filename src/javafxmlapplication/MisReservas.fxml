@@ -61,7 +61,7 @@
                         </Label>
                         <MenuButton fx:id="opcionesBoton" mnemonicParsing="false" prefHeight="68.0" prefWidth="94.0">
                            <items>
-                              <MenuItem fx:id="miReserva" mnemonicParsing="false" onAction="#menuMiReserva" text="Ver mis reservas" />
+                              <MenuItem fx:id="miMenu" mnemonicParsing="false" onAction="#miMenu" text="Menu principal" />
                               <MenuItem fx:id="hacerReserva" mnemonicParsing="false" onAction="#menuReservar" text="Hacer reservas" />
                               <MenuItem fx:id="modificar" mnemonicParsing="false" onAction="#modificarPerfil" text="Modificar perfil" />
                               <MenuItem fx:id="cerrar" mnemonicParsing="false" onAction="#cerrarSesion" text="Cerrar sesión" />
