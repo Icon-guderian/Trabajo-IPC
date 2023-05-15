@@ -280,7 +280,7 @@ public class MisReservasController implements Initializable {
         club = getInstance(); 
         
         ArrayAUtilizar = ordenarPorFechaYHora(ArrayAModificar);
-        int a = 0; 
+
         for(int i = 0; i < 10 ; i++){
            
             Booking b = ArrayAUtilizar.get(i);
