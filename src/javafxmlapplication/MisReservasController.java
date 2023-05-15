@@ -187,7 +187,7 @@ public class MisReservasController implements Initializable {
     
     public static List<Booking> ordenarPorFechaYHora(List<Booking> bookings) {
         List<Booking> copy = new ArrayList<>(bookings);
-        Collections.sort(copy, (Booking booking1, Booking booking2) -> booking1.getBookingDate().compareTo(booking2.getBookingDate()));
+        Collections.sort(copy, (Booking booking1, Booking booking2) -> booking1.getMadeForDay().compareTo(booking2.getMadeForDay()));
         return copy;
         }
 
@@ -299,12 +299,12 @@ public class MisReservasController implements Initializable {
                 LocalTime horaFin = horaInicio.plusMinutes(duracion);
                 
                 String a = ""; 
-                if(b.getPaid() == false) { a = "está pagada."; } else { a = "no está pagado, recuerde pasar por la oficina a pagar la reserva."; }
+                if(b.getPaid() == false) { a = "Está pagada."; } else { a = "No está pagado, recuerde pasar por la oficina a pagar la reserva."; }
                 
                 String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
                 String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
 
-                label.setText(b.getMadeForDay() + "   " + horaInicioTexto + " - " + horaFinTexto + ".  Reservado por: "+ m.getNickName() + "    " + b.getCourt().getName()+ "   " + a +"                                                                               ");  
+                label.setText(b.getMadeForDay() + " " + horaInicioTexto + " - " + horaFinTexto + ". Reservado por: "+ m.getNickName() + "   " + b.getCourt().getName()+ "   " + a +"                                                                               ");  
                 label.setStyle("-fx-background-color: #ffff80");
 
                 GridPane.add(label, 1, i); 
