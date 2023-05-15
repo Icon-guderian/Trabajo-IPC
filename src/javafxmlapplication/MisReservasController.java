@@ -8,6 +8,7 @@ package javafxmlapplication;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -88,11 +89,13 @@ public class MisReservasController implements Initializable {
        m = member; 
        ArrayAModificar = club.getUserBookings(m.getNickName()); 
        ArrayAUtilizar = ordenarPorFechaYHora(ArrayAModificar); 
+       
     }
     
     public static int cambiarStrAInt(String str) {
         return Integer.parseInt(str);
     }
+    
     
     public boolean devolverHoraReserva(List<Booking> ar, LocalTime local) 
     {
@@ -285,31 +288,36 @@ public class MisReservasController implements Initializable {
            
             Booking b = ArrayAUtilizar.get(i);
             
-            if(b.equals(null)){
+            //if(b.getMadeForDay().compareTo(chronoLocalDate.now())){
                 
-                Label label = new Label();
-                label.setText("No tienes reservas proximas");
-                GridPane.add(label,1,i);
-                
-            }else if((!b.equals(null)) ){ 
-                
-                Label label = new Label();
-                LocalTime horaInicio = b.getFromTime();
-                int duracion = club.getBookingDuration();
-                LocalTime horaFin = horaInicio.plusMinutes(duracion);
-                
-                String a = ""; 
-                if(b.getPaid() == false) { a = "Está pagada."; } else { a = "No está pagado, recuerde pasar por la oficina a pagar la reserva."; }
-                
-                String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
-                String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
+                if(b.equals(null)){
 
-                label.setText(b.getMadeForDay() + " " + horaInicioTexto + " - " + horaFinTexto + ". Reservado por: "+ m.getNickName() + "   " + b.getCourt().getName()+ "   " + a +"                                                                               ");  
-                label.setStyle("-fx-background-color: #ffff80");
+                    Label label = new Label();
+                    label.setText("No tienes reservas proximas");
+                    GridPane.add(label,1,i);
 
-                GridPane.add(label, 1, i); 
-                
-            }
+                }else if((!b.equals(null)) ){ 
+
+                    Label label = new Label();
+                    LocalDate diaReserva = b.getMadeForDay();
+                    LocalTime horaInicio = b.getFromTime();
+                    int duracion = club.getBookingDuration();
+                    LocalTime horaFin = horaInicio.plusMinutes(duracion);
+
+                    String a = ""; 
+                    if(b.getPaid() == false) { a = "Está pagada."; } else { a = "No está pagado, recuerde pasar por la oficina a pagar la reserva."; }
+
+                    String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
+                    String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
+                    String diaReservaTexto = diaReserva.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
+
+                    label.setText(diaReservaTexto + " " + horaInicioTexto + " - " + horaFinTexto + ". Reservado por: "+ m.getNickName() + "   " + b.getCourt().getName()+ "   " + a +"                                                                               ");  
+                    label.setStyle("-fx-background-color: #ffff80");
+
+                    GridPane.add(label, 1, i); 
+
+                }
+            //}
         }
     }
 
