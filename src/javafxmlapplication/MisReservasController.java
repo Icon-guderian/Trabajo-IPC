@@ -285,31 +285,32 @@ public class MisReservasController implements Initializable {
            
             Booking b = ArrayAUtilizar.get(i);
             
-            if(b.equals(null)){
-                
-                Label label = new Label();
-                label.setText("No tienes reservas proximas");
-                GridPane.add(label,1,i);
-                
-            }else if((!b.equals(null)) ){ 
-                
-                Label label = new Label();
-                LocalDate diaReserva = b.getMadeForDay();
-                LocalTime horaInicio = b.getFromTime();
-                int duracion = club.getBookingDuration();
-                LocalTime horaFin = horaInicio.plusMinutes(duracion);
-                
-                String a = ""; 
-                if(b.getPaid() == false) { a = "Está pagada."; } else { a = "No está pagado, recuerde pasar por la oficina a pagar la reserva."; }
-                
-                String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
-                String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
-                String diaReservaTexto = diaReserva.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
-                label.setText(diaReservaTexto + " " + horaInicioTexto + " - " + horaFinTexto + ". Reservado por: "+ m.getNickName() + "   " + b.getCourt().getName()+ "   " + a +"                                                                               ");  
-                label.setStyle("-fx-background-color: #ffff80");
+            if(b.getMadeForDay().isAfter(LocalDate.now()) || b.getMadeForDay().isEqual(LocalDate.now())){
+            
+                if(b.equals(null)){
 
-                GridPane.add(label, 1, i); 
-                
+                    Label label = new Label();
+                    label.setText("No tienes reservas proximas");
+                    GridPane.add(label,1,i);
+
+                }else if((!b.equals(null)) ){ 
+
+                    Label label = new Label();
+                    LocalDate diaReserva = b.getMadeForDay();
+                    LocalTime horaInicio = b.getFromTime();
+                    int duracion = club.getBookingDuration();
+                    LocalTime horaFin = horaInicio.plusMinutes(duracion);
+
+                    String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
+                    String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
+                    String diaReservaTexto = diaReserva.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
+                    
+                    label.setText(diaReservaTexto + "   " + horaInicioTexto + " - " + horaFinTexto + "  Reservado por: "+ m.getNickName() + "   " + b.getCourt().getName()+"                                                                               ");  
+                    label.setStyle("-fx-background-color: #ffff80");
+
+                    GridPane.add(label, 1, i); 
+
+                }
             }
         }
     }
