@@ -305,7 +305,10 @@ public class MisReservasController implements Initializable {
                     String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
                     String diaReservaTexto = diaReserva.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
                     
-                    label.setText(diaReservaTexto + "   " + horaInicioTexto + " - " + horaFinTexto + "  Reservado por: "+ m.getNickName() + "   " + b.getCourt().getName()+"                                                                               ");  
+                    String a = ""; 
+                    if(b.getPaid() == false) { a = "Está pagada."; } else { a = "No está pagado, recuerde pasar por la oficina a pagar la reserva."; }
+                    
+                    label.setText(diaReservaTexto + "   " + horaInicioTexto + " - " + horaFinTexto + "  " + "Reservado por: " + m.getNickName() + "   " + b.getCourt().getName() + "   " + a + "                                                                               ");  
                     label.setStyle("-fx-background-color: #ffff80");
 
                     GridPane.add(label, 1, i); 
