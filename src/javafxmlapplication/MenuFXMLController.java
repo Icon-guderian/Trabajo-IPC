@@ -128,21 +128,22 @@ public class MenuFXMLController implements Initializable {
     public void initImageNick(Member member) 
     {
         m = member; 
-        labelNombre.setText("¡Bienvenido "+ m.getNickName()+"!");
+                labelNombre.setText("¡Bienvenido "+ m.getNickName()+"!");
 
         LocalDate fechaActual = LocalDate.now();
         List<Booking> elarray = club.getForDayBookings(fechaActual); 
         
-        int horaCompararInt = LocalTime.now().getHour(); 
+        int horaCompararInt = LocalTime.now().getHour();
         
-        if (elarray.isEmpty())
+        if (elarray.isEmpty() && (horaCompararInt > 22 || horaCompararInt < 9))
         {
-            labelPistaReservada.setText("A lo largo del día no tienes ninguna reserva todavía.");
-        }
-        else if (horaCompararInt > 22 || horaCompararInt < 9)
-        { 
+            
             labelPistaReservada.setText("Nuestras pistas de tenis permanecen cerradas. Horario de apertura de 9:00 a 22:00.");
         }
+        else if (elarray.isEmpty())
+        { 
+            labelPistaReservada.setText("A lo largo del día no tienes ninguna reserva todavía.");
+        } else {
         
         for(int i = 0; i < elarray.size(); i++) 
         {
@@ -176,14 +177,13 @@ public class MenuFXMLController implements Initializable {
             else if (horaCompararInt > 22 || horaCompararInt < 9)
             { 
                 labelPistaReservada.setText("Nuestras pistas de tenis permanecen cerradas. Horario de apertura de 9:00 a 22:00.");
-                break;
             }
             else 
             {
                 labelPistaReservada.setText("A lo largo del día no tienes ninguna reserva todavía.");
             }
         }
-
+        }
         Image imagenUsuario = m.getImage();
         if (imagenUsuario != null) 
         {

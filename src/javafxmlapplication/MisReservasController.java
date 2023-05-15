@@ -35,24 +35,18 @@ import model.Member;
 import model.Booking;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import javafx.scene.layout.GridPane;
 import static model.Club.getInstance;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import javafx.scene.control.MenuButton;
-import static javafxmlapplication.MenuFXMLController.cambiarStrAInt;
 
 /**
  * FXML Controller class
  *
  * @author david
  */
-
 
 public class MisReservasController implements Initializable {
 
@@ -128,19 +122,17 @@ public class MisReservasController implements Initializable {
         LocalDate fechaActual = LocalDate.now();
         List<Booking> elarray = club.getForDayBookings(fechaActual); 
         
-        LocalTime horaComparar = LocalTime.now(); 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH");
-        String horaCompararString = horaComparar.format(formatter); 
-        int horaCompararInt = cambiarStrAInt(horaCompararString); 
+        int horaCompararInt = LocalTime.now().getHour();
         
-        if (elarray.isEmpty())
+        if (elarray.isEmpty() && (horaCompararInt > 22 || horaCompararInt < 9))
         {
-            labelPistaReservada.setText("A lo largo del día no tienes ninguna reserva todavía.");
-        }
-        else if (horaCompararInt > 22 || horaCompararInt < 9)
-        { 
+            
             labelPistaReservada.setText("Nuestras pistas de tenis permanecen cerradas. Horario de apertura de 9:00 a 22:00.");
         }
+        else if (elarray.isEmpty())
+        { 
+            labelPistaReservada.setText("A lo largo del día no tienes ninguna reserva todavía.");
+        } else {
         
         for(int i = 0; i < elarray.size(); i++) 
         {
@@ -180,7 +172,7 @@ public class MisReservasController implements Initializable {
                 labelPistaReservada.setText("A lo largo del día no tienes ninguna reserva todavía.");
             }
         }
-
+        }
         Image imagenUsuario = m.getImage();
         if (imagenUsuario != null) 
         {
@@ -286,8 +278,9 @@ public class MisReservasController implements Initializable {
     @FXML
     private void mostrarDisponibilidad(ActionEvent event) throws ClubDAOException, IOException {
         club = getInstance(); 
-        ArrayAUtilizar = ordenarPorFechaYHora(ArrayAModificar);
         
+        ArrayAUtilizar = ordenarPorFechaYHora(ArrayAModificar);
+        int a = 0; 
         for(int i = 0; i < 10 ; i++){
            
             Booking b = ArrayAUtilizar.get(i);
