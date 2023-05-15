@@ -135,6 +135,8 @@ public class ModificarPerfilController implements Initializable {
     private CheckBox mostrarCVV;
     @FXML
     private TextField textfield2;
+    @FXML
+    private Label labelContraseña;
     
     
     public void initUsuario(Member member) {
@@ -159,6 +161,16 @@ public class ModificarPerfilController implements Initializable {
             caracteres[i] = '•';
         }  
         return new String(caracteres);
+    }
+    
+    public boolean contieneNumChar(String st) {
+        int a = 0, b = 0; 
+        for(int i = 0;  i < st.length(); i++) {
+            char c = st.charAt(i); 
+            if(Character.isDigit(c)) { a++; }
+            else if(Character.isLetter(c)) { b++; }
+        }
+        return a >= 1 && b >= 1;
     }
     
     public void initImageNick(Member member) 
@@ -603,6 +615,7 @@ public class ModificarPerfilController implements Initializable {
     {
         if(e == 1) 
         {           
+            contraseña.setVisible(true);
             mostrarContra.setDisable(false);
             contraseña.setDisable(false);  
             contraseñaAntigua.setDisable(false);
@@ -613,7 +626,7 @@ public class ModificarPerfilController implements Initializable {
         } 
         else if (e == 0)
         {    
-            if(contraseña.getText().isEmpty() || textfield1.getText().isEmpty()) 
+            if(contraseña.getText().isEmpty() && textfield1.getText().isEmpty()) 
             {
                 mostrarContra.setDisable(true);
                 contraseña.setDisable(true);  
@@ -627,27 +640,83 @@ public class ModificarPerfilController implements Initializable {
                 e++; 
                 contraseñaBoton.setText("Editar");
             } 
+            /*
+            else if(contraseña.getText().isEmpty() || !textfield1.getText().isEmpty())
+            {
+                mostrarContra.setDisable(true);
+                contraseña.setDisable(true);  
+                contraseñaAntigua.setDisable(true);  
+                textfield1.setDisable(true);
+                textfield2.setDisable(true);
+                contraseña.setText("");
+                contraseñaAntigua.setText("");
+                textfield1.setText("");
+                textfield2.setText("");
+                e++; 
+                contraseñaBoton.setText("aaaaaaaaa");
+            }
+            */
             else 
             { 
-                if(!contieneSoloNumeros(telefóno.getText())) 
+                if(contraseña.getText().length() < 7 & textfield1.getText().isEmpty()) 
                 {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error");
-                    alert.setHeaderText("Error en el teléfono");
-                    alert.setContentText("Porfavor introduzca un número válido.");
+                    alert.setHeaderText("Error en la contraseña");
+                    alert.setContentText("La contraseña debe de tener más de 6 caracteres");
                     alert.showAndWait();
-                    telefóno.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+                    contraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+                    textfield1.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
                 }
-                else 
+                else if (textfield1.getText().length() < 7 & contraseña.getText().isEmpty())
                 {
-                    telefonoLabel.setText(telefóno.getText()+ "    Cambiado.");
-                    telefonoLabel.setStyle("-fx-text-fill: #15622E"); 
-                    telefóno.setDisable(true);  
-                    telefóno.setVisible(false);
-                    telefonoLabel.setDisable(false); 
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Error en la contraseña");
+                    alert.setContentText("La contraseña debe de tener más de 6 caracteres");
+                    alert.showAndWait();
+                    contraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+                    textfield1.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+                }
+                else if(!contieneNumChar(contraseña.getText()) & textfield1.getText().isEmpty()) 
+                {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Error en la contraseña");
+                    alert.setContentText("La contraseña debe contener letras y números.");
+                    alert.showAndWait();
+                    contraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+                    textfield1.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+                }
+                else if(!contieneNumChar(textfield1.getText()) & contraseña.getText().isEmpty()) 
+                {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Error en la contraseña");
+                    alert.setContentText("La contraseña debe contener letras y números.");
+                    alert.showAndWait();
+                    contraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+                    textfield1.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+                 }
+                else if (!m.getPassword().equals(contraseñaAntigua.getText()) || !m.getPassword().equals(textfield2.getText()))
+                {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Error en la confirmación de la contraseña");
+                    alert.setContentText("La contraseña antigua no coincide, asegúrese de introducirla\n"+" correctamente para poder efectuar efectivamente el cambio\n"+" de contraseña.");
+                    alert.showAndWait();
+                    contraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+                    textfield1.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);"); 
+                }    
+                else
+                {
+                    labelContraseña.setText(ocultar(contraseña.getText(),0, contraseña.getText().length() - 1)+ "    Cambiada.");
+                    labelContraseña.setStyle("-fx-text-fill: #15622E"); 
+                    contraseña.setDisable(true);  
+                    contraseña.setVisible(false);
                     telefonoLabel.setVisible(true);
                     e++; 
-                    telBoton.setText("Editar");
+                    contraseñaBoton.setText("Editar");
                 }
             }          
         }

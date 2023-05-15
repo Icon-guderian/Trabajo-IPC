@@ -207,6 +207,7 @@
                                     <TextField fx:id="textfield2" disable="true" layoutX="148.0" layoutY="151.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#contraseñaClick" prefWidth="220.0" promptText="Contraseña antigua*" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                                     <CheckBox fx:id="mostrarCVV" mnemonicParsing="false" text="Mostrar tarjeta y CVV" GridPane.columnIndex="2" GridPane.rowIndex="9" />
                                     <Label fx:id="labelImagen" GridPane.columnIndex="2" GridPane.rowIndex="13" />
+                                    <Label fx:id="labelContraseña" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                                  </children>
                               </GridPane>
                            </children>

@@ -219,7 +219,6 @@ public class RegistrarseController implements Initializable {
         String cvv = CVV.getText(); 
         
         Club club = getInstance(); 
-        //textfield1.setDisable(true);
         
         if(validar(nombre, apellidos, telefóno, nickname, contraseña, contraseñaOtra, NúmeroTarjeta) && validar(nombre, apellidos, telefóno, nickname, textfield2, textfield1, NúmeroTarjeta)) 
         {
@@ -271,7 +270,7 @@ public class RegistrarseController implements Initializable {
             alert.showAndWait();
             nickname.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
             }
-            else if(Contraseña.length() < 7 & ContraseñaT.isEmpty()) 
+            else if(Contraseña.length() < 7 & !textfield1.isVisible()) 
             {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -281,7 +280,17 @@ public class RegistrarseController implements Initializable {
             contraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
             textfield1.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
             }
-            else if(ContraseñaT.length() < 7 & Contraseña.isEmpty())
+            else if(ContraseñaOtra.length() < 7 & !textfield2.isVisible())
+            {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Error en la contraseña");
+            alert.setContentText("La contraseña debe de tener más de 6 caracteres");
+            alert.showAndWait();
+            contraseñaOtra.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+            textfield2.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+            }
+            else if(ContraseñaT.length() < 7 & !contraseña.isVisible()) 
             {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -291,7 +300,17 @@ public class RegistrarseController implements Initializable {
             contraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
             textfield1.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
             }
-            else if(!contieneNumChar(Contraseña) & ContraseñaT.isEmpty()) 
+            else if(ContraseñaOtraT.length() < 7 & !contraseñaOtra.isVisible())
+            {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Error en la contraseña");
+            alert.setContentText("La contraseña debe de tener más de 6 caracteres");
+            alert.showAndWait();
+            contraseñaOtra.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+            textfield2.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+            }
+            else if(!contieneNumChar(Contraseña) & !textfield1.isVisible()) 
             {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -301,7 +320,7 @@ public class RegistrarseController implements Initializable {
             contraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
             textfield1.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
             }
-            else if(!contieneNumChar(ContraseñaT) & Contraseña.isEmpty()) 
+            else if(!contieneNumChar(ContraseñaOtra) & !textfield2.isVisible()) 
             {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -310,7 +329,26 @@ public class RegistrarseController implements Initializable {
             alert.showAndWait();
             contraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
             textfield1.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
-            
+            }
+            else if(!contieneNumChar(ContraseñaT) & !contraseña.isVisible()) 
+            {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Error en la contraseña");
+            alert.setContentText("La contraseña debe contener letras y números.");
+            alert.showAndWait();
+            contraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+            textfield1.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+            }
+            else if(!contieneNumChar(ContraseñaOtraT) & !contraseñaOtra.isVisible()) 
+            {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Error en la contraseña");
+            alert.setContentText("La contraseña debe contener letras y números.");
+            alert.showAndWait();
+            contraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+            textfield1.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
             }
             else if(!Contraseña.equals(ContraseñaOtra) || !ContraseñaT.equals(ContraseñaOtraT))
             {
