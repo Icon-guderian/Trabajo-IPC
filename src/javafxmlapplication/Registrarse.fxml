@@ -16,7 +16,14 @@
 
 <BorderPane prefHeight="723.0" prefWidth="472.0" stylesheets="@estilosBotones.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.RegistrarseController">
    <top>
-      <HBox prefHeight="60.0" prefWidth="494.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat, #16779F 0%,  #84B118 90%);" BorderPane.alignment="CENTER" />
+      <HBox alignment="CENTER" prefHeight="60.0" prefWidth="494.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat, #16779F 0%,  #84B118 90%);" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="58.0" prefWidth="394.0" text="¡Lleve cuidado al introducir la contraseña! Puede haber ojos mirando sobretodo si tiene la opción de mostrar contraseña activado" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children></HBox>
    </top>
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">

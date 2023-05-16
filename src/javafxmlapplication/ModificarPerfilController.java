@@ -59,9 +59,15 @@ public class ModificarPerfilController implements Initializable {
     
     private Member m; 
     
-    private int a = 1, c = 1, d = 1, e = 1, f = 0, g = 0, h = 0;
+    private int a = 1, c = 1, d = 1, e = 1, f = 1, g = 1; 
+    
+    private boolean cambiado = false, cambiadoC = false, seHaCambiado = false, noVisible = false, tarjetaCvvCambiado = false;; 
     
     private Image imageDePerfil;
+    
+    private String nombreNuevo, apellidoNuevo, telefonoNuevo, contraseñaNueva, numeroTarjetaNuevo;
+    
+    private int CVVnuevo; 
     
     @FXML
     private BorderPane borderPane;
@@ -137,6 +143,18 @@ public class ModificarPerfilController implements Initializable {
     private TextField textfield2;
     @FXML
     private Label labelContraseña;
+    @FXML
+    private Button cancelarCambioBoton;
+    @FXML
+    private Button cancelarNombreBoton;
+    @FXML
+    private Button cancelarApellidoBoton;
+    @FXML
+    private Button cancelarTelefonoBoton;
+    @FXML
+    private Button cancelarTarjetaBoton;
+    @FXML
+    private Button cancelarCVVBoton;
     
     
     public void initUsuario(Member member) {
@@ -145,6 +163,10 @@ public class ModificarPerfilController implements Initializable {
     
     public static int cambiarStrAInt(String str) {
         return Integer.parseInt(str);
+    }
+    
+    public String cambiarIntStr(int num) {
+        return String.valueOf(num);
     }
     
     public static boolean contieneSoloLetras(String str) {
@@ -256,6 +278,37 @@ public class ModificarPerfilController implements Initializable {
             cvvLabel.setText("CVV no introducido ");
             cvvLabel.setStyle("-fx-text-fill: #F68A1F;");
         }  
+ 
+        mostrarCVV.selectedProperty().addListener((observable, oldValue, newValue) -> {
+        if (newValue) {
+        // Mostrar CVV y Tarjeta
+            if(cambiado == false) 
+            {
+                numerotarjetaLabel.setText(m.getCreditCard());
+            }
+            else 
+            {
+                numerotarjetaLabel.setText(numeroTarjetaNuevo + "    Cambiado.");
+            }
+            tarjetaCvvCambiado = true; 
+            int Cvv = m.getSvc(); 
+            if(Cvv != -1) cvvLabel.setText(String.valueOf(m.getSvc())); 
+            
+        } else {
+        // Ocultar contraseña
+            if(cambiado == false) 
+            {
+                numerotarjetaLabel.setText(ocultar(m.getCreditCard(), 4, 11));
+            }
+            else 
+            {
+                numerotarjetaLabel.setText(ocultar(numeroTarjetaNuevo, 4, 11) + "    Cambiado.");
+            }
+            tarjetaCvvCambiado = false;
+            int Cvv = m.getSvc(); 
+            if(Cvv != -1) cvvLabel.setText(ocultar(String.valueOf(m.getSvc()), 0, 2)); 
+        }
+        });
     }
     
     @Override
@@ -266,21 +319,6 @@ public class ModificarPerfilController implements Initializable {
             
         } catch (ClubDAOException | IOException e)  {}
         
-        mostrarCVV.selectedProperty().addListener((observable, oldValue, newValue) -> {
-        if (newValue) {
-        // Mostrar CVV y Tarjeta
-            numerotarjetaLabel.setText(m.getCreditCard());
-            int cvv = m.getSvc(); 
-            if(cvv != -1) cvvLabel.setText(String.valueOf(m.getSvc())); 
-            
-        } else {
-        // Ocultar contraseña
-            numerotarjetaLabel.setText(ocultar(m.getCreditCard(), 4, 11));
-            int cvv = m.getSvc(); 
-            if(cvv != -1) cvvLabel.setText(ocultar(String.valueOf(m.getSvc()), 0, 2)); 
-        }
-        });
-        
         mostrarContra.selectedProperty().addListener((observable, oldValue, newValue) -> {
         if (newValue) {
             // Mostrar contraseña 
@@ -290,7 +328,7 @@ public class ModificarPerfilController implements Initializable {
             contraseñaAntigua.setVisible(false); 
             textfield2.setDisable(false);  //<-
             textfield2.setVisible(true);
-            
+            noVisible = false;
             textfield1.setText(contraseña.getText());
             contraseña.setDisable(true); //<-
             contraseña.setVisible(false);
@@ -306,7 +344,7 @@ public class ModificarPerfilController implements Initializable {
             textfield2.setVisible(false);
             contraseñaAntigua.setDisable(false); //<-
             contraseñaAntigua.setVisible(true);
-            
+            noVisible = true;
             contraseña.setText(textfield1.getText());
             textfield1.setDisable(true); //<-
             textfield1.setVisible(false);
@@ -325,6 +363,12 @@ public class ModificarPerfilController implements Initializable {
         tarjetaBoton.setId("boton_verde_a_sombra");
         cvvBoton.setId("boton_verde_a_sombra");
         telBoton.setId("boton_verde_a_sombra");
+        cancelarCambioBoton.setId("boton_naranja_verde_a_sombra");
+        cancelarNombreBoton.setId("boton_naranja_verde_a_sombra");
+        cancelarApellidoBoton.setId("boton_naranja_verde_a_sombra");
+        cancelarTelefonoBoton.setId("boton_naranja_verde_a_sombra");
+        cancelarTarjetaBoton.setId("boton_naranja_verde_a_sombra");
+        cancelarCVVBoton.setId("boton_naranja_verde_a_sombra");
     }    
 
     @FXML
@@ -459,7 +503,8 @@ public class ModificarPerfilController implements Initializable {
                 }
                 else 
                 {
-                    nombreLabel.setText(nombre1.getText()+ "    Cambiado.");
+                    nombreNuevo = nombre1.getText(); 
+                    nombreLabel.setText(nombreNuevo + "    Cambiado.");
                     nombreLabel.setStyle("-fx-text-fill: #15622E"); 
                     nombre1.setDisable(true);  
                     nombre1.setVisible(false);
@@ -516,7 +561,8 @@ public class ModificarPerfilController implements Initializable {
                 }
                 else 
                 {
-                    apellidosLabel.setText(apellidos.getText()+ "    Cambiado.");
+                    apellidoNuevo = apellidos.getText(); 
+                    apellidosLabel.setText(apellidoNuevo + "    Cambiado.");
                     apellidosLabel.setStyle("-fx-text-fill: #15622E"); 
                     apellidos.setDisable(true);  
                     apellidos.setVisible(false);
@@ -573,7 +619,8 @@ public class ModificarPerfilController implements Initializable {
                 }
                 else 
                 {
-                    telefonoLabel.setText(telefóno.getText()+ "    Cambiado.");
+                    telefonoNuevo = telefóno.getText(); 
+                    telefonoLabel.setText(telefonoNuevo + "    Cambiado.");
                     telefonoLabel.setStyle("-fx-text-fill: #15622E"); 
                     telefóno.setDisable(true);  
                     telefóno.setVisible(false);
@@ -615,19 +662,27 @@ public class ModificarPerfilController implements Initializable {
     {
         if(e == 1) 
         {           
-            contraseña.setVisible(true);
+            if(seHaCambiado == true & noVisible == false) 
+            {
+                textfield1.setVisible(true);
+            }
+            else if (seHaCambiado == true & noVisible == true) 
+            {
+                contraseña.setVisible(true);
+            }
             mostrarContra.setDisable(false);
             contraseña.setDisable(false);  
             contraseñaAntigua.setDisable(false);
             textfield1.setDisable(false);
             textfield2.setDisable(false);
+            labelContraseña.setVisible(false);
             e--;            
             contraseñaBoton.setText("Guardar");
         } 
         else if (e == 0)
         {    
             if(contraseña.getText().isEmpty() && textfield1.getText().isEmpty()) 
-            {
+            {              
                 mostrarContra.setDisable(true);
                 contraseña.setDisable(true);  
                 contraseñaAntigua.setDisable(true);  
@@ -640,25 +695,9 @@ public class ModificarPerfilController implements Initializable {
                 e++; 
                 contraseñaBoton.setText("Editar");
             } 
-            /*
-            else if(contraseña.getText().isEmpty() || !textfield1.getText().isEmpty())
-            {
-                mostrarContra.setDisable(true);
-                contraseña.setDisable(true);  
-                contraseñaAntigua.setDisable(true);  
-                textfield1.setDisable(true);
-                textfield2.setDisable(true);
-                contraseña.setText("");
-                contraseñaAntigua.setText("");
-                textfield1.setText("");
-                textfield2.setText("");
-                e++; 
-                contraseñaBoton.setText("aaaaaaaaa");
-            }
-            */
             else 
             { 
-                if(contraseña.getText().length() < 7 & textfield1.getText().isEmpty()) 
+                if(contraseña.getText().length() < 7 & !textfield1.isVisible()) 
                 {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error");
@@ -668,7 +707,7 @@ public class ModificarPerfilController implements Initializable {
                     contraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
                     textfield1.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
                 }
-                else if (textfield1.getText().length() < 7 & contraseña.getText().isEmpty())
+                else if (textfield1.getText().length() < 7 & !contraseña.isVisible())
                 {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error");
@@ -678,7 +717,7 @@ public class ModificarPerfilController implements Initializable {
                     contraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
                     textfield1.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
                 }
-                else if(!contieneNumChar(contraseña.getText()) & textfield1.getText().isEmpty()) 
+                else if(!contieneNumChar(contraseña.getText()) & !textfield1.isVisible()) 
                 {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error");
@@ -688,7 +727,7 @@ public class ModificarPerfilController implements Initializable {
                     contraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
                     textfield1.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
                 }
-                else if(!contieneNumChar(textfield1.getText()) & contraseña.getText().isEmpty()) 
+                else if(!contieneNumChar(textfield1.getText()) & !contraseña.isVisible()) 
                 {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error");
@@ -697,8 +736,8 @@ public class ModificarPerfilController implements Initializable {
                     alert.showAndWait();
                     contraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
                     textfield1.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
-                 }
-                else if (!m.getPassword().equals(contraseñaAntigua.getText()) || !m.getPassword().equals(textfield2.getText()))
+                }
+                else if (!m.getPassword().equals(contraseñaAntigua.getText()) & !textfield2.isVisible())
                 {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error");
@@ -707,14 +746,40 @@ public class ModificarPerfilController implements Initializable {
                     alert.showAndWait();
                     contraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
                     textfield1.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);"); 
-                }    
-                else
+                }  
+                else if (!m.getPassword().equals(textfield2.getText()) & !contraseñaAntigua.isVisible())
                 {
-                    labelContraseña.setText(ocultar(contraseña.getText(),0, contraseña.getText().length() - 1)+ "    Cambiada.");
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Error en la confirmación de la contraseña");
+                    alert.setContentText("La contraseña antigua no coincide, asegúrese de introducirla\n"+" correctamente para poder efectuar efectivamente el cambio\n"+" de contraseña.");
+                    alert.showAndWait();
+                    contraseñaAntigua.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+                    textfield2.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);"); 
+                } 
+                else
+                {   
+                    if(contraseña.isVisible()) 
+                    {
+                        contraseñaNueva = contraseña.getText(); 
+                    }
+                    else 
+                    { 
+                        contraseñaNueva = textfield1.getText(); 
+                    }
+                    seHaCambiado = true; 
+                    labelContraseña.setText(ocultar(contraseñaNueva, 0, contraseñaNueva.length() - 1)+ "    Cambiada.");
                     labelContraseña.setStyle("-fx-text-fill: #15622E"); 
-                    contraseña.setDisable(true);  
+                    contraseña.setText("");
+                    textfield1.setText("");
+                    contraseñaAntigua.setText("");
+                    textfield2.setText("");
                     contraseña.setVisible(false);
-                    telefonoLabel.setVisible(true);
+                    textfield1.setVisible(false);
+                    contraseñaAntigua.setDisable(true);
+                    textfield2.setDisable(true);                  
+                    labelContraseña.setVisible(true);
+                    mostrarContra.setDisable(true);
                     e++; 
                     contraseñaBoton.setText("Editar");
                 }
@@ -724,36 +789,243 @@ public class ModificarPerfilController implements Initializable {
     @FXML
     private void contraseñaClick(MouseEvent event) 
     {
-    
+        contraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+        textfield1.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+    }
+    @FXML
+    private void contraseñaClickA(MouseEvent event) 
+    {
+        contraseñaAntigua.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+        textfield2.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+    }
+    @FXML
+    private void cancelarCambio(ActionEvent event) 
+    {
+        if(e == 1) 
+        {
+            contraseña.setText("");
+            textfield1.setText("");
+            contraseñaAntigua.setText("");
+            textfield2.setText("");
+            contraseña.setDisable(true);
+            textfield1.setDisable(true);
+            contraseñaAntigua.setPromptText("Contraseña antigua*");
+            textfield2.setPromptText("Contraseña antigua*");
+            contraseñaAntigua.setDisable(true);
+            textfield2.setDisable(true);                  
+            labelContraseña.setVisible(false);
+            mostrarContra.setDisable(true);
+            contraseñaBoton.setText("Editar");
+            contraseñaAntigua.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+            textfield2.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+            contraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+            textfield1.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+        } 
+        else if (e == 0)
+        {
+            contraseña.setText("");
+            textfield1.setText("");
+            contraseñaAntigua.setText("");
+            textfield2.setText("");
+            contraseña.setDisable(true);
+            textfield1.setDisable(true);
+            contraseñaAntigua.setPromptText("Contraseña antigua*");
+            textfield2.setPromptText("Contraseña antigua*");
+            contraseñaAntigua.setDisable(true);
+            textfield2.setDisable(true);                  
+            labelContraseña.setVisible(false);
+            mostrarContra.setDisable(true);
+            e++; 
+            contraseñaBoton.setText("Editar");
+            contraseñaAntigua.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+            textfield2.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+            contraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+            textfield1.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+        }  
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------ 
     @FXML
     private void editarTarjeta(ActionEvent event) 
     {
-    
+        if(f == 1) 
+        {           
+            numerotarjetaLabel.setDisable(true); 
+            numerotarjetaLabel.setVisible(false); 
+            NúmeroTarjeta.setDisable(false);  
+            NúmeroTarjeta.setVisible(true);
+            NúmeroTarjeta.setPromptText("Nueva tarjeta");
+            f--;            
+            tarjetaBoton.setText("Guardar");
+        } 
+        else if (f == 0)
+        {    
+            if(NúmeroTarjeta.getText().equals(m.getCreditCard()) || NúmeroTarjeta.getText().isEmpty()) 
+            {
+                cambiado = false; 
+                if(tarjetaCvvCambiado == false) 
+                {
+                    numerotarjetaLabel.setText(ocultar(m.getCreditCard(), 4, 11));
+                }
+                else if(tarjetaCvvCambiado == true) 
+                {
+                    numerotarjetaLabel.setText(m.getCreditCard());
+                }
+                numerotarjetaLabel.setStyle("-fx-text-fill: black");
+                NúmeroTarjeta.setDisable(true);  
+                NúmeroTarjeta.setVisible(false);
+                numerotarjetaLabel.setDisable(false); 
+                numerotarjetaLabel.setVisible(true);
+                f++; 
+                tarjetaBoton.setText("Editar");
+            } 
+            else 
+            {
+                if(NúmeroTarjeta.getText().length() != 16 || !contieneSoloNumeros(NúmeroTarjeta.getText())) 
+                {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Error en el número de tarjeta");
+                    alert.setContentText("Número de tarjeta no válido. Una tarjeta válida solo puede contener números y debe de tener 16 dígitos");
+                    alert.showAndWait();  
+                    NúmeroTarjeta.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");                     
+                }
+                else 
+                {
+                    cambiado = true; 
+                    numeroTarjetaNuevo = NúmeroTarjeta.getText(); 
+                    if(tarjetaCvvCambiado == false) 
+                    {
+                        numerotarjetaLabel.setText(ocultar(numeroTarjetaNuevo, 4, 11) + "    Cambiado.");
+                    }
+                    else if(tarjetaCvvCambiado == true) 
+                    {
+                        numerotarjetaLabel.setText(numeroTarjetaNuevo+ "    Cambiado.");
+                    }       
+                    numerotarjetaLabel.setStyle("-fx-text-fill: #15622E"); 
+                    NúmeroTarjeta.setDisable(true);  
+                    NúmeroTarjeta.setVisible(false);
+                    numerotarjetaLabel.setDisable(false); 
+                    numerotarjetaLabel.setVisible(true);
+                    f++; 
+                    tarjetaBoton.setText("Editar");
+                }
+            }          
+        }
     }
     @FXML
     private void tarjetaClick(MouseEvent event) 
     {
-        
+        NúmeroTarjeta.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------ 
     @FXML
     private void editarCVV(ActionEvent event) 
     {
-    
+        if(g == 1) 
+        {           
+            cvvLabel.setDisable(true); 
+            cvvLabel.setVisible(false); 
+            CVV.setDisable(false);  
+            CVV.setVisible(true);
+            CVV.setPromptText("CVV");
+            g--;            
+            cvvBoton.setText("Guardar");
+        } 
+        else if (g == 0)
+        {    
+            if(CVV.getText().equals(cambiarIntStr(m.getSvc())) || CVV.getText().isEmpty()) 
+            {
+                cambiadoC = false; 
+                if(tarjetaCvvCambiado == false) 
+                {
+                    cvvLabel.setText(ocultar(cambiarIntStr(m.getSvc()), 0, 2));
+                }
+                else if(tarjetaCvvCambiado == true) 
+                {
+                    cvvLabel.setText(cambiarIntStr(m.getSvc()));
+                }
+                cvvLabel.setStyle("-fx-text-fill: black");
+                CVV.setDisable(true);  
+                CVV.setVisible(false);
+                cvvLabel.setDisable(false); 
+                cvvLabel.setVisible(true);
+                g++; 
+                cvvBoton.setText("Editar");
+            } 
+            else 
+            {
+                if(CVV.getText().length() != 3 || !contieneSoloNumeros(CVV.getText())) 
+                {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Error en el número de tarjeta");
+                    alert.setContentText("Número de tarjeta no válido. Una tarjeta válida solo puede contener números y debe de tener 16 dígitos");
+                    alert.showAndWait();  
+                    CVV.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");                     
+                }
+                else 
+                {
+                    cambiadoC = true; 
+                    String cvvString = CVV.getText(); 
+                    CVVnuevo = cambiarStrAInt(cvvString); 
+                    if(tarjetaCvvCambiado == false) 
+                    {
+                        cvvLabel.setText(ocultar(cvvString, 0, 2) + "    Cambiado.");
+                    }
+                    else if(tarjetaCvvCambiado == true) 
+                    {
+                        cvvLabel.setText(cvvString+ "    Cambiado.");
+                    }
+                    cvvLabel.setStyle("-fx-text-fill: #15622E"); 
+                    CVV.setDisable(true);  
+                    CVV.setVisible(false);
+                    cvvLabel.setDisable(false); 
+                    cvvLabel.setVisible(true);
+                    g++; 
+                    cvvBoton.setText("Editar");
+                }
+            }          
+        }
     }
     @FXML
     private void cvvClick(MouseEvent event) 
     {
-    
-    }
-     
+        CVV.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+    }   
     //------------------------------------------------------------------------------------------------------------------------------------------------------------ 
     @FXML
     private void actualizar(ActionEvent event) 
     {
     
     }
+
+    @FXML
+    private void cancelarNombre(ActionEvent event) 
+    {
     
+    }
+
+    @FXML
+    private void cancelarApellido(ActionEvent event) 
+    {
+    
+    }
+
+    @FXML
+    private void cancelarTelefono(ActionEvent event) 
+    {
+    
+    }
+
+    @FXML
+    private void cancelarTarjeta(ActionEvent event) 
+    {
+    
+    }
+
+    @FXML
+    private void cancelarCVV(ActionEvent event) 
+    {
+    
+    }
 }

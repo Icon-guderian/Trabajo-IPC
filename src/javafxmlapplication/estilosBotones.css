@@ -20,5 +20,14 @@
 }
 
 #celda {
-    -fx-border-color: black;
+    -fx-border-color: black;  
+}
+
+#boton_naranja_verde_a_sombra{
+    -fx-background-color:  linear-gradient(from 0% 0% to 100% 200%, repeat,  #F68A1F 0%, #15622E 50%);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+#boton_naranja_verde_a_sombra:hover{
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat,  #F68A1F 0%, #135829 50%);
+;
 }
