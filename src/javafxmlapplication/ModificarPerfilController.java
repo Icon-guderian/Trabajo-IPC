@@ -469,7 +469,6 @@ public class ModificarPerfilController implements Initializable {
     {      
         if(a == 1) 
         {           
-            nombreLabel.setDisable(true); 
             nombreLabel.setVisible(false); 
             nombre1.setDisable(false);  
             nombre1.setVisible(true);
@@ -521,13 +520,36 @@ public class ModificarPerfilController implements Initializable {
     {
         nombre1.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
     }
+    @FXML
+    private void cancelarNombre(ActionEvent event) 
+    {
+        nombre1.setText("");
+        nombre1.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+        nombre1.setVisible(false);
+        nombreBoton.setText("Editar");
+        if(a == 0) 
+        {
+            nombreLabel.setVisible(true);
+            nombreLabel.setText(m.getName());
+            a++;
+        } 
+        else if(!nombre1.isVisible() && nombreLabel.getText().contains("Cambiado."))
+        {
+            nombreLabel.setVisible(true);
+            nombreLabel.setText(nombreNuevo + "    Cambiado.");
+        }
+        else if(!nombre1.isVisible())
+        {
+            nombreLabel.setVisible(true);
+            nombreLabel.setText(m.getName());
+        }     
+    }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------
     @FXML
     private void editarApellidos(ActionEvent event) 
     {
         if(c == 1) 
-        {           
-            apellidosLabel.setDisable(true); 
+        {            
             apellidosLabel.setVisible(false); 
             apellidos.setDisable(false);  
             apellidos.setVisible(true);
@@ -579,13 +601,38 @@ public class ModificarPerfilController implements Initializable {
     {
         apellidos.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
     }
+     @FXML
+    private void cancelarApellido(ActionEvent event) 
+    {
+        apellidos.setText("");
+        apellidos.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+        apellidos.setVisible(false);
+        apellidosBoton.setText("Editar");
+        if(c == 0) 
+        {
+            apellidosLabel.setVisible(true);
+            apellidosLabel.setText(m.getSurname());
+            c++;
+            apellidosLabel.setStyle("-fx-text-fill: black");
+        } 
+        else if(!apellidos.isVisible() && apellidosLabel.getText().contains("Cambiado."))
+        {
+            apellidosLabel.setVisible(true);
+            apellidosLabel.setText(apellidoNuevo + "    Cambiado.");
+        }
+        else if(!apellidos.isVisible())
+        {
+            apellidosLabel.setVisible(true);
+            apellidosLabel.setText(m.getSurname());
+            apellidosLabel.setStyle("-fx-text-fill: black");
+        }     
+    }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------
     @FXML
     private void editarTel(ActionEvent event) 
     {
         if(d == 1) 
         {           
-            telefonoLabel.setDisable(true); 
             telefonoLabel.setVisible(false); 
             telefóno.setDisable(false);  
             telefóno.setVisible(true);
@@ -636,6 +683,32 @@ public class ModificarPerfilController implements Initializable {
     private void telefonoClick(MouseEvent event)
     {
         telefóno.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+    }
+     @FXML
+    private void cancelarTelefono(ActionEvent event) 
+    {
+        telefóno.setText("");
+        telefóno.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+        telefóno.setVisible(false);
+        telBoton.setText("Editar");
+        if(d == 0) 
+        {
+            telefonoLabel.setVisible(true);
+            telefonoLabel.setText(m.getTelephone());
+            c++;
+            telefonoLabel.setStyle("-fx-text-fill: black");
+        } 
+        else if(!telefóno.isVisible() && telefonoLabel.getText().contains("Cambiado."))
+        {
+            telefonoLabel.setVisible(true);
+            telefonoLabel.setText(telefonoNuevo + "    Cambiado.");
+        }
+        else if(!telefóno.isVisible())
+        {
+            telefonoLabel.setVisible(true);
+            telefonoLabel.setText(m.getTelephone());
+            telefonoLabel.setStyle("-fx-text-fill: black");
+        }  
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------
     @FXML
@@ -917,6 +990,11 @@ public class ModificarPerfilController implements Initializable {
     {
         NúmeroTarjeta.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
     }
+    @FXML
+    private void cancelarTarjeta(ActionEvent event) 
+    {
+    
+    }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------ 
     @FXML
     private void editarCVV(ActionEvent event) 
@@ -992,39 +1070,14 @@ public class ModificarPerfilController implements Initializable {
     {
         CVV.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
     }   
+    @FXML
+    private void cancelarCVV(ActionEvent event) 
+    {
+    
+    }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------ 
     @FXML
     private void actualizar(ActionEvent event) 
-    {
-    
-    }
-
-    @FXML
-    private void cancelarNombre(ActionEvent event) 
-    {
-    
-    }
-
-    @FXML
-    private void cancelarApellido(ActionEvent event) 
-    {
-    
-    }
-
-    @FXML
-    private void cancelarTelefono(ActionEvent event) 
-    {
-    
-    }
-
-    @FXML
-    private void cancelarTarjeta(ActionEvent event) 
-    {
-    
-    }
-
-    @FXML
-    private void cancelarCVV(ActionEvent event) 
     {
     
     }
