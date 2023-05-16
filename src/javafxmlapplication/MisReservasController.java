@@ -280,6 +280,17 @@ public class MisReservasController implements Initializable {
         club = getInstance(); 
         
         ArrayAUtilizar = ordenarPorFechaYHora(ArrayAModificar);
+                
+        //if(ArrayAUtilizar.getMadeForDay().isBefore(LocalDate.now())){
+                if (ArrayAUtilizar.isEmpty()) {
+                Label label = new Label();
+                label.setText("No tienes reservas próximas");
+                label.setStyle("-fx-font-weight: bold; -fx-font-size: 20px;");
+                GridPane.add(label, 1, 0);
+                return; // Salir del método ya que no hay reservas para mostrar
+            }
+        //}
+            
 
         for(int i = 0; i < 10 ; i++){
            
@@ -287,13 +298,7 @@ public class MisReservasController implements Initializable {
             
             if(b.getMadeForDay().isAfter(LocalDate.now()) || b.getMadeForDay().isEqual(LocalDate.now())){
             
-                if(b.equals(null)){
-
-                    Label label = new Label();
-                    label.setText("No tienes reservas proximas");
-                    GridPane.add(label,1,i);
-
-                }else if((!b.equals(null)) ){ 
+                if((!b.equals(null)) ){ 
 
                     Label label = new Label();
                     LocalDate diaReserva = b.getMadeForDay();
@@ -306,9 +311,10 @@ public class MisReservasController implements Initializable {
                     String diaReservaTexto = diaReserva.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
                     
                     String a = ""; 
-                    if(b.getPaid() == false) { a = "Está pagada."; } else { a = "No está pagado, recuerde pasar por la oficina a pagar la reserva."; }
+                    if(b.getPaid() == false) { a = "Está pagada."; } 
+                    else { a = "No está pagado, recuerde pasar por la oficina a pagar la reserva."; }
                     
-                    label.setText(diaReservaTexto + "   " + horaInicioTexto + " - " + horaFinTexto + "  " + "Reservado por: " + m.getNickName() + "   " + b.getCourt().getName() + "   " + a + "                                                                               ");  
+                    label.setText(diaReservaTexto + "   " + horaInicioTexto + " - " + horaFinTexto + "  " + "Reservado por: " + m.getNickName() + "   " + b.getCourt().getName() + "   " + a + "    ");  
                     label.setStyle("-fx-background-color: #ffff80");
 
                     GridPane.add(label, 1, i); 
