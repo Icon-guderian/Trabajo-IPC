@@ -34,3 +34,7 @@
 
 #selected_reserva {
     -fx-background-color: #e6e673;
+    
+#unselected_reserva {
+   -fx-background-color: #ffff80;
+
