@@ -57,6 +57,8 @@ public class MisReservasController implements Initializable {
     private Member m; 
     
     private List<Booking> ArrayAModificar, ArrayAUtilizar;
+    
+    private Booking selectedBooking;
 
     @FXML
     private BorderPane borderPane;
@@ -286,7 +288,6 @@ public class MisReservasController implements Initializable {
         
         ArrayAUtilizar = ordenarPorFechaYHora(ArrayAModificar);
                 
-        //if(ArrayAUtilizar.getMadeForDay().isBefore(LocalDate.now())){
                 if (ArrayAUtilizar.isEmpty()) {
                 Label label = new Label();
                 label.setText("No tienes reservas próximas");
@@ -294,7 +295,6 @@ public class MisReservasController implements Initializable {
                 GridPane.add(label, 1, 0);
                 return; // Salir del método ya que no hay reservas para mostrar
             }
-        //}
            
         int i = 0;
         
@@ -320,13 +320,17 @@ public class MisReservasController implements Initializable {
                     
                     label.setText(diaReservaTexto + "   " + horaInicioTexto + " - " + horaFinTexto + "  " + "Reservado por: " + m.getNickName() + "   " + b.getCourt().getName() + "   " + a + "    ");  
                     label.setStyle("-fx-background-color: #ffff80");
-
+                    
                     GridPane.add(label, 1, i); 
 
                     i++;
                 }
             }
         }
+        GridPane.setOnMouseClicked(e -> {
+            selectedBooking = b;
+            anularReservaBoton.setDisable(false); // Habilitar el botón de anular reserva
+        });
     }
 
     @FXML
@@ -352,7 +356,36 @@ public class MisReservasController implements Initializable {
     }
 
     @FXML
-    private void anularReserva(ActionEvent event) {
+    private void anularReserva(ActionEvent event) throws ClubDAOException, IOException{
+        if (selectedBooking != null) {
+        LocalDate now = LocalDate.now();
+        LocalDate reservaDate = selectedBooking.getMadeForDay();
+
+        // Verificar que la reserva es posterior a la fecha actual por más de 24 horas
+        if (reservaDate.isAfter(now.plusDays(1))) {
+            // Eliminar la reserva del club
+            boolean removed = club.removeBooking(selectedBooking);
+
+            if (removed) {
+                // Liberar la pista asociada a la reserva
+                //court().removeBooking(selectedBooking);
+                // Realizar cualquier otra operación necesaria
+
+                // Limpiar la selección y desactivar el botón
+                selectedBooking = null;
+                anularReservaBoton.setDisable(true);
+
+                // Actualizar la visualización de reservas
+                mostrarDisponibilidad(event);
+            } else {
+                // Mostrar un mensaje de error si no se pudo eliminar la reserva
+                System.out.println("Error al anular la reserva. Inténtelo de nuevo.");
+            }
+        } else {
+            // Mostrar un mensaje de error si la reserva no cumple con la condición de tiempo
+            System.out.println("No se puede anular una reserva en el pasado o con menos de 24 horas de anticipación.");
+        }
+    }
     }
 
     
