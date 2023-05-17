@@ -33,5 +33,4 @@
 }
 
 #selected_reserva {
-    -fx-border-color: black;
-    -fx-border-width: 2px;
+    -fx-background-color: #e6e673;

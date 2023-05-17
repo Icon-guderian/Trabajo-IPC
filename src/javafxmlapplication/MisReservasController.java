@@ -321,23 +321,23 @@ public class MisReservasController implements Initializable {
                     label.setText(diaReservaTexto + "   " + horaInicioTexto + " - " + horaFinTexto + "  " + "Reservado por: " + m.getNickName() + "   " + b.getCourt().getName() + "   " + a + "    ");  
                     label.setStyle("-fx-background-color: #ffff80");
                     
-                    GridPane.setOnMouseClicked(e -> {
-            
-                        if (selectedBooking != null) {
-                            // Restaurar el estilo de la reserva previamente seleccionada
-                            //selectedBooking.setStyle().remove("selected_reserva");
-                        }
-                        selectedBooking = b;
-                        //selectedBooking.getStyleClass().add("selected_reserva");
-                        anularReservaBoton.setDisable(false); // Habilitar el botón de anular reserva
-                        
-                    });
-                    
                     GridPane.add(label, 1, i); 
+                    GridPane.getChildren().get(i + 1).setId("celda"); 
 
                     i++;
                 }
             }
+            GridPane.setOnMouseClicked(e -> {
+            
+                        if (selectedBooking != null) {
+                            // Restaurar el estilo de la reserva previamente seleccionada
+                            //GridPane.getChildren().get(i).setId("unselected_reserva");              
+                        }
+                        selectedBooking = b;
+                            //GridPane.getChildren().get(i).setId("selected_reserva");              
+                        anularReservaBoton.setDisable(false); // Habilitar el botón de anular reserva
+                        
+                    });
         }
     }
 
