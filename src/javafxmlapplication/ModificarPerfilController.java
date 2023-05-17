@@ -61,7 +61,7 @@ public class ModificarPerfilController implements Initializable {
     
     private int a = 1, c = 1, d = 1, e = 1, f = 1, g = 1; 
     
-    private boolean cambiado = false, cambiadoC = false, seHaCambiado = false, noVisible = false, tarjetaCvvCambiado = false;; 
+    private boolean cambiado = false, cambiadoC = false, seHaCambiado = false, noVisible = false, tarjetaCvvCambiado = false; 
     
     private Image imageDePerfil;
     
@@ -328,7 +328,7 @@ public class ModificarPerfilController implements Initializable {
             contraseñaAntigua.setVisible(false); 
             textfield2.setDisable(false);  //<-
             textfield2.setVisible(true);
-            noVisible = false;
+            noVisible = true;
             textfield1.setText(contraseña.getText());
             contraseña.setDisable(true); //<-
             contraseña.setVisible(false);
@@ -344,7 +344,7 @@ public class ModificarPerfilController implements Initializable {
             textfield2.setVisible(false);
             contraseñaAntigua.setDisable(false); //<-
             contraseñaAntigua.setVisible(true);
-            noVisible = true;
+            noVisible = false;
             contraseña.setText(textfield1.getText());
             textfield1.setDisable(true); //<-
             textfield1.setVisible(false);
@@ -475,6 +475,10 @@ public class ModificarPerfilController implements Initializable {
             nombre1.setPromptText("Nuevo nombre");
             a--;            
             nombreBoton.setText("Guardar");
+            if(nombreLabel.getText().contains("Cambiado"))
+            {
+                nombre1.setText(nombreNuevo);
+            }
         } 
         else if (a == 0)
         {    
@@ -527,21 +531,34 @@ public class ModificarPerfilController implements Initializable {
         nombre1.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
         nombre1.setVisible(false);
         nombreBoton.setText("Editar");
+        nombreNuevo = ""; 
+        /*
+        if(a == 0 & nombreLabel.getText().contains("Cambiado")) 
+        {
+            nombreLabel.setVisible(true);
+            nombreLabel.setText(nombreNuevo + "    Cambiado.");
+            a++;
+            nombreLabel.setStyle("-fx-text-fill: #15622E");
+        } Esto está aquí para que por si acaso queremos que el boton cancelar, no cancele lo cambiado*/
         if(a == 0) 
         {
             nombreLabel.setVisible(true);
             nombreLabel.setText(m.getName());
             a++;
+            nombreLabel.setStyle("-fx-text-fill: black");
         } 
+        /*
         else if(!nombre1.isVisible() && nombreLabel.getText().contains("Cambiado."))
         {
             nombreLabel.setVisible(true);
             nombreLabel.setText(nombreNuevo + "    Cambiado.");
-        }
+            nombreLabel.setStyle("-fx-text-fill: #15622E");
+        } */
         else if(!nombre1.isVisible())
         {
             nombreLabel.setVisible(true);
             nombreLabel.setText(m.getName());
+            nombreLabel.setStyle("-fx-text-fill: black");
         }     
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -556,6 +573,10 @@ public class ModificarPerfilController implements Initializable {
             apellidos.setPromptText("Nuevos apellidos");
             c--;            
             apellidosBoton.setText("Guardar");
+            if(apellidosLabel.getText().contains("Cambiado"))
+            {
+                apellidos.setText(apellidoNuevo);
+            }
         } 
         else if (c == 0)
         {    
@@ -608,20 +629,30 @@ public class ModificarPerfilController implements Initializable {
         apellidos.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
         apellidos.setVisible(false);
         apellidosBoton.setText("Editar");
+        apellidoNuevo = "";
+        /*
+        if(c == 0 & apellidosLabel.getText().contains("Cambiado")) 
+        {
+            apellidosLabel.setVisible(true);
+            apellidosLabel.setText(apellidoNuevo + "    Cambiado.");
+            c++;
+            apellidosLabel.setStyle("-fx-text-fill: #15622E");
+        }  */
         if(c == 0) 
         {
             apellidosLabel.setVisible(true);
             apellidosLabel.setText(m.getSurname());
             c++;
             apellidosLabel.setStyle("-fx-text-fill: black");
-        } 
+        }    
+        /*
         else if(!apellidos.isVisible() && apellidosLabel.getText().contains("Cambiado."))
         {
             apellidosLabel.setVisible(true);
             apellidosLabel.setText(apellidoNuevo + "    Cambiado.");
-        }
+        }*/
         else if(!apellidos.isVisible())
-        {
+        { 
             apellidosLabel.setVisible(true);
             apellidosLabel.setText(m.getSurname());
             apellidosLabel.setStyle("-fx-text-fill: black");
@@ -639,6 +670,10 @@ public class ModificarPerfilController implements Initializable {
             telefóno.setPromptText("Nuevo teléfono");
             d--;            
             telBoton.setText("Guardar");
+            if(telefonoLabel.getText().contains("Cambiado"))
+            {
+                telefóno.setText(telefonoNuevo);
+            }
         } 
         else if (d == 0)
         {    
@@ -691,18 +726,28 @@ public class ModificarPerfilController implements Initializable {
         telefóno.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
         telefóno.setVisible(false);
         telBoton.setText("Editar");
-        if(d == 0) 
+        telefonoNuevo = ""; 
+        /*
+        if(d == 0 & telefonoLabel.getText().contains("Cambiado")) 
+        {
+            telefonoLabel.setVisible(true);
+            telefonoLabel.setText(telefonoNuevo + "    Cambiado.");
+            d++;
+            telefonoLabel.setStyle("-fx-text-fill: #15622E");
+        } Esto está aquí para que por si acaso queremos que el boton cancelar, no cancele lo cambiado*/
+        if(d == 0)
         {
             telefonoLabel.setVisible(true);
             telefonoLabel.setText(m.getTelephone());
-            c++;
+            d++;
             telefonoLabel.setStyle("-fx-text-fill: black");
-        } 
+        }    
+        /*
         else if(!telefóno.isVisible() && telefonoLabel.getText().contains("Cambiado."))
         {
             telefonoLabel.setVisible(true);
             telefonoLabel.setText(telefonoNuevo + "    Cambiado.");
-        }
+        }*/
         else if(!telefóno.isVisible())
         {
             telefonoLabel.setVisible(true);
@@ -735,21 +780,25 @@ public class ModificarPerfilController implements Initializable {
     {
         if(e == 1) 
         {           
-            if(seHaCambiado == true & noVisible == false) 
-            {
-                textfield1.setVisible(true);
-            }
-            else if (seHaCambiado == true & noVisible == true) 
-            {
-                contraseña.setVisible(true);
-            }
             mostrarContra.setDisable(false);
             contraseña.setDisable(false);  
             contraseñaAntigua.setDisable(false);
             textfield1.setDisable(false);
             textfield2.setDisable(false);
             labelContraseña.setVisible(false);
-            e--;            
+            e--;   
+            /*
+            if(seHaCambiado == true & noVisible == false) 
+            {
+                textfield1.setVisible(true);
+                contraseña.setVisible(false);
+            }
+            else if (seHaCambiado == true & noVisible == true) 
+            {
+                contraseña.setVisible(false);
+                textfield1.setVisible(true);
+            }*/
+            seHaCambiado = false; 
             contraseñaBoton.setText("Guardar");
         } 
         else if (e == 0)
@@ -766,6 +815,7 @@ public class ModificarPerfilController implements Initializable {
                 textfield1.setText("");
                 textfield2.setText("");
                 e++; 
+                seHaCambiado = false; 
                 contraseñaBoton.setText("Editar");
             } 
             else 
@@ -874,8 +924,34 @@ public class ModificarPerfilController implements Initializable {
     @FXML
     private void cancelarCambio(ActionEvent event) 
     {
-        if(e == 1) 
+        contraseñaNueva = "";
+        
+        if(seHaCambiado == true) 
         {
+            contraseña.setText("");
+            textfield1.setText("");
+            contraseñaAntigua.setText("");
+            textfield2.setText("");
+            labelContraseña.setVisible(false);
+            if(noVisible == true)
+            {
+                textfield1.setVisible(true);
+                textfield1.setDisable(true);
+                contraseña.setVisible(false);
+                contraseña.setDisable(true);
+            }
+            else
+            {
+                contraseña.setVisible(true);
+                contraseña.setDisable(true);
+                textfield1.setVisible(false);
+                textfield1.setDisable(true);
+            }
+        }
+        else 
+        {
+            if(e == 1) 
+            {
             contraseña.setText("");
             textfield1.setText("");
             contraseñaAntigua.setText("");
@@ -893,9 +969,9 @@ public class ModificarPerfilController implements Initializable {
             textfield2.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
             contraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
             textfield1.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
-        } 
-        else if (e == 0)
-        {
+            } 
+            else if (e == 0)
+            {
             contraseña.setText("");
             textfield1.setText("");
             contraseñaAntigua.setText("");
@@ -914,7 +990,8 @@ public class ModificarPerfilController implements Initializable {
             textfield2.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
             contraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
             textfield1.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
-        }  
+        }
+        }
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------ 
     @FXML
@@ -922,13 +999,16 @@ public class ModificarPerfilController implements Initializable {
     {
         if(f == 1) 
         {           
-            numerotarjetaLabel.setDisable(true); 
             numerotarjetaLabel.setVisible(false); 
             NúmeroTarjeta.setDisable(false);  
             NúmeroTarjeta.setVisible(true);
             NúmeroTarjeta.setPromptText("Nueva tarjeta");
             f--;            
             tarjetaBoton.setText("Guardar");
+            if(numerotarjetaLabel.getText().contains("Cambiado"))
+            {
+                NúmeroTarjeta.setText(numeroTarjetaNuevo);
+            }
         } 
         else if (f == 0)
         {    
@@ -993,7 +1073,74 @@ public class ModificarPerfilController implements Initializable {
     @FXML
     private void cancelarTarjeta(ActionEvent event) 
     {
-    
+        NúmeroTarjeta.setText("");
+        NúmeroTarjeta.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+        NúmeroTarjeta.setVisible(false);
+        tarjetaBoton.setText("Editar");
+        /*
+        if(f == 0 & numerotarjetaLabel.getText().contains("Cambiado")) 
+        {
+            f++; 
+            if(tarjetaCvvCambiado == true)
+            {
+                numerotarjetaLabel.setVisible(true);
+                numerotarjetaLabel.setText(numeroTarjetaNuevo + "    Cambiado.");
+                
+                numerotarjetaLabel.setStyle("-fx-text-fill: #15622E");
+            }
+            else 
+            {
+                numerotarjetaLabel.setVisible(true);
+                numerotarjetaLabel.setText(ocultar(numeroTarjetaNuevo, 4, 11) + "    Cambiado.");
+                numerotarjetaLabel.setStyle("-fx-text-fill: #15622E");
+            }        
+        } Esto está aquí para que por si acaso queremos que el boton cancelar, no cancele lo cambiado*/
+        if(f == 0)
+        {
+            f++;
+            if(tarjetaCvvCambiado == true)
+            {
+                numerotarjetaLabel.setVisible(true);
+                numerotarjetaLabel.setText(m.getCreditCard());
+                numerotarjetaLabel.setStyle("-fx-text-fill: black");
+            }
+            else 
+            {
+                numerotarjetaLabel.setVisible(true);
+                numerotarjetaLabel.setText(ocultar(m.getCreditCard(), 4, 11));
+                numerotarjetaLabel.setStyle("-fx-text-fill: black");
+            }   
+        } /*
+        else if(!NúmeroTarjeta.isVisible() && numerotarjetaLabel.getText().contains("Cambiado."))
+        {
+            if(tarjetaCvvCambiado == true)
+            {
+                numerotarjetaLabel.setVisible(true);
+                numerotarjetaLabel.setText(numeroTarjetaNuevo + "    Cambiado.");
+                numerotarjetaLabel.setStyle("-fx-text-fill: #15622E");
+            }
+            else 
+            {
+                numerotarjetaLabel.setVisible(true);
+                numerotarjetaLabel.setText(ocultar(numeroTarjetaNuevo, 4, 11) + "    Cambiado.");
+                numerotarjetaLabel.setStyle("-fx-text-fill: #15622E");
+            } 
+        }*/
+        else if(!NúmeroTarjeta.isVisible())
+        {           
+            if(tarjetaCvvCambiado == true)
+            {
+                numerotarjetaLabel.setVisible(true);
+                numerotarjetaLabel.setText(m.getCreditCard());
+                numerotarjetaLabel.setStyle("-fx-text-fill: black");
+            }
+            else 
+            {
+                numerotarjetaLabel.setVisible(true);
+                numerotarjetaLabel.setText(ocultar(m.getCreditCard(), 4, 11));
+                numerotarjetaLabel.setStyle("-fx-text-fill: black");
+            }   
+        } 
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------ 
     @FXML
@@ -1001,7 +1148,6 @@ public class ModificarPerfilController implements Initializable {
     {
         if(g == 1) 
         {           
-            cvvLabel.setDisable(true); 
             cvvLabel.setVisible(false); 
             CVV.setDisable(false);  
             CVV.setVisible(true);
@@ -1036,10 +1182,10 @@ public class ModificarPerfilController implements Initializable {
                 {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error");
-                    alert.setHeaderText("Error en el número de tarjeta");
-                    alert.setContentText("Número de tarjeta no válido. Una tarjeta válida solo puede contener números y debe de tener 16 dígitos");
-                    alert.showAndWait();  
-                    CVV.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");                     
+                    alert.setHeaderText("Error en el CVV");
+                    alert.setContentText("CVV no válido. Un CVV válida solo puede contener números y debe de tener 3 dígitos");
+                    alert.showAndWait(); 
+                    CVV.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red; -fx-prompt-text-fill: black; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
                 }
                 else 
                 {
@@ -1073,12 +1219,48 @@ public class ModificarPerfilController implements Initializable {
     @FXML
     private void cancelarCVV(ActionEvent event) 
     {
-    
+        int CvV = m.getSvc(); 
+        String CVVV = cambiarIntStr(CvV);
+        CVV.setText("");
+        CVV.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
+        CVV.setVisible(false);
+        cvvBoton.setText("Editar");
+        if(g == 0)
+        {
+            g++;
+            if(tarjetaCvvCambiado == true)
+            {
+                cvvLabel.setVisible(true);
+                cvvLabel.setText(CVVV);
+                cvvLabel.setStyle("-fx-text-fill: black");
+            }
+            else 
+            {
+                cvvLabel.setVisible(true);
+                cvvLabel.setText(ocultar(CVVV, 0, 2));
+                cvvLabel.setStyle("-fx-text-fill: black");
+            }   
+        }    
+        else if(!NúmeroTarjeta.isVisible())
+        {           
+            if(tarjetaCvvCambiado == true)
+            {
+                cvvLabel.setVisible(true);
+                cvvLabel.setText(CVVV);
+                cvvLabel.setStyle("-fx-text-fill: black");
+            }
+            else 
+            {
+                cvvLabel.setVisible(true);
+                cvvLabel.setText(ocultar(CVVV, 0, 2));
+                cvvLabel.setStyle("-fx-text-fill: black");
+            }   
+        } 
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------ 
     @FXML
     private void actualizar(ActionEvent event) 
     {
-    
+
     }
 }

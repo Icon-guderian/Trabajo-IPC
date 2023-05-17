@@ -26,7 +26,6 @@ import model.Club;
 import static model.Club.getInstance;
 import model.ClubDAOException;
 import model.Member;
-import javafx.css.Style;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
@@ -198,15 +197,31 @@ public class IniciarSesionController implements Initializable {
     @FXML
     private void contraseñaCambiar(MouseEvent event) 
     {
-        cajaContraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;");
-        errorContraseñaVaic.setVisible(false);
+        if(errorContraseñaVaic.getText().contains("Introduzca una contraseña")) 
+        {
+            errorContraseñaVaic.setVisible(false);
+            cajaContraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;");
+        }
+        else 
+        {
+            cajaContraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;");
+            CajaUsuario.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;");
+       
+        }
     }
 
     @FXML
     private void usuarioCambiar(MouseEvent event) 
     {
-        CajaUsuario.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;");
-        errorUsuarioVacío.setVisible(false);
-
+       if (errorUsuarioVacío.getText().contains("Introduzca un usuario"))
+        {
+            errorUsuarioVacío.setVisible(false);
+            CajaUsuario.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;");
+        }
+        else 
+        {
+            cajaContraseña.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;");
+            CajaUsuario.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3); -fx-prompt-text-fill: black;");
+        }
     }
 }
