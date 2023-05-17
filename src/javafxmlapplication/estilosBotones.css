@@ -31,3 +31,7 @@
     -fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat,  #F68A1F 0%, #135829 50%);
 ;
 }
+
+#selected_reserva {
+    -fx-border-color: black;
+    -fx-border-width: 2px;
