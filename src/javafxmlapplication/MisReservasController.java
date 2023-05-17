@@ -98,6 +98,8 @@ public class MisReservasController implements Initializable {
         return Integer.parseInt(str);
     }
     
+    
+    
     public boolean devolverHoraReserva(List<Booking> ar, LocalTime local) 
     {
         boolean devolver = false; 
@@ -291,7 +293,7 @@ public class MisReservasController implements Initializable {
                 if (ArrayAUtilizar.isEmpty()) {
                 Label label = new Label();
                 label.setText("No tienes reservas próximas");
-                label.setStyle("-fx-font-weight: bold; -fx-font-size: 20px;");
+                label.setStyle("-fx-font-weight: bold; -fx-font-size: 20px; -fx-alignment: center; -fx-text-alignment: center;");
                 GridPane.add(label, 1, 0);
                 return; // Salir del método ya que no hay reservas para mostrar
             }
@@ -321,23 +323,23 @@ public class MisReservasController implements Initializable {
                     label.setText(diaReservaTexto + "   " + horaInicioTexto + " - " + horaFinTexto + "  " + "Reservado por: " + m.getNickName() + "   " + b.getCourt().getName() + "   " + a + "    ");  
                     label.setStyle("-fx-background-color: #ffff80");
                     
+                    label.setOnMouseClicked(e -> {
+            
+                        if (selectedBooking != null) {
+                            // Restaurar el estilo de la reserva previamente seleccionada
+                            label.setId("unselected_reserva");              
+                        }
+                        selectedBooking = b;
+                            label.setId("selected_reserva");              
+                        anularReservaBoton.setDisable(false); // Habilitar el botón de anular reserva
+                        
+                    });
+                    
                     GridPane.add(label, 1, i); 
-                    GridPane.getChildren().get(i + 1).setId("celda"); 
 
                     i++;
                 }
             }
-            GridPane.setOnMouseClicked(e -> {
-            
-                        if (selectedBooking != null) {
-                            // Restaurar el estilo de la reserva previamente seleccionada
-                            //GridPane.getChildren().get(i).setId("unselected_reserva");              
-                        }
-                        selectedBooking = b;
-                            //GridPane.getChildren().get(i).setId("selected_reserva");              
-                        anularReservaBoton.setDisable(false); // Habilitar el botón de anular reserva
-                        
-                    });
         }
     }
 
@@ -373,30 +375,8 @@ public class MisReservasController implements Initializable {
             if (reservaDate.isAfter(now.plusDays(1))) {
                 // Eliminar la reserva del club
                 boolean removed = club.removeBooking(selectedBooking);
-
-                if (removed) {
-                    // Liberar la pista asociada a la reserva
-                    //court().removeBooking(selectedBooking);
-                    // Realizar cualquier otra operación necesaria
-
-                    // Limpiar la selección y desactivar el botón
-                    selectedBooking = null;
-                    anularReservaBoton.setDisable(true);
-
-                    // Actualizar la visualización de reservas
-                    mostrarDisponibilidad(event);
-                } else {
-                    // Mostrar un mensaje de error si no se pudo eliminar la reserva
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Error anulando la reserva");
-                    alert.setHeaderText("");
-                    alert.setContentText("Error al anular la reserva. Inténtelo de nuevo.");
-
-                    Optional<ButtonType> result = alert.showAndWait();
-                }
             } else {
                 // Mostrar un mensaje de error si la reserva no cumple con la condición de tiempo
-
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Error anulando la reserva");
                 alert.setHeaderText("");
