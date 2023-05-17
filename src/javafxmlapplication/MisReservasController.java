@@ -80,6 +80,8 @@ public class MisReservasController implements Initializable {
     private Label labelPistaReservada;
     @FXML
     private MenuItem miMenu;
+    @FXML
+    private Button anularReservaBoton;
     /**
      * Initializes the controller class.
      */
@@ -201,6 +203,9 @@ public class MisReservasController implements Initializable {
         } catch (ClubDAOException | IOException e)  {}
         
         opcionesBoton.setId("boton_blanco_a_sombra");
+        mostrarDisponBoton.setId("boton_verde_a_sombra");
+        anularReservaBoton.setId("boton_verde_a_sombra");
+
 
     }    
 
@@ -290,12 +295,11 @@ public class MisReservasController implements Initializable {
                 return; // Salir del método ya que no hay reservas para mostrar
             }
         //}
-            
-
-        for(int i = 0; i < 10 ; i++){
            
-            Booking b = ArrayAUtilizar.get(i);
-            
+        int i = 0;
+        
+        for (Booking b : ArrayAUtilizar){
+                       
             if(b.getMadeForDay().isAfter(LocalDate.now()) || b.getMadeForDay().isEqual(LocalDate.now())){
             
                 if((!b.equals(null)) ){ 
@@ -319,6 +323,7 @@ public class MisReservasController implements Initializable {
 
                     GridPane.add(label, 1, i); 
 
+                    i++;
                 }
             }
         }
@@ -344,6 +349,10 @@ public class MisReservasController implements Initializable {
             stage.show();
             myStage.close();
         } catch (IOException ex) {}
+    }
+
+    @FXML
+    private void anularReserva(ActionEvent event) {
     }
 
     
