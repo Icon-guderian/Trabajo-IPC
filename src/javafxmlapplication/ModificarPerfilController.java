@@ -54,9 +54,7 @@ public class ModificarPerfilController implements Initializable {
      * Initializes the controller class.
      */
     private Club club; 
-    
-    private Booking b;
-    
+
     private Member m; 
     
     private int a = 1, c = 1, d = 1, e = 1, f = 1, g = 1; 
@@ -65,9 +63,9 @@ public class ModificarPerfilController implements Initializable {
     
     private Image imageDePerfil;
     
-    private String nombreNuevo, apellidoNuevo, telefonoNuevo, contraseñaNueva, numeroTarjetaNuevo;
+    private String nombreNuevo = "", apellidoNuevo = "", telefonoNuevo = "", contraseñaNueva = "", numeroTarjetaNuevo = "";
     
-    private int CVVnuevo; 
+    private int CVVnuevo = -1; 
     
     @FXML
     private BorderPane borderPane;
@@ -293,6 +291,32 @@ public class ModificarPerfilController implements Initializable {
             tarjetaCvvCambiado = true; 
             int Cvv = m.getSvc(); 
             if(Cvv != -1) cvvLabel.setText(String.valueOf(m.getSvc())); 
+            if(cambiadoC == false) 
+            {
+                if(Cvv != -1)
+                {
+                    cvvLabel.setText(cambiarIntStr(m.getSvc()));
+                }   
+                else 
+                {
+                    cvvLabel.setText("CVV no introducido ");
+                    cvvLabel.setStyle("-fx-text-fill: #F68A1F;");
+                }
+                
+            }
+            else 
+            {
+                if(Cvv != -1)
+                {
+                    cvvLabel.setText(cambiarIntStr(m.getSvc()) + "    Cambiado.");
+                }   
+                else 
+                {
+                    cvvLabel.setText("CVV no introducido ");
+                    cvvLabel.setStyle("-fx-text-fill: #F68A1F;");
+                }                
+            }
+            tarjetaCvvCambiado = true; 
             
         } else {
         // Ocultar contraseña
@@ -307,6 +331,31 @@ public class ModificarPerfilController implements Initializable {
             tarjetaCvvCambiado = false;
             int Cvv = m.getSvc(); 
             if(Cvv != -1) cvvLabel.setText(ocultar(String.valueOf(m.getSvc()), 0, 2)); 
+            if(cambiadoC == false) 
+            {
+                if(Cvv != -1)
+                {
+                    cvvLabel.setText(ocultar(cambiarIntStr(m.getSvc()),0 ,2));
+                }
+                else 
+                {
+                    cvvLabel.setText("CVV no introducido ");
+                    cvvLabel.setStyle("-fx-text-fill: #F68A1F;");
+                }
+            }
+            else 
+            {
+                if(Cvv != -1)
+                {
+                    cvvLabel.setText(ocultar(cambiarIntStr(CVVnuevo), 0, 2) + "    Cambiado.");
+                }
+                else 
+                {
+                    cvvLabel.setText("CVV no introducido ");
+                    cvvLabel.setStyle("-fx-text-fill: #F68A1F;");
+                }
+                
+            }
         }
         });
     }
@@ -451,6 +500,7 @@ public class ModificarPerfilController implements Initializable {
             try {
                 Parent root = miCargador.load();
                 Scene scene1 = new Scene(root);
+                scene1.getStylesheets().add(getClass().getResource("calendario.css").toExternalForm());
                 Stage stage = new Stage();
                 stage.setScene(scene1);
                 stage.show();
@@ -630,14 +680,6 @@ public class ModificarPerfilController implements Initializable {
         apellidos.setVisible(false);
         apellidosBoton.setText("Editar");
         apellidoNuevo = "";
-        /*
-        if(c == 0 & apellidosLabel.getText().contains("Cambiado")) 
-        {
-            apellidosLabel.setVisible(true);
-            apellidosLabel.setText(apellidoNuevo + "    Cambiado.");
-            c++;
-            apellidosLabel.setStyle("-fx-text-fill: #15622E");
-        }  */
         if(c == 0) 
         {
             apellidosLabel.setVisible(true);
@@ -645,12 +687,6 @@ public class ModificarPerfilController implements Initializable {
             c++;
             apellidosLabel.setStyle("-fx-text-fill: black");
         }    
-        /*
-        else if(!apellidos.isVisible() && apellidosLabel.getText().contains("Cambiado."))
-        {
-            apellidosLabel.setVisible(true);
-            apellidosLabel.setText(apellidoNuevo + "    Cambiado.");
-        }*/
         else if(!apellidos.isVisible())
         { 
             apellidosLabel.setVisible(true);
@@ -727,14 +763,6 @@ public class ModificarPerfilController implements Initializable {
         telefóno.setVisible(false);
         telBoton.setText("Editar");
         telefonoNuevo = ""; 
-        /*
-        if(d == 0 & telefonoLabel.getText().contains("Cambiado")) 
-        {
-            telefonoLabel.setVisible(true);
-            telefonoLabel.setText(telefonoNuevo + "    Cambiado.");
-            d++;
-            telefonoLabel.setStyle("-fx-text-fill: #15622E");
-        } Esto está aquí para que por si acaso queremos que el boton cancelar, no cancele lo cambiado*/
         if(d == 0)
         {
             telefonoLabel.setVisible(true);
@@ -742,12 +770,6 @@ public class ModificarPerfilController implements Initializable {
             d++;
             telefonoLabel.setStyle("-fx-text-fill: black");
         }    
-        /*
-        else if(!telefóno.isVisible() && telefonoLabel.getText().contains("Cambiado."))
-        {
-            telefonoLabel.setVisible(true);
-            telefonoLabel.setText(telefonoNuevo + "    Cambiado.");
-        }*/
         else if(!telefóno.isVisible())
         {
             telefonoLabel.setVisible(true);
@@ -1073,6 +1095,8 @@ public class ModificarPerfilController implements Initializable {
     @FXML
     private void cancelarTarjeta(ActionEvent event) 
     {
+        cambiado = false; 
+        numeroTarjetaNuevo = ""; 
         NúmeroTarjeta.setText("");
         NúmeroTarjeta.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
         NúmeroTarjeta.setVisible(false);
@@ -1160,15 +1184,23 @@ public class ModificarPerfilController implements Initializable {
             if(CVV.getText().equals(cambiarIntStr(m.getSvc())) || CVV.getText().isEmpty()) 
             {
                 cambiadoC = false; 
-                if(tarjetaCvvCambiado == false) 
+                if(m.getSvc() != -1) 
                 {
-                    cvvLabel.setText(ocultar(cambiarIntStr(m.getSvc()), 0, 2));
+                    if(tarjetaCvvCambiado == false) 
+                    {
+                        cvvLabel.setText(ocultar(cambiarIntStr(m.getSvc()), 0, 2));
+                    }
+                    else if(tarjetaCvvCambiado == true) 
+                    {
+                        cvvLabel.setText(cambiarIntStr(m.getSvc()));
+                    }
+                    cvvLabel.setStyle("-fx-text-fill: black");
                 }
-                else if(tarjetaCvvCambiado == true) 
+                else 
                 {
-                    cvvLabel.setText(cambiarIntStr(m.getSvc()));
+                    cvvLabel.setText("CVV no introducido ");
+                    cvvLabel.setStyle("-fx-text-fill: #F68A1F;");
                 }
-                cvvLabel.setStyle("-fx-text-fill: black");
                 CVV.setDisable(true);  
                 CVV.setVisible(false);
                 cvvLabel.setDisable(false); 
@@ -1219,48 +1251,129 @@ public class ModificarPerfilController implements Initializable {
     @FXML
     private void cancelarCVV(ActionEvent event) 
     {
+        cambiadoC = false; 
         int CvV = m.getSvc(); 
         String CVVV = cambiarIntStr(CvV);
+        CVVnuevo = -1; 
         CVV.setText("");
         CVV.setStyle("-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #15622E; -fx-prompt-text-fill: black;  -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 3);");
         CVV.setVisible(false);
         cvvBoton.setText("Editar");
-        if(g == 0)
+        if(m.getSvc() == -1 & g == 0) 
         {
-            g++;
-            if(tarjetaCvvCambiado == true)
+            cvvLabel.setVisible(true);
+            cvvLabel.setText("CVV no introducido ");
+            cvvLabel.setStyle("-fx-text-fill: #F68A1F;");
+            g++; 
+        }
+        else if(m.getSvc() == -1 & g == 1) 
+        {
+            cvvLabel.setVisible(true);
+            cvvLabel.setText("CVV no introducido ");
+            cvvLabel.setStyle("-fx-text-fill: #F68A1F;");
+            g--; 
+        }
+        else
+        {
+            if(g == 0)
             {
-                cvvLabel.setVisible(true);
-                cvvLabel.setText(CVVV);
-                cvvLabel.setStyle("-fx-text-fill: black");
-            }
-            else 
-            {
-                cvvLabel.setVisible(true);
-                cvvLabel.setText(ocultar(CVVV, 0, 2));
-                cvvLabel.setStyle("-fx-text-fill: black");
-            }   
-        }    
-        else if(!NúmeroTarjeta.isVisible())
-        {           
-            if(tarjetaCvvCambiado == true)
-            {
-                cvvLabel.setVisible(true);
-                cvvLabel.setText(CVVV);
-                cvvLabel.setStyle("-fx-text-fill: black");
-            }
-            else 
-            {
-                cvvLabel.setVisible(true);
-                cvvLabel.setText(ocultar(CVVV, 0, 2));
-                cvvLabel.setStyle("-fx-text-fill: black");
-            }   
-        } 
+                g++;
+                if(tarjetaCvvCambiado == true)
+                {
+                    cvvLabel.setVisible(true);
+                    cvvLabel.setText(CVVV);
+                    cvvLabel.setStyle("-fx-text-fill: black");
+                }
+                else 
+                {
+                    cvvLabel.setVisible(true);
+                    cvvLabel.setText(ocultar(CVVV, 0, 2));
+                    cvvLabel.setStyle("-fx-text-fill: black");
+                }   
+            }    
+            else if(!NúmeroTarjeta.isVisible())
+            {           
+                if(tarjetaCvvCambiado == true)
+                {
+                    cvvLabel.setVisible(true);
+                    cvvLabel.setText(CVVV);
+                    cvvLabel.setStyle("-fx-text-fill: black");
+                }
+                else 
+                {
+                    cvvLabel.setVisible(true);
+                    cvvLabel.setText(ocultar(CVVV, 0, 2));
+                    cvvLabel.setStyle("-fx-text-fill: black");
+                }   
+            } 
+        }
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------ 
     @FXML
-    private void actualizar(ActionEvent event) 
+    private void actualizar(ActionEvent event) throws IOException 
     {
-
+        boolean modficiado = false; 
+        if(!"".equals(nombreNuevo))
+        {
+            modficiado = true;
+            m.setName(nombreNuevo);
+        }
+        if (!"".equals(apellidoNuevo))
+        {
+            modficiado = true;
+            m.setSurname(apellidoNuevo);
+        }
+        if (!"".equals(telefonoNuevo))
+        {
+            modficiado = true;
+            m.setTelephone(telefonoNuevo);
+        }
+        if (!"".equals(contraseñaNueva))
+        {
+            modficiado = true;
+            m.setPassword(contraseñaNueva);
+        }
+        if (!"".equals(numeroTarjetaNuevo))
+        {
+            modficiado = true;
+            m.setCreditCard(numeroTarjetaNuevo);
+        }
+        if (CVVnuevo != -1)
+        {
+            modficiado = true;
+            m.setSvc(CVVnuevo);
+        }
+        if(imageDePerfil != null)
+        {
+            modficiado = true;
+            m.setImage(imageDePerfil);
+        }    
+        
+        if(modficiado == false)
+        {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Aviso");
+            alert.setHeaderText("No ha modificado ningún campo.");
+            alert.setContentText("Si quiere editar algún dato presione Editar y si quiere eliminar ese cambio presione Cancelar");
+            ButtonType botonSi = new ButtonType("Aceptar");
+        }
+        else 
+        {
+            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/ModificarPerfil.fxml"));
+            Parent root = miCargador.load();   
+            ModificarPerfilController controlador = miCargador.getController();
+            controlador.initUsuario(m); 
+            controlador.initImageNick(m); 
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("textfield.css").toExternalForm()); 
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Modificar Perfil");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+            Stage myStage = (Stage) actualizarBoton.getScene().getWindow();
+            myStage.close();
+        }
+        
     }
 }

@@ -122,8 +122,7 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
 
     @FXML
     private void accederAutenticarse(ActionEvent event) throws IOException 
-    {   
-        ObservableList<Node> a = GridPane.getChildren();  
+    {     
         FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/IniciarSesion.fxml"));
         Parent root = miCargador.load();       
         Scene scene = new Scene(root);
@@ -132,7 +131,6 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
         stage.setScene(scene);
         stage.setTitle("Autenticarse");
         stage.initModality(Modality.APPLICATION_MODAL);
-        //la ventana se muestra modal
         stage.show();
         Stage myStage = (Stage) autenticarse.getScene().getWindow();
         myStage.close();
