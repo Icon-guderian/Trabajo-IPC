@@ -1356,6 +1356,7 @@ public class ModificarPerfilController implements Initializable {
             alert.setHeaderText("No ha modificado ningún campo.");
             alert.setContentText("Si quiere editar algún dato presione Editar y si quiere eliminar ese cambio presione Cancelar");
             ButtonType botonSi = new ButtonType("Aceptar");
+            alert.showAndWait();
         }
         else 
         {
@@ -1374,6 +1375,5 @@ public class ModificarPerfilController implements Initializable {
             Stage myStage = (Stage) actualizarBoton.getScene().getWindow();
             myStage.close();
         }
-        
     }
 }
