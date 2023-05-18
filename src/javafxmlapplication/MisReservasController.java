@@ -376,16 +376,6 @@ public class MisReservasController implements Initializable {
                 boolean removed = club.removeBooking(selectedBooking);
                 mostrarDisponibilidad(event);
             } else {
-                    // Mostrar un mensaje de error si no se pudo eliminar la reserva
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Error anulando la reserva");
-                    alert.setHeaderText("");
-                    alert.setContentText("Error al anular la reserva. Inténtelo de nuevo.");
-
-       
-                    Optional<ButtonType> result = alert.showAndWait();
-                }
-        } else {
                 // Mostrar un mensaje de error si la reserva no cumple con la condición de tiempo
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Error anulando la reserva");
@@ -394,5 +384,13 @@ public class MisReservasController implements Initializable {
 
                 Optional<ButtonType> result = alert.showAndWait();
             } 
+        }else{
+            // Mostrar un mensaje de error si no se pudo eliminar la reserva
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error anulando la reserva");
+            alert.setHeaderText("");
+            alert.setContentText("Error al anular la reserva. Inténtelo de nuevo.");
+            Optional<ButtonType> result = alert.showAndWait();
         }
     }
+}
