@@ -321,8 +321,7 @@ public class MisReservasController implements Initializable {
                     else { a = "No está pagado, recuerde pasar por la oficina a pagar la reserva."; }
                     
                     label.setText(diaReservaTexto + "   " + horaInicioTexto + " - " + horaFinTexto + "  " + "Reservado por: " + m.getNickName() + "   " + b.getCourt().getName() + "   " + a + "    ");  
-                    label.setStyle("-fx-background-color: #ffff80");
-                    
+                    label.setId("selected_reserva");
                     label.setOnMouseClicked(e -> {
             
                         if (selectedBooking != null) {
@@ -375,7 +374,18 @@ public class MisReservasController implements Initializable {
             if (reservaDate.isAfter(now.plusDays(1))) {
                 // Eliminar la reserva del club
                 boolean removed = club.removeBooking(selectedBooking);
+                mostrarDisponibilidad(event);
             } else {
+                    // Mostrar un mensaje de error si no se pudo eliminar la reserva
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Error anulando la reserva");
+                    alert.setHeaderText("");
+                    alert.setContentText("Error al anular la reserva. Inténtelo de nuevo.");
+
+       
+                    Optional<ButtonType> result = alert.showAndWait();
+                }
+        } else {
                 // Mostrar un mensaje de error si la reserva no cumple con la condición de tiempo
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Error anulando la reserva");
@@ -383,7 +393,6 @@ public class MisReservasController implements Initializable {
                 alert.setContentText("No se puede anular una reserva en el pasado o con menos de 24 horas de anticipación.");
 
                 Optional<ButtonType> result = alert.showAndWait();
-            }
+            } 
         }
     }
-}
