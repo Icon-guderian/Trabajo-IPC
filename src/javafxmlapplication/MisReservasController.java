@@ -293,7 +293,7 @@ public class MisReservasController implements Initializable {
                 
                 if (ArrayAUtilizar.isEmpty()) {
                 Label label = new Label();
-                label.setText("No tienes reservas próximas");
+                label.setText("               No tienes reservas próximas");
                 label.setStyle("-fx-font-weight: bold; -fx-font-size: 20px; -fx-alignment: center; -fx-text-alignment: center;");
                 GridPane.add(label, 1, 0);
                 return; 
