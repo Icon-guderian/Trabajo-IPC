@@ -40,6 +40,7 @@ import static model.Club.getInstance;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.MenuButton;
 
 /**
@@ -370,12 +371,37 @@ public class MisReservasController implements Initializable {
         if (selectedBooking != null) {
         LocalDate now = LocalDate.now();
         LocalDate reservaDate = selectedBooking.getMadeForDay();
+        
+        LocalDate diaReserva = selectedBooking.getMadeForDay();
+        LocalTime horaInicio = selectedBooking.getFromTime();
+        int duracion = club.getBookingDuration();
+        LocalTime horaFin = horaInicio.plusMinutes(duracion);
+
+        String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
+        String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
+        String diaReservaTexto = diaReserva.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
+        
+        
 
             // Verificar que la reserva es posterior a la fecha actual por más de 24 horas
             if (reservaDate.isAfter(now.plusDays(1))) {
                 // Eliminar la reserva del club
                 boolean removed = club.removeBooking(selectedBooking);
                 mostrarDisponibilidad(event);
+                
+                // Mostrar un mensaje de error si la reserva no cumple con la condición de tiempo
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Reserva anulada");
+                alert.setHeaderText("");
+                alert.setContentText("Se ha anulado la siguiente reserva: " + diaReservaTexto + " " + horaInicioTexto + " - " + horaFinTexto + " " + selectedBooking.getCourt().getName() + ". Vuelva a entrar a esta pestaña para ver tus reservas actualizadas");
+
+                DialogPane dialogPane = alert.getDialogPane();
+
+                // Establecer un ancho y alto personalizados
+                dialogPane.setPrefWidth(450);
+                dialogPane.setPrefHeight(100);
+                
+                Optional<ButtonType> result = alert.showAndWait();
             } else {
                 // Mostrar un mensaje de error si la reserva no cumple con la condición de tiempo
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
