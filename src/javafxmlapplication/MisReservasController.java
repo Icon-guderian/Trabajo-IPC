@@ -295,7 +295,7 @@ public class MisReservasController implements Initializable {
                 label.setText("No tienes reservas próximas");
                 label.setStyle("-fx-font-weight: bold; -fx-font-size: 20px; -fx-alignment: center; -fx-text-alignment: center;");
                 GridPane.add(label, 1, 0);
-                return; // Salir del método ya que no hay reservas para mostrar
+                return; 
             }
            
         int i = 0;
@@ -322,6 +322,7 @@ public class MisReservasController implements Initializable {
                     
                     label.setText(diaReservaTexto + "   " + horaInicioTexto + " - " + horaFinTexto + "  " + "Reservado por: " + m.getNickName() + "   " + b.getCourt().getName() + "   " + a + "    ");  
                     label.setId("selected_reserva");
+                    
                     label.setOnMouseClicked(e -> {
             
                         if (selectedBooking != null) {
