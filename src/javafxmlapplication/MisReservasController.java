@@ -57,7 +57,7 @@ public class MisReservasController implements Initializable {
     
     private Member m; 
     
-    private List<Booking> ArrayAModificar, ArrayAUtilizar;
+    private List<Booking> ArrayAModificar, ArrayAUtilizar, ArrayAComparar;
     
     private Booking selectedBooking;
 
@@ -89,12 +89,22 @@ public class MisReservasController implements Initializable {
      * Initializes the controller class.
      */
     
-    public void initUsuario(Member member) {
-       m = member; 
-       ArrayAModificar = club.getUserBookings(m.getNickName()); 
-       ArrayAUtilizar = ordenarPorFechaYHora(ArrayAModificar); 
+    public void initArray(List<Booking> a) {
+        ArrayAComparar = a; 
     }
     
+    public void initUsuario(Member member) {
+       m = member; 
+       if(ArrayAComparar == null)
+       {
+            ArrayAModificar = club.getUserBookings(m.getNickName()); 
+            ArrayAUtilizar = ordenarPorFechaYHora(ArrayAModificar); 
+       }
+       else
+       {
+           ArrayAUtilizar = ArrayAComparar;  
+       }
+    }
     public static int cambiarStrAInt(String str) {
         return Integer.parseInt(str);
     }
@@ -393,7 +403,7 @@ public class MisReservasController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Reserva anulada");
                 alert.setHeaderText("");
-                alert.setContentText("Se ha anulado la siguiente reserva: " + diaReservaTexto + " " + horaInicioTexto + " - " + horaFinTexto + " " + selectedBooking.getCourt().getName() + ". Vuelva a entrar a esta pestaña para ver tus reservas actualizadas");
+                alert.setContentText("Se ha anulado la siguiente reserva: " + diaReservaTexto + " " + horaInicioTexto + " - " + horaFinTexto + " " + selectedBooking.getCourt().getName() + ".");
 
                 DialogPane dialogPane = alert.getDialogPane();
 
@@ -402,6 +412,21 @@ public class MisReservasController implements Initializable {
                 dialogPane.setPrefHeight(100);
                 
                 Optional<ButtonType> result = alert.showAndWait();
+                FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/MisReservas.fxml"));
+                Parent root = miCargador.load();    
+                Scene scene = new Scene(root);
+                MisReservasController controlador = miCargador.getController(); 
+                controlador.initUsuario(m); 
+                controlador.initImageNick(m);
+                controlador.initArray(ArrayAUtilizar); 
+                scene.getStylesheets().add(getClass().getResource("textfield.css").toExternalForm());
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.setTitle("Iniciar Sesión");
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.show();
+                Stage myStage = (Stage) anularReservaBoton.getScene().getWindow();
+                myStage.close();
             } else {
                 // Mostrar un mensaje de error si la reserva no cumple con la condición de tiempo
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
