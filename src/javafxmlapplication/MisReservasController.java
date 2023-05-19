@@ -422,7 +422,7 @@ public class MisReservasController implements Initializable {
                 scene.getStylesheets().add(getClass().getResource("textfield.css").toExternalForm());
                 Stage stage = new Stage();
                 stage.setScene(scene);
-                stage.setTitle("Iniciar Sesión");
+                stage.setTitle("Mis reservas");
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.show();
                 Stage myStage = (Stage) anularReservaBoton.getScene().getWindow();
