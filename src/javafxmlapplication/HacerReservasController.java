@@ -30,6 +30,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
@@ -50,7 +51,7 @@ import model.Member;
  *
  * @author david
  */
-public class HacerReservasController implements Initializable {
+public class HacerReservasController extends ListCell<String> implements Initializable {
 
     private Member m; 
     
@@ -83,6 +84,8 @@ public class HacerReservasController implements Initializable {
     private GridPane GridPane;
     @FXML
     private Button mostrarDisponBoton;
+    @FXML
+    private Button reservarBoton;
     /**
      * Initializes the controller class.
      */
@@ -184,8 +187,19 @@ public class HacerReservasController implements Initializable {
             
         } catch (ClubDAOException | IOException e)  {}
         
+        List<Court> elarray = new ArrayList<>(); 
+        elarray = club.getCourts(); 
+        ObservableList<String> items = FXCollections.observableArrayList();
+        for(int i = 0; i < elarray.size(); i++) 
+        {
+            items.add(elarray.get(i).getName()); 
+        }
+        seleccionarPistaBoton.setItems(items);
+        
         opcionesBoton.setId("boton_blanco_a_sombra");
         mostrarDisponBoton.setId("boton_verde_a_sombra");
+        seleccionarPistaBoton.setId("seleccionarPistaBoton"); 
+
     }    
     
     @FXML
@@ -453,6 +467,10 @@ public class HacerReservasController implements Initializable {
         { 
             alert.close(); 
         }
+    }
+
+    @FXML
+    private void hacerReserva(ActionEvent event) {
     }
     
 }
