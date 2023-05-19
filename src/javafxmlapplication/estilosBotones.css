@@ -32,9 +32,15 @@
 ;
 }
 
-#selected_reserva {
-    -fx-background-color: #99994d;
+#selected_reserva{
+    -fx-background-color: #ffff80;  
 }
-#unselected_reserva {
+
+#selected_reserva:pressed {
+    -fx-background-color: #e6e673;
+    -fx-border-color: black;
+}
+#selected_reserva:released {
    -fx-background-color: #ffff80;
+   -fx-border-color: black;
 }
