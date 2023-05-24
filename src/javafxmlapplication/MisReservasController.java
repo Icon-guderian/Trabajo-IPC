@@ -433,7 +433,7 @@ public class MisReservasController implements Initializable {
             } else {
                 // Mostrar un mensaje de error si la reserva no cumple con la condición de tiempo
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Reserva anulada con menos de 24 horas");
+                alert.setTitle("Error anulando la reserva");
                 alert.setHeaderText("");
                 alert.setContentText("No se puede anular una reserva con menos de 24 horas de anticipación.");
 
