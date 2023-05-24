@@ -160,7 +160,7 @@
                            <children>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                                  <children>
-                                    <GridPane fx:id="GridPane" prefHeight="372.0" prefWidth="681.0">
+                                    <GridPane fx:id="GridPane" prefHeight="400.0" prefWidth="666.0">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="426.4" minWidth="10.0" prefWidth="426.4" />
@@ -184,14 +184,15 @@
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                        </rowConstraints>
                                        <children>
-                                          <Button fx:id="mostrarDisponBoton" mnemonicParsing="false" onAction="#mostrarDisponibilidad" prefHeight="37.0" prefWidth="400.0" text="Visualizar disponibilidad" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="15" GridPane.valignment="CENTER">
+                                          <Button fx:id="mostrarDisponBoton" mnemonicParsing="false" onAction="#mostrarDisponibilidad" prefHeight="37.0" prefWidth="400.0" text="Visualizar disponibilidad" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="16">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
                                           </Button>
-                                          <Button fx:id="reservarBoton" alignment="CENTER" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#hacerReserva" prefHeight="36.0" prefWidth="250.0" text="Hacer reserva" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="13">
+                                          <Button fx:id="reservarBoton" disable="true" mnemonicParsing="false" onAction="#hacerReserva" prefHeight="36.0" prefWidth="250.0" text="Hacer Reserva" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="14">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>

@@ -44,3 +44,16 @@
    -fx-background-color: #ffff80;
    -fx-border-color: black;
 }
+
+#selected_reservar{
+    -fx-background-color: #80ff80;  
+}
+
+#selected_reservar:pressed {
+    -fx-background-color: #73e573;
+    -fx-border-color: black;
+}
+#selected_reservar:released {
+   -fx-background-color: #80ff80;
+   -fx-border-color: black;
+}

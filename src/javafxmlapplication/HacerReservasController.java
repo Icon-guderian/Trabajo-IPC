@@ -7,6 +7,7 @@ package javafxmlapplication;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -97,6 +98,10 @@ public class HacerReservasController extends ListCell<String> implements Initial
      * Initializes the controller class.
      */
     
+     public void initArray(List<Booking> a) {
+        ArrayAComparar = a; 
+    }
+     
     public void initUsuario(Member member) {
        m = member;
               if(ArrayAComparar == null)
@@ -154,7 +159,7 @@ public class HacerReservasController extends ListCell<String> implements Initial
             if(b.belongsToMember(m.getNickName()) && comparacion < comparacion1)
             {
                 String a = ""; 
-                if(b.getPaid() == false) { a = "está pagada."; } else { a = "no está pagado, recuerde pasar por la oficina a pagar la reserva."; }
+                if(m.checkHasCreditInfo() == true) { a = "está pagada."; } else { a = "no está pagado, recuerde pasar por la oficina a pagar la reserva."; }
                 String mostrar = b.getCourt().getName() +", la hora es "+ horaIF + " y "+ a+ " ¡Disfrutad!"; 
                 labelPistaReservada.setText("Tu próxima pista reservada es la "+ mostrar);
                 break; 
@@ -162,7 +167,7 @@ public class HacerReservasController extends ListCell<String> implements Initial
             else if(b.belongsToMember(m.getNickName()) && comparacion == comparacion1)
             {
                 String a = ""; 
-                if(b.getPaid() == false) { a = "está pagada."; } else { a = "no está pagado, recuerde pasar por la oficina a pagar la reserva."; }
+                if(m.checkHasCreditInfo() == true) { a = "está pagada."; } else { a = "no está pagado, recuerde pasar por la oficina a pagar la reserva."; }
                 String mostrar = b.getCourt().getName() +" y "+ a + " ¡Disfrutad!"; 
                 labelPistaReservada.setText("Tienes una reserva activa ahora mismo, tú pista es la "+ mostrar);
                 break; 
@@ -307,7 +312,7 @@ public class HacerReservasController extends ListCell<String> implements Initial
                         String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
                         String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
                         label.setText(horaInicioTexto + " - " + horaFinTexto + ".  Reservado                                                                                         ");  
-                        label.setStyle("-fx-background-color: #ffc8c8");
+                            label.setStyle("-fx-background-color: #ffc8c8");
                         GridPane.add(label, 1, i); 
                         GridPane.getChildren().get(i + 1).setId("celda"); 
                         horaInicio = horaFin;  
@@ -364,6 +369,8 @@ public class HacerReservasController extends ListCell<String> implements Initial
                         GridPane.getChildren().get(i + 1).setId("celda"); 
                         horaInicio = horaFin;
                         j++; 
+                        
+                        
                     } 
                      else if(devolverHoraReserva(horarioDePista, horaInicio)) 
                     {
@@ -386,6 +393,20 @@ public class HacerReservasController extends ListCell<String> implements Initial
                         String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
                         label.setText(horaInicioTexto + " - " + horaFinTexto + ".  No reservado                                                                                    ");
                         label.setStyle("-fx-background-color: #80ff80; -fx-background-insets: 0");
+                        
+                        
+                        label.setOnMouseClicked(e -> {
+            
+                            if (selectedBooking != null) {
+                                // Restaurar el estilo de la reserva previamente seleccionada
+                                label.setId("selected_reservar");              
+                            }
+                            selectedBooking = b;
+                                label.setId("selected_reservar");              
+                            reservarBoton.setDisable(false); // Habilitar el botón de anular reserva
+
+                        });
+                        
                         GridPane.add(label, 1, i);
                         GridPane.getChildren().get(i + 1).setId("celda"); 
                         horaInicio = horaFin;
@@ -489,6 +510,7 @@ public class HacerReservasController extends ListCell<String> implements Initial
 
    @FXML
     private void hacerReserva(ActionEvent event) throws ClubDAOException, IOException{
+               
         if (selectedBooking != null) {
         LocalDate now = LocalDate.now();
         LocalDate reservaDate = selectedBooking.getMadeForDay();
@@ -507,14 +529,14 @@ public class HacerReservasController extends ListCell<String> implements Initial
             // Verificar que la reserva es posterior a la fecha actual por más de 24 horas
             if (reservaDate.isAfter(now.plusDays(1))) {
                 // Eliminar la reserva del club
-                boolean removed = club.removeBooking(selectedBooking);
+                club.registerBooking(LocalDateTime.MIN, diaReserva, horaFin, true, club.getCourt(m.getNickName()), m);
                 mostrarDisponibilidad(event);
                 
                 // Mostrar un mensaje de error si la reserva no cumple con la condición de tiempo
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Reserva anulada");
+                alert.setTitle("Pista reservada");
                 alert.setHeaderText("");
-                alert.setContentText("Se ha anulado la siguiente reserva: " + diaReservaTexto + " " + horaInicioTexto + " - " + horaFinTexto + " " + selectedBooking.getCourt().getName() + ".");
+                alert.setContentText("Se ha reservado la siguiente pista: " + diaReservaTexto + " " + horaInicioTexto + " - " + horaFinTexto + " " + selectedBooking.getCourt().getName() + ".");
 
                 DialogPane dialogPane = alert.getDialogPane();
 
@@ -523,7 +545,7 @@ public class HacerReservasController extends ListCell<String> implements Initial
                 dialogPane.setPrefHeight(100);
                 
                 Optional<ButtonType> result = alert.showAndWait();
-                FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/MisReservas.fxml"));
+                FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/HacerReservas.fxml"));
                 Parent root = miCargador.load();    
                 Scene scene = new Scene(root);
                 MisReservasController controlador = miCargador.getController(); 
@@ -533,7 +555,7 @@ public class HacerReservasController extends ListCell<String> implements Initial
                 scene.getStylesheets().add(getClass().getResource("textfield.css").toExternalForm());
                 Stage stage = new Stage();
                 stage.setScene(scene);
-                stage.setTitle("Mis reservas");
+                stage.setTitle("Hacer Reservas");
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.show();
                 Stage myStage = (Stage) reservarBoton.getScene().getWindow();
@@ -541,18 +563,18 @@ public class HacerReservasController extends ListCell<String> implements Initial
             } else {
                 // Mostrar un mensaje de error si la reserva no cumple con la condición de tiempo
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Error anulando la reserva");
+                alert.setTitle("Error haciendo la reserva");
                 alert.setHeaderText("");
-                alert.setContentText("No se puede anular una reserva en el pasado o con menos de 24 horas de anticipación.");
+                alert.setContentText("No se puede reservas mas de 2 sesiones al dia, prueba reservando para otro dia.");
 
                 Optional<ButtonType> result = alert.showAndWait();
             } 
         }else{
             // Mostrar un mensaje de error si no se pudo eliminar la reserva
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Error anulando la reserva");
+            alert.setTitle("Error haciendo la reserva");
             alert.setHeaderText("");
-            alert.setContentText("Error al anular la reserva. Inténtelo de nuevo.");
+            alert.setContentText("Error al hacer la reserva. Inténtelo de nuevo.");
             Optional<ButtonType> result = alert.showAndWait();
         }
     }

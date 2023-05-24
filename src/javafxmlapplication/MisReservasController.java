@@ -336,15 +336,15 @@ public class MisReservasController implements Initializable {
                     
                     label.setOnMouseClicked(e -> {
             
-                        if (selectedBooking != null) {
-                            // Restaurar el estilo de la reserva previamente seleccionada
-                            label.setId("unselected_reserva");              
-                        }
-                        selectedBooking = b;
-                            label.setId("selected_reserva");              
-                        anularReservaBoton.setDisable(false); // Habilitar el botón de anular reserva
-                        
-                    });
+                            if (selectedBooking != null) {
+                                // Restaurar el estilo de la reserva previamente seleccionada
+                                label.setId("unselected_reserva");              
+                            }
+                            selectedBooking = b;
+                                label.setId("selected_reserva");              
+                            anularReservaBoton.setDisable(false); // Habilitar el botón de anular reserva
+
+                        });
                     
                     GridPane.add(label, 1, i); 
 
