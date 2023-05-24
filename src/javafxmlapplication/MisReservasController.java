@@ -167,7 +167,7 @@ public class MisReservasController implements Initializable {
             if(b.belongsToMember(m.getNickName()) && comparacion < comparacion1)
             {
                 String a = ""; 
-                if(b.getPaid() == false) { a = "está pagada."; } else { a = "no está pagado, recuerde pasar por la oficina a pagar la reserva."; }
+                if(m.checkHasCreditInfo() == true) { a = "está pagada."; } else { a = "no está pagado, recuerde pasar por la oficina a pagar la reserva."; }
                 String mostrar = b.getCourt().getName() +", la hora es "+ horaIF + " y "+ a+ " ¡Disfrutad!"; 
                 labelPistaReservada.setText("Tu próxima pista reservada es la "+ mostrar);
                 break; 
@@ -175,7 +175,7 @@ public class MisReservasController implements Initializable {
             else if(b.belongsToMember(m.getNickName()) && comparacion == comparacion1)
             {
                 String a = ""; 
-                if(b.getPaid() == false) { a = "está pagada."; } else { a = "no está pagado, recuerde pasar por la oficina a pagar la reserva."; }
+                if(m.checkHasCreditInfo() == true) { a = "está pagada."; } else { a = "no está pagado, recuerde pasar por la oficina a pagar la reserva."; }
                 String mostrar = b.getCourt().getName() +" y "+ a + " ¡Disfrutad!"; 
                 labelPistaReservada.setText("Tienes una reserva activa ahora mismo, tú pista es la "+ mostrar);
                 break; 
@@ -328,7 +328,7 @@ public class MisReservasController implements Initializable {
                     String diaReservaTexto = diaReserva.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
                     
                     String a = ""; 
-                    if(b.getPaid() == false) { a = "Está pagada."; } 
+                    if(m.checkHasCreditInfo() == true) { a = "Está pagada."; } 
                     else { a = "No está pagado, recuerde pasar por la oficina a pagar la reserva."; }
                     
                     label.setText(diaReservaTexto + "   " + horaInicioTexto + " - " + horaFinTexto + "  " + "Reservado por: " + m.getNickName() + "   " + b.getCourt().getName() + "   " + a + "    ");  
@@ -391,7 +391,10 @@ public class MisReservasController implements Initializable {
         String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
         String diaReservaTexto = diaReserva.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
         
-        
+        String a = "";
+        if(m.checkHasCreditInfo() == true) { a = "El importe de su reserva ha sido resuelto."; } 
+        else { a = ""; }
+                   
 
             // Verificar que la reserva es posterior a la fecha actual por más de 24 horas
             if (reservaDate.isAfter(now.plusDays(1))) {
@@ -403,7 +406,7 @@ public class MisReservasController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Reserva anulada");
                 alert.setHeaderText("");
-                alert.setContentText("Se ha anulado la siguiente reserva: " + diaReservaTexto + " " + horaInicioTexto + " - " + horaFinTexto + " " + selectedBooking.getCourt().getName() + ".");
+                alert.setContentText("Se ha anulado la siguiente reserva: " + diaReservaTexto + " " + horaInicioTexto + " - " + horaFinTexto + " " + selectedBooking.getCourt().getName() + ".      " + a + "");
 
                 DialogPane dialogPane = alert.getDialogPane();
 
@@ -432,7 +435,7 @@ public class MisReservasController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Error anulando la reserva");
                 alert.setHeaderText("");
-                alert.setContentText("No se puede anular una reserva en el pasado o con menos de 24 horas de anticipación.");
+                alert.setContentText("No se puede anular una reserva con menos de 24 horas de anticipación.");
 
                 Optional<ButtonType> result = alert.showAndWait();
             } 
