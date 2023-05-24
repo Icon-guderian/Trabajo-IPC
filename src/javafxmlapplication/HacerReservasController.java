@@ -29,6 +29,7 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.MenuButton;
@@ -39,6 +40,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import static javafxmlapplication.MisReservasController.ordenarPorFechaYHora;
 import model.Booking;
 import model.Club;
 import static model.Club.getInstance;
@@ -57,7 +59,12 @@ public class HacerReservasController extends ListCell<String> implements Initial
     
     private Club club;
     
+    private List<Booking> ArrayAModificar, ArrayAUtilizar, ArrayAComparar;
+
     private Booking b;
+    
+    private Booking selectedBooking;
+
     @FXML
     private BorderPane borderPane;
     @FXML
@@ -91,7 +98,16 @@ public class HacerReservasController extends ListCell<String> implements Initial
      */
     
     public void initUsuario(Member member) {
-       m = member;  
+       m = member;
+              if(ArrayAComparar == null)
+       {
+            ArrayAModificar = club.getUserBookings(m.getNickName()); 
+            ArrayAUtilizar = ordenarPorFechaYHora(ArrayAModificar); 
+       }
+       else
+       {
+           ArrayAUtilizar = ArrayAComparar;  
+       }
     }
     
     public boolean devolverHoraReserva(List<Booking> ar, LocalTime local) 
@@ -199,23 +215,25 @@ public class HacerReservasController extends ListCell<String> implements Initial
         opcionesBoton.setId("boton_blanco_a_sombra");
         mostrarDisponBoton.setId("boton_verde_a_sombra");
         seleccionarPistaBoton.setId("seleccionarPistaBoton"); 
+        reservarBoton.setId("boton_verde_a_sombra");
+
 
     }    
     
     @FXML
     private void mostrarDisponibilidad(ActionEvent event) throws ClubDAOException, IOException 
     {
-        club = getInstance(); 
+        club = getInstance(); // Obtiene una instancia del objeto Club
         
         List<Booking> horarioDePista = new ArrayList<>(); 
         
-        LocalDate fecha = calendarioBoton.getValue(); 
+        LocalDate fecha = calendarioBoton.getValue(); // Obtiene la fecha seleccionada en el DatePicker
         LocalDate fechaActual = LocalDate.now();
-        String pista = seleccionarPistaBoton.getValue(); 
+        String pista = seleccionarPistaBoton.getValue(); // Obtiene la pista seleccionada en el ComboBox
 
                     
         if(fecha == null) 
-        {
+        {        // Si no se ha seleccionado una fecha, muestra un mensaje de error
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Error");
             alert.setHeaderText("Error en selección de la fecha");
@@ -224,7 +242,7 @@ public class HacerReservasController extends ListCell<String> implements Initial
         
         }
         else if(pista == null) 
-        {
+        {        // Si no se ha seleccionado una pista, muestra un mensaje de error
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Error");
             alert.setHeaderText("Error en la selección de pista");
@@ -232,7 +250,7 @@ public class HacerReservasController extends ListCell<String> implements Initial
             alert.showAndWait();
         } 
         else if(fecha.isBefore(fechaActual)) 
-        {
+        {        // Si la fecha seleccionada es anterior a la fecha actual, muestra un mensaje de confirmación
             horarioDePista = club.getCourtBookings(pista, fecha); 
             
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -247,7 +265,7 @@ public class HacerReservasController extends ListCell<String> implements Initial
             
             
             if (resultado.isPresent() && resultado.get() == botonSi) 
-            {
+            {// Si el usuario confirma, muestra la disponibilidad de reservas para ese día pasado
                 LocalTime horaInicio = LocalTime.of(9, 0);
                 int duracion = club.getBookingDuration();
                 int ReservasPistas = club.getBookingSlots(); 
@@ -469,8 +487,73 @@ public class HacerReservasController extends ListCell<String> implements Initial
         }
     }
 
-    @FXML
-    private void hacerReserva(ActionEvent event) {
+   @FXML
+    private void hacerReserva(ActionEvent event) throws ClubDAOException, IOException{
+        if (selectedBooking != null) {
+        LocalDate now = LocalDate.now();
+        LocalDate reservaDate = selectedBooking.getMadeForDay();
+        
+        LocalDate diaReserva = selectedBooking.getMadeForDay();
+        LocalTime horaInicio = selectedBooking.getFromTime();
+        int duracion = club.getBookingDuration();
+        LocalTime horaFin = horaInicio.plusMinutes(duracion);
+
+        String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
+        String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
+        String diaReservaTexto = diaReserva.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
+        
+        
+
+            // Verificar que la reserva es posterior a la fecha actual por más de 24 horas
+            if (reservaDate.isAfter(now.plusDays(1))) {
+                // Eliminar la reserva del club
+                boolean removed = club.removeBooking(selectedBooking);
+                mostrarDisponibilidad(event);
+                
+                // Mostrar un mensaje de error si la reserva no cumple con la condición de tiempo
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Reserva anulada");
+                alert.setHeaderText("");
+                alert.setContentText("Se ha anulado la siguiente reserva: " + diaReservaTexto + " " + horaInicioTexto + " - " + horaFinTexto + " " + selectedBooking.getCourt().getName() + ".");
+
+                DialogPane dialogPane = alert.getDialogPane();
+
+                // Establecer un ancho y alto personalizados
+                dialogPane.setPrefWidth(450);
+                dialogPane.setPrefHeight(100);
+                
+                Optional<ButtonType> result = alert.showAndWait();
+                FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/MisReservas.fxml"));
+                Parent root = miCargador.load();    
+                Scene scene = new Scene(root);
+                MisReservasController controlador = miCargador.getController(); 
+                controlador.initUsuario(m); 
+                controlador.initImageNick(m);
+                controlador.initArray(ArrayAUtilizar); 
+                scene.getStylesheets().add(getClass().getResource("textfield.css").toExternalForm());
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.setTitle("Mis reservas");
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.show();
+                Stage myStage = (Stage) reservarBoton.getScene().getWindow();
+                myStage.close();
+            } else {
+                // Mostrar un mensaje de error si la reserva no cumple con la condición de tiempo
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error anulando la reserva");
+                alert.setHeaderText("");
+                alert.setContentText("No se puede anular una reserva en el pasado o con menos de 24 horas de anticipación.");
+
+                Optional<ButtonType> result = alert.showAndWait();
+            } 
+        }else{
+            // Mostrar un mensaje de error si no se pudo eliminar la reserva
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error anulando la reserva");
+            alert.setHeaderText("");
+            alert.setContentText("Error al anular la reserva. Inténtelo de nuevo.");
+            Optional<ButtonType> result = alert.showAndWait();
+        }
     }
-    
 }
