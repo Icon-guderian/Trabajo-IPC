@@ -167,7 +167,7 @@ public class MisReservasController implements Initializable {
             if(b.belongsToMember(m.getNickName()) && comparacion < comparacion1)
             {
                 String a = ""; 
-                if(m.checkHasCreditInfo() == true) { a = "está pagada."; } else { a = "no está pagado, recuerde pasar por la oficina a pagar la reserva."; }
+                if(b.getPaid() == false) { a = "está pagada."; } else { a = "no está pagado, recuerde pasar por la oficina a pagar la reserva."; }
                 String mostrar = b.getCourt().getName() +", la hora es "+ horaIF + " y "+ a+ " ¡Disfrutad!"; 
                 labelPistaReservada.setText("Tu próxima pista reservada es la "+ mostrar);
                 break; 
@@ -175,7 +175,7 @@ public class MisReservasController implements Initializable {
             else if(b.belongsToMember(m.getNickName()) && comparacion == comparacion1)
             {
                 String a = ""; 
-                if(m.checkHasCreditInfo() == true) { a = "está pagada."; } else { a = "no está pagado, recuerde pasar por la oficina a pagar la reserva."; }
+                if(b.getPaid() == false) { a = "está pagada."; } else { a = "no está pagado, recuerde pasar por la oficina a pagar la reserva."; }
                 String mostrar = b.getCourt().getName() +" y "+ a + " ¡Disfrutad!"; 
                 labelPistaReservada.setText("Tienes una reserva activa ahora mismo, tú pista es la "+ mostrar);
                 break; 
@@ -328,7 +328,7 @@ public class MisReservasController implements Initializable {
                     String diaReservaTexto = diaReserva.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
                     
                     String a = ""; 
-                    if(m.checkHasCreditInfo() == true) { a = "Está pagada."; } 
+                    if(b.getPaid() == false) { a = "Está pagada."; } 
                     else { a = "No está pagado, recuerde pasar por la oficina a pagar la reserva."; }
                     
                     label.setText(diaReservaTexto + "   " + horaInicioTexto + " - " + horaFinTexto + "  " + "Reservado por: " + m.getNickName() + "   " + b.getCourt().getName() + "   " + a + "    ");  
@@ -392,7 +392,7 @@ public class MisReservasController implements Initializable {
         String diaReservaTexto = diaReserva.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
         
         String a = "";
-        if(m.checkHasCreditInfo() == true) { a = "El importe de su reserva ha sido resuelto."; } 
+        if(b.getPaid() == false) { a = "El importe de su reserva ha sido resuelto."; } 
         else { a = ""; }
                    
 

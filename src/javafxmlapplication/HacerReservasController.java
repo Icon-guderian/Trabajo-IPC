@@ -159,7 +159,7 @@ public class HacerReservasController extends ListCell<String> implements Initial
             if(b.belongsToMember(m.getNickName()) && comparacion < comparacion1)
             {
                 String a = ""; 
-                if(m.checkHasCreditInfo() == true) { a = "está pagada."; } else { a = "no está pagado, recuerde pasar por la oficina a pagar la reserva."; }
+                if(b.getPaid() == false) { a = "está pagada."; } else { a = "no está pagado, recuerde pasar por la oficina a pagar la reserva."; }
                 String mostrar = b.getCourt().getName() +", la hora es "+ horaIF + " y "+ a+ " ¡Disfrutad!"; 
                 labelPistaReservada.setText("Tu próxima pista reservada es la "+ mostrar);
                 break; 
@@ -167,7 +167,7 @@ public class HacerReservasController extends ListCell<String> implements Initial
             else if(b.belongsToMember(m.getNickName()) && comparacion == comparacion1)
             {
                 String a = ""; 
-                if(m.checkHasCreditInfo() == true) { a = "está pagada."; } else { a = "no está pagado, recuerde pasar por la oficina a pagar la reserva."; }
+                if(b.getPaid() == false) { a = "está pagada."; } else { a = "no está pagado, recuerde pasar por la oficina a pagar la reserva."; }
                 String mostrar = b.getCourt().getName() +" y "+ a + " ¡Disfrutad!"; 
                 labelPistaReservada.setText("Tienes una reserva activa ahora mismo, tú pista es la "+ mostrar);
                 break; 
