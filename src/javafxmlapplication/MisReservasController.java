@@ -20,8 +20,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
@@ -336,15 +334,15 @@ public class MisReservasController implements Initializable {
                     
                     label.setOnMouseClicked(e -> {
             
-                            if (selectedBooking != null) {
-                                // Restaurar el estilo de la reserva previamente seleccionada
-                                label.setId("unselected_reserva");              
-                            }
-                            selectedBooking = b;
-                                label.setId("selected_reserva");              
-                            anularReservaBoton.setDisable(false); // Habilitar el botón de anular reserva
+                        if (selectedBooking != null) {
+                            // Restaurar el estilo de la reserva previamente seleccionada
+                            label.setId("unselected_reserva");              
+                        }
+                        selectedBooking = b;
+                            label.setId("selected_reserva");              
+                        anularReservaBoton.setDisable(false); // Habilitar el botón de anular reserva
 
-                        });
+                    });
                     
                     GridPane.add(label, 1, i); 
 
@@ -379,66 +377,66 @@ public class MisReservasController implements Initializable {
     @FXML
     private void anularReserva(ActionEvent event) throws ClubDAOException, IOException{
         if (selectedBooking != null) {
-        LocalDate now = LocalDate.now();
-        LocalDate reservaDate = selectedBooking.getMadeForDay();
-        
-        LocalDate diaReserva = selectedBooking.getMadeForDay();
-        LocalTime horaInicio = selectedBooking.getFromTime();
-        int duracion = club.getBookingDuration();
-        LocalTime horaFin = horaInicio.plusMinutes(duracion);
+            
+            LocalDate now = LocalDate.now();
+            LocalDate reservaDate = selectedBooking.getMadeForDay();
 
-        String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
-        String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
-        String diaReservaTexto = diaReserva.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
-        
-        String a = "";
-        if(b.getPaid() == false) { a = "El importe de su reserva ha sido resuelto."; } 
-        else { a = ""; }
-                   
+            LocalDate diaReserva = selectedBooking.getMadeForDay();
+            LocalTime horaInicio = selectedBooking.getFromTime();
+            int duracion = club.getBookingDuration();
+            LocalTime horaFin = horaInicio.plusMinutes(duracion);
 
-            // Verificar que la reserva es posterior a la fecha actual por más de 24 horas
-            if (reservaDate.isAfter(now.plusDays(1))) {
-                // Eliminar la reserva del club
-                boolean removed = club.removeBooking(selectedBooking);
-                mostrarDisponibilidad(event);
-                
-                // Mostrar un mensaje de error si la reserva no cumple con la condición de tiempo
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Reserva anulada");
-                alert.setHeaderText("");
-                alert.setContentText("Se ha anulado la siguiente reserva: " + diaReservaTexto + " " + horaInicioTexto + " - " + horaFinTexto + " " + selectedBooking.getCourt().getName() + ".      " + a + "");
+            String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
+            String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
+            String diaReservaTexto = diaReserva.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
 
-                DialogPane dialogPane = alert.getDialogPane();
+            String a = "";
+            if(selectedBooking.getPaid() == false) { a = "El importe de su reserva ha sido resuelto."; } 
+            else { a = ""; }
 
-                // Establecer un ancho y alto personalizados
-                dialogPane.setPrefWidth(450);
-                dialogPane.setPrefHeight(100);
-                
-                Optional<ButtonType> result = alert.showAndWait();
-                FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/MisReservas.fxml"));
-                Parent root = miCargador.load();    
-                Scene scene = new Scene(root);
-                MisReservasController controlador = miCargador.getController(); 
-                controlador.initUsuario(m); 
-                controlador.initImageNick(m);
-                controlador.initArray(ArrayAUtilizar); 
-                scene.getStylesheets().add(getClass().getResource("textfield.css").toExternalForm());
-                Stage stage = new Stage();
-                stage.setScene(scene);
-                stage.setTitle("Mis reservas");
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.show();
-                Stage myStage = (Stage) anularReservaBoton.getScene().getWindow();
-                myStage.close();
-            } else {
-                // Mostrar un mensaje de error si la reserva no cumple con la condición de tiempo
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Error anulando la reserva");
-                alert.setHeaderText("");
-                alert.setContentText("No se puede anular una reserva con menos de 24 horas de anticipación.");
+                // Verificar que la reserva es posterior a la fecha actual por más de 24 horas
+                if (reservaDate.isAfter(now.plusDays(1))) {
+                    // Eliminar la reserva del club
+                    boolean removed = club.removeBooking(selectedBooking);
+                    mostrarDisponibilidad(event);
 
-                Optional<ButtonType> result = alert.showAndWait();
-            } 
+                    // Mostrar un mensaje de error si la reserva no cumple con la condición de tiempo
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Reserva anulada");
+                    alert.setHeaderText("");
+                    alert.setContentText("Se ha anulado la siguiente reserva: " + diaReservaTexto + " " + horaInicioTexto + " - " + horaFinTexto + " " + selectedBooking.getCourt().getName() + ".      " + a + "");
+
+                    DialogPane dialogPane = alert.getDialogPane();
+
+                    // Establecer un ancho y alto personalizados
+                    dialogPane.setPrefWidth(450);
+                    dialogPane.setPrefHeight(100);
+
+                    Optional<ButtonType> result = alert.showAndWait();
+                    FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/MisReservas.fxml"));
+                    Parent root = miCargador.load();    
+                    Scene scene = new Scene(root);
+                    MisReservasController controlador = miCargador.getController(); 
+                    controlador.initUsuario(m); 
+                    controlador.initImageNick(m);
+                    controlador.initArray(ArrayAUtilizar); 
+                    scene.getStylesheets().add(getClass().getResource("textfield.css").toExternalForm());
+                    Stage stage = new Stage();
+                    stage.setScene(scene);
+                    stage.setTitle("Mis reservas");
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.show();
+                    Stage myStage = (Stage) anularReservaBoton.getScene().getWindow();
+                    myStage.close();
+                } else {
+                    // Mostrar un mensaje de error si la reserva no cumple con la condición de tiempo
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Error anulando la reserva");
+                    alert.setHeaderText("");
+                    alert.setContentText("No se puede anular una reserva con menos de 24 horas de anticipación.");
+
+                    Optional<ButtonType> result = alert.showAndWait();
+                } 
         }else{
             // Mostrar un mensaje de error si no se pudo eliminar la reserva
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
