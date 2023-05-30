@@ -321,7 +321,7 @@ public class HacerReservasController extends ListCell<String> implements Initial
                         String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
                         label.setText(horaInicioTexto + " - " + horaFinTexto + ".  No reservado                                                                                    ");
                         label.setStyle("-fx-background-color: #80ff80");
- /*                       
+                        
                         label.setOnMouseClicked(e -> {
                                     
                         if (selectedBooking != null) {
@@ -334,7 +334,7 @@ public class HacerReservasController extends ListCell<String> implements Initial
                         });
                         GridPane.add(label, 1, i);
                         GridPane.getChildren().get(i + 1).setId("celda"); 
-                        horaInicio = horaFin;*/
+                        horaInicio = horaFin;
                         
                     }
                 }           
@@ -505,13 +505,17 @@ public class HacerReservasController extends ListCell<String> implements Initial
     private void hacerReserva(ActionEvent event) throws ClubDAOException, IOException {
     if (selectedBooking == null) {
         LocalDate now = LocalDate.now();
+        
         LocalDate reservaDate = selectedBooking.getMadeForDay();
         LocalDateTime ahora = LocalDateTime.now();
+        
         String pista = seleccionarPistaBoton.getValue(); // Obtiene la pista seleccionada en el ComboBox
+        
         LocalDate fecha = calendarioBoton.getValue(); // Obtiene la fecha seleccionada en el DatePicker
         LocalTime horaInicio = selectedBooking.getFromTime();
         int duracion = club.getBookingDuration();
         LocalTime horaFin = horaInicio.plusMinutes(duracion);
+        
         Court pistas = selectedBooking.getCourt();
 // Aquí debes establecer la fecha de reserva deseada
         // Aquí debes obtener la hora de inicio y duración de la reserva deseada

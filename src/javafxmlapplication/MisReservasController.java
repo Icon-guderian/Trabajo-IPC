@@ -329,7 +329,7 @@ public class MisReservasController implements Initializable {
                     if(b.getPaid() == false) { a = "Está pagada."; } 
                     else { a = "No está pagado, recuerde pasar por la oficina a pagar la reserva."; }
                     
-                    label.setText(diaReservaTexto + "   " + horaInicioTexto + " - " + horaFinTexto + "  " + "Reservado por: " + m.getNickName() + "   " + b.getCourt().getName() + "   " + a + "    ");  
+                    label.setText("         " + diaReservaTexto + " | " + horaInicioTexto + " - " + horaFinTexto + " | " + "Reservado por: " + m.getNickName() + " | " + b.getCourt().getName() + " | " + a + "         ");  
                     label.setId("selected_reserva");
                     
                     label.setOnMouseClicked(e -> {
