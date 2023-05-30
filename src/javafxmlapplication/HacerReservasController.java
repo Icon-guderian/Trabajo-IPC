@@ -324,7 +324,49 @@ public class HacerReservasController extends ListCell<String> implements Initial
                         String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
                         label.setText(horaInicioTexto + " - " + horaFinTexto + ".  No reservado                                                                                    ");
                         label.setStyle("-fx-background-color: #80ff80");                       
+                        
                         /*
+                                for (Booking b : ArrayAUtilizar){
+                       
+            if(b.getMadeForDay().isAfter(LocalDate.now()) || b.getMadeForDay().isEqual(LocalDate.now())){
+            
+                if((!b.equals(null)) ){ 
+
+                    Label label = new Label();
+                    LocalDate diaReserva = b.getMadeForDay();
+                    LocalTime horaInicio = b.getFromTime();
+                    int duracion = club.getBookingDuration();
+                    LocalTime horaFin = horaInicio.plusMinutes(duracion);
+
+                    String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
+                    String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
+                    String diaReservaTexto = diaReserva.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
+                    
+                    String a = ""; 
+                    if(b.getPaid() == false) { a = "Está pagada."; } 
+                    else { a = "No está pagado, recuerde pasar por la oficina a pagar la reserva."; }
+                    
+                    label.setText("         " + diaReservaTexto + " | " + horaInicioTexto + " - " + horaFinTexto + " | " + "Reservado por: " + m.getNickName() + " | " + b.getCourt().getName() + " | " + a + "         ");  
+                    label.setId("selected_reserva");
+                    
+                    label.setOnMouseClicked(e -> {
+            
+                        if (selectedBooking != null) {
+                            // Restaurar el estilo de la reserva previamente seleccionada
+                            label.setId("unselected_reserva");              
+                        }
+                        selectedBooking = b;
+                            label.setId("selected_reserva");              
+                        anularReservaBoton.setDisable(false); // Habilitar el botón de anular reserva
+
+                    });
+                    
+                    GridPane.add(label, 1, i); 
+
+                    i++;
+                }
+            }
+        }
                         label.setOnMouseClicked(e -> {
                                     
                         if (selectedBooking != null) {
@@ -337,7 +379,10 @@ public class HacerReservasController extends ListCell<String> implements Initial
                         });
                         GridPane.add(label, 1, i);
                         GridPane.getChildren().get(i + 1).setId("celda"); 
-                        horaInicio = horaFin;*/
+                        horaInicio = horaFin;
+                        
+                        Tienes que añadir algo parecido a esta mierda, para accionar el boton anular
+                        */
                         
                     }
                 }           
