@@ -64,7 +64,7 @@ public class HacerReservasController extends ListCell<String> implements Initial
 
     private Booking b;
     
-    private Booking selectedBooking;
+    private Booking selectedBooking; 
 
     @FXML
     private BorderPane borderPane;
@@ -97,7 +97,10 @@ public class HacerReservasController extends ListCell<String> implements Initial
     /**
      * Initializes the controller class.
      */
-    
+    public void initArray(List<Booking> a)
+    {
+        ArrayAComparar = a;
+    }
     public void initUsuario(Member member) {
        m = member;
               if(ArrayAComparar == null)
@@ -122,14 +125,14 @@ public class HacerReservasController extends ListCell<String> implements Initial
         }
         return devolver; 
     }
-    
+   
     public boolean memberTieneReserva(Booking ar, Member m)
     {
         String nick = m.getNickName(); 
         if(ar == null) { return false; }
         return ar.belongsToMember(nick); 
     }
-     
+   
     
     public void initImageNick(Member member) 
     {
@@ -320,8 +323,8 @@ public class HacerReservasController extends ListCell<String> implements Initial
                         String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
                         String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
                         label.setText(horaInicioTexto + " - " + horaFinTexto + ".  No reservado                                                                                    ");
-                        label.setStyle("-fx-background-color: #80ff80");
-                        
+                        label.setStyle("-fx-background-color: #80ff80");                       
+                        /*
                         label.setOnMouseClicked(e -> {
                                     
                         if (selectedBooking != null) {
@@ -334,7 +337,7 @@ public class HacerReservasController extends ListCell<String> implements Initial
                         });
                         GridPane.add(label, 1, i);
                         GridPane.getChildren().get(i + 1).setId("celda"); 
-                        horaInicio = horaFin;
+                        horaInicio = horaFin;*/
                         
                     }
                 }           
@@ -499,24 +502,24 @@ public class HacerReservasController extends ListCell<String> implements Initial
             alert.close(); 
         }
     }
+    
 /*
         */
     @FXML
     private void hacerReserva(ActionEvent event) throws ClubDAOException, IOException {
-    if (selectedBooking == null) {
+      if (selectedBooking == null) {
         LocalDate now = LocalDate.now();
-        
         LocalDate reservaDate = selectedBooking.getMadeForDay();
         LocalDateTime ahora = LocalDateTime.now();
-        
         String pista = seleccionarPistaBoton.getValue(); // Obtiene la pista seleccionada en el ComboBox
-        
         LocalDate fecha = calendarioBoton.getValue(); // Obtiene la fecha seleccionada en el DatePicker
         LocalTime horaInicio = selectedBooking.getFromTime();
         int duracion = club.getBookingDuration();
         LocalTime horaFin = horaInicio.plusMinutes(duracion);
-        
         Court pistas = selectedBooking.getCourt();
+        String nick = m.getNickName(); 
+
+        
 // Aquí debes establecer la fecha de reserva deseada
         // Aquí debes obtener la hora de inicio y duración de la reserva deseada
         
@@ -524,14 +527,11 @@ public class HacerReservasController extends ListCell<String> implements Initial
         String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
         String diaReservaTexto = reservaDate.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
         
-        // Verificar que la reserva es posterior a la fecha actual por más de 24 horas
-        if (reservaDate.isAfter(now.plusDays(1))) {
-           club.registerBooking(ahora, fecha, horaFin, true, pistas, m);
-            // Crear la reserva en el club
-            // Aquí debes utilizar el objeto "club" para realizar la reserva con los valores deseados
-            // Ejemplo: club.hacerReserva(reservaDate, horaInicio, duracion);
-            
+        // Verificar que el usuario no tiene más de dos reservas
+        if (fecha.isAfter(now)) {
+           club.registerBooking(ahora, reservaDate, horaFin, true, pistas, m);
             mostrarDisponibilidad(event);
+            hacerReserva(event);
             
             // Mostrar un mensaje de éxito de la reserva
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -547,100 +547,40 @@ public class HacerReservasController extends ListCell<String> implements Initial
 
             Optional<ButtonType> result = alert.showAndWait();
             
+            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/HacerReservas.fxml"));
+            Parent root = miCargador.load();    
+            Scene scene = new Scene(root);
+            MisReservasController controlador = miCargador.getController(); 
+            controlador.initUsuario(m); 
+            controlador.initImageNick(m);
+            controlador.initArray(ArrayAUtilizar); 
+            scene.getStylesheets().add(getClass().getResource("textfield.css").toExternalForm());
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Hacer reservas");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+            Stage myStage = (Stage) reservarBoton.getScene().getWindow();
+            myStage.close();
+            
             // Código adicional para actualizar la interfaz o realizar otras acciones necesarias después de la reserva
         } else {
             // Mostrar un mensaje de error si la reserva no cumple con la condición de tiempo
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error al hacer la reserva");
             alert.setHeaderText("");
-            alert.setContentText("No se puede hacer una reserva con menos de 24 horas de anticipación.");
+            alert.setContentText("No se pueden hacer reservas en el pasado");
 
             Optional<ButtonType> result = alert.showAndWait();
         }
     } else {
         // Mostrar un mensaje de error si ya se ha seleccionado una reserva
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Error al hacer la reserva");
+        alert.setTitle("Error haciendo la reserva");
         alert.setHeaderText("");
-        alert.setContentText("Ya se ha seleccionado una reserva. Cancela la reserva actual antes de hacer una nueva.");
+        alert.setContentText("Error al hacer la reserva. Inténtalo de nuevo.");
 
         Optional<ButtonType> result = alert.showAndWait();
    }
   }
 }
-/* */
- /*@FXML
-    private void anularReserva(ActionEvent event) throws ClubDAOException, IOException{
-        if (selectedBooking != null) {
-        LocalDate now = LocalDate.now();
-        LocalDate reservaDate = selectedBooking.getMadeForDay();
-        
-        LocalDate diaReserva = selectedBooking.getMadeForDay();
-        LocalTime horaInicio = selectedBooking.getFromTime();
-        int duracion = club.getBookingDuration();
-        LocalTime horaFin = horaInicio.plusMinutes(duracion);
-
-        String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
-        String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
-        String diaReservaTexto = diaReserva.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
-        
-        String a = "";
-        if(m.checkHasCreditInfo() == true) { a = "El importe de su reserva ha sido resuelto."; } 
-        else { a = ""; }
-                   
-
-            // Verificar que la reserva es posterior a la fecha actual por más de 24 horas
-            if (reservaDate.isAfter(now.plusDays(1))) {
-                // Eliminar la reserva del club
-                boolean removed = club.removeBooking(selectedBooking);
-                mostrarDisponibilidad(event);
-                
-                // Mostrar un mensaje de error si la reserva no cumple con la condición de tiempo
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Reserva anulada");
-                alert.setHeaderText("");
-                alert.setContentText("Se ha anulado la siguiente reserva: " + diaReservaTexto + " " + horaInicioTexto + " - " + horaFinTexto + " " + selectedBooking.getCourt().getName() + ".      " + a + "");
-
-                DialogPane dialogPane = alert.getDialogPane();
-
-                // Establecer un ancho y alto personalizados
-                dialogPane.setPrefWidth(450);
-                dialogPane.setPrefHeight(100);
-                
-                Optional<ButtonType> result = alert.showAndWait();
-                FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/MisReservas.fxml"));
-                Parent root = miCargador.load();    
-                Scene scene = new Scene(root);
-                MisReservasController controlador = miCargador.getController(); 
-                controlador.initUsuario(m); 
-                controlador.initImageNick(m);
-                controlador.initArray(ArrayAUtilizar); 
-                scene.getStylesheets().add(getClass().getResource("textfield.css").toExternalForm());
-                Stage stage = new Stage();
-                stage.setScene(scene);
-                stage.setTitle("Mis reservas");
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.show();
-                Stage myStage = (Stage) anularReservaBoton.getScene().getWindow();
-                myStage.close();
-            } else {
-                // Mostrar un mensaje de error si la reserva no cumple con la condición de tiempo
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Error anulando la reserva");
-                alert.setHeaderText("");
-                alert.setContentText("No se puede anular una reserva con menos de 24 horas de anticipación.");
-
-                Optional<ButtonType> result = alert.showAndWait();
-            } 
-        }else{
-            // Mostrar un mensaje de error si no se pudo eliminar la reserva
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Error anulando la reserva");
-            alert.setHeaderText("");
-            alert.setContentText("Error al anular la reserva. Inténtelo de nuevo.");
-            Optional<ButtonType> result = alert.showAndWait();
-        }
-    }
-
-QUE COÑO UTILIZO PARA EL IF DE RESERVAR, 
-}*/
