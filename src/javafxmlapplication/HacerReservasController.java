@@ -620,11 +620,21 @@ public class HacerReservasController extends ListCell<String> implements Initial
                 LocalDateTime horaActual = LocalDateTime.now();
                 DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm");
                 String fechaString = horaActual.format(formato);
-                
+                if(FechaReserva2.getHour() < Integer.parseInt(fechaString.substring(0, 2))) 
+                {
+                    
+                } 
             }
             else if(contador[2] < 1) 
             {
                 FechaReserva1 = darFecha(contador[1]);
+                LocalDateTime horaActual = LocalDateTime.now();
+                DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm");
+                String fechaString = horaActual.format(formato);
+                if(FechaReserva1.getHour() < Integer.parseInt(fechaString.substring(0, 2))) 
+                {
+                    
+                } 
             }
             else if (contador[1] >= 2 && contador[2] >= 2)
             {
