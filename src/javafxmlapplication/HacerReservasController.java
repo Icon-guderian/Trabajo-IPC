@@ -68,6 +68,8 @@ public class HacerReservasController extends ListCell<String> implements Initial
     private Booking selectedBooking; 
     
     private boolean a;
+    
+    private int[] contador = {0, 0, 0}; 
 
     @FXML
     private BorderPane borderPane;
@@ -97,6 +99,10 @@ public class HacerReservasController extends ListCell<String> implements Initial
     private Button reservarBoton;
     @FXML
     private ComboBox<String> seleccionPistaBoton;
+    @FXML
+    private Label saberDia;
+    @FXML
+    private Label saberPista;
     /**
      * Initializes the controller class.
      */
@@ -255,10 +261,16 @@ public class HacerReservasController extends ListCell<String> implements Initial
         List<Booking> horarioDePista = new ArrayList<>(); 
         
         LocalDate fecha = calendarioBoton.getValue(); 
+        LocalDate fecha1 = fecha; 
         LocalDate fechaActual = LocalDate.now();
-        String pista = seleccionPistaBoton.getValue(); 
-        reservarBoton.setDisable(true);
-                    
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String fechaString = fecha1.format(formato);
+        String pista = seleccionPistaBoton.getValue();
+        reservarBoton.setDisable(true);            
+        contador[0] = 0;  
+        contador[1] = 0; 
+        contador[2] = 0; 
+        
         if(fecha == null) 
         {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -365,6 +377,8 @@ public class HacerReservasController extends ListCell<String> implements Initial
                 }           
             } 
             reservarBoton.setId("boton_verde_a_sombra");
+            saberDia.setText("Está mostrando la fecha "+ fechaString); 
+            saberPista.setText("Está mostrando la pista "+ pista);
         } 
         else 
         {
@@ -431,13 +445,53 @@ public class HacerReservasController extends ListCell<String> implements Initial
                         
                         label.setOnMouseClicked(e -> {
                             
-                            label.setId("selected_reserva"); 
-                             
-                            reservarBoton.setDisable(false); // Habilitar el botón de anular reserva
-                            reservarBoton.setId("boton_verde_a_sombra");
+                                if(contador[0] == 2) 
+                                {
+                                    if(GridPane.getChildren().indexOf(label) == contador[1]) 
+                                    {
+                                        label.setStyle("-fx-background-color: #80ff80;");
+                                        contador[1] = contador[2]; 
+                                        contador[2] = 0;
+                                        contador[0]--; 
+                                    }
+                                    else if(GridPane.getChildren().indexOf(label) == contador[2]) 
+                                    {
+                                        label.setStyle("-fx-background-color: #80ff80;");
+                                        contador[2] = 0; 
+                                        contador[0]--;
+                                    }
+                                    else {
+                                        Node node = (Label) GridPane.getChildren().get(contador[1]); 
+                                        contador[1] = contador[2]; 
+                                        node.setStyle("-fx-background-color: #80ff80;");
+                                        label.setStyle("-fx-background-color: #C9E0F7");
+                                        contador[2] = GridPane.getChildren().indexOf(label); 
+                                    }
+                                }
+                                else 
+                                {
+                                    if(GridPane.getChildren().indexOf(label) != contador[1]) 
+                                    {
+                                        label.setStyle("-fx-background-color: #C9E0F7"); 
+                                        reservarBoton.setDisable(false); 
+                                        if(contador[0] == 0) { contador[1] = GridPane.getChildren().indexOf(label); }
+                                        if(contador[0] == 1) { contador[2] = GridPane.getChildren().indexOf(label); }
+                                        contador[0]++;
+                                    }
+                                    else 
+                                    {
+                                        label.setStyle("-fx-background-color: #80ff80;");
+                                        contador[1] = 0; 
+                                        contador[0]--; 
+                                    }
+                                }
+
                         });
+                       
                 }       
             }  
+            saberDia.setText("Está mostrando la fecha "+ fechaString); 
+            saberPista.setText("Está mostrando la pista "+ pista);
         }
         reservarBoton.setId("boton_verde_a_sombra");
     }
@@ -536,7 +590,21 @@ public class HacerReservasController extends ListCell<String> implements Initial
     }
 
     @FXML
-    private void hacerReserva(ActionEvent event) {
+    private void hacerReserva(ActionEvent event) 
+    {
+        if(contador[2] < 1 && contador[1] < 1) 
+        {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Atención");
+            alert.setHeaderText("Debe pulsar una hora.");
+            alert.setContentText("Si no marca una pista para jugar no puede realizar la reserva de la o las pistas.");
+            alert.showAndWait();
+        }
+        else 
+        {
+            
+        
+        }
     }
     
 

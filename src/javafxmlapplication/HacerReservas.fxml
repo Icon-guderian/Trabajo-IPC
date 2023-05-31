@@ -125,6 +125,11 @@
                                        </font>
                                     </Label>
                                     <DatePicker fx:id="calendarioBoton" />
+                                    <Label fx:id="saberDia" style="-fx-text-fill: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%);">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="55.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
@@ -135,6 +140,7 @@
                                        </font>
                                     </Label>
                                     <ComboBox fx:id="seleccionPistaBoton" prefWidth="150.0" />
+                                    <Label fx:id="saberPista" style="-fx-text-fill: linear-gradient(from 0% 0% to 100% 200%, repeat,  #84B118 0%, #15622E 50%); -fx-font-weight: bold;" />
                                  </children>
                               </VBox>
                            </children>

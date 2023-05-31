@@ -64,6 +64,10 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
     private GridPane GridPane;
     @FXML
     private Button disponibilidadBoton;
+    @FXML
+    private Label saberFecha;
+    @FXML
+    private Label saberPista;
 
     /**
      * Initializes the controller class.
@@ -155,8 +159,11 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
         List<Booking> horarioDePista = new ArrayList<>(); 
         
         LocalDate fecha = calendarioBoton.getValue(); 
+        LocalDate fecha1 = fecha; 
         LocalDate fechaActual = LocalDate.now();
-        String pista = seleccionPistaBoton.getValue(); 
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String fechaString = fecha1.format(formato);
+        String pista = seleccionPistaBoton.getValue();
 
                     
         if(fecha == null) 
@@ -234,8 +241,10 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
                         GridPane.getChildren().get(i + 1).setId("celda");
                         horaInicio = horaFin;
                     }
-                }           
-            } else {}
+                }          
+                saberFecha.setText("Está mostrando la fecha "+ fechaString); 
+                saberPista.setText("Está mostrando la pista "+ pista);
+            } 
         } 
         else 
         {
@@ -264,8 +273,7 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
                         LocalTime horaFin = horaInicio.plusMinutes(duracion);        
                         String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
                         String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
-                        label.setText(horaInicioTexto + " - " + horaFinTexto + ".  Reservado por: " + reserva.getMember().getNickName() + "                                                                                         ");  
-                        label.setStyle("-fx-background-color: #ffc8c8; -fx-background-insets: 0");
+label.setText(horaInicioTexto + " - " + horaFinTexto + ".  Reservado por: " + reserva.getMember().getNickName() + "                                                                                         ");                          label.setStyle("-fx-background-color: #ffc8c8; -fx-background-insets: 0");
                         GridPane.add(label, 1, i); 
                         GridPane.getChildren().get(i + 1).setId("celda");
                         horaInicio = horaFin;
@@ -283,6 +291,8 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
                         horaInicio = horaFin;
                 }       
             }  
+            saberFecha.setText("Está mostrando la fecha "+ fechaString); 
+            saberPista.setText("Está mostrando la pista "+ pista);
         }
     }  
 }

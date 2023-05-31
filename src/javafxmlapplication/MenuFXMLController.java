@@ -85,6 +85,10 @@ public class MenuFXMLController implements Initializable {
     private Button mostrarDisponBoton;
     @FXML
     private MenuButton opcionesBoton;
+    @FXML
+    private Label saberFecha;
+    @FXML
+    private Label saberPista;
     
     /**
      * Initializes the controller class.
@@ -224,19 +228,21 @@ public class MenuFXMLController implements Initializable {
 
 
     @FXML
-    private void mostrarDisponibilidad(ActionEvent event) throws ClubDAOException, IOException 
+    private void mostrarDisponibilidad(ActionEvent event) throws ClubDAOException, IOException, NullPointerException
     {
         club = getInstance(); 
         
         List<Booking> horarioDePista = new ArrayList<>(); 
         
         LocalDate fecha = calendarioBoton.getValue(); 
+        LocalDate fecha1 = fecha; 
         LocalDate fechaActual = LocalDate.now();
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String fechaString = fecha1.format(formato);
         String pista = seleccionPistaBoton.getValue(); 
-
                     
         if(fecha == null) 
-        {
+        { 
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Error");
             alert.setHeaderText("Error en selección de la fecha");
@@ -327,7 +333,9 @@ public class MenuFXMLController implements Initializable {
                         GridPane.getChildren().get(i + 1).setId("celda"); 
                         horaInicio = horaFin;
                     }
-                }           
+                }    
+                saberFecha.setText("Está mostrando la fecha "+ fechaString); 
+                saberPista.setText("Está mostrando la pista "+ pista);
             } 
         } 
         else 
@@ -395,6 +403,8 @@ public class MenuFXMLController implements Initializable {
                         
                 }       
             }  
+            saberFecha.setText("Está mostrando la fecha "+ fechaString); 
+            saberPista.setText("Está mostrando la pista "+ pista);
         }
     }
 
