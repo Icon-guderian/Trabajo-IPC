@@ -442,6 +442,10 @@ public class MisReservasController implements Initializable {
                     scene.getStylesheets().add(getClass().getResource("textfield.css").toExternalForm());
                     Stage stage = new Stage();
                     stage.setScene(scene);
+                    stage.setMinWidth(650);
+                    stage.setMinHeight(720);
+                    stage.setMaxWidth(900);
+                    stage.setMaxHeight(1000);
                     stage.setTitle("Mis reservas");
                     stage.initModality(Modality.APPLICATION_MODAL);
                     stage.show();
