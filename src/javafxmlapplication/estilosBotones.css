@@ -33,4 +33,11 @@
     -fx-background-color: #ffff80;  
 }
 
-
+#selected_reserva:pressed {
+    -fx-background-color: #e6e673;
+    -fx-border-color: black;
+}
+#selected_reserva:released {
+   -fx-background-color: #ffff80;
+   -fx-border-color: black;
+}

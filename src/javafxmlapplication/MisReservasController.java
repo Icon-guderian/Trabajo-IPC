@@ -351,7 +351,7 @@ public class MisReservasController implements Initializable {
             
                         if (selectedBooking != null) {
                             // Restaurar el estilo de la reserva previamente seleccionada
-                            label.setId("unselected_reserva");              
+                            label.setId("selected_reserva");              
                         }
                         selectedBooking = b;
                             label.setId("selected_reserva");              
