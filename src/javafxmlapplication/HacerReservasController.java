@@ -66,6 +66,8 @@ public class HacerReservasController extends ListCell<String> implements Initial
     private Booking b;
     
     private Booking selectedBooking; 
+    
+    private boolean a;
 
     @FXML
     private BorderPane borderPane;
@@ -88,13 +90,13 @@ public class HacerReservasController extends ListCell<String> implements Initial
     @FXML
     private DatePicker calendarioBoton;
     @FXML
-    private ComboBox<String> seleccionarPistaBoton;
-    @FXML
     private GridPane GridPane;
     @FXML
     private Button mostrarDisponBoton;
     @FXML
     private Button reservarBoton;
+    @FXML
+    private ComboBox<String> seleccionPistaBoton;
     /**
      * Initializes the controller class.
      */
@@ -133,19 +135,33 @@ public class HacerReservasController extends ListCell<String> implements Initial
         if(ar == null) { return false; }
         return ar.belongsToMember(nick); 
     }
-       public static List<Booking> ordenarPorFechaYHora(List<Booking> bookings) {
+    
+    public static List<Booking> ordenarPorFechaYHora(List<Booking> bookings) {
         List<Booking> copy = new ArrayList<>(bookings);
         Collections.sort(copy, (Booking booking1, Booking booking2) -> booking1.getMadeForDay().compareTo(booking2.getMadeForDay()));
         return copy;
-        }
+    }
     
     public void initImageNick(Member member) 
     {
+    
         m = member; 
-        labelNombre.setText("¡Bienvenido "+ m.getNickName()+"! :D");
+                labelNombre.setText("¡Bienvenido "+ m.getNickName()+"!");
 
         LocalDate fechaActual = LocalDate.now();
         List<Booking> elarray = club.getForDayBookings(fechaActual); 
+        
+        int horaCompararInt = LocalTime.now().getHour();
+        
+        if (elarray.isEmpty() && (horaCompararInt > 22 || horaCompararInt < 9))
+        {
+            
+            labelPistaReservada.setText("Nuestras pistas de tenis permanecen cerradas. Horario de apertura de 9:00 a 22:00.");
+        }
+        else if (elarray.isEmpty())
+        { 
+            labelPistaReservada.setText("A lo largo del día no tienes ninguna reserva todavía.");
+        } else {
         
         for(int i = 0; i < elarray.size(); i++) 
         {
@@ -176,12 +192,16 @@ public class HacerReservasController extends ListCell<String> implements Initial
                 labelPistaReservada.setText("Tienes una reserva activa ahora mismo, tú pista es la "+ mostrar);
                 break; 
             }
+            else if (horaCompararInt > 22 || horaCompararInt < 9)
+            { 
+                labelPistaReservada.setText("Nuestras pistas de tenis permanecen cerradas. Horario de apertura de 9:00 a 22:00.");
+            }
             else 
             {
                 labelPistaReservada.setText("A lo largo del día no tienes ninguna reserva todavía.");
             }
         }
-
+        }
         Image imagenUsuario = m.getImage();
         if (imagenUsuario != null) 
         {
@@ -193,7 +213,8 @@ public class HacerReservasController extends ListCell<String> implements Initial
             fotoPerfil.setImage(imagenPredeterminada);
         }
     }
-     public void meterComboBox(List<Court> elarray) 
+    
+    public void meterComboBox(List<Court> elarray) 
     {
         elarray = club.getCourts(); 
         ObservableList<String> items = FXCollections.observableArrayList();
@@ -201,7 +222,7 @@ public class HacerReservasController extends ListCell<String> implements Initial
         {
             items.add(elarray.get(i).getName()); 
         }
-        seleccionarPistaBoton.setItems(items);         
+        seleccionPistaBoton.setItems(items);         
     }
      
     @Override
@@ -219,30 +240,27 @@ public class HacerReservasController extends ListCell<String> implements Initial
         {
             items.add(elarray.get(i).getName()); 
         }
-        seleccionarPistaBoton.setItems(items);
+        seleccionPistaBoton.setItems(items);
         
         opcionesBoton.setId("boton_blanco_a_sombra");
         mostrarDisponBoton.setId("boton_verde_a_sombra");
-        seleccionarPistaBoton.setId("seleccionarPistaBoton"); 
         reservarBoton.setId("boton_verde_a_sombra");
-
-
     }    
     
     @FXML
     private void mostrarDisponibilidad(ActionEvent event) throws ClubDAOException, IOException 
     {
-        club = getInstance(); // Obtiene una instancia del objeto Club
+        club = getInstance(); 
         
         List<Booking> horarioDePista = new ArrayList<>(); 
         
-        LocalDate fecha = calendarioBoton.getValue(); // Obtiene la fecha seleccionada en el DatePicker
+        LocalDate fecha = calendarioBoton.getValue(); 
         LocalDate fechaActual = LocalDate.now();
-        String pista = seleccionarPistaBoton.getValue(); // Obtiene la pista seleccionada en el ComboBox
-
+        String pista = seleccionPistaBoton.getValue(); 
+        reservarBoton.setDisable(true);
                     
         if(fecha == null) 
-        {        // Si no se ha seleccionado una fecha, muestra un mensaje de error
+        {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Error");
             alert.setHeaderText("Error en selección de la fecha");
@@ -251,7 +269,7 @@ public class HacerReservasController extends ListCell<String> implements Initial
         
         }
         else if(pista == null) 
-        {        // Si no se ha seleccionado una pista, muestra un mensaje de error
+        {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Error");
             alert.setHeaderText("Error en la selección de pista");
@@ -259,7 +277,7 @@ public class HacerReservasController extends ListCell<String> implements Initial
             alert.showAndWait();
         } 
         else if(fecha.isBefore(fechaActual)) 
-        {        // Si la fecha seleccionada es anterior a la fecha actual, muestra un mensaje de confirmación
+        {
             horarioDePista = club.getCourtBookings(pista, fecha); 
             
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -274,7 +292,7 @@ public class HacerReservasController extends ListCell<String> implements Initial
             
             
             if (resultado.isPresent() && resultado.get() == botonSi) 
-            {// Si el usuario confirma, muestra la disponibilidad de reservas para ese día pasado
+            {
                 LocalTime horaInicio = LocalTime.of(9, 0);
                 int duracion = club.getBookingDuration();
                 int ReservasPistas = club.getBookingSlots(); 
@@ -328,69 +346,25 @@ public class HacerReservasController extends ListCell<String> implements Initial
                         String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
                         String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
                         label.setText(horaInicioTexto + " - " + horaFinTexto + ".  No reservado                                                                                    ");
-                        label.setStyle("-fx-background-color: #80ff80");                       
-                        
-                        /*
-                                for (Booking b : ArrayAUtilizar){
-                       
-            if(b.getMadeForDay().isAfter(LocalDate.now()) || b.getMadeForDay().isEqual(LocalDate.now())){
-            
-                if((!b.equals(null)) ){ 
-
-                    Label label = new Label();
-                    LocalDate diaReserva = b.getMadeForDay();
-                    LocalTime horaInicio = b.getFromTime();
-                    int duracion = club.getBookingDuration();
-                    LocalTime horaFin = horaInicio.plusMinutes(duracion);
-
-                    String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
-                    String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
-                    String diaReservaTexto = diaReserva.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
-                    
-                    String a = ""; 
-                    if(b.getPaid() == false) { a = "Está pagada."; } 
-                    else { a = "No está pagado, recuerde pasar por la oficina a pagar la reserva."; }
-                    
-                    label.setText("         " + diaReservaTexto + " | " + horaInicioTexto + " - " + horaFinTexto + " | " + "Reservado por: " + m.getNickName() + " | " + b.getCourt().getName() + " | " + a + "         ");  
-                    label.setId("selected_reserva");
-                    
-                    label.setOnMouseClicked(e -> {
-            
-                        if (selectedBooking != null) {
-                            // Restaurar el estilo de la reserva previamente seleccionada
-                            label.setId("unselected_reserva");              
-                        }
-                        selectedBooking = b;
-                            label.setId("selected_reserva");              
-                        anularReservaBoton.setDisable(false); // Habilitar el botón de anular reserva
-
-                    });
-                    
-                    GridPane.add(label, 1, i); 
-
-                    i++;
-                }
-            }
-        }*/
-                        label.setOnMouseClicked(e -> {
-                                    
-                        if (selectedBooking != null) {
-                            // Restaurar el estilo de la reserva previamente seleccionada
-                            label.setId("unselected_reserva");              
-                        }
-                        selectedBooking = b;
-                            label.setId("selected_reserva");              
-                        reservarBoton.setDisable(false); // Habilitar el botón de anular reserva
-                        });
+                        label.setStyle("-fx-background-color: #80ff80");
                         GridPane.add(label, 1, i);
                         GridPane.getChildren().get(i + 1).setId("celda"); 
                         horaInicio = horaFin;
                         
-                        
-                        
+                        label.setOnMouseClicked(e -> {
+                            if (selectedBooking != null) {
+                            // Restaurar el estilo de la reserva previamente seleccionada
+                                label.setId("unselected_reserva");              
+                            }
+                                selectedBooking = b;
+                                label.setId("selected_reserva"); 
+                                reservarBoton.setId("boton_verde_a_sombra"); 
+                                reservarBoton.setDisable(false); // Habilitar el botón de anular reserva
+                        });
                     }
                 }           
             } 
+            reservarBoton.setId("boton_verde_a_sombra");
         } 
         else 
         {
@@ -455,10 +429,19 @@ public class HacerReservasController extends ListCell<String> implements Initial
                         GridPane.getChildren().get(i + 1).setId("celda"); 
                         horaInicio = horaFin;
                         
+                        label.setOnMouseClicked(e -> {
+                            
+                            label.setId("selected_reserva"); 
+                             
+                            reservarBoton.setDisable(false); // Habilitar el botón de anular reserva
+                            reservarBoton.setId("boton_verde_a_sombra");
+                        });
                 }       
             }  
         }
+        reservarBoton.setId("boton_verde_a_sombra");
     }
+    
     @FXML
     private void miMenu(ActionEvent event) {
         MenuItem menuItem = (MenuItem) event.getSource();
@@ -551,85 +534,10 @@ public class HacerReservasController extends ListCell<String> implements Initial
             alert.close(); 
         }
     }
-    
-/*
-        */
+
     @FXML
-    private void hacerReserva(ActionEvent event) throws ClubDAOException, IOException {
-      if (selectedBooking == null) {
-        LocalDate now = LocalDate.now();
-        LocalDate reservaDate = selectedBooking.getMadeForDay();
-        LocalDateTime ahora = LocalDateTime.now();
-        String pista = seleccionarPistaBoton.getValue(); // Obtiene la pista seleccionada en el ComboBox
-        LocalDate fecha = calendarioBoton.getValue(); // Obtiene la fecha seleccionada en el DatePicker
-        LocalTime horaInicio = selectedBooking.getFromTime();
-        int duracion = club.getBookingDuration();
-        LocalTime horaFin = horaInicio.plusMinutes(duracion);
-        Court pistas = selectedBooking.getCourt();
-        String nick = m.getNickName(); 
+    private void hacerReserva(ActionEvent event) {
+    }
+    
 
-        
-// Aquí debes establecer la fecha de reserva deseada
-        // Aquí debes obtener la hora de inicio y duración de la reserva deseada
-        
-        String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
-        String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
-        String diaReservaTexto = reservaDate.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
-        
-        // Verificar que el usuario no tiene más de dos reservas
-        if (fecha.isAfter(now)) {
-           club.registerBooking(ahora, reservaDate, horaFin, true, pistas, m);
-            mostrarDisponibilidad(event);
-            hacerReserva(event);
-            
-            // Mostrar un mensaje de éxito de la reserva
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Reserva realizada");
-            alert.setHeaderText("");
-            alert.setContentText("Se ha hecho la siguiente reserva: " + diaReservaTexto + " " + horaInicioTexto + " - " + horaFinTexto + " " + selectedBooking.getCourt().getName() + ".      ");
-
-            DialogPane dialogPane = alert.getDialogPane();
-
-            // Establecer un ancho y alto personalizados
-            dialogPane.setPrefWidth(450);
-            dialogPane.setPrefHeight(100);
-
-            Optional<ButtonType> result = alert.showAndWait();
-            
-            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/HacerReservas.fxml"));
-            Parent root = miCargador.load();    
-            Scene scene = new Scene(root);
-            MisReservasController controlador = miCargador.getController(); 
-            controlador.initUsuario(m); 
-            controlador.initImageNick(m);
-            controlador.initArray(ArrayAUtilizar); 
-            scene.getStylesheets().add(getClass().getResource("textfield.css").toExternalForm());
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.setTitle("Hacer reservas");
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.show();
-            Stage myStage = (Stage) reservarBoton.getScene().getWindow();
-            myStage.close();
-            
-            // Código adicional para actualizar la interfaz o realizar otras acciones necesarias después de la reserva
-        } else {
-            // Mostrar un mensaje de error si la reserva no cumple con la condición de tiempo
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Error al hacer la reserva");
-            alert.setHeaderText("");
-            alert.setContentText("No se pueden hacer reservas en el pasado");
-
-            Optional<ButtonType> result = alert.showAndWait();
-        }
-    } else {
-        // Mostrar un mensaje de error si ya se ha seleccionado una reserva
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Error haciendo la reserva");
-        alert.setHeaderText("");
-        alert.setContentText("Error al hacer la reserva. Inténtalo de nuevo.");
-
-        Optional<ButtonType> result = alert.showAndWait();
-   }
-  }
 }
