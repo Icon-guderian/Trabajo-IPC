@@ -211,7 +211,7 @@ public class HacerReservasController extends ListCell<String> implements Initial
                 labelPistaReservada.setText("Tienes una reserva activa ahora mismo, tú pista es la "+ mostrar);
                 break; 
             }
-            else if (horaCompararInt > 22 || horaCompararInt < 9)
+            else if (horaCompararInt >= 22 || horaCompararInt < 9)
             { 
                 labelPistaReservada.setText("Nuestras pistas de tenis permanecen cerradas. Horario de apertura de 9:00 a 22:00.");
             }
@@ -638,7 +638,22 @@ public class HacerReservasController extends ListCell<String> implements Initial
                 {
                     boolean a = club.hasCreditCard(m.getNickName());  
                     Booking b1 = club.registerBooking(LocalDateTime.now(), fechaReserva, horaReserva, a, club.getCourt(pistaReserva), m); 
-                    
+                    if(a) 
+                    { 
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("¡Reserva realizada!");
+                        alert.setHeaderText("");
+                        alert.setContentText("Tiene introducidos sus datos bancarios correctamente la pista está pagada. Para actualizar la lista, salga y vuelva a entrar a esta ventana.");
+                        alert.showAndWait();
+                    }
+                    else 
+                    {
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("¡Reservas realizadas!");
+                        alert.setHeaderText("");
+                        alert.setContentText("No tiene introducidos sus datos bancarios correctamente pase por secretaría para pagarla. Para actualizar la lista, salga y vuelva a entrar a esta ventana.");
+                        alert.showAndWait();
+                    }
                 }
             }
             else if(contador[2] < 1) 
@@ -660,8 +675,24 @@ public class HacerReservasController extends ListCell<String> implements Initial
                 {
                     boolean a = club.hasCreditCard(m.getNickName());  
                     Booking b1 = club.registerBooking(LocalDateTime.now(), fechaReserva, horaReserva, a, club.getCourt(pistaReserva), m); 
-                                    }
+                    if(a) 
+                    { 
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("¡Reserva realizada!");
+                        alert.setHeaderText("");
+                        alert.setContentText("Tiene introducidos sus datos bancarios correctamente la pista está pagada. Para actualizar la lista, salga y vuelva a entrar a esta ventana.");
+                        alert.showAndWait();
+                    }
+                    else 
+                    {
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("¡Reservas realizadas!");
+                        alert.setHeaderText("");
+                        alert.setContentText("No tiene introducidos sus datos bancarios correctamente pase por secretaría para pagarla. Para actualizar la lista, salga y vuelva a entrar a esta ventana.");
+                        alert.showAndWait();
+                    }
                 }
+            }
             else if (contador[1] >= 2 && contador[2] >= 2)
             {
                 FechaReserva1 = darFecha(contador[1]);
@@ -697,7 +728,22 @@ public class HacerReservasController extends ListCell<String> implements Initial
                     boolean a = club.hasCreditCard(m.getNickName());  
                     Booking b1 = club.registerBooking(LocalDateTime.now(), fechaReserva, horaReserva, a, club.getCourt(pistaReserva), m); 
                     Booking b2 = club.registerBooking(LocalDateTime.now(), fechaReserva, horaReserva1, a, club.getCourt(pistaReserva), m); 
-
+                    if(a) 
+                    { 
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("¡Reservas realizadas!");
+                        alert.setHeaderText("");
+                        alert.setContentText("Tiene introducidos sus datos bancarios correctamente las pistas están pagadas. Para actualizar la lista, salga y vuelva a entrar a esta ventana.");
+                        alert.showAndWait();
+                    }
+                    else 
+                    {
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("¡Reservas realizadas!");
+                        alert.setHeaderText("");
+                        alert.setContentText("No tiene introducidos sus datos bancarios correctamente pase por secretaría para pagarlas. Para actualizar la lista, salga y vuelva a entrar a esta ventana.");
+                        alert.showAndWait();
+                    }
                 }
             }     
         }
