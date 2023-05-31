@@ -109,9 +109,13 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
     {
         FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/Registrarse.fxml"));
         Parent root = miCargador.load();
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, 470, 720);
         Stage stage = new Stage();
         stage.setScene(scene);
+        stage.setMinWidth(460);
+        stage.setMinHeight(700);
+        stage.setMaxWidth(800);
+        stage.setMaxHeight(1000);
         stage.setTitle("Registrar");
         stage.initModality(Modality.APPLICATION_MODAL);
         //la ventana se muestra modal
@@ -125,10 +129,14 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
     {     
         FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/IniciarSesion.fxml"));
         Parent root = miCargador.load();       
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, 700, 430);
         scene.getStylesheets().add(getClass().getResource("textfield.css").toExternalForm()); 
         Stage stage = new Stage();
         stage.setScene(scene);
+        stage.setMinWidth(680);
+        stage.setMinHeight(400);
+        stage.setMaxWidth(800);
+        stage.setMaxHeight(600);
         stage.setTitle("Autenticarse");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();

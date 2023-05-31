@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="1120.0" maxWidth="1000.0" minHeight="112.0" minWidth="100.0" prefHeight="766.0" prefWidth="685.0" stylesheets="@estilosBotones.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.HacerReservasController">
+<BorderPane fx:id="borderPane" prefHeight="770.0" prefWidth="680.0" stylesheets="@estilosBotones.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.HacerReservasController">
    <top>
    </top>
    <bottom>

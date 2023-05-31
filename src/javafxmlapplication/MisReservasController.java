@@ -280,8 +280,13 @@ public class MisReservasController implements Initializable {
             FXMLLoader miCargador = new FXMLLoader(getClass().getResource("MenuPrincipal.fxml"));
             try {
                 Parent root = miCargador.load();
-                Scene scene1 = new Scene(root);
+                Scene scene1 = new Scene(root, 670, 750);
                 Stage stage = new Stage();
+                stage.setTitle("GreenBall");
+                stage.setMinWidth(650);
+                stage.setMinHeight(700);
+                stage.setMaxWidth(900);
+                stage.setMaxHeight(1000);
                 stage.setScene(scene1);
                 stage.show();
                 myStage.close();
@@ -364,8 +369,12 @@ public class MisReservasController implements Initializable {
             controlador.initUsuario(m); 
             controlador.initImageNick(m);
             controlador.meterComboBox(club.getCourts());
-            Scene scene1 = new Scene(root);
+            Scene scene1 = new Scene(root, 670, 750);
             Stage stage = new Stage();
+            stage.setMinWidth(650);
+            stage.setMinHeight(700);
+            stage.setMaxWidth(900);
+            stage.setMaxHeight(1000);
             stage.setScene(scene1);
             stage.setTitle("Menú");
             stage.initModality(Modality.APPLICATION_MODAL);

@@ -72,10 +72,14 @@ public class IniciarSesionController implements Initializable {
     {
         FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/MenuPrincipal.fxml"));
         Parent root = miCargador.load();
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root,670,750);
         scene.getStylesheets().add(getClass().getResource("calendario.css").toExternalForm()); 
         Stage stage = new Stage();
         stage.setScene(scene);
+        stage.setMinWidth(650);
+        stage.setMinHeight(700);
+        stage.setMaxWidth(900);
+        stage.setMaxHeight(1000);
         stage.setTitle("GreenBall");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
@@ -88,9 +92,13 @@ public class IniciarSesionController implements Initializable {
     {
         FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/Registrarse.fxml"));
         Parent root = miCargador.load();
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, 470, 720);
         Stage stage = new Stage();
         stage.setScene(scene);
+        stage.setMinWidth(460);
+        stage.setMinHeight(700);
+        stage.setMaxWidth(800);
+        stage.setMaxHeight(1000);
         stage.setTitle("Registrar");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
@@ -182,8 +190,12 @@ public class IniciarSesionController implements Initializable {
                 controlador.initUsuario(m);
                 controlador.initImageNick(m);
                 controlador.meterComboBox(club.getCourts());
-                Scene scene = new Scene(root);
+                Scene scene = new Scene(root, 670, 750);
                 Stage stage = new Stage();
+                stage.setMinWidth(650);
+                stage.setMinHeight(700);
+                stage.setMaxWidth(900);
+                stage.setMaxHeight(1000);
                 stage.setScene(scene);
                 stage.setTitle("Menú");
                 stage.initModality(Modality.APPLICATION_MODAL);

@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="723.0" prefWidth="472.0" stylesheets="@estilosBotones.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.RegistrarseController">
+<BorderPane prefHeight="720.0" prefWidth="470.0" stylesheets="@estilosBotones.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.RegistrarseController">
    <top>
       <HBox alignment="CENTER" prefHeight="60.0" prefWidth="494.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 200%, repeat, #16779F 0%,  #84B118 90%);" BorderPane.alignment="CENTER">
          <children>
