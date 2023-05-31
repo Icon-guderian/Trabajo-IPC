@@ -148,6 +148,15 @@ public class HacerReservasController extends ListCell<String> implements Initial
         return copy;
     }
     
+    public static LocalDateTime darFecha(int value) {
+        LocalDateTime now = LocalDateTime.now(); 
+        LocalDateTime dateTime = now.withHour(9).withMinute(0).plusHours(value - 2);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        String formattedDateTime = dateTime.format(formatter);
+        dateTime = LocalDateTime.parse(formattedDateTime, formatter);
+        return dateTime;
+    }
+    
     public void initImageNick(Member member) 
     {
     
@@ -602,8 +611,38 @@ public class HacerReservasController extends ListCell<String> implements Initial
         }
         else 
         {
+            LocalDateTime FechaReserva1;
+            LocalDateTime FechaReserva2;
             
-        
+            if(contador[1] < 1) 
+            {
+                FechaReserva2 = darFecha(contador[2]);
+                LocalDateTime horaActual = LocalDateTime.now();
+                DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm");
+                String fechaString = horaActual.format(formato);
+                if(FechaReserva2.getHour() < Integer.parseInt(fechaString.substring(0, 2))) 
+                {
+                    
+                } 
+            }
+            else if(contador[2] < 1) 
+            {
+                FechaReserva1 = darFecha(contador[1]);
+                LocalDateTime horaActual = LocalDateTime.now();
+                DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm");
+                String fechaString = horaActual.format(formato);
+                if(FechaReserva1.getHour() < Integer.parseInt(fechaString.substring(0, 2))) 
+                {
+                    
+                } 
+            }
+            else if (contador[1] >= 2 && contador[2] >= 2)
+            {
+                FechaReserva1 = darFecha(contador[1]);
+                FechaReserva2 = darFecha(contador[2]);
+            }
+            
+            
         }
     }
     
