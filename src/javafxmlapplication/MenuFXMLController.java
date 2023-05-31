@@ -420,7 +420,7 @@ public class MenuFXMLController implements Initializable {
             MisReservasController controlador = miCargador.getController(); 
             controlador.initUsuario(m); 
             controlador.initImageNick(m);
-            Scene scene1 = new Scene(root, 680, 750);
+            Scene scene1 = new Scene(root);
             Stage stage = new Stage();
             stage.setTitle("Mis Reservas");
             stage.setMinWidth(650);
@@ -445,7 +445,7 @@ public class MenuFXMLController implements Initializable {
             HacerReservasController controlador = miCargador.getController(); 
             controlador.initUsuario(m); 
             controlador.initImageNick(m); 
-            Scene scene1 = new Scene(root, 680, 750);
+            Scene scene1 = new Scene(root);
             Stage stage = new Stage();
             stage.setMinWidth(650);
             stage.setMinHeight(720);
@@ -470,7 +470,7 @@ public class MenuFXMLController implements Initializable {
             ModificarPerfilController controlador = miCargador.getController(); 
             controlador.initUsuario(m); 
             controlador.initImageNick(m); 
-            Scene scene1 = new Scene(root, 570, 810);
+            Scene scene1 = new Scene(root);
             Stage stage = new Stage();
             stage.setMinWidth(550);
             stage.setMinHeight(810);
@@ -503,14 +503,14 @@ public class MenuFXMLController implements Initializable {
             FXMLLoader miCargador = new FXMLLoader(getClass().getResource("MenuPrincipal.fxml"));
             try {
                 Parent root = miCargador.load();
-                Scene scene1 = new Scene(root, 670, 750);
+                Scene scene1 = new Scene(root);
                 scene1.getStylesheets().add(getClass().getResource("calendario.css").toExternalForm()); 
                 Stage stage = new Stage();
                 stage.setTitle("GreenBall");
                 stage.setMinWidth(650);
                 stage.setMinHeight(700);
-                stage.setMaxWidth(900);
-                stage.setMaxHeight(1000);
+                stage.setMaxWidth(1400);
+                stage.setMaxHeight(1400);
                 stage.setScene(scene1);
                 stage.show();
                 myStage.close();

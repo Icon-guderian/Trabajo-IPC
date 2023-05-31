@@ -432,12 +432,12 @@ public class ModificarPerfilController implements Initializable {
             controlador.initUsuario(m); 
             controlador.initImageNick(m);
             controlador.meterComboBox(club.getCourts());
-            Scene scene1 = new Scene(root, 670, 750);
+            Scene scene1 = new Scene(root);
             Stage stage = new Stage();
             stage.setMinWidth(650);
             stage.setMinHeight(700);
-            stage.setMaxWidth(900);
-            stage.setMaxHeight(1000);
+            stage.setMaxWidth(1400);
+            stage.setMaxHeight(1400);
             stage.setScene(scene1);
             stage.setTitle("Menú");
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -457,7 +457,7 @@ public class ModificarPerfilController implements Initializable {
             HacerReservasController controlador = miCargador.getController(); 
             controlador.initUsuario(m); 
             controlador.initImageNick(m); 
-            Scene scene1 = new Scene(root, 680, 750);
+            Scene scene1 = new Scene(root);
             Stage stage = new Stage();
             stage.setMinWidth(650);
             stage.setMinHeight(720);
@@ -481,7 +481,7 @@ public class ModificarPerfilController implements Initializable {
             MisReservasController controlador = miCargador.getController(); 
             controlador.initUsuario(m); 
             controlador.initImageNick(m); 
-            Scene scene1 = new Scene(root, 680, 750);
+            Scene scene1 = new Scene(root);
             Stage stage = new Stage();
             stage.setMinWidth(650);
             stage.setMinHeight(720);
@@ -513,14 +513,14 @@ public class ModificarPerfilController implements Initializable {
             FXMLLoader miCargador = new FXMLLoader(getClass().getResource("MenuPrincipal.fxml"));
             try {
                 Parent root = miCargador.load();
-                Scene scene1 = new Scene(root, 670, 750);
+                Scene scene1 = new Scene(root);
                 scene1.getStylesheets().add(getClass().getResource("calendario.css").toExternalForm());
                 Stage stage = new Stage();
                 stage.setTitle("GreenBall");
                 stage.setMinWidth(650);
                 stage.setMinHeight(700);
-                stage.setMaxWidth(900);
-                stage.setMaxHeight(1000);
+                stage.setMaxWidth(1400);
+                stage.setMaxHeight(1400);
                 stage.setScene(scene1);
                 stage.show();
                 myStage.close();

@@ -115,7 +115,7 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
     {
         FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/Registrarse.fxml"));
         Parent root = miCargador.load();
-        Scene scene = new Scene(root, 470, 720);
+        Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setMinWidth(460);
@@ -135,7 +135,7 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
     {     
         FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/IniciarSesion.fxml"));
         Parent root = miCargador.load();       
-        Scene scene = new Scene(root, 700, 430);
+        Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("textfield.css").toExternalForm()); 
         Stage stage = new Stage();
         stage.setScene(scene);

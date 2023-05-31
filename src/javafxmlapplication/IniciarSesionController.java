@@ -72,14 +72,14 @@ public class IniciarSesionController implements Initializable {
     {
         FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/MenuPrincipal.fxml"));
         Parent root = miCargador.load();
-        Scene scene = new Scene(root,670,750);
+        Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("calendario.css").toExternalForm()); 
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setMinWidth(650);
         stage.setMinHeight(700);
-        stage.setMaxWidth(900);
-        stage.setMaxHeight(1000);
+        stage.setMaxWidth(1400);
+        stage.setMaxHeight(1400);
         stage.setTitle("GreenBall");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
@@ -92,7 +92,7 @@ public class IniciarSesionController implements Initializable {
     {
         FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/javafxmlapplication/Registrarse.fxml"));
         Parent root = miCargador.load();
-        Scene scene = new Scene(root, 470, 720);
+        Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setMinWidth(460);
@@ -190,12 +190,12 @@ public class IniciarSesionController implements Initializable {
                 controlador.initUsuario(m);
                 controlador.initImageNick(m);
                 controlador.meterComboBox(club.getCourts());
-                Scene scene = new Scene(root, 670, 750);
+                Scene scene = new Scene(root);
                 Stage stage = new Stage();
                 stage.setMinWidth(650);
                 stage.setMinHeight(700);
-                stage.setMaxWidth(900);
-                stage.setMaxHeight(1000);
+                stage.setMaxWidth(1400);
+                stage.setMaxHeight(1400);
                 stage.setScene(scene);
                 stage.setTitle("Menú");
                 stage.initModality(Modality.APPLICATION_MODAL);

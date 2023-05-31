@@ -19,15 +19,15 @@ public class JavaFXMLApplication extends Application {
     {
         FXMLLoader loader= new  FXMLLoader(getClass().getResource("MenuPrincipal.fxml"));
         Parent root = loader.load();
-        Scene scene = new Scene(root, 670, 750);
+        Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("estilosBotones.css").toExternalForm());
         scene.getStylesheets().add(getClass().getResource("calendario.css").toExternalForm()); 
         scene.getStylesheets().add(getClass().getResource("textfield.css").toExternalForm());
         stage.setScene(scene);
         stage.setMinWidth(650);
         stage.setMinHeight(700);
-        stage.setMaxWidth(900);
-        stage.setMaxHeight(1000);
+        stage.setMaxWidth(1400);
+        stage.setMaxHeight(1400);
         stage.setTitle("GreenBall");
         stage.show();
     }
