@@ -433,8 +433,12 @@ public class MenuFXMLController implements Initializable {
             HacerReservasController controlador = miCargador.getController(); 
             controlador.initUsuario(m); 
             controlador.initImageNick(m); 
-            Scene scene1 = new Scene(root);
+            Scene scene1 = new Scene(root, 680, 750);
             Stage stage = new Stage();
+            stage.setMinWidth(650);
+            stage.setMinHeight(720);
+            stage.setMaxWidth(900);
+            stage.setMaxHeight(1000);
             stage.setTitle("Hacer Reservas");
             stage.setScene(scene1);
             stage.show();
@@ -454,8 +458,12 @@ public class MenuFXMLController implements Initializable {
             ModificarPerfilController controlador = miCargador.getController(); 
             controlador.initUsuario(m); 
             controlador.initImageNick(m); 
-            Scene scene1 = new Scene(root);
-            Stage stage = new Stage();  
+            Scene scene1 = new Scene(root, 570, 810);
+            Stage stage = new Stage();
+            stage.setMinWidth(550);
+            stage.setMinHeight(810);
+            stage.setMaxWidth(800);
+            stage.setMaxHeight(1000);
             stage.setTitle("Modificar Perfil");
             stage.setScene(scene1);
             stage.show();
