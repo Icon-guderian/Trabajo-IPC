@@ -49,6 +49,8 @@ import model.ClubDAOException;
 public class MenuPrincipalController extends ListCell<String> implements Initializable {
 
     private Club club;
+    
+    private Booking reserva;
 
     @FXML
     private Button registro;
@@ -97,7 +99,7 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
         boolean devolver = false; 
         for(int i = 0; i < ar.size(); i++)
         {
-            Booking reserva = ar.get(i);
+            reserva = ar.get(i);
             if(reserva.getFromTime() == local) { return true; }
             else { devolver = false; }
         }
@@ -214,7 +216,7 @@ public class MenuPrincipalController extends ListCell<String> implements Initial
                         LocalTime horaFin = horaInicio.plusMinutes(duracion);        
                         String horaInicioTexto = horaInicio.format(DateTimeFormatter.ofPattern("HH:mm"));
                         String horaFinTexto = horaFin.format(DateTimeFormatter.ofPattern("HH:mm"));
-                        label.setText(horaInicioTexto + " - " + horaFinTexto + ".  Reservado                                                                                         ");  
+                        label.setText(horaInicioTexto + " - " + horaFinTexto + ".  Reservado por: " + reserva.getMember().getNickName() + "                                                                                         ");  
                         label.setStyle("-fx-background-color: #ffc8c8");
                         GridPane.add(label, 1, i); 
                         GridPane.getChildren().get(i + 1).setId("celda"); 
