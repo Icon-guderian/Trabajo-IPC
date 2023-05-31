@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -132,7 +133,11 @@ public class HacerReservasController extends ListCell<String> implements Initial
         if(ar == null) { return false; }
         return ar.belongsToMember(nick); 
     }
-   
+       public static List<Booking> ordenarPorFechaYHora(List<Booking> bookings) {
+        List<Booking> copy = new ArrayList<>(bookings);
+        Collections.sort(copy, (Booking booking1, Booking booking2) -> booking1.getMadeForDay().compareTo(booking2.getMadeForDay()));
+        return copy;
+        }
     
     public void initImageNick(Member member) 
     {
@@ -366,7 +371,7 @@ public class HacerReservasController extends ListCell<String> implements Initial
                     i++;
                 }
             }
-        }
+        }*/
                         label.setOnMouseClicked(e -> {
                                     
                         if (selectedBooking != null) {
@@ -381,8 +386,7 @@ public class HacerReservasController extends ListCell<String> implements Initial
                         GridPane.getChildren().get(i + 1).setId("celda"); 
                         horaInicio = horaFin;
                         
-                        Tienes que añadir algo parecido a esta mierda, para accionar el boton anular
-                        */
+                        
                         
                     }
                 }           

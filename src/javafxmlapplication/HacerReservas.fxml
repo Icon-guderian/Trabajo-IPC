@@ -187,12 +187,12 @@
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                        </rowConstraints>
                                        <children>
-                                          <Button fx:id="mostrarDisponBoton" mnemonicParsing="false" onAction="#mostrarDisponibilidad" prefHeight="37.0" prefWidth="400.0" text="Visualizar disponibilidad" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="16">
+                                          <Button fx:id="mostrarDisponBoton" mnemonicParsing="false" onAction="#mostrarDisponibilidad" prefHeight="37.0" prefWidth="400.0" text="Visualizar disponibilidad" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="17">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
                                           </Button>
-                                          <Button fx:id="reservarBoton" disable="true" mnemonicParsing="false" onAction="#hacerReserva" prefHeight="36.0" prefWidth="250.0" text="Hacer Reserva" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="14">
+                                          <Button fx:id="reservarBoton" disable="true" mnemonicParsing="false" onAction="#hacerReserva" prefHeight="36.0" prefWidth="250.0" text="Hacer Reserva" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="15">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
