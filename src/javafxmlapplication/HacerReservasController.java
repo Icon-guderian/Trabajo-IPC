@@ -71,6 +71,10 @@ public class HacerReservasController extends ListCell<String> implements Initial
     
     private int[] contador = {0, 0, 0}; 
 
+    private LocalDate fechaReserva;
+    
+    private String pistaReserva; 
+    
     @FXML
     private BorderPane borderPane;
     @FXML
@@ -168,7 +172,7 @@ public class HacerReservasController extends ListCell<String> implements Initial
         
         int horaCompararInt = LocalTime.now().getHour();
         
-        if (elarray.isEmpty() && (horaCompararInt > 22 || horaCompararInt < 9))
+        if (elarray.isEmpty() && (horaCompararInt >= 22 || horaCompararInt < 9))
         {
             
             labelPistaReservada.setText("Nuestras pistas de tenis permanecen cerradas. Horario de apertura de 9:00 a 22:00.");
@@ -274,7 +278,9 @@ public class HacerReservasController extends ListCell<String> implements Initial
         LocalDate fechaActual = LocalDate.now();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String fechaString = fecha1.format(formato);
+        fechaReserva = LocalDate.parse(fechaString, formato);
         String pista = seleccionPistaBoton.getValue();
+        pistaReserva = pista;
         reservarBoton.setDisable(true);            
         contador[0] = 0;  
         contador[1] = 0; 
@@ -495,8 +501,7 @@ public class HacerReservasController extends ListCell<String> implements Initial
                                     }
                                 }
 
-                        });
-                       
+                        });     
                 }       
             }  
             saberDia.setText("Está mostrando la fecha "+ fechaString); 
@@ -599,7 +604,7 @@ public class HacerReservasController extends ListCell<String> implements Initial
     }
 
     @FXML
-    private void hacerReserva(ActionEvent event) 
+    private void hacerReserva(ActionEvent event) throws ClubDAOException 
     {
         if(contador[2] < 1 && contador[1] < 1) 
         {
@@ -620,10 +625,21 @@ public class HacerReservasController extends ListCell<String> implements Initial
                 LocalDateTime horaActual = LocalDateTime.now();
                 DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm");
                 String fechaString = horaActual.format(formato);
+                LocalTime horaReserva = LocalTime.parse(fechaString, formato); 
                 if(FechaReserva2.getHour() < Integer.parseInt(fechaString.substring(0, 2))) 
                 {
-                    
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Error en la hora");
+                    alert.setContentText("No puede reservar una pista cuya hora está en el pasado");
+                    alert.showAndWait();
                 } 
+                else 
+                {
+                    boolean a = club.hasCreditCard(m.getNickName());  
+                    Booking b1 = club.registerBooking(LocalDateTime.now(), fechaReserva, horaReserva, a, club.getCourt(pistaReserva), m); 
+                    
+                }
             }
             else if(contador[2] < 1) 
             {
@@ -631,20 +647,59 @@ public class HacerReservasController extends ListCell<String> implements Initial
                 LocalDateTime horaActual = LocalDateTime.now();
                 DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm");
                 String fechaString = horaActual.format(formato);
+                LocalTime horaReserva = LocalTime.parse(fechaString, formato);
                 if(FechaReserva1.getHour() < Integer.parseInt(fechaString.substring(0, 2))) 
                 {
-                    
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Error en la hora");
+                    alert.setContentText("No puede reservar una pista cuya hora está en el pasado");
+                    alert.showAndWait();
                 } 
-            }
+                else 
+                {
+                    boolean a = club.hasCreditCard(m.getNickName());  
+                    Booking b1 = club.registerBooking(LocalDateTime.now(), fechaReserva, horaReserva, a, club.getCourt(pistaReserva), m); 
+                                    }
+                }
             else if (contador[1] >= 2 && contador[2] >= 2)
             {
                 FechaReserva1 = darFecha(contador[1]);
                 FechaReserva2 = darFecha(contador[2]);
-            }
-            
-            
-        }
-    }
-    
+                LocalDateTime horaActual = LocalDateTime.now();
+                DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm");
+                String fechaString = horaActual.format(formato);
+                LocalTime horaReserva = LocalTime.parse(fechaString, formato);
+                
+                LocalDateTime horaActual1 = LocalDateTime.now();
+                DateTimeFormatter formato1 = DateTimeFormatter.ofPattern("HH:mm");
+                String fechaString1 = horaActual1.format(formato1);
+                LocalTime horaReserva1 = LocalTime.parse(fechaString, formato);
+                
+                if(FechaReserva1.getHour() < Integer.parseInt(fechaString.substring(0, 2))) 
+                {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Error en la hora");
+                    alert.setContentText("No puede reservar una pista cuya hora está en el pasado");
+                    alert.showAndWait();
+                } 
+                else if(FechaReserva2.getHour() < Integer.parseInt(fechaString1.substring(0, 2))) 
+                {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Error en la hora");
+                    alert.setContentText("No puede reservar una pista cuya hora está en el pasado");
+                    alert.showAndWait();
+                } 
+                else 
+                {
+                    boolean a = club.hasCreditCard(m.getNickName());  
+                    Booking b1 = club.registerBooking(LocalDateTime.now(), fechaReserva, horaReserva, a, club.getCourt(pistaReserva), m); 
+                    Booking b2 = club.registerBooking(LocalDateTime.now(), fechaReserva, horaReserva1, a, club.getCourt(pistaReserva), m); 
 
+                }
+            }     
+        }
+    } 
 }

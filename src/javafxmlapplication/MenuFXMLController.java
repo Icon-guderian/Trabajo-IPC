@@ -141,7 +141,7 @@ public class MenuFXMLController implements Initializable {
         
         int horaCompararInt = LocalTime.now().getHour();
         
-        if (elarray.isEmpty() && (horaCompararInt > 22 || horaCompararInt < 9))
+        if (elarray.isEmpty() && (horaCompararInt >= 22 || horaCompararInt < 9))
         {
             
             labelPistaReservada.setText("Nuestras pistas de tenis permanecen cerradas. Horario de apertura de 9:00 a 22:00.");
@@ -180,7 +180,7 @@ public class MenuFXMLController implements Initializable {
                 labelPistaReservada.setText("Tienes una reserva activa ahora mismo, tú pista es la "+ mostrar);
                 break; 
             }
-            else if (horaCompararInt > 22 || horaCompararInt < 9)
+            else if (horaCompararInt >= 22 || horaCompararInt < 9)
             { 
                 labelPistaReservada.setText("Nuestras pistas de tenis permanecen cerradas. Horario de apertura de 9:00 a 22:00.");
             }
