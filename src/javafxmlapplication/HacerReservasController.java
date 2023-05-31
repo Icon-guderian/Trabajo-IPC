@@ -508,6 +508,7 @@ public class HacerReservasController extends ListCell<String> implements Initial
             saberPista.setText("Está mostrando la pista "+ pista);
         }
         reservarBoton.setId("boton_verde_a_sombra");
+        GridPane.getChildren().get(14).setId("celda");
     }
     
     @FXML
@@ -525,6 +526,10 @@ public class HacerReservasController extends ListCell<String> implements Initial
             controlador.meterComboBox(club.getCourts());
             Scene scene1 = new Scene(root);
             Stage stage = new Stage();
+            stage.setMinWidth(650);
+            stage.setMinHeight(700);
+            stage.setMaxWidth(1400);
+            stage.setMaxHeight(1400);
             stage.setScene(scene1);
             stage.setTitle("Menú");
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -546,6 +551,11 @@ public class HacerReservasController extends ListCell<String> implements Initial
             controlador.initImageNick(m); 
             Scene scene1 = new Scene(root);
             Stage stage = new Stage();
+            stage.setTitle("Mis Reservas");
+            stage.setMinWidth(650);
+            stage.setMinHeight(720);
+            stage.setMaxWidth(900);
+            stage.setMaxHeight(1000);
             stage.setScene(scene1);
             stage.show();
             myStage.close();
@@ -565,6 +575,11 @@ public class HacerReservasController extends ListCell<String> implements Initial
             controlador.initImageNick(m); 
             Scene scene1 = new Scene(root);
             Stage stage = new Stage();
+            stage.setMinWidth(550);
+            stage.setMinHeight(810);
+            stage.setMaxWidth(800);
+            stage.setMaxHeight(1000);
+            stage.setTitle("Modificar Perfil");
             stage.setScene(scene1);
             stage.show();
             myStage.close();
@@ -592,6 +607,11 @@ public class HacerReservasController extends ListCell<String> implements Initial
                 Parent root = miCargador.load();
                 Scene scene1 = new Scene(root);
                 Stage stage = new Stage();
+                stage.setTitle("GreenBall");
+                stage.setMinWidth(650);
+                stage.setMinHeight(700);
+                stage.setMaxWidth(1400);
+                stage.setMaxHeight(1400);
                 stage.setScene(scene1);
                 stage.show();
                 myStage.close();
